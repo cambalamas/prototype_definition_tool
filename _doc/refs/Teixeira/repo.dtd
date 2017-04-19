@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Repository [
+
+<!ELEMENT Repository (Simple_Component*, Complex_Component*)+ >
+
+<!ELEMENT Simple_Component (Visual_Appearance+) >
+<!ATTLIST Simple_Component
+    Name CDATA #REQUIRED
+    Visible (true | false) #REQUIRED
+	Active (true | false) #REQUIRED >
+
+<!ELEMENT Visual_Appearance (Graphic* | Text* | Enumeration*)* >
+<!ELEMENT Graphic ((Rectangle | Line | Circle | Ellipse | Polygon)?, LineStyle?, LineTickness?, LineColor?, FillColor?, Position?, Size?, Data?) >
+<!ELEMENT Rectangle (Coordinate, Coordinate) >
+<!ELEMENT Line (Coordinate, Coordinate) >
+<!ELEMENT Circle (Coordinate, Radius) >
+<!ELEMENT Radius (#PCDATA) >
+<!ELEMENT Ellipse (Coordinate, Coordinate, StartAngle, EndAngle) >
+<!ELEMENT StartAngle (#PCDATA) >
+<!ELEMENT EndAngle (#PCDATA) >
+<!ELEMENT Polygon (Coordinate, Coordinate, Coordinate+) >
+<!ELEMENT Coordinate (Px, Py) >
+<!ELEMENT Px (#PCDATA) >
+<!ELEMENT Py (#PCDATA) >
+<!ELEMENT LineStyle EMPTY >
+<!ATTLIST LineStyle
+	Style (continuous | discontinuous) #REQUIRED >
+<!ELEMENT LineTickness (#PCDATA) >
+<!ELEMENT LineColor (#PCDATA) >
+<!ELEMENT FillColor (#PCDATA) >
+<!ELEMENT Position (Fixed | Relative) >
+<!ELEMENT Fixed (Coordinate) >
+<!ELEMENT Relative (OpCRel?, Coordinate) >
+<!ELEMENT OpCRel (Centered | (Justifyed, Justifyed?)) >
+<!ELEMENT Centered EMPTY >
+<!ATTLIST Centered
+	Type (horizontal | vertical | both) #REQUIRED >
+<!ELEMENT Justifyed (#PCDATA) >
+<!ATTLIST Justifyed
+	Type (left | right | top | bottom) #REQUIRED >
+<!ATTLIST Graphic
+	InfI (true | false) #IMPLIED
+	InfO (true | false) #IMPLIED >
+<!ELEMENT Text (Txt, Font, FontSize, FontColor, FontStyle, Position, Size) >
+<!ELEMENT Txt (#PCDATA) >
+<!ELEMENT Font (#PCDATA) >
+<!ELEMENT FontSize (#PCDATA) >
+<!ELEMENT FontColor (#PCDATA) >
+<!ELEMENT FontStyle (#PCDATA) >
+<!ELEMENT Size (ValueX, ValueY) >
+<!ATTLIST Size
+	Type (fixed | relative) #REQUIRED >
+<!ELEMENT ValueX (#PCDATA) >
+<!ELEMENT ValueY (#PCDATA) >
+<!ATTLIST Text
+    Name CDATA #REQUIRED
+    Visible (true | false) #REQUIRED
+	Active (true | false) #REQUIRED >
+<!ELEMENT Enumeration (File, Size) >
+<!ELEMENT File (#PCDATA) >
+<!ELEMENT Data (Type?) >
+<!ELEMENT Type (#PCDATA) >
+<!ATTLIST Type
+	Longitude CDATA #IMPLIED
+	InfRank CDATA #IMPLIED
+	SupRank CDATA #IMPLIED
+	Decimal CDATA #IMPLIED >
+
+<!ELEMENT Complex_Component (Composition, CC_States?, External_Events?) >
+<!ATTLIST Complex_Component Name CDATA #REQUIRED >
+
+<!ELEMENT Composition (SC?, CC?)+ >
+<!ELEMENT SC (#PCDATA)>
+<!ELEMENT CC (#PCDATA)>
+<!ELEMENT CC_States (CC_State*) >
+<!ELEMENT CC_State (Status+, Dialog_State?) >
+<!ATTLIST CC_State
+    ID CDATA #REQUIRED
+	Visible (true | false) #REQUIRED
+	Active (true | false) #REQUIRED >
+<!ELEMENT Status (SC*, CC*)+ >
+<!ATTLIST SC
+    Name CDATA #IMPLIED
+	Visible (true | false) #IMPLIED
+	Active (true | false) #IMPLIED >
+<!ATTLIST CC
+    Name CDATA #IMPLIED
+	Visible (true | false) #IMPLIED
+	Active (true | false) #IMPLIED >
+<!ELEMENT External_Events (Delegate_Events?, Delegate_Actions?) >
+
+<!ELEMENT Dialog_State (Self_Evt*) >
+<!ELEMENT Self_Evt (Preconditions?) >
+<!ATTLIST Self_Evt
+    ID CDATA #REQUIRED
+	Event CDATA #REQUIRED
+	Component CDATA #REQUIRED
+	Ini_State CDATA #REQUIRED
+	End_State CDATA #REQUIRED >
+<!ELEMENT Delegate_Events (Trigger_DE+) >
+<!ELEMENT Trigger_DE (#PCDATA)>
+<!ATTLIST Trigger_DE
+	ID CDATA #REQUIRED
+	Component CDATA #IMPLIED
+	Ini_State CDATA #REQUIRED
+	End_State CDATA #REQUIRED >
+<!ELEMENT Delegate_Actions (Trigger_DA+) >
+<!ELEMENT Trigger_DA (#PCDATA) >
+<!ATTLIST Trigger_DA
+	ID CDATA #REQUIRED
+	SELF_STATE CDATA #REQUIRED
+	TO CDATA #REQUIRED
+	Trigger_DE_ID CDATA #REQUIRED >
+<!ELEMENT Preconditions (Pre_Cond*) >
+<!ELEMENT Pre_Cond (#PCDATA) >
+<!ATTLIST Pre_Cond
+	Component CDATA #REQUIRED
+	State CDATA #REQUIRED >
+]>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Version 3. Cambia el nombre a la cabecera de Componente, Descripcion (Grafico, Texto y Enumeracion) y transicion. Pasa el numero de estado a la cabecera. Permite incluir dos valores de justificado. Cambia el Formato de la transicion-->
+<!ELEMENT DGAUIINT (Composicion, Estados, Transiciones)>
+<!ELEMENT Composicion (Componente+)>
+<!ELEMENT Componente (Alineado?, Equiespaciado?, Subcomponentes, InfI?, InfO?)>
+<!ATTLIST Componente
+    Nombre CDATA #REQUIRED
+>
+<!ELEMENT Alineado (#PCDATA)>
+<!ATTLIST Alineado
+	opcion (iz | de | su | in) #REQUIRED
+>
+<!ELEMENT Equiespaciado (Nombre+)>
+<!ELEMENT Nombre (#PCDATA)>
+<!ELEMENT Subcomponentes (Cont+)>
+<!ELEMENT InfI (#PCDATA)>
+<!ELEMENT InfO (#PCDATA)>
+<!ELEMENT Cont (#PCDATA)>
+<!ELEMENT Estados (Estado+)*>
+<!ELEMENT Estado (Descripcion?)>
+<!ATTLIST Estado
+    Numero CDATA #REQUIRED
+>
+<!ELEMENT Descripcion (Grafico* | Texto* | Enumeracion*)*>
+<!ELEMENT Grafico ((Rectangulo | Linea | Circulo | Elipse | Poligono)?, EstiloLinea?, AnchoLinea?, ColorLinea?, ColorRelleno?, Posicion?, Tamano?, Datos?)>
+<!ELEMENT Rectangulo (Coordenada, Coordenada)>
+<!ELEMENT Linea (Coordenada, Coordenada)>
+<!ELEMENT Circulo (Coordenada, Radio)>
+<!ELEMENT Radio (#PCDATA)>
+<!ELEMENT Elipse (Coordenada, Coordenada, AnguloInicio, AnguloFin)>
+<!ELEMENT AnguloInicio (#PCDATA)>
+<!ELEMENT AnguloFin (#PCDATA)>
+<!ELEMENT Poligono (Coordenada, Coordenada, Coordenada+)>
+<!ELEMENT Coordenada (Px, Py)>
+<!ELEMENT Px (#PCDATA)>
+<!ELEMENT Py (#PCDATA)>
+<!ELEMENT EstiloLinea EMPTY>
+<!ATTLIST EstiloLinea
+	Estilo (continua | discontinua) #REQUIRED
+>
+<!ELEMENT AnchoLinea (#PCDATA)>
+<!ELEMENT ColorLinea (#PCDATA)>
+<!ELEMENT ColorRelleno (#PCDATA)>
+<!ELEMENT Posicion (Fija | Relativa)>
+<!ELEMENT Fija (Coordenada)>
+<!ELEMENT Relativa (OpCRel?, Coordenada)>
+<!ELEMENT OpCRel (Centrado | (Justificado, Justificado?))>
+<!ELEMENT Centrado EMPTY>
+<!ATTLIST Centrado
+	Tipo (h | v | a) #REQUIRED
+>
+<!ELEMENT Justificado (#PCDATA)>
+<!ATTLIST Justificado
+	Tipo (de | iz | su | in) #REQUIRED
+>
+<!ATTLIST Grafico
+    Nombre CDATA #REQUIRED
+	Visible (t | f) #REQUIRED
+	Activo (t | f) #REQUIRED
+	InfI (t | f) #IMPLIED
+	InfO (t | f) #IMPLIED
+>
+<!ELEMENT Texto (Txt, Fuente, TamanoFuente, ColorFuente, EstiloFuente, Posicion, Tamano)>
+<!ELEMENT Txt (#PCDATA)>
+<!ELEMENT Fuente (#PCDATA)>
+<!ELEMENT TamanoFuente (#PCDATA)>
+<!ELEMENT ColorFuente (#PCDATA)>
+<!ELEMENT EstiloFuente (#PCDATA)>
+<!ELEMENT Tamano (Valorx, Valory)>
+<!ATTLIST Tamano
+	Tipo (fijo | relativo) #REQUIRED
+>
+<!ELEMENT Valorx (#PCDATA)>
+<!ELEMENT Valory (#PCDATA)>
+<!ATTLIST Texto
+    Nombre CDATA #REQUIRED
+    Visible (t | f) #REQUIRED
+	Activo (t | f) #REQUIRED
+>
+<!ELEMENT Enumeracion (Fichero, Posicion, Tamano)>
+<!ELEMENT Fichero (#PCDATA)>
+<!ATTLIST Enumeracion
+    Nombre CDATA #REQUIRED
+	Visible (t | f) #REQUIRED
+	Activo (t | f) #REQUIRED
+	InfI (t | f) #IMPLIED
+	InfO (t | f) #IMPLIED
+>
+<!ELEMENT Datos (Tipo?)>
+<!ELEMENT Tipo (#PCDATA)>
+<!ATTLIST Tipo
+	Longitud CDATA #IMPLIED
+	RangoInf CDATA #IMPLIED
+	RangoSup CDATA #IMPLIED
+	Decimales CDATA #IMPLIED
+>
+<!ELEMENT Transiciones (Transicion*)>
+<!ELEMENT Transicion (Precondiciones?)>
+<!ATTLIST Transicion
+    EstadoInicial CDATA #REQUIRED
+    Elemento CDATA #IMPLIED
+    Evento CDATA #REQUIRED
+    EstadoFinal CDATA #REQUIRED
+    Alcanzable (t | f) #IMPLIED
+>
+<!ELEMENT Precondiciones (Precondicion*)>
+<!ELEMENT Precondicion (#PCDATA)>
+<!ATTLIST Precondicion
+	Visible (t | f) #IMPLIED
+	Activo (t | f) #IMPLIED
+	InfI (t | f) #IMPLIED
+	InfO (t | f) #IMPLIED
+>
+
+

@@ -1,0 +1,502 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Library>
+	<Simple_Component Name="SC_Ball_1_N" Visible="true" Active="true">
+		<Visual_Appearance>
+			<Enumeration>
+				<File>Foot_Ball_N_70x70.png</File>
+				<Size Type="fixed">
+					<ValueX>70</ValueX>
+					<ValueY>70</ValueY>
+				</Size>
+				<Position>
+					<Relative>
+						<Coordinate>
+							<Px>50</Px>
+							<Py>301</Py>
+						</Coordinate>
+					</Relative>
+				</Position>
+			</Enumeration>
+		</Visual_Appearance>
+	</Simple_Component>
+
+	<Simple_Component Name="SC_Ball_1_S" Visible="true" Active="true">
+		<Visual_Appearance>
+			<Enumeration>
+				<File>Foot_Ball_S_70x70.png</File>
+				<Size Type="fixed">
+					<ValueX>70</ValueX>
+					<ValueY>70</ValueY>
+				</Size>
+				<Position>
+					<Relative>
+						<Coordinate>
+							<Px>50</Px>
+							<Py>301</Py>
+						</Coordinate>
+					</Relative>
+				</Position>
+			</Enumeration>
+		</Visual_Appearance>
+	</Simple_Component>
+
+	<Simple_Component Name="SC_Ball_1_C" Visible="false" Active="true">
+		<Visual_Appearance>
+			<Enumeration>
+				<File>Foot_Ball_C_70x70.png</File>
+				<Size Type="fixed">
+					<ValueX>70</ValueX>
+					<ValueY>70</ValueY>
+				</Size>
+				<Position>
+					<Relative>
+						<Coordinate>
+							<Px>50</Px>
+							<Py>301</Py>
+						</Coordinate>
+					</Relative>
+				</Position>
+			</Enumeration>
+		</Visual_Appearance>
+	</Simple_Component>
+
+	
+	<Complex_Component Name="CC_Ball_1">
+		<Composition>
+			<SC>SC_Ball_1_N</SC>
+			<SC>SC_Ball_1_S</SC>
+			<SC>SC_Ball_1_C</SC>
+		</Composition>
+		<Visual_Appearance>  </Visual_Appearance>
+		<CC_States>
+			<!-- Normal State of CC_Ball_1 -->
+			<CC_State ID="0" Visible="true" Active="true">
+				<Status>
+					<SC Name="SC_Ball_1_N" Visible="true" Active="true" />
+					<SC Name="SC_Ball_1_S" Visible="false" Active="false" />
+					<SC Name="SC_Ball_1_C" Visible="false" Active="false" />
+				</Status>
+				<Dialog_State>
+					<!-- Self Event over SC_Ball_1_N (TB_1) -->
+					<Self_Evt ID="1" Event="LeftClick" Component="SC_Ball_1_N" Ini_State="0" End_State="1" />
+				</Dialog_State>
+			</CC_State>
+			<!-- Selected state of CC_Ball_1 -->
+			<CC_State ID="1" Visible="true" Active="true">
+				<Status>
+					<SC Name="SC_Ball_1_N" Visible="false" Active="false" />
+					<SC Name="SC_Ball_1_S" Visible="true" Active="true" />
+					<SC Name="SC_Ball_1_C" Visible="false" Active="false" />
+				</Status>
+				<Dialog_State>
+					<!-- Self Event over SC_Ball_1_S (TB_2) -->
+					<Self_Evt ID="2" Event="LeftClick" Component="SC_Ball_1_S" Ini_State="1" End_State="0" />
+				</Dialog_State>
+			</CC_State>
+			<!-- Correct state of CC_Ball_1 -->
+			<CC_State ID="2" Visible="true" Active="true">
+				<Status>
+					<SC Name="SC_Ball_1_N" Visible="false" Active="false" />
+					<SC Name="SC_Ball_1_S" Visible="false" Active="false" />
+					<SC Name="SC_Ball_1_C" Visible="true" Active="false" />
+				</Status>
+			</CC_State>
+		</CC_States>
+		<External_Events>
+			<Delegate_Events>
+				<!-- Delegate Event (DE) received from external component (Field) (TB_3) -->
+				<!-- if the CC_Ball_1 is in selected state (1) -->
+				<Trigger_DE ID="1" Component="CC_Ball_1" Ini_State="1" End_State="2" />
+				<!-- Delegate Event received from external component (from other Ball) (TB_2) -->
+				<!-- if the CC_Ball_1 is in selected state (1) (to deselect the ball) -->
+				<Trigger_DE ID="2" Component="CC_Ball_1" Ini_State="1" End_State="0" />
+			</Delegate_Events>
+			<Delegate_Actions>
+				<!-- Delegate Actions sended to external component (TB_2) -->
+				<!-- if the CC_Ball_n is not in selected state (1) goes to (other ball) -->
+				<Trigger_DA ID="1" SELF_STATE="1" TO="CC_Ball_2" Trigger_DE_ID="2" />
+				<Trigger_DA ID="2" SELF_STATE="1" TO="CC_Ball_3" Trigger_DE_ID="2" />
+				<Trigger_DA ID="3" SELF_STATE="1" TO="CC_Ball_4" Trigger_DE_ID="2" />
+			</Delegate_Actions>
+		</External_Events>
+	</Complex_Component>
+
+	
+	<Simple_Component Name="SC_Ball_2_N" Visible="true" Active="true">
+		<Visual_Appearance>
+			<Enumeration>
+				<File>Basket_Ball_N_70x70.png</File>
+				<Size Type="fixed">
+					<ValueX>70</ValueX>
+					<ValueY>70</ValueY>
+				</Size>
+				<Position>
+					<Relative>
+						<Coordinate>
+							<Px>50</Px>
+							<Py>168</Py>
+						</Coordinate>
+					</Relative>
+				</Position>
+			</Enumeration>
+		</Visual_Appearance>
+	</Simple_Component>
+
+	<Simple_Component Name="SC_Ball_2_S" Visible="true" Active="true">
+		<Visual_Appearance>
+			<Enumeration>
+				<File>Basket_Ball_S_70x70.png</File>
+				<Size Type="fixed">
+					<ValueX>70</ValueX>
+					<ValueY>70</ValueY>
+				</Size>
+				<Position>
+					<Relative>
+						<Coordinate>
+							<Px>50</Px>
+							<Py>168</Py>
+						</Coordinate>
+					</Relative>
+				</Position>
+			</Enumeration>
+		</Visual_Appearance>
+	</Simple_Component>
+
+	<Simple_Component Name="SC_Ball_2_C" Visible="false" Active="true">
+		<Visual_Appearance>
+			<Enumeration>
+				<File>Basket_Ball_C_70x70.png</File>
+				<Size Type="fixed">
+					<ValueX>70</ValueX>
+					<ValueY>70</ValueY>
+				</Size>
+				<Position>
+					<Relative>
+						<Coordinate>
+							<Px>50</Px>
+							<Py>168</Py>
+						</Coordinate>
+					</Relative>
+				</Position>
+			</Enumeration>
+		</Visual_Appearance>
+	</Simple_Component>
+
+	
+	<Complex_Component Name="CC_Ball_2">
+		<Composition>
+			<SC>SC_Ball_2_N</SC>
+			<SC>SC_Ball_2_S</SC>
+			<SC>SC_Ball_2_C</SC>
+		</Composition>
+		<Visual_Appearance>  </Visual_Appearance>
+		<CC_States>
+			<!-- Normal State of CC_Ball_2 -->
+			<CC_State ID="0" Visible="true" Active="true">
+				<Status>
+					<SC Name="SC_Ball_2_N" Visible="true" Active="true" />
+					<SC Name="SC_Ball_2_S" Visible="false" Active="false" />
+					<SC Name="SC_Ball_2_C" Visible="false" Active="false" />
+				</Status>
+				<Dialog_State>
+					<!-- Self Event over SC_Ball_2_N (TB_1) -->
+					<Self_Evt ID="1" Event="LeftClick" Component="SC_Ball_2_N" Ini_State="0" End_State="1" />
+				</Dialog_State>
+			</CC_State>
+			<!-- Selected state of CC_Ball_2 -->
+			<CC_State ID="1" Visible="true" Active="true">
+				<Status>
+					<SC Name="SC_Ball_2_N" Visible="false" Active="false" />
+					<SC Name="SC_Ball_2_S" Visible="true" Active="true" />
+					<SC Name="SC_Ball_2_C" Visible="false" Active="false" />
+				</Status>
+				<Dialog_State>
+					<!-- Self Event over SC_Ball_2_S (TB_2) -->
+					<Self_Evt ID="2" Event="LeftClick" Component="SC_Ball_2_S" Ini_State="1" End_State="0" />
+				</Dialog_State>
+			</CC_State>
+			<!-- Correct state of CC_Ball_2 -->
+			<CC_State ID="2" Visible="true" Active="true">
+				<Status>
+					<SC Name="SC_Ball_2_N" Visible="false" Active="false" />
+					<SC Name="SC_Ball_2_S" Visible="false" Active="false" />
+					<SC Name="SC_Ball_2_C" Visible="true" Active="false" />
+				</Status>
+			</CC_State>
+		</CC_States>
+		<External_Events>
+			<Delegate_Events>
+				<!-- Delegate Event (DE) received from external component (Field) (TB_3) -->
+				<!-- if the CC_Ball_2 is in selected state (1) -->
+				<Trigger_DE ID="1" Component="CC_Ball_2" Ini_State="1" End_State="2" />
+				<!-- Delegate Event received from external component (from other Ball) (TB_2) -->
+				<!-- if the CC_Ball_2 is in selected state (1) (to deselect the ball) -->
+				<Trigger_DE ID="2" Component="CC_Ball_2" Ini_State="1" End_State="0" />
+			</Delegate_Events>
+			<Delegate_Actions>
+				<!-- Delegate Actions sended to external component (TB_2) -->
+				<!-- if the CC_Ball_n is not in selected state (1) goes to (other ball) -->
+				<Trigger_DA ID="1" SELF_STATE="1" TO="CC_Ball_1" Trigger_DE_ID="2" />
+				<Trigger_DA ID="2" SELF_STATE="1" TO="CC_Ball_3" Trigger_DE_ID="2" />
+				<Trigger_DA ID="3" SELF_STATE="1" TO="CC_Ball_4" Trigger_DE_ID="2" />
+			</Delegate_Actions>
+		</External_Events>
+	</Complex_Component>
+
+	
+	<Simple_Component Name="SC_Ball_3_N" Visible="true" Active="true">
+		<Visual_Appearance>
+			<Enumeration>
+				<File>Golf_Ball_N_70x70.png</File>
+				<Size Type="fixed">
+					<ValueX>70</ValueX>
+					<ValueY>70</ValueY>
+				</Size>
+				<Position>
+					<Relative>
+						<Coordinate>
+							<Px>50</Px>
+							<Py>35</Py>
+						</Coordinate>
+					</Relative>
+				</Position>
+			</Enumeration>
+		</Visual_Appearance>
+	</Simple_Component>
+
+	<Simple_Component Name="SC_Ball_3_S" Visible="true" Active="true">
+		<Visual_Appearance>
+			<Enumeration>
+				<File>Golf_Ball_S_70x70.png</File>
+				<Size Type="fixed">
+					<ValueX>70</ValueX>
+					<ValueY>70</ValueY>
+				</Size>
+				<Position>
+					<Relative>
+						<Coordinate>
+							<Px>50</Px>
+							<Py>35</Py>
+						</Coordinate>
+					</Relative>
+				</Position>
+			</Enumeration>
+		</Visual_Appearance>
+	</Simple_Component>
+
+	<Simple_Component Name="SC_Ball_3_C" Visible="false" Active="true">
+		<Visual_Appearance>
+			<Enumeration>
+				<File>Golf_Ball_C_70x70.png</File>
+				<Size Type="fixed">
+					<ValueX>70</ValueX>
+					<ValueY>70</ValueY>
+				</Size>
+				<Position>
+					<Relative>
+						<Coordinate>
+							<Px>50</Px>
+							<Py>35</Py>
+						</Coordinate>
+					</Relative>
+				</Position>
+			</Enumeration>
+		</Visual_Appearance>
+	</Simple_Component>
+
+	
+	<Complex_Component Name="CC_Ball_3">
+		<Composition>
+			<SC>SC_Ball_3_N</SC>
+			<SC>SC_Ball_3_S</SC>
+			<SC>SC_Ball_3_C</SC>
+		</Composition>
+		<Visual_Appearance>  </Visual_Appearance>
+		<CC_States>
+			<!-- Normal State of CC_Ball_3 -->
+			<CC_State ID="0" Visible="true" Active="true">
+				<Status>
+					<SC Name="SC_Ball_3_N" Visible="true" Active="true" />
+					<SC Name="SC_Ball_3_S" Visible="false" Active="false" />
+					<SC Name="SC_Ball_3_C" Visible="false" Active="false" />
+				</Status>
+				<Dialog_State>
+					<!-- Self Event over SC_Ball_3_N (TB_1) -->
+					<Self_Evt ID="1" Event="LeftClick" Component="SC_Ball_3_N" Ini_State="0" End_State="1" />
+				</Dialog_State>
+			</CC_State>
+			<!-- Selected state of CC_Ball_3 -->
+			<CC_State ID="1" Visible="true" Active="true">
+				<Status>
+					<SC Name="SC_Ball_3_N" Visible="false" Active="false" />
+					<SC Name="SC_Ball_3_S" Visible="true" Active="true" />
+					<SC Name="SC_Ball_3_C" Visible="false" Active="false" />
+				</Status>
+				<Dialog_State>
+					<!-- Self Event over SC_Ball_3_S (TB_2) -->
+					<Self_Evt ID="2" Event="LeftClick" Component="SC_Ball_3_S" Ini_State="1" End_State="0" />
+				</Dialog_State>
+			</CC_State>
+			<!-- Correct state of CC_Ball_3 -->
+			<CC_State ID="2" Visible="true" Active="true">
+				<Status>
+					<SC Name="SC_Ball_3_N" Visible="false" Active="false" />
+					<SC Name="SC_Ball_3_S" Visible="false" Active="false" />
+					<SC Name="SC_Ball_3_C" Visible="true" Active="false" />
+				</Status>
+			</CC_State>
+		</CC_States>
+		<External_Events>
+			<Delegate_Events>
+				<!-- Delegate Event (DE) received from external component (Field) (TB_3) -->
+				<!-- if the CC_Ball_3 is in selected state (1) -->
+				<Trigger_DE ID="1" Component="CC_Ball_3" Ini_State="1" End_State="2" />
+				<!-- Delegate Event received from external component (from other Ball) (TB_2) -->
+				<!-- if the CC_Ball_3 is in selected state (1) (to deselect the ball) -->
+				<Trigger_DE ID="2" Component="CC_Ball_3" Ini_State="1" End_State="0" />
+			</Delegate_Events>
+			<Delegate_Actions>
+				<!-- Delegate Actions sended to external component (TB_2) -->
+				<!-- if the CC_Ball_n is not in selected state (1) goes to (other ball) -->
+				<Trigger_DA ID="1" SELF_STATE="1" TO="CC_Ball_1" Trigger_DE_ID="2" />
+				<Trigger_DA ID="2" SELF_STATE="1" TO="CC_Ball_2" Trigger_DE_ID="2" />
+				<Trigger_DA ID="3" SELF_STATE="1" TO="CC_Ball_4" Trigger_DE_ID="2" />
+			</Delegate_Actions>
+		</External_Events>
+	</Complex_Component>
+
+	
+	<Simple_Component Name="SC_Ball_4_N" Visible="true" Active="true">
+		<Visual_Appearance>
+			<Enumeration>
+				<File>Volley_Ball_N_70x70.png</File>
+				<Size Type="fixed">
+					<ValueX>70</ValueX>
+					<ValueY>70</ValueY>
+				</Size>
+				<Position>
+					<Relative>
+						<Coordinate>
+							<Px>50</Px>
+							<Py>434</Py>
+						</Coordinate>
+					</Relative>
+				</Position>
+			</Enumeration>
+		</Visual_Appearance>
+	</Simple_Component>
+
+	<Simple_Component Name="SC_Ball_4_S" Visible="true" Active="true">
+		<Visual_Appearance>
+			<Enumeration>
+				<File>Volley_Ball_S_70x70.png</File>
+				<Size Type="fixed">
+					<ValueX>70</ValueX>
+					<ValueY>70</ValueY>
+				</Size>
+				<Position>
+					<Relative>
+						<Coordinate>
+							<Px>50</Px>
+							<Py>434</Py>
+						</Coordinate>
+					</Relative>
+				</Position>
+			</Enumeration>
+		</Visual_Appearance>
+	</Simple_Component>
+
+	<Simple_Component Name="SC_Ball_4_C" Visible="false" Active="true">
+		<Visual_Appearance>
+			<Enumeration>
+				<File>Volley_Ball_C_70x70.png</File>
+				<Size Type="fixed">
+					<ValueX>70</ValueX>
+					<ValueY>70</ValueY>
+				</Size>
+				<Position>
+					<Relative>
+						<Coordinate>
+							<Px>50</Px>
+							<Py>434</Py>
+						</Coordinate>
+					</Relative>
+				</Position>
+			</Enumeration>
+		</Visual_Appearance>
+	</Simple_Component>
+
+	
+	<Complex_Component Name="CC_Ball_4">
+		<Composition>
+			<SC>SC_Ball_4_N</SC>
+			<SC>SC_Ball_4_S</SC>
+			<SC>SC_Ball_4_C</SC>
+		</Composition>
+		<Visual_Appearance>  </Visual_Appearance>
+		<CC_States>
+			<!-- Normal State of CC_Ball_4 -->
+			<CC_State ID="0" Visible="true" Active="true">
+				<Status>
+					<SC Name="SC_Ball_4_N" Visible="true" Active="true" />
+					<SC Name="SC_Ball_4_S" Visible="false" Active="false" />
+					<SC Name="SC_Ball_4_C" Visible="false" Active="false" />
+				</Status>
+				<Dialog_State>
+					<!-- Self Event over SC_Ball_4_N (TB_1) -->
+					<Self_Evt ID="1" Event="LeftClick" Component="SC_Ball_4_N" Ini_State="0" End_State="1" />
+				</Dialog_State>
+			</CC_State>
+			<!-- Selected state of CC_Ball_4 -->
+			<CC_State ID="1" Visible="true" Active="true">
+				<Status>
+					<SC Name="SC_Ball_4_N" Visible="false" Active="false" />
+					<SC Name="SC_Ball_4_S" Visible="true" Active="true" />
+					<SC Name="SC_Ball_4_C" Visible="false" Active="false" />
+				</Status>
+				<Dialog_State>
+					<!-- Self Event over SC_Ball_4_S (TB_2) -->
+					<Self_Evt ID="2" Event="LeftClick" Component="SC_Ball_4_S" Ini_State="1" End_State="0" />
+				</Dialog_State>
+			</CC_State>
+			<!-- Correct state of CC_Ball_4 -->
+			<CC_State ID="2" Visible="true" Active="true">
+				<Status>
+					<SC Name="SC_Ball_4_N" Visible="false" Active="false" />
+					<SC Name="SC_Ball_4_S" Visible="false" Active="false" />
+					<SC Name="SC_Ball_4_C" Visible="true" Active="false" />
+				</Status>
+			</CC_State>
+		</CC_States>
+		<External_Events>
+			<Delegate_Events>
+				<!-- Delegate Event (DE) received from external component (Field) (TB_3) -->
+				<!-- if the CC_Ball_3 is in selected state (1) -->
+				<Trigger_DE ID="1" Component="CC_Ball_4" Ini_State="1" End_State="2" />
+				<!-- Delegate Event received from external component (from other Ball) (TB_2) -->
+				<!-- if the CC_Ball_3 is in selected state (1) (to deselect the ball) -->
+				<Trigger_DE ID="2" Component="CC_Ball_4" Ini_State="1" End_State="0" />
+			</Delegate_Events>
+			<Delegate_Actions>
+				<!-- Delegate Actions sended to external component (TB_2) -->
+				<!-- if the CC_Ball_n is not in selected state (1) goes to (other ball) -->
+				<Trigger_DA ID="1" SELF_STATE="1" TO="CC_Ball_1" Trigger_DE_ID="2" />
+				<Trigger_DA ID="2" SELF_STATE="1" TO="CC_Ball_2" Trigger_DE_ID="2" />
+				<Trigger_DA ID="3" SELF_STATE="1" TO="CC_Ball_3" Trigger_DE_ID="2" />
+			</Delegate_Actions>
+		</External_Events>
+	</Complex_Component>
+
+
+	<Complex_Component Name="CC_Balls">
+		<Composition>
+			<CC>CC_Ball_1</CC>
+			<CC>CC_Ball_2</CC>
+			<CC>CC_Ball_3</CC>
+			<CC>CC_Ball_4</CC>
+		</Composition>
+		<Visual_Appearance>  </Visual_Appearance>
+		<CC_States>  </CC_States>
+		<External_Events>  </External_Events>
+	</Complex_Component>
+</Library>

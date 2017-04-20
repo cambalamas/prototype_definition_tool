@@ -3,10 +3,26 @@
 
 from PyQt5.QtGui import *
 from PyQt5.QtCore import Qt
+
+import EParser
 from EStorage import EModel
 from Inherits.ESimple import ESimple
 
 __M = EModel() # Instancia un modelo.
+
+
+# --------------------------------------------------------------------------- #
+#					 		   - PROYECTO - 				   				  #
+# --------------------------------------------------------------------------- #
+
+def saveProject():
+	xml = etree.Element('Interface')
+	for elem in __M.getSimpleCompStorage():
+		if str(type(e)) == "<class 'ESimple.ESimple'>":
+			xml.append(EParser.simple2xml(elem))
+	if xml is not None:
+		print( prettify(xml) )
+
 
 
 # --------------------------------------------------------------------------- #
@@ -35,6 +51,47 @@ def directDelSimpleComp(item,__V):
 	__V.centralWidget().scene().removeItem(item)
 	# Actualizamos la vista: TREEVIEW
 	updateTrees(__V)
+
+
+
+# --------------------------------------------------------------------------- #
+#					 		 	- HISTORIAL - 				   				  #
+# --------------------------------------------------------------------------- #
+
+	def regNewAction(funcStr):
+		self.__M.regNewAction(funcStr)
+
+	def getPrevState(__V):
+		## !!!!! HAY QUE LIMPIAR __V
+		__M.getPrevState()
+		for func in __M.getUndoStorage():
+			exec(func)
+
+	def getNextState():
+		toRedo = __M.getNextState()
+		exec(toRedo)
+
+
+	# Decorador
+	def history(f):
+
+		def wrap(*args):
+			funcStr = f.__name__+'('
+
+			if args is not None:
+				for arg in args:
+					if type(arg) == str:
+						funcStr += '\''+str(arg)+'\','
+					else:
+						funcStr += str(arg)+','
+				return funcStr[:-1]+')'
+
+			else:
+				return funcStr[:-1]+')'
+
+		regNewAction(wrap)
+
+
 
 # --------------------------------------------------------------------------- #
 #					 		 	- ARBOLES - 				   				  #

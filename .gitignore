@@ -5,3 +5,4 @@ __pycache__/
 # files.
 *.psd
 *.pyc
+*.log

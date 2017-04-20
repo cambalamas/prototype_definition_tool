@@ -15,6 +15,7 @@ class EMainWindow( QMainWindow ):
 	def __init__(self):
 		super().__init__()
 
+
 		# ----------------------------------------------------------------- #
 		#						  CONFIGURACIONES 							#
 		# ----------------------------------------------------------------- #
@@ -25,11 +26,8 @@ class EMainWindow( QMainWindow ):
 		# Ruta de los iconos.
 		self.icoPath = os.path.join(os.path.dirname(__file__),'Icons')
 
-		# Icono que se vera en la barra de tareas, dock, etc.
+		# Icono que se vera etn la barra de tareas, dock, etc.
 		self.setWindowIcon(QIcon( os.path.join(self.icoPath, 'logo.png') ))
-
-		# Le decimos al controlador que trabaje con nuestra ventana.
-		ELogic.__V = self
 
 
 		# ----------------------------------------------------------------- #
@@ -250,13 +248,13 @@ class EMainWindow( QMainWindow ):
 	def setPrevWindowState(self,newVal):
 		self.__previousWindowState = newVal
 
+
 	# ----------------------------------------------------------------- #
 	#					  	- CONECTAR SEÑALES -						#
 	# ----------------------------------------------------------------- #
 
 	def simpleCompsTreeItemChanged(self):
 		ELogic.simpleCompsTreeItemChanged(self)
-
 
 
 	# ----------------------------------------------------------------- #
@@ -277,6 +275,17 @@ class EMainWindow( QMainWindow ):
 		else:
 			ev.ignore()
 
+	'''
+	Controla la presion de teclas o combinaciones.
+	'''
+	def keyPressEvent(self, ev):
+
+		if ev.matches(QKeySequence.Undo):
+			ELogic.getPrevState(self)
+
+		if ev.matches(QKeySequence.Redo):
+			ELogic.getNextState()
+
 
 	# ----------------------------------------------------------------- #
 	#		   INTERACCION :: FUNCIONES QUE AFECTAN AL PROYECTO			#
@@ -286,13 +295,7 @@ class EMainWindow( QMainWindow ):
 	Guarda el estado del proyecto.
 	'''
 	def saveProject(self):
-		toIter = self.dockbar.compsTree.dq
-		xml = etree.Element('Interface')
-		for e in toIter:
-			if str(type(e)) == "<class 'ESimple.ESimple'>":
-				xml.append(simple2xml(e))
-		if xml is not None:
-			print( prettify(xml) )
+		ELogic.saveProject()
 
 
 	# ----------------------------------------------------------------- #
@@ -374,6 +377,7 @@ class EMainWindow( QMainWindow ):
 	def fullScreen(self):
 		# Si esta en pantalla completa.
 		if self.isFullScreen():
+
 			# Restauro al estado antes guardado.
 			if self.getPrevWindowState() == 'maximized':
 				self.showMaximized()

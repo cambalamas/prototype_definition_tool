@@ -27,15 +27,15 @@ def prettify(node):
 
 # Espera un componente simple para generar su arbol xml.
 def simple2xml(simple):
-    sizeType = 'fixed'
-    posType = 'Relative'
+    _sizeType = 'fixed'
+    _posType = 'Relative'
 
     sc = ET.Element(
         'Simple_Component',
             {
-                'Name'    : simple.name,
-                'Active'  : str(simple.active),
-                'Visible' : str(simple.visible),
+                'Name'    : simple.getName(),
+                'Active'  : str(simple.getActive()),
+                'Visible' : str(simple.getVisible()),
             }
         )
 
@@ -43,20 +43,22 @@ def simple2xml(simple):
     enum = ET.SubElement( va, 'Enumeration' )
 
     file = ET.SubElement(enum, 'File')
-    file.text = simple.path
+    file.text = simple.getPath()
 
-    size = ET.SubElement(enum, 'Size', {'Type':sizeType})
+    size = ET.SubElement(enum, 'Size', {'Type':_sizeType})
     sizeX = ET.SubElement(size, 'ValueX')
-    sizeX.text = str(simple.sizeX)
+    sizeX.text = str(simple.getSizeX())
     sizeY = ET.SubElement(size, 'ValueY')
-    sizeY.text = str(simple.sizeY)
+    sizeY.text = str(simple.getSizeY())
 
     position = ET.SubElement(enum, 'Position')
-    posType = ET.SubElement(position, posType)
-    cords = ET.SubElement(posType, 'Coordinate')
+    posType = ET.SubElement(position, _posType)
+    cords = ET.SubElement(_posType, 'Coordinate')
     cordX = ET.SubElement(cords, 'Px')
-    cordX.text = str(simple.posX)
+    cordX.text = str(simple.getPosX())
     cordY = ET.SubElement(cords, 'Py')
-    cordY.text = str(simple.posY)
+    cordY.text = str(simple.getPosY())
+    cordY = ET.SubElement(cords, 'Pz')
+    cordY.text = str(simple.getPosZ())
 
     return sc

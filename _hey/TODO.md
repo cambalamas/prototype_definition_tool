@@ -10,7 +10,8 @@
 
 # OTHERS
 - [x] **Auto-LOG mediante decorador...**
-- [ ] Añadir Z a la especificacion XML `Documentar como aportación...`
+- [x] Añadir Z a la especificacion XML `Documentar como aportación...`
+- [ ] Mover el viewport de la escena mientras se pulsa espacio.
 
 
 # MOUSE LB
@@ -24,17 +25,14 @@
 
 # MOUSE RB
 - [x] **ElemSimple**: *Cambiar Z* `QGraphicPixmapItem::setZValue`
-- [x] **ElemSimple**: *Activo On/Off* 
-- [x] **ElemSimple**: *Visibilidad On/Off* 
+- [x] **ElemSimple**: *Activo On/Ofsolarief*
+- [x] **ElemSimple**: *Visibilidad On/Off*
 - [x] **ElemSimple**: *Borrar*
 
 
 # MENU
 - [ ] **Action**: *Undo*
 - [ ] **Action**: *Redo*
-- [ ] **Comps.**: *Copy*
-- [ ] **Comps.**: *Cut*
-- [ ] **Comps.**: *Paste*
 - [ ] **Dialog**: *Docs*
 - [ ] **Dialog**: *About*
 - [ ] **Dialog**: *Settings*
@@ -44,14 +42,3 @@
 - [x] **Window**: *ZoomIn*
 - [x] **Window**: *ZoomOut*
 - [x] **Window**: *Reset zoom*
-
-
-
-
-# Labores secundarias
-
-- [ ] Mover el viewport de la escena mientras se pulsa espacio.
-
-## Settings.
-
-- [ ] *Tamaño del area activa.*

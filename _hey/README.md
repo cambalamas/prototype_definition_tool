@@ -10,20 +10,22 @@
 # first, build the docker image.
 docker build -t protoe .
 ```
+
 ```shell
 # windows (Powershell, and Xming or similar will be needed).
 docker run -it `
 	-v "$((Get-Location).path):/app" `
 	-e DISPLAY="$((Get-NetAdapter "vEthernet (DockerNAT)" | Get-NetIPAddress).IPAddress):0" `
-	protoe python3 /app/E.py
+	protoe python3 /app/EGui.py
 ```
+
 ```shell
 # linux (just works).
 docker run -it \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -v $(pwd):/app \
     -e DISPLAY=$DISPLAY \
-    protoe python3 /app/E.py
+    protoe python3 /app/EGui.py
 ```
 
 

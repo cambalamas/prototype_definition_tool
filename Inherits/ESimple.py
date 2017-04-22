@@ -93,18 +93,23 @@ class ESimple( QGraphicsPixmapItem ):
 	#						CLASE :: 'TO STRING' 						#
 	# ----------------------------------------------------------------- #
 
-	def __str__( self ):
-		retVal = '\nRUTA\t--->\t'+str(self.getPath())
-		retVal += '\n\nNOMBRE\t--->\t" '+self.getName()+' "'
-		retVal += '\n\n--------------------\n'
-		retVal += '\nZ\t\t--->\t'+str(self.getPosZ())
-		retVal += '\nACTIVO\t\t--->\t'+str(self.getActive())
-		retVal += '\nVISIBLE\t\t--->\t'+str(self.getVisible())
-		retVal += '\nY\t\t--->\t'+str(self.getPosY())
-		retVal += '\nX\t\t--->\t'+str(self.getPosX())
-		retVal += '\nALTO\t\t--->\t'+str(self.getSizeY())
-		retVal += '\nANCHO\t\t--->\t'+str(self.getSizeX())
-		return retVal
+	# def __str__( self ):
+	# 	retVal = '\nRUTA\t--->\t'+str(self.getPath())
+	# 	retVal += '\n\nNOMBRE\t--->\t" '+self.getName()+' "'
+	# 	retVal += '\n\n--------------------\n'
+	# 	retVal += '\nZ\t\t--->\t'+str(self.getPosZ())
+	# 	retVal += '\nACTIVO\t\t--->\t'+str(self.getActive())
+	# 	retVal += '\nVISIBLE\t\t--->\t'+str(self.getVisible())
+	# 	retVal += '\nY\t\t--->\t'+str(self.getPosY())
+	# 	retVal += '\nX\t\t--->\t'+str(self.getPosX())
+	# 	retVal += '\nALTO\t\t--->\t'+str(self.getSizeY())
+	# 	retVal += '\nANCHO\t\t--->\t'+str(self.getSizeX())
+	# 	return retVal
+
+	def __copy__(self):
+	  newone = type(self)(self.getPath())
+	  newone.__dict__.update(self.__dict__)
+	  return newone
 
 
 # ----------------------------------------------------------------- #
@@ -269,4 +274,4 @@ class ESimple( QGraphicsPixmapItem ):
 # ----------------------------------------------------------------- #
 
 	def detailsDialog(self):
-		QMessageBox.information(self.getParent(),'¡DETALLES!', self.__str__())
+		QMessageBox.information(self.getWindow(),'¡DETALLES!', self.__str__())

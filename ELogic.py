@@ -1,14 +1,21 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import traceback
+from copy import copy
+from collections import deque
+
 from PyQt5.QtGui import *
 from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import *
 
 import EParser
 from EStorage import EModel
 from Inherits.ESimple import ESimple
 
+
 __M = EModel() # Instancia un modelo.
+
 
 
 # --------------------------------------------------------------------------- #
@@ -26,13 +33,93 @@ def saveProject():
 
 
 # --------------------------------------------------------------------------- #
+#					 		 	- HISTORIAL - 				   				  #
+# --------------------------------------------------------------------------- #
+
+
+''' Guarda el estado anterior, para permitr el 'Ctrl+Z' '''
+
+def saveState(__V):
+
+	scene = []
+	for item in __V.centralWidget().scene().items():
+		qgItem = copy(item)
+		scene.append(qgItem)
+
+
+	simpleStorage 	= [ x for x in __M.getSimpleCompStorage()  ]
+	complexStorage	= [ x for x in __M.getComplexCompStorage() ]
+
+	state = (scene,deque(simpleStorage),deque(complexStorage))
+	__M.saveState(state)
+
+
+''' Recupera el anterior estado en el historico de Deshacer. '''
+
+def getPrevState(__V):
+
+	# Recuperamos la tupla del estado anterior.
+	toUndo = __M.getPrevState()
+
+	# Asignamos lo que representa cada elemento.
+	prevScene 			= toUndo[0]
+	prevSimpleStorage 	= toUndo[1]
+	prevComplexStorage 	= toUndo[2]
+
+	# Recuperamos el estado de la escena.
+	__V.centralWidget().scene().clear()
+	for item in prevScene:
+		__V.centralWidget().scene().addItem(item)
+	# Recuperamos el estado de la cola de componentes simples.
+	__M.setSimpleCompStorage(prevSimpleStorage)
+	# Recuperamos el estado de la cola de componentes complejos.
+	__M.setComplexCompStorage(prevComplexStorage)
+
+	# Actualizamos la informacion mostrada en el Arbol.
+	# updateTrees(__V)
+
+
+''' Recupera el siguiente estado en el historico de Rehacer. '''
+
+def getNextState(__V):
+
+	# Recuperamos la tupla del estado anterior.
+	toRedo = __M.getNextState()
+
+	# Asignamos lo que representa cada elemento.
+	nextScene 			= toRedo[0]
+	nextSimpleStorage 	= toRedo[1]
+	nextComplexStorage 	= toRedo[2]
+
+	# Recuperamos el estado de la escena.
+	__V.centralWidget().scene().clear()
+	for item in nextScene:
+		__V.centralWidget().scene().addItem(item)
+	# Recuperamos el estado de la cola de componentes simples.
+	__M.setSimpleCompStorage(nextSimpleStorage)
+	# Recuperamos el estado de la cola de componentes complejos.
+	__M.setComplexCompStorage(nextComplexStorage)
+
+	# Actualizamos la informacion mostrada en el Arbol.
+	# updateTrees(__V)
+
+
+
+# --------------------------------------------------------------------------- #
 #					 		  - COMPONENTES - 				   				  #
 # --------------------------------------------------------------------------- #
+
+
+''' Recupera de la coleccion un objeto por su ID. '''
 
 def getSimpleComp(itemID):
 	return __M.getSimpleComp(itemID)
 
+
+''' Agrega a los contenedores correspondientes un nuevo Componente Simple. '''
+
 def newSimpleComp(imgPathSet,__V):
+	saveState(__V)
 	if imgPathSet[0]:
 		for imgPath in imgPathSet[0]:
 			item = ESimple(imgPath)
@@ -43,6 +130,9 @@ def newSimpleComp(imgPathSet,__V):
 				updateTrees(__V)
 				# Agregamos el item a: ESCENA
 				__V.centralWidget().scene().addItem(item)
+
+
+''' Solicitud de borrado invocada desde el propio objeto.'''
 
 def directDelSimpleComp(item,__V):
 	# Borrar del almacenaje.
@@ -55,47 +145,9 @@ def directDelSimpleComp(item,__V):
 
 
 # --------------------------------------------------------------------------- #
-#					 		 	- HISTORIAL - 				   				  #
-# --------------------------------------------------------------------------- #
-
-	def regNewAction(funcStr):
-		self.__M.regNewAction(funcStr)
-
-	def getPrevState(__V):
-		## !!!!! HAY QUE LIMPIAR __V
-		__M.getPrevState()
-		for func in __M.getUndoStorage():
-			exec(func)
-
-	def getNextState():
-		toRedo = __M.getNextState()
-		exec(toRedo)
-
-
-	# Decorador
-	def history(f):
-
-		def wrap(*args):
-			funcStr = f.__name__+'('
-
-			if args is not None:
-				for arg in args:
-					if type(arg) == str:
-						funcStr += '\''+str(arg)+'\','
-					else:
-						funcStr += str(arg)+','
-				return funcStr[:-1]+')'
-
-			else:
-				return funcStr[:-1]+')'
-
-		regNewAction(wrap)
-
-
-
-# --------------------------------------------------------------------------- #
 #					 		 	- ARBOLES - 				   				  #
 # --------------------------------------------------------------------------- #
+
 
 ''' Dado un arbol devuelve el ID del item seleccionado '''
 

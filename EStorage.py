@@ -20,13 +20,19 @@ class EModel( object ):
 		self.__redo = deque()
 
 
-	''' Acceso a las colecciones desde invocaciones externas '''
+	''' Acceso / Modificacion a las colecciones desde invocaciones externas '''
 
 	def getSimpleCompStorage(self):
 		return self.__simpleCompStorage
 
+	def setSimpleCompStorage(self,newVal):
+		self.__simpleCompStorage = newVal
+
 	def getComplexCompStorage(self):
 		return self.__complexCompStorage
+
+	def setComplexCompStorage(self, newVal):
+		self.__complexCompStorage = newVal
 
 	def getUndoStorage(self):
 		return self.__undo
@@ -38,15 +44,16 @@ class EModel( object ):
 	''' Manejo de la coleccion del Historial de Acciones '''
 
 	# ALTA.
-	def regNewAction(self,funcStr):
-		self.__undo.append(funcStr)
+	def saveState(self,state):
+		self.__undo.append(state)
 		self.__redo.clear()
 
 	# CONSULTA y GESTION.
 	def getPrevState(self):
+		toRedo = self.__undo.pop()
+		self.__redo.append(toRedo)
 		toUndo = self.__undo.pop()
-		self.__redo.append(toUndo)
-
+		return toUndo
 
 	# CONSULTA y GESTION.
 	def getNextState(self):
@@ -88,3 +95,8 @@ class EModel( object ):
 		for elem in self.__simpleCompStorage:
 			if elem.getID() == scID:
 				return elem
+
+
+	# ''' Para 'Debug' muestra el contenido de una cola por pantalla. '''
+
+	# def printD

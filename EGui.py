@@ -1,13 +1,16 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import ELogic
 import os, sys, i18n
 from lxml import etree
+
 from PyQt5.QtGui import *
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import *
+
+import ELogic
 from Inherits.ETreeView import ETreeView
+
 i18n.load_path.append(os.path.join(os.path.dirname(__file__),'Translations'))
 
 
@@ -64,7 +67,7 @@ class EMainWindow( QMainWindow ):
 		mAct = mFile.addAction('Nuevo Componente(s) simple(s)')
 		mAct.setShortcut('Ctrl+I')
 		mAct.setStatusTip('Crea un componente simple en base a una imagen.')
-		mAct.triggered.connect(self.newSimple)
+		mAct.triggered.connect(self.newSimpleComp)
 
 		## Archivo - ACCION: Nuevo comp complejo.
 		mAct = mFile.addAction('Nuevo Componente complejo')
@@ -151,7 +154,7 @@ class EMainWindow( QMainWindow ):
 		tAct.setIcon(QIcon( os.path.join(self.icoPath, 'save.png') ))
 		tAct.setIconText('Guardar proyecto')
 		tAct.setStatusTip('Guarda el estado del proyecto.')
-		tAct.triggered.connect(self.saveProject)
+		tAct.triggered.connect(self.newSimpleComp)
 
 
 		# ----------------------------------------------------------------- #
@@ -284,7 +287,7 @@ class EMainWindow( QMainWindow ):
 			ELogic.getPrevState(self)
 
 		if ev.matches(QKeySequence.Redo):
-			ELogic.getNextState()
+			ELogic.getNextState(self)
 
 
 	# ----------------------------------------------------------------- #
@@ -299,14 +302,14 @@ class EMainWindow( QMainWindow ):
 
 
 	# ----------------------------------------------------------------- #
-	#			  INTERACCION :: FUNCIONES QUE AFECTAN A LA GUI			#
+	#					  INTERACCION :: MENU ARCHIVO					#
 	# ----------------------------------------------------------------- #
 
 	'''
 	Abre un cuadro de dialogo para que el usuario seleccione las imagenes que
 	quiera en cualquier formato rasterizado como BMP, JPG o el preferido, PNG.
 	'''
-	def newSimple(self):
+	def newSimpleComp(self):
 		# El metodo multiplataforma de obtener el 'HOME' del usuario.
 		home = os.path.expanduser('~')
 		# Recogemos las imagenes seleccionadas del cuadro de dialogo.
@@ -397,6 +400,7 @@ class EMainWindow( QMainWindow ):
 			# Cambiamos la ventana a pantalla completa.
 			self.showFullScreen()
 			self.statusBar().showMessage('VENTANA: Pantalla Completa')
+
 
 
 # ----------------------------------------------------------------- #

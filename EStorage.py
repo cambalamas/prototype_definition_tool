@@ -44,14 +44,18 @@ class EModel( object ):
 	''' Manejo de la coleccion del Historial de Acciones '''
 
 	# ALTA.
+	def saveStateFromUndo(self,state):
+		self.__redo.append(state)
+
+	def saveStateFromRedo(self,state):
+		self.__undo.append(state)
+
 	def saveState(self,state):
 		self.__undo.append(state)
 		self.__redo.clear()
 
 	# CONSULTA y GESTION.
 	def getPrevState(self):
-		toRedo = self.__undo.pop()
-		self.__redo.append(toRedo)
 		toUndo = self.__undo.pop()
 		return toUndo
 

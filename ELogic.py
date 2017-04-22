@@ -39,24 +39,45 @@ def saveProject():
 
 ''' Guarda el estado anterior, para permitr el 'Ctrl+Z' '''
 
-def saveState(__V):
+def saveState(state):
+	__M.saveState(state)
 
+def saveStateFromUndo(state):
+	__M.saveStateFromUndo(state)
+
+def saveStateFromRedo(state):
+	__M.saveStateFromUndo(state)
+
+def getCurState(__V):
+
+	# Creamos una copia de las escena actual.
 	scene = []
 	for item in __V.centralWidget().scene().items():
 		qgItem = copy(item)
 		scene.append(qgItem)
+	scene.reverse()
 
+	# Creamos una copia de la cola de componentes simples actual.
+	simpleStorage = []
+	for item in __M.getSimpleCompStorage():
+		scItem = copy(item)
+		simpleStorage.append(scItem)
 
-	simpleStorage 	= [ x for x in __M.getSimpleCompStorage()  ]
-	complexStorage	= [ x for x in __M.getComplexCompStorage() ]
+	# Creamos una copia de la cola de componentes complejos actual.
+	complexStorage = []
+	for item in __M.getComplexCompStorage():
+		ccItem = copy(item)
+		complexStorage.append(ccItem)
 
-	state = (scene,deque(simpleStorage),deque(complexStorage))
-	__M.saveState(state)
+	# Devolvemos dichas copias en forma de tupla.
+	return (scene,deque(simpleStorage),deque(complexStorage))
 
 
 ''' Recupera el anterior estado en el historico de Deshacer. '''
 
 def getPrevState(__V):
+
+	saveStateFromUndo(getCurState(__V))
 
 	# Recuperamos la tupla del estado anterior.
 	toUndo = __M.getPrevState()
@@ -76,12 +97,14 @@ def getPrevState(__V):
 	__M.setComplexCompStorage(prevComplexStorage)
 
 	# Actualizamos la informacion mostrada en el Arbol.
-	# updateTrees(__V)
+	updateTrees(__V)
 
 
 ''' Recupera el siguiente estado en el historico de Rehacer. '''
 
 def getNextState(__V):
+
+	saveStateFromRedo(getCurState(__V))
 
 	# Recuperamos la tupla del estado anterior.
 	toRedo = __M.getNextState()
@@ -101,7 +124,7 @@ def getNextState(__V):
 	__M.setComplexCompStorage(nextComplexStorage)
 
 	# Actualizamos la informacion mostrada en el Arbol.
-	# updateTrees(__V)
+	updateTrees(__V)
 
 
 
@@ -119,7 +142,7 @@ def getSimpleComp(itemID):
 ''' Agrega a los contenedores correspondientes un nuevo Componente Simple. '''
 
 def newSimpleComp(imgPathSet,__V):
-	saveState(__V)
+	saveState(getCurState(__V))
 	if imgPathSet[0]:
 		for imgPath in imgPathSet[0]:
 			item = ESimple(imgPath)

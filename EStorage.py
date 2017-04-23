@@ -61,8 +61,7 @@ class EModel( object ):
 
 	# CONSULTA y GESTION.
 	def getNextState(self):
-		toRedo = self.__redo.popleft()
-		self.__redo.append(toRedo)
+		toRedo = self.__redo.pop()
 		return toRedo
 
 
@@ -73,7 +72,7 @@ class EModel( object ):
 	def newSimpleComp(self,scItem):
 		self.__simpleCompStorage.append(scItem)
 
-	# BAJA.
+	# BAJA.b
 	def delSimpleComp(self,scItem):
 		self.__simpleCompStorage.remove(scItem)
 
@@ -103,4 +102,27 @@ class EModel( object ):
 
 	# ''' Para 'Debug' muestra el contenido de una cola por pantalla. '''
 
-	# def printD
+	def printData(self,curState):
+
+		print('CUR STATE')
+		for elem in self.__undo:
+			for subElem in elem[1]:
+				print(subElem.getName())
+			print()
+
+		print('SIMPLE DEQUE')
+		for elem in self.__simpleCompStorage:
+			print(elem.getName())
+		print()
+
+		print('UNDO DEQUE')
+		for elem in self.__undo:
+			for subElem in elem[1]:
+				print(subElem.getName())
+			print()
+
+		print('REDO DEQUE')
+		for elem in self.__redo:
+			for subElem in elem[1]:
+				print(subElem.getName())
+			print()

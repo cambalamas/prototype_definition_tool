@@ -1,7 +1,8 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import traceback
+from pprint import pprint
+
 from copy import copy
 from collections import deque
 
@@ -46,7 +47,7 @@ def saveStateFromUndo(state):
 	__M.saveStateFromUndo(state)
 
 def saveStateFromRedo(state):
-	__M.saveStateFromUndo(state)
+	__M.saveStateFromRedo(state)
 
 def getCurState(__V):
 
@@ -78,6 +79,11 @@ def getCurState(__V):
 def getPrevState(__V):
 
 	saveStateFromUndo(getCurState(__V))
+	print('\n On undo')
+	print('-'*30)
+	pprint(__M.printData(getCurState(__V)))
+	print('-'*30)
+	print()
 
 	# Recuperamos la tupla del estado anterior.
 	toUndo = __M.getPrevState()
@@ -105,6 +111,11 @@ def getPrevState(__V):
 def getNextState(__V):
 
 	saveStateFromRedo(getCurState(__V))
+	print('\n On redo')
+	print('-'*30)
+	pprint(__M.printData(getCurState(__V)))
+	print('-'*30)
+	print()
 
 	# Recuperamos la tupla del estado anterior.
 	toRedo = __M.getNextState()
@@ -142,7 +153,13 @@ def getSimpleComp(itemID):
 ''' Agrega a los contenedores correspondientes un nuevo Componente Simple. '''
 
 def newSimpleComp(imgPathSet,__V):
+
 	saveState(getCurState(__V))
+	print('\n On insert')
+	print('-'*30)
+	pprint(__M.printData(getCurState(__V)))
+	print('-'*30)
+	print()
 	if imgPathSet[0]:
 		for imgPath in imgPathSet[0]:
 			item = ESimple(imgPath)

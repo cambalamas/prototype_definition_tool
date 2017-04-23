@@ -15,6 +15,9 @@ i18n.load_path.append(os.path.join(os.path.dirname(__file__),'Translations'))
 
 
 class EMainWindow( QMainWindow ):
+	def __init__(self, boolVal):
+		super().__init__()
+
 	def __init__(self):
 		super().__init__()
 

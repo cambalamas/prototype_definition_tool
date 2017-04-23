@@ -1,8 +1,6 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from pprint import pprint
-
 from copy import copy
 from collections import deque
 
@@ -40,35 +38,39 @@ def saveProject():
 
 ''' Guarda el estado anterior, para permitr el 'Ctrl+Z' '''
 
-def saveState(state):
+def saveState(__V):
+	state = getCurState(__V)
 	__M.saveState(state)
 
-def saveStateFromUndo(state):
+def saveStateFromUndo(__V):
+	state = getCurState(__V)
 	__M.saveStateFromUndo(state)
 
-def saveStateFromRedo(state):
+def saveStateFromRedo(__V):
+	state = getCurState(__V)
 	__M.saveStateFromRedo(state)
 
 def getCurState(__V):
 
 	# Creamos una copia de las escena actual.
 	scene = []
-	for item in __V.centralWidget().scene().items():
-		qgItem = copy(item)
-		scene.append(qgItem)
-	scene.reverse()
 
 	# Creamos una copia de la cola de componentes simples actual.
 	simpleStorage = []
 	for item in __M.getSimpleCompStorage():
 		scItem = copy(item)
+		scene.append(scItem)
 		simpleStorage.append(scItem)
 
 	# Creamos una copia de la cola de componentes complejos actual.
 	complexStorage = []
 	for item in __M.getComplexCompStorage():
 		ccItem = copy(item)
+		scene.append(ccItem)
 		complexStorage.append(ccItem)
+
+	# Volteamos el array para respetar el orden de la pila.
+	scene.reverse()
 
 	# Devolvemos dichas copias en forma de tupla.
 	return (scene,deque(simpleStorage),deque(complexStorage))
@@ -78,64 +80,60 @@ def getCurState(__V):
 
 def getPrevState(__V):
 
-	saveStateFromUndo(getCurState(__V))
-	print('\n On undo')
-	print('-'*30)
-	pprint(__M.printData(getCurState(__V)))
-	print('-'*30)
-	print()
+	saveStateFromUndo(__V)
 
 	# Recuperamos la tupla del estado anterior.
 	toUndo = __M.getPrevState()
 
-	# Asignamos lo que representa cada elemento.
-	prevScene 			= toUndo[0]
-	prevSimpleStorage 	= toUndo[1]
-	prevComplexStorage 	= toUndo[2]
+	if toUndo is not None:
+		# Asignamos lo que representa cada elemento.
+		prevScene 			= toUndo[0]
+		prevSimpleStorage 	= toUndo[1]
+		prevComplexStorage 	= toUndo[2]
 
-	# Recuperamos el estado de la escena.
-	__V.centralWidget().scene().clear()
-	for item in prevScene:
-		__V.centralWidget().scene().addItem(item)
-	# Recuperamos el estado de la cola de componentes simples.
-	__M.setSimpleCompStorage(prevSimpleStorage)
-	# Recuperamos el estado de la cola de componentes complejos.
-	__M.setComplexCompStorage(prevComplexStorage)
+		# Recuperamos el estado de la escena.
+		__V.centralWidget().scene().clear()
+		for item in prevScene:
+			print(item)
+			print(prevSimpleStorage)
+			__V.centralWidget().scene().addItem(item)
+		# Recuperamos el estado de la cola de componentes simples.
+		__M.setSimpleCompStorage(prevSimpleStorage)
+		# Recuperamos el estado de la cola de componentes complejos.
+		__M.setComplexCompStorage(prevComplexStorage)
 
-	# Actualizamos la informacion mostrada en el Arbol.
-	updateTrees(__V)
+		# Actualizamos la informacion mostrada en el Arbol.
+		updateTrees(__V)
 
 
 ''' Recupera el siguiente estado en el historico de Rehacer. '''
 
 def getNextState(__V):
 
-	saveStateFromRedo(getCurState(__V))
-	print('\n On redo')
-	print('-'*30)
-	pprint(__M.printData(getCurState(__V)))
-	print('-'*30)
-	print()
+	saveStateFromRedo(__V)
 
 	# Recuperamos la tupla del estado anterior.
 	toRedo = __M.getNextState()
 
-	# Asignamos lo que representa cada elemento.
-	nextScene 			= toRedo[0]
-	nextSimpleStorage 	= toRedo[1]
-	nextComplexStorage 	= toRedo[2]
+	if toRedo is not None:
+		# Asignamos lo que representa cada elemento.
+		nextScene 			= toRedo[0]
+		nextSimpleStorage 	= toRedo[1]
+		nextComplexStorage 	= toRedo[2]
 
-	# Recuperamos el estado de la escena.
-	__V.centralWidget().scene().clear()
-	for item in nextScene:
-		__V.centralWidget().scene().addItem(item)
-	# Recuperamos el estado de la cola de componentes simples.
-	__M.setSimpleCompStorage(nextSimpleStorage)
-	# Recuperamos el estado de la cola de componentes complejos.
-	__M.setComplexCompStorage(nextComplexStorage)
+		# Recuperamos el estado de la escena.
+		__V.centralWidget().scene().clear()
+		for item in nextScene:
+			print(item)
+			print(nextSimpleStorage)
+			__V.centralWidget().scene().addItem(item)
+		# Recuperamos el estado de la cola de componentes simples.
+		__M.setSimpleCompStorage(nextSimpleStorage)
+		# Recuperamos el estado de la cola de componentes complejos.
+		__M.setComplexCompStorage(nextComplexStorage)
 
-	# Actualizamos la informacion mostrada en el Arbol.
-	updateTrees(__V)
+		# Actualizamos la informacion mostrada en el Arbol.
+		updateTrees(__V)
 
 
 
@@ -153,13 +151,7 @@ def getSimpleComp(itemID):
 ''' Agrega a los contenedores correspondientes un nuevo Componente Simple. '''
 
 def newSimpleComp(imgPathSet,__V):
-
-	saveState(getCurState(__V))
-	print('\n On insert')
-	print('-'*30)
-	pprint(__M.printData(getCurState(__V)))
-	print('-'*30)
-	print()
+	saveState(__V)
 	if imgPathSet[0]:
 		for imgPath in imgPathSet[0]:
 			item = ESimple(imgPath)

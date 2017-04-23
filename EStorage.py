@@ -16,7 +16,7 @@ class EModel( object ):
 		# Doble cola para el historial de Deshacer. LIFO = (append y pop)
 		self.__undo = deque()
 
-		# Doble cola para el historial de Rehacer.  FIFO = (append y pop left)
+		# Doble cola para el historial de Rehacer.  LIFO = (append y pop)
 		self.__redo = deque()
 
 
@@ -45,10 +45,12 @@ class EModel( object ):
 
 	# ALTA.
 	def saveStateFromUndo(self,state):
-		self.__redo.append(state)
+		if self.__undo:
+			self.__redo.append(state)
 
 	def saveStateFromRedo(self,state):
-		self.__undo.append(state)
+		if self.__redo:
+			self.__undo.append(state)
 
 	def saveState(self,state):
 		self.__undo.append(state)
@@ -56,13 +58,15 @@ class EModel( object ):
 
 	# CONSULTA y GESTION.
 	def getPrevState(self):
-		toUndo = self.__undo.pop()
-		return toUndo
+		if self.__undo:
+			toUndo = self.__undo.pop()
+			return toUndo
 
 	# CONSULTA y GESTION.
 	def getNextState(self):
-		toRedo = self.__redo.pop()
-		return toRedo
+		if self.__redo:
+			toRedo = self.__redo.pop()
+			return toRedo
 
 
 

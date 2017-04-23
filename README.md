@@ -1,4 +1,4 @@
-<p align="center"> <img src="logo.png" height="350" width="350"> </p>
+<p align="center"> <img src="Icons/logo.png" height="350" width="350"> </p>
 
 	# See `TODO.md` file to knows project status ☕.
 
@@ -8,7 +8,7 @@
 
 ```shell
 # first, build the docker image.
-docker build -t protoe .
+docker build -t pdt .
 ```
 
 ```shell
@@ -43,8 +43,6 @@ docker run -it \
 - `pip3 install lxml` *or*
 - `apt-get install -y python3-lxml`
 
-
-
 - **pyqt5**
 - `pip3 install PyQt5` *or*
 - `apt-get install -y python3-pyqt5`
@@ -56,6 +54,6 @@ docker run -it \
 > ***With the requirements installed correctly ...***
 
 ```shell
-python3 E.py
+python3 EGui.py
 ```
 

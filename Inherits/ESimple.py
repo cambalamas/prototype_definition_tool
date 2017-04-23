@@ -197,6 +197,7 @@ class ESimple( QGraphicsPixmapItem ):
 
 	# Mientras se manteniene clicado.
 	def mouseMoveEvent(self, ev):
+		ELogic.saveState(self.getWindow())
 		# Si esta pulsado el boton izquierdo del raton.
 		if ev.buttons() == Qt.LeftButton:
 			# Calcular nueva posicion en base al desplazamiento del cursor.
@@ -214,8 +215,10 @@ class ESimple( QGraphicsPixmapItem ):
 	su anchura y altura.
 	'''
 	def wheelEvent(self, ev):
+		ELogic.saveState(self.getWindow())
 		newScale = self.getNewScale(ev.delta())
 		self.setScale(newScale)
+
 
 
 	'''
@@ -235,12 +238,15 @@ class ESimple( QGraphicsPixmapItem ):
 
 	# Toggle de Visibilidad.
 	def toggleVisible(self):
+		ELogic.saveState(self.getWindow())
 		toggle = not self.getVisible()
 		self.setVisible(toggle)
 		ELogic.updateTrees(self.getWindow())
 
+
 	# Toggle de Actividad.
 	def toggleActive(self):
+		ELogic.saveState(self.getWindow())
 		toggle = not self.getActive()
 		self.setActiveState(toggle)
 		# Si se desactiva, atenuamos la imagen.
@@ -251,22 +257,27 @@ class ESimple( QGraphicsPixmapItem ):
 		ELogic.updateTrees(self.getWindow())
 
 
+
 	'''
 	Manejos de la Z.
 	'''
 
 	# Incrementa el valor de la Z.
 	def incZ(self):
+		ELogic.saveState(self.getWindow())
 		newZ = self.getPosZ() + 1
 		self.setZValue(newZ)
 		ELogic.updateTrees(self.getWindow())
 
+
 	# Decrementa el valor de la Z, nunca menor que 0.
 	def decZ(self):
+		ELogic.saveState(self.getWindow())
 		newZ = self.getPosZ() - 1
 		if newZ >= 0:
 			self.setZValue(newZ)
 		ELogic.updateTrees(self.getWindow())
+
 
 
 # ----------------------------------------------------------------- #

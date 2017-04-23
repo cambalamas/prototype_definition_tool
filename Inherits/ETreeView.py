@@ -112,6 +112,7 @@ class ETreeView( QTreeView ):
 
 	def removeItem(self):
 		obj = ELogic.getSimpleComp(self.selectedID)
+		print(obj)
 		obj.removeItem()
 
 	def detailsDialog(self):

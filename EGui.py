@@ -27,7 +27,7 @@ class EMainWindow( QMainWindow ):
 		# ----------------------------------------------------------------- #
 
 		# Titulo de la ventana.
-		self.setWindowTitle('E!')
+		self.setWindowTitle('Herramienta de definicion de prototipos.')
 
 		# Ruta de los iconos.
 		self.icoPath = os.path.join(os.path.dirname(__file__),'Icons')
@@ -170,7 +170,7 @@ class EMainWindow( QMainWindow ):
 		self.setCentralWidget( self.workArea )
 
 		# Escena a la que se agregaran los Items con los que trabajamos.
-		workAreaScene = QGraphicsScene(self.workArea)
+		workAreaScene = QGraphicsScene(0,0,1920/2,1080/2,self.workArea)
 		self.workArea.setScene(workAreaScene)
 
 

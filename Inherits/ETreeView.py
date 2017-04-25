@@ -30,51 +30,10 @@ class ETreeView( QTreeView ):
 		self.setSelectionMode(QAbstractItemView.SingleSelection)
 
 
-		# ----------------------------------------------------------------- #
-		#					   GUI :: MENU CONTEXTUAL 						#
-		# ----------------------------------------------------------------- #
-
-		self.contextMenu = QMenu('MENU: Arbol de componentes')
-
-		# ACCION: Incrementar profundidad del objeto.
-		cmAct = self.contextMenu.addAction('INCREMENTA Profundidad')
-		cmAct.triggered.connect(self.incZ)
-
-		# ACCION: Decrementar profundidad del objeto.
-		cmAct = self.contextMenu.addAction('DECREMENTA Profundidad')
-		cmAct.triggered.connect(self.decZ)
-
-		# Dibuja una linea horizontal.
-		self.contextMenu.addSeparator()
-
-		# ACCION: Activa / Desactiva el objeto.
-		cmAct = self.contextMenu.addAction('Rota estado: ACTIVO')
-		cmAct.triggered.connect(self.toggleActive)
-
-		# ACCION: Muestra / Oculta el objeto.
-		cmAct = self.contextMenu.addAction('Rota estado: VISIBLE')
-		cmAct.triggered.connect(self.toggleVisible)
-
-		# Dibuja una linea horizontal.
-		self.contextMenu.addSeparator()
-
-		# ACCION: Borra el objeto de la escena y el modelo.
-		cmAct = self.contextMenu.addAction('BORRA el elemento')
-		cmAct.triggered.connect(self.removeItem)
-
-		# Dibuja una linea horizontal.
-		self.contextMenu.addSeparator()
-
-		# ACCION: Dialogo con los detalles del objeto.
-		cmAct = self.contextMenu.addAction('Informacion detallada...')
-		cmAct.triggered.connect(self.detailsDialog)
 
 
-	"""
-	Menu contextual activado con el boton derecho donde se muestran
-	las distintas acciones que se pueden ejecutar sobre los componentes
-	que se encuentran en la lista.
-	"""
+
+
 	def contextMenuEvent(self,ev):
 		indexList = self.selectedIndexes()
 

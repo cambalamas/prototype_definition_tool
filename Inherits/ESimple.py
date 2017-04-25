@@ -18,6 +18,7 @@ comportamiento del objeto ante distintos eventos.
 class ESimple( QGraphicsPixmapItem ):
 	def __init__(self, imgPath):
 		super().__init__()
+		self.setTransformationMode(Qt.SmoothTransformation) # AntiAliasing.
 		self.setPixmap( QPixmap(imgPath) ) # Dialog si 'imgPath' no existe.
 
 		# ----------------------------------------------------------------- #

@@ -3,7 +3,7 @@
 
 from collections import deque
 
-class EModel( object ):
+class MODEL( object ):
 	def __init__(self):
 		super().__init__()
 

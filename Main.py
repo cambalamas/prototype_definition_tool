@@ -2,22 +2,131 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import PyQt5
+
 from VIEW import VIEW
-from PyQt5.QtWidgets import QApplication
+from MODEL import MODEL
+from PRESENTER import PRESENTER
 
 
 if __name__ == '__main__':
 
 	# Instancia la app QT.$
-	app = QApplication(sys.argv)
+	app = PyQt5.QtWidgets.QApplication(sys.argv)
+
+	w = app.primaryScreen().availableGeometry().width()
+	h = app.primaryScreen().availableGeometry().height()
 
 	# Compone la ventana y las señales ante eventos de usuario.
-	view = VIEW()
+	view = VIEW(w,h)
 
 	# Compone la estructura y logica de almacenameiento.
+	model = MODEL()
+
+	# Compone la logica y tratamiento de datos.
+	presenter = PRESENTER(view,model)
 
 	# Muestra la ventana.
-	win.showMaximized()
+	view.showMaximized()
+
+
+	##
+	# CONECTA SEÑALES DE LA VISTA.
+	##
+
+	view.signal_SaveProject.connect(
+		presenter.listener_SaveProject
+	)
+
+	view.signal_NewSimple.connect(
+		presenter.listener_NewSimple
+	)
+
+	view.signal_NewComplex.connect(
+		presenter.listener_NewComplex
+	)
+
+	view.signal_HideMenu.connect(
+		presenter.listener_HideMenu
+	)
+
+	view.signal_ZoomIn.connect(
+		presenter.listener_ZoomIn
+	)
+
+	view.signal_ZoomOut.connect(
+		presenter.listener_ZoomOut
+	)
+
+	view.signal_Zoom100.connect(
+		presenter.listener_Zoom100
+	)
+
+	view.signal_FullScreen.connect(
+		presenter.listener_FullScreen
+	)
+
+	view.signal_TrEs.connect(
+		presenter.listener_TrEs
+	)
+
+	view.signal_TrEn.connect(
+		presenter.listener_TrEn
+	)
+
+	view.signal_TrFr.connect(
+		presenter.listener_TrFr
+	)
+
+	view.signal_TrDe.connect(
+		presenter.listener_TrDe
+	)
+
+	view.signal_SimpleZInc.connect(
+		presenter.listener_SimpleZInc
+	)
+
+	view.signal_SimpleZDec.connect(
+		presenter.listener_SimpleZDec
+	)
+
+	view.signal_SimpleActive.connect(
+		presenter.listener_SimpleActive
+	)
+
+	view.signal_SimpleVisible.connect(
+		presenter.listener_SimpleVisible
+	)
+
+	view.signal_SimpleDelete.connect(
+		presenter.listener_SimpleDelete
+	)
+
+	view.signal_SimpleDetail.connect(
+		presenter.listener_SimpleDetail
+	)
+
+	view.signal_simpleTreeItemChange.connect(
+		presenter.listener_simpleTreeItemChange
+	)
+
+	view.signal_simpleTreeInvokeMenu.connect(
+		presenter.listener_simpleTreeInvokeMenu
+	)
+
+	view.signal_complexTreeItemChange.connect(
+		presenter.listener_complexTreeItemChange
+	)
+
+	view.signal_complexTreeInvokeMenu.connect(
+		presenter.listener_complexTreeInvokeMenu
+	)
+
+
+	##
+	# CONECTA SEÑALES DEL MODELO
+	##
+
 
 	# Espera la señal 'QT' de Cierre.
 	sys.exit(app.exec_())

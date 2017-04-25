@@ -4,23 +4,63 @@
 import GUI
 import os, sys, i18n
 from PyQt5.QtGui import *
+from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import Qt, pyqtSignal
+
+
+
+################### UNDO y REDO EN EL MENU DE EDIT!!!
+
+
 
 i18n.load_path.append(os.path.join(os.path.dirname(__file__),'Translations'))
 
 
 class VIEW( QMainWindow ):
 
-	def __init__(self):
+	# ----------------------------------------------------------------- #
+	#								SEÑALES								#
+	#		(se definenen obligatoriamente fuera del construcctor)		#
+	# ----------------------------------------------------------------- #
+
+	signal_SaveProject           	= 	pyqtSignal()
+	signal_NewSimple             	= 	pyqtSignal()
+	signal_NewComplex            	= 	pyqtSignal()
+
+	signal_HideMenu                	= 	pyqtSignal()
+	signal_ZoomIn                	= 	pyqtSignal()
+	signal_ZoomOut               	= 	pyqtSignal()
+	signal_Zoom100               	= 	pyqtSignal()
+	signal_FullScreen            	= 	pyqtSignal()
+
+	signal_TrEs                  	= 	pyqtSignal()
+	signal_TrEn                  	= 	pyqtSignal()
+	signal_TrFr                  	= 	pyqtSignal()
+	signal_TrDe                  	= 	pyqtSignal()
+
+	signal_SimpleZInc            	= 	pyqtSignal()
+	signal_SimpleZDec            	= 	pyqtSignal()
+	signal_SimpleActive          	= 	pyqtSignal()
+	signal_SimpleVisible         	= 	pyqtSignal()
+	signal_SimpleDelete          	= 	pyqtSignal()
+	signal_SimpleDetail          	= 	pyqtSignal()
+
+	signal_simpleTreeItemChange  	= 	pyqtSignal()
+	signal_simpleTreeInvokeMenu  	= 	pyqtSignal()
+
+	signal_complexTreeItemChange 	= 	pyqtSignal()
+	signal_complexTreeInvokeMenu 	= 	pyqtSignal()
+
+
+
+	def __init__(self,w,h):
+
 		super().__init__()
 
 		GUI.configWindow(self)
 
-
 		# ----------------------------------------------------------------- #
 		#						 CLASE :: VARIABLES 						#
-		#					(deberia guardarse en el model?)				#
 		# ----------------------------------------------------------------- #
 
 		# Control del factor de escalado.
@@ -32,38 +72,6 @@ class VIEW( QMainWindow ):
 		# Guarda el estado anterior de la ventana.
 		self.__previousWindowState = str()
 
-
-		# ----------------------------------------------------------------- #
-		#								SEÑALES								#
-		# ----------------------------------------------------------------- #
-
-		self.signal_SaveProject           	= 	pyqtSignal()
-		self.signal_NewSimple             	= 	pyqtSignal()
-		self.signal_NewComplex            	= 	pyqtSignal()
-		self.signal_Close                 	= 	pyqtSignal()
-
-		self.signal_ZoomIn                	= 	pyqtSignal()
-		self.signal_ZoomOut               	= 	pyqtSignal()
-		self.signal_Zoom100               	= 	pyqtSignal()
-		self.signal_FullScreen            	= 	pyqtSignal()
-
-		self.signal_TrEs                  	= 	pyqtSignal()
-		self.signal_TrEn                  	= 	pyqtSignal()
-		self.signal_TrFr                  	= 	pyqtSignal()
-		self.signal_TrDe                  	= 	pyqtSignal()
-
-		self.signal_SimpleZInc            	= 	pyqtSignal()
-		self.signal_SimpleZDec            	= 	pyqtSignal()
-		self.signal_SimpleActive          	= 	pyqtSignal()
-		self.signal_SimpleVisible         	= 	pyqtSignal()
-		self.signal_SimpleDelete          	= 	pyqtSignal()
-		self.signal_SimpleDetail          	= 	pyqtSignal()
-
-		self.signal_simpleTreeItemChange  	= 	pyqtSignal()
-		self.signal_simpleTreeInvokeMenu  	= 	pyqtSignal()
-
-		self.signal_complexTreeItemChange 	= 	pyqtSignal()
-		self.signal_complexTreeInvokeMenu 	= 	pyqtSignal()
 
 
 		# ----------------------------------------------------------------- #
@@ -82,10 +90,12 @@ class VIEW( QMainWindow ):
 		# Nuevo componente complejo.
 		_newComplex = GUI.newCompComplexAction( _mFile, self._emit_NewComplex )
 		# Salir de la app.
-		_exit = GUI.closeAction( _mFile, self._emit_Close )
+		_exit = GUI.closeAction( _mFile, self.close )
 
 		''' MENU: Vista. '''
 		_mView = self.menuBar().addMenu('Vista')
+		# Ocultar menu.
+		_zoomIn = GUI.hideMenuAction( _mView, self._emit_HideMenu )
 		# Aumetar zoom.
 		_zoomIn = GUI.zoomInAction( _mView, self._emit_ZoomIn )
 		# Disminuir zoom.
@@ -131,11 +141,15 @@ class VIEW( QMainWindow ):
 		# QGraphicsView, otorga ventajas como Escala y Profundidad.
 		_workArea = QGraphicsView()
 		_workArea.setBackgroundBrush(Qt.gray)
+		_workArea.resize(w,h)
 		self.setCentralWidget(_workArea)
 
 		# Escena a la que se agregaran los Items con los que trabajamos.
-		_workAreaScene = QGraphicsScene(_workArea)
-		self.centralWidget().setScene(_workAreaScene)
+		_workAreaScene = QGraphicsScene(self.getViewRectF(),_workArea)
+		_workAreaScene.addRect(self.getViewRectF(),Qt.white,Qt.white)
+
+		# Asignamos la escena al area de trabajo.
+		_workArea.setScene(_workAreaScene)
 
 
 		# ----------------------------------------------------------------- #
@@ -154,33 +168,33 @@ class VIEW( QMainWindow ):
 
 		# Incrementar profundidad del objeto.
 		GUI.simpleZIncAction( self._simpleTreeMenu,
-		                      self._emit_SimpleZInc )
+							  self._emit_SimpleZInc )
 
 		# Decrementar profundidad del objeto.
 		GUI.simpleZDecAction( self._simpleTreeMenu,
-		                      self._emit_SimpleZDec )
+							  self._emit_SimpleZDec )
 
 		self._simpleTreeMenu.addSeparator() # Dibuja una linea horizontal.
 
 		# Activa / Desactiva el objeto.
 		GUI.simpleToggleActiveAction( self._simpleTreeMenu,
-		                              self._emit_SimpleActive )
+									  self._emit_SimpleActive )
 
 		# ACCION: Muestra / Oculta el objeto.
 		GUI.simpleToggleVisibleAction( self._simpleTreeMenu,
-		                               self._emit_SimpleVisible )
+									   self._emit_SimpleVisible )
 
 		self._simpleTreeMenu.addSeparator() # Dibuja una linea horizontal.
 
 		# Borra el objeto de la escena y el modelo.
 		GUI.simpleDeleteAction( self._simpleTreeMenu,
-		                        self._emit_SimpleDelete )
+								self._emit_SimpleDelete )
 
 		self._simpleTreeMenu.addSeparator() # Dibuja una linea horizontal.
 
 		# Muestra un pop-up con los detalles del objeto.
 		GUI.simpleDetailAction( self._simpleTreeMenu,
-		                        self._emit_SimpleDetail )
+								self._emit_SimpleDetail )
 
 
 		# ----------------------------------------------------------------- #
@@ -190,14 +204,14 @@ class VIEW( QMainWindow ):
 		# Arbol de componentes simples.
 		_simpleHeader = ['Nombre', 'Visb.', 'Act.', 'Z']
 		self.__simpleTree = GUI.treeView( _simpleHeader,
-		                                  self._emit_simpleTreeItemChange,
-		                                  self._emit_simpleTreeInvokeMenu )
+										  self._emit_simpleTreeItemChange,
+										  self._emit_simpleTreeInvokeMenu )
 
 		# Arbol de componentes complejos.
 		_complexHeader = ['Nombre']
 		self.__complexTree = GUI.treeView( _complexHeader,
-	                                       self._emit_complexTreeItemChange,
-		                                   self._emit_complexTreeInvokeMenu )
+										   self._emit_complexTreeItemChange,
+										   self._emit_complexTreeInvokeMenu )
 
 
 		# ----------------------------------------------------------------- #
@@ -205,35 +219,74 @@ class VIEW( QMainWindow ):
 		# ----------------------------------------------------------------- #
 
 		_simpleDockbar = GUI.dockBar( 'COMPONENTES SIMPLES',
-		                              self.__simpleTree )
+									  self.__simpleTree )
 
 		_complexDockbar = GUI.dockBar( 'COMPONENTES COMPLEJOS',
-		                               self.__complexTree )
+									   self.__complexTree )
 
 		self.addDockWidget(Qt.LeftDockWidgetArea, _simpleDockbar)
 
 		self.addDockWidget(Qt.LeftDockWidgetArea, _complexDockbar)
 
 
+
 	# ----------------------------------------------------------------- #
-	#							 GUI :: 'GETTERS' 						#
+	#						   GUI :: 'GETTERS' 						#
 	# ----------------------------------------------------------------- #
 
-	def getSimpleTree():
+
+	""" GUI """
+
+	def getSimpleTree(self):
 		return self.__simpleTree
 
-	def getComplexTree():
+	def getComplexTree(self):
 		return self.__complexTree
 
-	def getWorkArea():
+	def getWorkArea(self):
 		return self.centralWidget()
 
-	def getScene():
+	def getScene(self):
 		return self.centralWidget().scene()
+
+	def getViewRectF(self):
+		viewRect = self.centralWidget().rect()
+		return QRectF(viewRect)
+
+
+	""" VARS """
+
+	def getScale(self):
+		return self.__viewScale
+
+	def getScaleMod(self):
+		return self.__viewScaleMOD
+
+	def getScaleMax(self):
+		return self.__viewScaleMAX
+
+	def getScaleMin(self):
+		return self.__viewScaleMIN
+
+	def getPrevWindowState(self):
+		return self.__previousWindowState
+
 
 
 	# ----------------------------------------------------------------- #
-	#					  	- CONECTAR SEÑALES -						#
+	#						   GUI :: 'SETTERS' 						#
+	# ----------------------------------------------------------------- #
+
+	def setScale(self, newVal):
+		self.__viewScale = newVal
+
+	def setPrevWindowState(self,newVal):
+		self.__previousWindowState = newVal
+
+
+
+	# ----------------------------------------------------------------- #
+	#					  	 - EMITIR SEÑALES -							#
 	# ----------------------------------------------------------------- #
 
 	def _emit_SaveProject(self):
@@ -245,8 +298,8 @@ class VIEW( QMainWindow ):
 	def _emit_NewComplex(self):
 		self.signal_NewComplex.emit()
 
-	def _emit_Close(self):
-		self.signal_Close.emit()
+	def _emit_HideMenu(self):
+		self.signal_HideMenu.emit()
 
 	def _emit_ZoomIn(self):
 		self.signal_ZoomIn.emit()
@@ -303,4 +356,28 @@ class VIEW( QMainWindow ):
 		self.signal_complexTreeInvokeMenu.emit()
 
 
-################### UNDO y REDO EN EL MENU DE EDIT!!!
+
+
+
+	""" ------------------------------------------------------------------ """
+	""" - Dispara el evento de cierre la ventana, pidiendo confirmacion. - """
+	""" ------------------------------------------------------------------ """
+
+	def closeEvent(self,ev):
+		reply = QMessageBox.question( self,
+									  '¡CONFIRMAR!',
+									  '¿Seguro que quieres salir?',
+									  QMessageBox.Ok | QMessageBox.No,
+									  QMessageBox.No ) # <--- Por defecto.
+		if reply == QMessageBox.Ok:
+			ev.accept()
+		else:
+			ev.ignore()
+
+
+	def keyPressEvent(self,ev):
+
+		if ev.key() == Qt.Key_Alt:
+			self._emit_HideMenu()
+
+		ev.accept()

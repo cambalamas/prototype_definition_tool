@@ -54,6 +54,15 @@ def closeAction(menu,emitter):
 	act.triggered.connect(emitter)
 	return act
 
+
+def hideMenuAction(menu,emitter):
+	act = menu.addAction('Ocultar menu')
+	act.setCheckable(True)
+	act.setShortcut('Ctrl+H')
+	act.setStatusTip('Oculta la barra de menu. (Visualizable con [ALT]')
+	act.triggered.connect(emitter)
+	return act
+
 def zoomInAction(menu,emitter):
 	act = menu.addAction('Zoom +')
 	act.setShortcut('Ctrl++')
@@ -82,6 +91,7 @@ def fullScreenAction(menu,emitter):
 	act.setStatusTip('Rota entre pantalla completa y el estado anterior.')
 	act.triggered.connect(emitter)
 	return act
+
 
 def trEsAction(menu,emitter):
 	act = menu.addAction('Traducir a Español')
@@ -144,19 +154,6 @@ def simpleDetailAction(menu,emitter):
 	act.triggered.connect(emitter)
 
 
-#
-# --- // Acciones de la barra de herramientas.
-#
-
-# def saveproject(toolbar):
-# 	act = toolbar.addAction('')
-# 	act.setIcon(icon('save.png'))
-# 	act.setIconText('Guardar proyecto')
-# 	act.setStatusTip('Guarda el estado del proyecto.')
-# 	act.triggered.connect(emmit)
-# 	return act
-
-
 
 #
 # --- // Widgets.
@@ -165,9 +162,7 @@ def simpleDetailAction(menu,emitter):
 def dockBar(title,widget):
 	dockbar = QDockWidget(title)
 	dockbar.setWidget(widget)
-	# Define las areas permitidas.
-	dockbar.setAllowedAreas( Qt.LeftDockWidgetArea
-	                       	 | Qt.RightDockWidgetArea )
+	dockbar.setAllowedAreas( Qt.LeftDockWidgetArea | Qt.RightDockWidgetArea )
 	return dockbar
 
 
@@ -221,11 +216,4 @@ def hidden():
 	return Qt.UserRole
 
 def imgDialog(parent,title,path):
-	return QFileDialog.getOpenFileNames(self,title,path)
-
-def prompt(parent,title,question):
-	return QMessageBox.question( self,
-							     title,
-							     question,
-							     QMessageBox.Ok | QMessageBox.No,
-							     QMessageBox.No ) # <--- Por defecto.
+	return QFileDialog.getOpenFileNames(parent,title,path)

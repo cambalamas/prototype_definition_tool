@@ -1,7 +1,6 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import ELogic
 import os, sys, uuid
 from os.path import basename, normpath
 
@@ -15,7 +14,7 @@ Clase que heredara de 'QGraphicsPixmapItem' y nos permitira controlar el
 comportamiento del objeto ante distintos eventos.
 
 '''
-class ESimple( QGraphicsPixmapItem ):
+class SimpleComponent( QGraphicsPixmapItem ):
 	def __init__(self, imgPath):
 		super().__init__()
 		self.setTransformationMode(Qt.SmoothTransformation) # AntiAliasing.

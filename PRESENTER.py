@@ -6,6 +6,7 @@ from copy import copy
 
 import GUI
 import EParser
+from PyQt5.QtCore import *
 from SIMPLE import SimpleComponent
 
 
@@ -37,7 +38,7 @@ class PRESENTER( object ):
 		# El metodo multiplataforma de obtener el 'HOME' del usuario.
 		home = os.path.expanduser('~')
 		# Recogemos las imagenes seleccionadas del cuadro de dialogo.
-		imgPathsSet = GUI.imgDialog(self._view,'Pick imgs!',home)
+		imgPathSet = QFileDialog.getOpenFileNames(self._view,'Pick imgs!',home)
 
 		# En base a las rutas recogidas.
 		if imgPathSet[0]:
@@ -75,6 +76,8 @@ class PRESENTER( object ):
 			menuBar.setFixedHeight(0)
 		else:
 			menuBar.setFixedHeight(menuBar.sizeHint().height())
+
+		qCritical('wow')
 
 
 	""" Aumenta la escala de la escena. """
@@ -199,18 +202,18 @@ class PRESENTER( object ):
 			# Recupero los datos cambiado.
 			name = row.data(0)
 
-			if row.data(1) == GUI.checked():
+			if row.data(1) == Qt.Checked:
 				visible = True
 			else:
 				visible = False
 
-			if row.data(2) == GUI.checked():
+			if row.data(2) == Qt.Checked:
 				active = True
 			else:
 				active = False
 
 			# Recuperamos el id 'ocultado' en el hijo.
-			compID = row.child(0,0).data(GUI.hidden())
+			compID = row.child(0,0).data(Qt.UserRole)
 
 			# Guardamos la modificacion en la estructura de datos.
 			compData = { 'Name':name,
@@ -234,7 +237,7 @@ class PRESENTER( object ):
 
 			# Obtenemos el ID, que hemos situado en la posicion Zero.
 			selected = self.model().itemFromIndex(indexList[0])
-			self.selectedID = selected.child(0,0).data(GUI.hidden())
+			self.selectedID = selected.child(0,0).data(Qt.UserRole)
 
 			# Y Mostramos el menu contextual correspondiente.
 			self.contextMenu.exec(self.globalPos())
@@ -281,7 +284,7 @@ class PRESENTER( object ):
 	# 	indexList = tree.selectedIndexes()
 	# 	if indexList is not None:
 	# 		firstCol = tree.model().itemFromIndex(index[0])
-	# 		itemID = firstCol.child(0,0).data(GUI.hidden())
+	# 		itemID = firstCol.child(0,0).data(Qt.UserRole)
 	# 		return itemID
 
 
@@ -323,7 +326,7 @@ class PRESENTER( object ):
 
 			# Guardamos el ID de forma oculta.
 			child = QStandardItem()
-			child.setData(elem.getID(),GUI.hidden())
+			child.setData(elem.getID(),Qt.UserRole)
 			col1.setChild(0,0,child)
 
 			# Componemos la fila y la agregamos al arbol.
@@ -341,7 +344,7 @@ class PRESENTER( object ):
 			# Columna donde 'ocultamos' el id del objeto.
 			firstCol = tree.model().itemFromIndex(indexList[0])
 			# Recuperamos el id 'ocultado' en el hijo.
-			itemID = firstCol.child(0,0).data(GUI.hidden())
+			itemID = firstCol.child(0,0).data(Qt.UserRole)
 
 			# Guardamos la modificacion en la estructura de datos.
 			item = self._model.getSimpleComp(itemID)

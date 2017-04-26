@@ -3,31 +3,49 @@
 
 import sys
 import PyQt5
+from PyQt5.QtCore import *
+from datetime import datetime
 
 from VIEW import VIEW
 from MODEL import MODEL
 from PRESENTER import PRESENTER
 
 
+def logger(type, context, msg):
+	if type == 3:
+		abort()
+	# Compone el mensaje.
+	txt = '\n {}\n-----------------\n{}'.format(datetime.now().time(),msg)
+	# Ubicacion de guardado.
+	path = QDir().mkpath("Logs")
+	logFile = QFile("Logs/{}.log".format(datetime.now().date()))
+	# Siempre añadimos entradas despues de la ultima linea.
+	logFile.open(QIODevice.WriteOnly | QIODevice.Append)
+	# Graba en el archivo lo que reciba el Stream.
+	ts = QTextStream(logFile)
+	# Operador de adicion, propio de 'QTextStream'
+	ts << txt+'\n'
+
+
 if __name__ == '__main__':
 
 	# Instancia la app QT.$
 	app = PyQt5.QtWidgets.QApplication(sys.argv)
+	qInstallMessageHandler(logger)
 
-	w = app.primaryScreen().availableGeometry().width()
-	h = app.primaryScreen().availableGeometry().height()
+	# Header del archivo de log.
+	qDebug('SESSION STARTED !')
+
+	# Medida de la pantalla del dispositivo.
+	w = app.primaryScreen().geometry().width()
+	h = app.primaryScreen().geometry().height()
 
 	# Compone la ventana y las señales ante eventos de usuario.
 	view = VIEW(w,h)
-
 	# Compone la estructura y logica de almacenameiento.
 	model = MODEL()
-
 	# Compone la logica y tratamiento de datos.
 	presenter = PRESENTER(view,model)
-
-	# Muestra la ventana.
-	view.showMaximized()
 
 
 	##
@@ -127,6 +145,12 @@ if __name__ == '__main__':
 	# CONECTA SEÑALES DEL MODELO
 	##
 
+
+
+# --------------------------------------------------------------------------- #
+
+	# Muestra la ventana.
+	view.showMaximized()
 
 	# Espera la señal 'QT' de Cierre.
 	sys.exit(app.exec_())

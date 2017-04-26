@@ -3,16 +3,21 @@
 
 import os, i18n
 from PyQt5.QtGui import *
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import Qt, pyqtSignal
+
+
 
 # Ruta de los iconos.
 icoPath = os.path.join(os.path.dirname(__file__),'Icons')
+
 
 # Genera un QIcon a partir del nombre de la imagen.
 def icon(name):
 	return QIcon(os.path.join(icoPath,name))
 
+
+# Establece el logo y el titulo a la ventana.
 def configWindow(window):
 	# Icono del dock.
 	window.setWindowIcon(icon('logo.png'))
@@ -21,14 +26,14 @@ def configWindow(window):
 
 
 
-#
-# --- // Acciones de la barra de menus.
-#
+##
+# ACCIONES BARRA DE MENUS.
+##
 
 def saveProjectAction(menu,emitter):
 	act = menu.addAction('Guardar proyecto')
-	act.setShortcut('Ctrl+S')
-	act.setIcon(icon('save.png'))
+	act.setShortcut(QKeySequence.Save)
+	act.setIcon(icon('saveProject.ico'))
 	act.setStatusTip('Guarda el estado del proyecto.')
 	act.triggered.connect(emitter)
 	return act
@@ -36,6 +41,7 @@ def saveProjectAction(menu,emitter):
 def newCompSimpleAction(menu,emitter):
 	act = menu.addAction('Nuevo Componente(s) simple(s)')
 	act.setShortcut('Ctrl+I')
+	act.setIcon(icon('simpleComp.ico'))
 	act.setStatusTip('Crea un componente simple en base a una imagen.')
 	act.triggered.connect(emitter)
 	return act
@@ -43,6 +49,7 @@ def newCompSimpleAction(menu,emitter):
 def newCompComplexAction(menu,emitter):
 	act = menu.addAction('Nuevo Componente complejo')
 	act.setShortcut('Ctrl+Shift+I')
+	act.setIcon(icon('complexComp.ico'))
 	act.setStatusTip('Crea un componente complejo en base a varias imgs.')
 	act.triggered.connect(emitter)
 	return act
@@ -50,6 +57,7 @@ def newCompComplexAction(menu,emitter):
 def closeAction(menu,emitter):
 	act = menu.addAction('Salir (!)')
 	act.setShortcut(QKeySequence.Close)
+	act.setIcon(icon('appExit.ico'))
 	act.setStatusTip('Cierra la aplicacion...')
 	act.triggered.connect(emitter)
 	return act
@@ -59,35 +67,40 @@ def hideMenuAction(menu,emitter):
 	act = menu.addAction('Ocultar menu')
 	act.setCheckable(True)
 	act.setShortcut('Ctrl+H')
+	act.setIcon(icon('hideMenu.ico'))
 	act.setStatusTip('Oculta la barra de menu. (Visualizable con [ALT]')
 	act.triggered.connect(emitter)
 	return act
 
 def zoomInAction(menu,emitter):
 	act = menu.addAction('Zoom +')
-	act.setShortcut('Ctrl++')
+	act.setShortcut(QKeySequence.ZoomIn)
+	act.setIcon(icon('zoomIn.ico'))
 	act.setStatusTip('Incrementa el zoom de la escena.')
-	act.triggered.connect(emitter)
-	return act
-
-def zoomOutAction(menu,emitter):
-	act = menu.addAction('Zoom -')
-	act.setShortcut('Ctrl+-')
-	act.setStatusTip('Decrementa el zoom de la escena.')
 	act.triggered.connect(emitter)
 	return act
 
 def zoom100Action(menu,emitter):
 	act = menu.addAction('Zoom 100%')
 	act.setShortcut('Ctrl+0')
+	act.setIcon(icon('zoom100.ico'))
 	act.setStatusTip('Restablece el zoom de la escena.')
+	act.triggered.connect(emitter)
+	return act
+
+def zoomOutAction(menu,emitter):
+	act = menu.addAction('Zoom -')
+	act.setShortcut(QKeySequence.ZoomOut)
+	act.setIcon(icon('zoomOut.ico'))
+	act.setStatusTip('Decrementa el zoom de la escena.')
 	act.triggered.connect(emitter)
 	return act
 
 def fullScreenAction(menu,emitter):
 	act = menu.addAction('Pantalla completa')
 	act.setCheckable(True)
-	act.setShortcut('F11')
+	act.setShortcut(QKeySequence.FullScreen)
+	act.setIcon(icon('fullScreen.ico'))
 	act.setStatusTip('Rota entre pantalla completa y el estado anterior.')
 	act.triggered.connect(emitter)
 	return act
@@ -96,6 +109,7 @@ def fullScreenAction(menu,emitter):
 def trEsAction(menu,emitter):
 	act = menu.addAction('Traducir a Español')
 	act.setCheckable(True)
+	act.setIcon(icon('trES.ico'))
 	act.setStatusTip('Traduce los textos de la app a Español')
 	act.triggered.connect(emitter)
 	return act
@@ -103,6 +117,7 @@ def trEsAction(menu,emitter):
 def trEnAction(menu,emitter):
 	act = menu.addAction('Traducir a Ingles')
 	act.setCheckable(True)
+	act.setIcon(icon('trEN.ico'))
 	act.setStatusTip('Traduce los textos de la app a Ingles')
 	act.triggered.connect(emitter)
 	return act
@@ -110,6 +125,7 @@ def trEnAction(menu,emitter):
 def trFrAction(menu,emitter):
 	act = menu.addAction('Traducir a Frances')
 	act.setCheckable(True)
+	act.setIcon(icon('trFR.ico'))
 	act.setStatusTip('Traduce los textos de la app a Frances')
 	act.triggered.connect(emitter)
 	return act
@@ -117,15 +133,16 @@ def trFrAction(menu,emitter):
 def trDeAction(menu,emitter):
 	act = menu.addAction('Traducir a Aleman')
 	act.setCheckable(True)
+	act.setIcon(icon('trDE.ico'))
 	act.setStatusTip('Traduce los textos de la app a Aleman')
 	act.triggered.connect(emitter)
 	return act
 
 
 
-#
-# --- // Acciones de componente simple.
-#
+##
+# ACCIONES COMP SIMPLE.
+##
 
 def simpleZIncAction(menu,emitter):
 	act = menu.addAction('INCREMENTA Profundidad')
@@ -155,16 +172,27 @@ def simpleDetailAction(menu,emitter):
 
 
 
-#
-# --- // Widgets.
-#
+##
+# WIDGETS.
+##
+
+
+""" Constructor con ciertas propiedades ya configuradas de un 'QDockWidget',
+estas widgets se caracterizan por poderse anclar en cualquier borde de
+la pantalla"""
 
 def dockBar(title,widget):
 	dockbar = QDockWidget(title)
 	dockbar.setWidget(widget)
-	dockbar.setAllowedAreas( Qt.LeftDockWidgetArea | Qt.RightDockWidgetArea )
+
+	# Limitamos su anclaje a los laterales.
+	dockbar.setAllowedAreas( Qt.LeftDockWidgetArea
+	                         | Qt.RightDockWidgetArea )
+
 	return dockbar
 
+
+""" Constructor con ciertas propiedades ya configuradas de un 'TreeView' """
 
 def treeView(header,*emitters):
 	tree = QTreeView()
@@ -200,20 +228,3 @@ def treeView(header,*emitters):
 	tree.setSelectionMode(QAbstractItemView.SingleSelection)
 
 	return tree
-
-
-#
-# --- // Elementos necesarios por acciones del PRESENTER.
-#
-
-def ok():
-	return QMessageBox.Ok
-
-def checked():
-	return Qt.Checked
-
-def hidden():
-	return Qt.UserRole
-
-def imgDialog(parent,title,path):
-	return QFileDialog.getOpenFileNames(parent,title,path)

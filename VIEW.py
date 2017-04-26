@@ -1,12 +1,14 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import GUI
 import os, sys, i18n
+from datetime import datetime
+
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
+import GUI
 
 
 ################### UNDO y REDO EN EL MENU DE EDIT!!!
@@ -59,6 +61,8 @@ class VIEW( QMainWindow ):
 
 		GUI.configWindow(self)
 
+
+
 		# ----------------------------------------------------------------- #
 		#						 CLASE :: VARIABLES 						#
 		# ----------------------------------------------------------------- #
@@ -95,13 +99,13 @@ class VIEW( QMainWindow ):
 		''' MENU: Vista. '''
 		_mView = self.menuBar().addMenu('Vista')
 		# Ocultar menu.
-		_zoomIn = GUI.hideMenuAction( _mView, self._emit_HideMenu )
+		_hideMenu = GUI.hideMenuAction( _mView, self._emit_HideMenu )
 		# Aumetar zoom.
 		_zoomIn = GUI.zoomInAction( _mView, self._emit_ZoomIn )
-		# Disminuir zoom.
-		_zoomOut = GUI.zoomOutAction( _mView, self._emit_ZoomOut )
 		# Restablece el zoom.
 		_zoom100 = GUI.zoom100Action( _mView, self._emit_Zoom100 )
+		# Disminuir zoom.
+		_zoomOut = GUI.zoomOutAction( _mView, self._emit_ZoomOut )
 		# Rota entre pantalla completa y el estado anterior.
 		_fullScreen = GUI.fullScreenAction( _mView, self._emit_FullScreen )
 
@@ -130,8 +134,17 @@ class VIEW( QMainWindow ):
 		_toolbar = QToolBar('HERRAMIENTAS')
 		self.addToolBar(_toolbar)
 
-		# Guardar proyecto.
+		# Acceso rapido a acciones ya definidas en la barra de menu.
 		_toolbar.addAction(_save)
+		_toolbar.addAction(_newSimple)
+		_toolbar.addAction(_newComplex)
+		_toolbar.addAction(_exit)
+		_toolbar.addSeparator()
+		_toolbar.addAction(_zoomOut)
+		_toolbar.addAction(_zoom100)
+		_toolbar.addAction(_zoomIn)
+		_toolbar.addAction(_fullScreen)
+
 
 
 		# ----------------------------------------------------------------- #
@@ -370,6 +383,7 @@ class VIEW( QMainWindow ):
 									  QMessageBox.Ok | QMessageBox.No,
 									  QMessageBox.No ) # <--- Por defecto.
 		if reply == QMessageBox.Ok:
+			qDebug('SESSION ENDED !\n\n\n')
 			ev.accept()
 		else:
 			ev.ignore()

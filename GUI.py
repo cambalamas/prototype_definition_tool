@@ -22,8 +22,59 @@ def configWindow(window):
 	# Icono del dock.
 	window.setWindowIcon(icon('logo.png'))
 	# Titulo de la ventana.
-	window.setWindowTitle('Herramienta de definicion de prototipos.')
+	window.setWindowTitle(i18n.t('E.title'))
 
+##
+# DIALOGO DE ENTRADA.
+##
+
+
+##
+# DIALOGO DE SALIDA.
+##
+
+def exitDialog(view):
+	return QMessageBox.question( view,
+						  		 '¡CONFIRMAR!',
+						  		 '¿Seguro que quieres salir?',
+						  		 QMessageBox.Ok | QMessageBox.No,
+						  		 QMessageBox.No ) # <--- Por defecto.
+
+
+##
+# MENU CONTEXTUAL DE ARBOLES.
+##
+
+def simpleTreeViewMenu():
+	return QMenu('MENU: Arbol de componentes simples')
+
+def complexTreeViewMenu():
+	return QMenu('MENU: Arbol de componentes complejos')
+
+
+##
+# BARRA DE MENUS.
+##
+
+def statusBar():
+	return QStatusBar()
+
+def toolBar():
+	return QToolBar('HERRAMIENTAS')
+
+def menuBar():
+	menubar = QMenuBar()
+	menubar.setNativeMenuBar(True)
+	return menubar
+
+def menuFile(view):
+	return view.menuBar().addMenu('Archivo')
+
+def menuView(view):
+	return view.menuBar().addMenu('Vista')
+
+def menuHelp(view):
+	return view.menuBar().addMenu('Ayuda')
 
 
 ##
@@ -31,7 +82,7 @@ def configWindow(window):
 ##
 
 def saveProjectAction(menu,emitter):
-	act = menu.addAction('Guardar proyecto')
+	act = menu.addAction(i18n.t('E.save'))
 	act.setShortcut(QKeySequence.Save)
 	act.setIcon(icon('saveProject.ico'))
 	act.setStatusTip('Guarda el estado del proyecto.')
@@ -139,7 +190,6 @@ def trDeAction(menu,emitter):
 	return act
 
 
-
 ##
 # ACCIONES COMP SIMPLE.
 ##
@@ -171,9 +221,30 @@ def simpleDetailAction(menu,emitter):
 	act.triggered.connect(emitter)
 
 
-
 ##
 # WIDGETS.
+##
+
+def simpleTreeView(*emitters):
+	header = ['Nombre', 'Visb.', 'Act.', 'Z']
+	return treeView(header,*emitters)
+
+def complexTreeView(*emitters):
+	header = ['Nombre']
+	return treeView(header,*emitters)
+
+def simpleDockBar(widget):
+	title = 'COMPONENTES SIMPLES'
+	return dockBar(title,widget)
+
+def complexDockBar(widget):
+	title = 'COMPONENTES COMPLEJOS'
+	return dockBar(title,widget)
+
+
+
+##
+# CONSTRUCTORES DE WIDGETS.
 ##
 
 
@@ -188,7 +259,6 @@ def dockBar(title,widget):
 	# Limitamos su anclaje a los laterales.
 	dockbar.setAllowedAreas( Qt.LeftDockWidgetArea
 	                         | Qt.RightDockWidgetArea )
-
 	return dockbar
 
 

@@ -22,7 +22,7 @@ class VIEW( QMainWindow ):
 
 	# ----------------------------------------------------------------- #
 	#								SEÑALES								#
-	#		(se definenen obligatoriamente fuera del construcctor)		#
+	#		(Se definenen obligatoriamente fuera del construcctor)		#
 	# ----------------------------------------------------------------- #
 
 	signal_SaveProject           	= 	pyqtSignal()
@@ -82,11 +82,10 @@ class VIEW( QMainWindow ):
 		#						GUI :: BARRA DE MENUS 						#
 		# ----------------------------------------------------------------- #
 
-		_menubar = QMenuBar()
-		self.setMenuBar(_menubar)
+		self.setMenuBar(GUI.menuBar())
 
 		''' MENU: Archivo. '''
-		_mFile = self.menuBar().addMenu('Archivo')
+		_mFile = GUI.menuFile(self)
 		# Guardar proyecto.
 		_save = GUI.saveProjectAction( _mFile, self._emit_SaveProject )
 		# Nuevo componente simple.
@@ -97,7 +96,7 @@ class VIEW( QMainWindow ):
 		_exit = GUI.closeAction( _mFile, self.close )
 
 		''' MENU: Vista. '''
-		_mView = self.menuBar().addMenu('Vista')
+		_mView = GUI.menuView(self)
 		# Ocultar menu.
 		_hideMenu = GUI.hideMenuAction( _mView, self._emit_HideMenu )
 		# Aumetar zoom.
@@ -110,7 +109,7 @@ class VIEW( QMainWindow ):
 		_fullScreen = GUI.fullScreenAction( _mView, self._emit_FullScreen )
 
 		''' MENU: Ayuda. '''
-		_mHelp = self.menuBar().addMenu('Ayuda')
+		_mHelp = GUI.menuHelp(self)
 		# Traducir a Español.
 		_trEsAction = GUI.trEsAction( _mHelp, self._emit_TrEs )
 		# Traducir a Ingles.
@@ -131,7 +130,7 @@ class VIEW( QMainWindow ):
 		#					GUI :: BARRA DE HERRAMIENTAS 					#
 		# ----------------------------------------------------------------- #
 
-		_toolbar = QToolBar('HERRAMIENTAS')
+		_toolbar = GUI.toolBar()
 		self.addToolBar(_toolbar)
 
 		# Acceso rapido a acciones ya definidas en la barra de menu.
@@ -169,7 +168,7 @@ class VIEW( QMainWindow ):
 		#					  GUI :: BARRA DE ESTADO 						#
 		# ----------------------------------------------------------------- #
 
-		_statusbar = QStatusBar()
+		_statusbar = GUI.statusBar()
 		self.setStatusBar(_statusbar)
 
 
@@ -177,36 +176,36 @@ class VIEW( QMainWindow ):
 		#				GUI :: MENU CONTEXTUAL ARBOL SIMPLE					#
 		# ----------------------------------------------------------------- #
 
-		self._simpleTreeMenu = QMenu('MENU: Arbol de componentes')
+		self.__simpleTreeMenu = GUI.simpleTreeViewMenu()
 
 		# Incrementar profundidad del objeto.
-		GUI.simpleZIncAction( self._simpleTreeMenu,
+		GUI.simpleZIncAction( self.__simpleTreeMenu,
 							  self._emit_SimpleZInc )
 
 		# Decrementar profundidad del objeto.
-		GUI.simpleZDecAction( self._simpleTreeMenu,
+		GUI.simpleZDecAction( self.__simpleTreeMenu,
 							  self._emit_SimpleZDec )
 
-		self._simpleTreeMenu.addSeparator() # Dibuja una linea horizontal.
+		self.__simpleTreeMenu.addSeparator() # Dibuja una linea horizontal.
 
 		# Activa / Desactiva el objeto.
-		GUI.simpleToggleActiveAction( self._simpleTreeMenu,
+		GUI.simpleToggleActiveAction( self.__simpleTreeMenu,
 									  self._emit_SimpleActive )
 
 		# ACCION: Muestra / Oculta el objeto.
-		GUI.simpleToggleVisibleAction( self._simpleTreeMenu,
+		GUI.simpleToggleVisibleAction( self.__simpleTreeMenu,
 									   self._emit_SimpleVisible )
 
-		self._simpleTreeMenu.addSeparator() # Dibuja una linea horizontal.
+		self.__simpleTreeMenu.addSeparator() # Dibuja una linea horizontal.
 
 		# Borra el objeto de la escena y el modelo.
-		GUI.simpleDeleteAction( self._simpleTreeMenu,
+		GUI.simpleDeleteAction( self.__simpleTreeMenu,
 								self._emit_SimpleDelete )
 
-		self._simpleTreeMenu.addSeparator() # Dibuja una linea horizontal.
+		self.__simpleTreeMenu.addSeparator() # Dibuja una linea horizontal.
 
 		# Muestra un pop-up con los detalles del objeto.
-		GUI.simpleDetailAction( self._simpleTreeMenu,
+		GUI.simpleDetailAction( self.__simpleTreeMenu,
 								self._emit_SimpleDetail )
 
 
@@ -215,30 +214,21 @@ class VIEW( QMainWindow ):
 		# ----------------------------------------------------------------- #
 
 		# Arbol de componentes simples.
-		_simpleHeader = ['Nombre', 'Visb.', 'Act.', 'Z']
-		self.__simpleTree = GUI.treeView( _simpleHeader,
-										  self._emit_simpleTreeItemChange,
-										  self._emit_simpleTreeInvokeMenu )
+		self.__simpleTree = GUI.simpleTreeView(self._emit_simpleTreeItemChange,
+										  	   self._emit_simpleTreeInvokeMenu)
 
 		# Arbol de componentes complejos.
-		_complexHeader = ['Nombre']
-		self.__complexTree = GUI.treeView( _complexHeader,
-										   self._emit_complexTreeItemChange,
-										   self._emit_complexTreeInvokeMenu )
+		self.__complexTree=GUI.complexTreeView(self._emit_complexTreeItemChange,
+		                                       self._emit_complexTreeInvokeMenu)
 
 
 		# ----------------------------------------------------------------- #
 		#					   GUI :: BARRA LATERAL 						#
 		# ----------------------------------------------------------------- #
 
-		_simpleDockbar = GUI.dockBar( 'COMPONENTES SIMPLES',
-									  self.__simpleTree )
-
-		_complexDockbar = GUI.dockBar( 'COMPONENTES COMPLEJOS',
-									   self.__complexTree )
-
+		_simpleDockbar = GUI.simpleDockBar( self.__simpleTree )
+		_complexDockbar = GUI.complexDockBar( self.__complexTree )
 		self.addDockWidget(Qt.LeftDockWidgetArea, _simpleDockbar)
-
 		self.addDockWidget(Qt.LeftDockWidgetArea, _complexDockbar)
 
 
@@ -252,6 +242,9 @@ class VIEW( QMainWindow ):
 
 	def getSimpleTree(self):
 		return self.__simpleTree
+
+	def getSimpleTreeMenu(self):
+		return self.__simpleTreeMenu
 
 	def getComplexTree(self):
 		return self.__complexTree
@@ -377,21 +370,16 @@ class VIEW( QMainWindow ):
 	""" ------------------------------------------------------------------ """
 
 	def closeEvent(self,ev):
-		reply = QMessageBox.question( self,
-									  '¡CONFIRMAR!',
-									  '¿Seguro que quieres salir?',
-									  QMessageBox.Ok | QMessageBox.No,
-									  QMessageBox.No ) # <--- Por defecto.
-		if reply == QMessageBox.Ok:
-			qDebug('SESSION ENDED !\n\n\n')
-			ev.accept()
-		else:
-			ev.ignore()
+		# reply = GUI.exitDialog(self)
+		# if reply == QMessageBox.Ok:
+		# 	qDebug('SESSION ENDED !\n\n\n')
+		# 	ev.accept()
+		# else:
+		# 	ev.ignore()
+		qDebug('SESSION ENDED !\n\n\n')
 
 
 	def keyPressEvent(self,ev):
-
 		if ev.key() == Qt.Key_Alt:
 			self._emit_HideMenu()
-
 		ev.accept()

@@ -3,139 +3,139 @@
 
 import queue
 
-	# Pila para el historial de Deshacer.
-	self.__undo = queue.LifoQueue()
+# Pila para el historial de Deshacer.
+__undo = queue.LifoQueue()
 
-	# Pila para el historial de Rehacer.
-	self.__redo = queue.LifoQueue()
+# Pila para el historial de Rehacer.
+__redo = queue.LifoQueue()
 
-	# ALTA.
-	def saveStateFromUndo(self,state):
-		if self.__undo:
-			self.__redo.put(state)
+# ALTA.
+def saveStateFromUndo(self,state):
+	if __undo:
+		__redo.put(state)
 
-	def saveStateFromRedo(self,state):
-		if self.__redo:
-			self.__undo.put(state)
+def saveStateFromRedo(self,state):
+	if __redo:
+		__undo.put(state)
 
-	def saveState(self,state):
-		self.__undo.put(state)
-		self.__redo.clear()
+def saveState(self,state):
+	__undo.put(state)
+	__redo.clear()
 
-	# CONSULTA y GESTION.
-	def getPrevState(self):
-		if self.__undo:
-			toUndo = self.__undo.get()
-			return toUndo
+# CONSULTA y GESTION.
+def getPrevState(self):
+	if __undo:
+		toUndo = __undo.get()
+		return toUndo
 
-	# CONSULTA y GESTION.
-	def getNextState(self):
-		if self.__redo:
-			toRedo = self.__redo.get()
-			return toRedo
-
-
-
-	# ----------------------------------------------------------------------- #
-	#					 		 	- LOGICA HISTORIAL - 				   	  #
-	# ----------------------------------------------------------------------- #
+# CONSULTA y GESTION.
+def getNextState(self):
+	if __redo:
+		toRedo = __redo.get()
+		return toRedo
 
 
-	''' Guarda el estado anterior, para permitr el 'Ctrl+Z' '''
 
-	def saveState():
-		state = getCurState(self._view)
-		self._model.saveState(state)
-
-	def saveStateFromUndo():
-		state = getCurState(self._view)
-		self._model.saveStateFromUndo(state)
-
-	def saveStateFromRedo():
-		state = getCurState(self._view)
-		self._model.saveStateFromRedo(state)
-
-	def getCurState(self._view):
-
-		# Creamos una copia de las escena actual.
-		scene = []
-
-		# Creamos una copia de la cola de componentes simples actual.
-		simpleStorage = []
-		for item in self._model.getSimpleCompStorage():
-			scItem = copy(item)
-			scene.append(scItem)
-			simpleStorage.append(scItem)
-
-		# Creamos una copia de la cola de componentes complejos actual.
-		complexStorage = []
-		for item in self._model.getComplexCompStorage():
-			ccItem = copy(item)
-			scene.append(ccItem)
-			complexStorage.append(ccItem)
-
-		# Volteamos el array para respetar el orden de la pila.
-		scene.reverse()
-
-		# Devolvemos dichas copias en forma de tupla.
-		return (scene,deque(simpleStorage),deque(complexStorage))
+# ----------------------------------------------------------------------- #
+#					 		 	- LOGICA HISTORIAL - 				   	  #
+# ----------------------------------------------------------------------- #
 
 
-	''' Recupera el anterior estado en el historico de Deshacer. '''
+''' Guarda el estado anterior, para permitr el 'Ctrl+Z' '''
 
-	def getPrevState(self._view):
+def saveState():
+	state = getCurState(__V)
+	__M.saveState(state)
 
-		saveStateFromUndo(self._view)
+def saveStateFromUndo():
+	state = getCurState(__V)
+	__M.saveStateFromUndo(state)
 
-		# Recuperamos la tupla del estado anterior.
-		toUndo = self._model.getPrevState()
+def saveStateFromRedo():
+	state = getCurState(__V)
+	__M.saveStateFromRedo(state)
 
-		if toUndo is not None:
-			# Asignamos lo que representa cada elemento.
-			prevScene 			= toUndo[0]
-			prevSimpleStorage 	= toUndo[1]
-			prevComplexStorage 	= toUndo[2]
+def getCurState(__V):
 
-			# Recuperamos el estado de la escena.
-			self._view.centralWidget().scene().clear()
-			for item in prevScene:
-				print(item)
-				print(prevSimpleStorage)
-				self._view.centralWidget().scene().addItem(item)
-			# Recuperamos el estado de la cola de componentes simples.
-			self._model.setSimpleCompStorage(prevSimpleStorage)
-			# Recuperamos el estado de la cola de componentes complejos.
-			self._model.setComplexCompStorage(prevComplexStorage)
+	# Creamos una copia de las escena actual.
+	scene = []
 
-			# Actualizamos la informacion mostrada en el Arbol.
-			updateTrees(self._view)
+	# Creamos una copia de la cola de componentes simples actual.
+	simpleStorage = []
+	for item in __M.getSimpleCompStorage():
+		scItem = copy(item)
+		scene.append(scItem)
+		simpleStorage.append(scItem)
+
+	# Creamos una copia de la cola de componentes complejos actual.
+	complexStorage = []
+	for item in __M.getComplexCompStorage():
+		ccItem = copy(item)
+		scene.append(ccItem)
+		complexStorage.append(ccItem)
+
+	# Volteamos el array para respetar el orden de la pila.
+	scene.reverse()
+
+	# Devolvemos dichas copias en forma de tupla.
+	return (scene,deque(simpleStorage),deque(complexStorage))
 
 
-	''' Recupera el siguiente estado en el historico de Rehacer. '''
+''' Recupera el anterior estado en el historico de Deshacer. '''
 
-	def getNextState(self._view):
+def getPrevState(__V):
 
-		saveStateFromRedo(self._view)
+	saveStateFromUndo(__V)
 
-		# Recuperamos la tupla del estado anterior.
-		toRedo = self._model.getNextState()
+	# Recuperamos la tupla del estado anterior.
+	toUndo = __M.getPrevState()
 
-		if toRedo is not None:
-			# Asignamos lo que representa cada elemento.
-			nextScene 			= toRedo[0]
-			nextSimpleStorage 	= toRedo[1]
-			nextComplexStorage 	= toRedo[2]
+	if toUndo is not None:
+		# Asignamos lo que representa cada elemento.
+		prevScene 			= toUndo[0]
+		prevSimpleStorage 	= toUndo[1]
+		prevComplexStorage 	= toUndo[2]
 
-			# Recuperamos el estado de la escena.
-			self._view.centralWidget().scene().clear()
-			for item in nextScene:
-				print(item)
-				print(nextSimpleStorage)
-				self._view.centralWidget().scene().addItem(item)
-			# Recuperamos el estado de la cola de componentes simples.
-			self._model.setSimpleCompStorage(nextSimpleStorage)
-			# Recuperamos el estado de la cola de componentes complejos.
-			self._model.setComplexCompStorage(nextComplexStorage)
+		# Recuperamos el estado de la escena.
+		__V.centralWidget().scene().clear()
+		for item in prevScene:
+			print(item)
+			print(prevSimpleStorage)
+			__V.centralWidget().scene().addItem(item)
+		# Recuperamos el estado de la cola de componentes simples.
+		__M.setSimpleCompStorage(prevSimpleStorage)
+		# Recuperamos el estado de la cola de componentes complejos.
+		__M.setComplexCompStorage(prevComplexStorage)
 
-			# Actualizamos la informacion mostrada en el Arbol.
-			updateTrees(self._view)
+		# Actualizamos la informacion mostrada en el Arbol.
+		updateTrees(__V)
+
+
+''' Recupera el siguiente estado en el historico de Rehacer. '''
+
+def getNextState(__V):
+
+	saveStateFromRedo(__V)
+
+	# Recuperamos la tupla del estado anterior.
+	toRedo = __M.getNextState()
+
+	if toRedo is not None:
+		# Asignamos lo que representa cada elemento.
+		nextScene 			= toRedo[0]
+		nextSimpleStorage 	= toRedo[1]
+		nextComplexStorage 	= toRedo[2]
+
+		# Recuperamos el estado de la escena.
+		__V.centralWidget().scene().clear()
+		for item in nextScene:
+			print(item)
+			print(nextSimpleStorage)
+			__V.centralWidget().scene().addItem(item)
+		# Recuperamos el estado de la cola de componentes simples.
+		__M.setSimpleCompStorage(nextSimpleStorage)
+		# Recuperamos el estado de la cola de componentes complejos.
+		__M.setComplexCompStorage(nextComplexStorage)
+
+		# Actualizamos la informacion mostrada en el Arbol.
+		updateTrees(__V)

@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os, sys, uuid
+import os, sys, hashlib
 from os.path import basename, normpath
 
 from PyQt5.QtGui import QPixmap
@@ -25,7 +25,7 @@ class SimpleComponent( QGraphicsPixmapItem ):
 		# ----------------------------------------------------------------- #
 
 		# Id para localizar el elmento en una estructura de datos.
-		self.__id = uuid.uuid4().hex
+		self.__id = hashlib.sha1(os.urandom(128)).hexdigest()
 
 		# Estructura requerida para el XML.
 		self.__name = '[S]'+basename(normpath(imgPath))[:-4]

@@ -5,7 +5,8 @@ import os, i18n
 from copy import copy
 
 import GUI
-import EParser
+import PARSER
+from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from SIMPLE import SimpleComponent
 
@@ -17,10 +18,9 @@ class PRESENTER( object ):
 		self._model = model
 
 
-	# ----------------------------------------------------------------- #
-	#							SEÑALES	DE LA VISTA						#
-	# ----------------------------------------------------------------- #
-
+	##
+	# SEÑALES DE LA VISTA.
+	##
 
 	""" Recupera la interfaz definida del modelo y se comunica con
 	el experto en XML para generar el archivo correspondiente """
@@ -28,7 +28,6 @@ class PRESENTER( object ):
 	def listener_SaveProject(self):
 		interface = self._model.interface
 		EParser.save(interface)
-
 
 
 	""" Abre un cuadro de dialogo para que el usuario seleccione las imagenes que quiera en cualquier formato rasterizado como BMP, JPG
@@ -46,7 +45,7 @@ class PRESENTER( object ):
 				item = SimpleComponent(imgPath)
 				if item is not None:
 					# Agregamos el item a: MODELO
-					self._model.newSimpleComp(item)
+					self._model.newComponent(item)
 
 					# --- lo que sigue debe hacerse despues
 					# --- de que el model trabaje
@@ -55,9 +54,7 @@ class PRESENTER( object ):
 					# Actualizamos la vista: TREEVIEW
 					updateTrees(self._view)
 					# Agregamos el item a: ESCENA
-					self._view.centralWidget().scene().addItem(item)
-
-
+					self._view.getScene().addItem(item)
 
 
 	""" Abre un dialogo para configurar los distintos estados, de un
@@ -68,7 +65,8 @@ class PRESENTER( object ):
 		pass
 
 
-
+	""" Oculta la barra de menus, pero sin perder la validez de los
+	atajos de teclado definidos para sus acciones. """
 
 	def listener_HideMenu(self):
 		menuBar = self._view.menuBar()
@@ -95,7 +93,6 @@ class PRESENTER( object ):
 			self._view.setScale(inc)
 
 
-
 	""" Disminuye la escala de la escena. """
 
 	def listener_ZoomOut(self):
@@ -111,7 +108,6 @@ class PRESENTER( object ):
 			self._view.setScale(dec)
 
 
-
 	""" Restaurar el nivel de Zoom al 100% """
 
 	def listener_Zoom100(self):
@@ -121,7 +117,6 @@ class PRESENTER( object ):
 		self._view.centralWidget().scale(1/scale,1/scale)
 		# Actualizamos la variable de control.
 		self._view.setScale(scale/scale)
-
 
 
 	""" Sencillo -toggle- para cambiar entre la vista de
@@ -144,46 +139,20 @@ class PRESENTER( object ):
 	def listener_TrEs(self):
 		i18n.set('locale', 'es')
 
-
-
 	""" Configura 'locale' de i18n para ver la interfaz en Ingles """
 
 	def listener_TrEn(self):
 		i18n.set('locale', 'en')
-
-
 
 	""" Configura 'locale' de i18n para ver la interfaz en Frances """
 
 	def listener_TrFr(self):
 		i18n.set('locale', 'fr')
 
-
-
 	""" Configura 'locale' de i18n para ver la interfaz en Aleman """
 
 	def listener_TrDe(self):
 		i18n.set('locale', 'de')
-
-
-
-	def listener_SimpleZInc(self):
-		pass
-
-	def listener_SimpleZDec(self):
-		pass
-
-	def listener_SimpleActive(self):
-		pass
-
-	def listener_SimpleVisible(self):
-		pass
-
-	def listener_SimpleDelete(self):
-		pass
-
-	def listener_SimpleDetail(self):
-		pass
 
 
 
@@ -240,7 +209,7 @@ class PRESENTER( object ):
 			self.selectedID = selected.child(0,0).data(Qt.UserRole)
 
 			# Y Mostramos el menu contextual correspondiente.
-			self.contextMenu.exec(self.globalPos())
+		self._view.getSimpleTreeMenu().exec(self._view.cursor().pos())
 
 
 	def listener_complexTreeItemChange(self):
@@ -251,9 +220,55 @@ class PRESENTER( object ):
 
 
 
+	##
+	# SEÑALES DE COMPONENTES SIMPLES.
+	##
+
+
+	def listener_SimpleZInc(self):
+		# Hacer los arboles como clases separadas para poder controlar
+		# las leves discrepancias de acceiones a realizar, en la misma señal
+		# segun si viene de arbol o de compSimple.
+		w1 = self._view.getSimpleTree()
+		w2 = self._view.getComplexTree()
+		w1Rect = w1.geometry()
+		w1Mouse = w1.mapFromGlobal(QCursor.pos())
+		print(w1Rect.contains(w1Mouse))
+		pass
+
+	def listener_SimpleZDec(self):
+		pass
+
+	def listener_SimpleActive(self):
+		pass
+
+	def listener_SimpleVisible(self):
+		pass
+
+	def listener_SimpleDelete(self):
+		pass
+
+	def listener_SimpleDetail(self):
+		pass
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## CODIGO A REUBICAR.
+# --------------------------------------------------------------------------
 
 
 	# ----------------------------------------------------------------------- #
@@ -349,5 +364,3 @@ class PRESENTER( object ):
 			# Guardamos la modificacion en la estructura de datos.
 			item = self._model.getSimpleComp(itemID)
 			item.setName(firstColData)
-
-

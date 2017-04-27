@@ -2,16 +2,20 @@
 # -*- coding: utf-8 -*-
 
 import sys
+from datetime import datetime
+
 import PyQt5
 from PyQt5.QtCore import *
-from datetime import datetime
 
 from VIEW import VIEW
 from MODEL import MODEL
 from PRESENTER import PRESENTER
 
 
+""" Esto redefinira el EventHandler por defecto. """
+
 def logger(type, context, msg):
+	# En caso de error FATAL.
 	if type == 3:
 		abort()
 	# Compone el mensaje.
@@ -27,11 +31,13 @@ def logger(type, context, msg):
 	ts << txt+'\n'
 
 
+""" Punto de entrada a la app. """
+
 if __name__ == '__main__':
 
 	# Instancia la app QT.$
 	app = PyQt5.QtWidgets.QApplication(sys.argv)
-	qInstallMessageHandler(logger)
+	# qInstallMessageHandler(logger)
 
 	# Header del archivo de log.
 	qDebug('SESSION STARTED !')

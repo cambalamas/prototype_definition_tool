@@ -8,7 +8,7 @@ class MODEL( object ):
 		super().__init__()
 
 		# Diccionario, con los datos para definir la escena.
-		self.__scene = {}
+		self.__scene = deque()
 
 	# GETTER.
 	def getSceneStorage(self):

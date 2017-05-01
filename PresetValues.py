@@ -5,6 +5,8 @@
 # - '.get(key)' es un método de búsqueda y llamada.
 # - '[key]' se implementa en bytecode. (Más eficiente)
 
+import json
+
 pv = {
 
 	'startMsg' : 'SESSION STARTED !',
@@ -25,8 +27,4 @@ pv = {
 	'minOpacity'		: 0.3,
 
 	'zJump'				: 1.0,
-
-
-
 }
-

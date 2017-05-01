@@ -1,0 +1,486 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d0/dc4/classPRESENTER_1_1PRESENTER">
+<title>PRESENTER::PRESENTER class Reference</title>
+        <section>
+            <title>Atributos privados</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>_view</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>_model</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Atributos públicos</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>selectedID</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1af97bfbe93f876a84efee6370c70b15ea">__init__</link> (
+self , view , model )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1a71c09e004c04b5732ea7734d8af85144">listener_SaveProject</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1aef5a29ce7eaa71db436fc3f3af0cb23d">listener_NewSimple</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1a80d36527ff1e2b3f14f491718b9baa78">listener_NewComplex</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1a2ee80f6b7f4f9691236e2777d6fe1399">listener_Undo</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1a7a01770cee5ba73bd50514f0e27de5cc">listener_Redo</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1a8d0eec3d507e3cbfe838c50bead71b07">listener_HideMenu</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1a0b896cf6bc09b461fdf40ba446e8a141">listener_ZoomIn</link> (
+self )<para><emphasis>Aumenta la escala de la escena.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1af628e17fcd2bb1d7291f6daaa6d6f664">listener_Zoom100</link> (
+self )<para><emphasis>Restaurar el nivel de Zoom al 100%.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1ae9fdfffc7e945f47cf81fdef21a1065e">listener_ZoomOut</link> (
+self )<para><emphasis>Disminuye la escala de la escena.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1a32fd57d40745759ac69b5e63638238be">listener_FullScreen</link> (
+self )<para><emphasis>Rota entre pantalla completa y el estado anterior.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1a1f89ec6fa449d96ac0fae59ec11bd251">listener_TrEs</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1afc431c940dbda3639b645fc9e6a73511">listener_TrEn</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1a394a901227fcda0dc5f1eb24bcf17554">listener_TrFr</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1a137ef67ff968e829f2644a2fb04c069a">listener_TrDe</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1a741654f64dc599f7d8a3bacc16a25778">listener_ZInc</link> (
+self )<para><emphasis>SEÑALES DE COMPONENTES SIMPLES.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1af7e3ee6de0a84cf98a759bc93a964626">listener_ZDec</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1a2a79789a690784b9e3e37adfa439dd46">listener_Active</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1ad5be5f76d6acaa7251b5b0de0634255f">listener_Visible</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1a9164832bac99aae557f62212bbef25b1">listener_Delete</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1a2daf30a03ae808a8534b34dbb738e06c">listener_Detail</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1ada7dece9e1ccb5c37a6b8ee7de327c11">listener_simpleTreeItemChange</link> (
+self )<para><emphasis>SEÑALES DEL ARBOL DE COMPONENTES SIMPLES.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1ab54dc24020204083dbe65cacaa94c0f8">listener_simpleTreeInvokeMenu</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1accfe6f4fce8e35cfe86d32dfff60f7ff">listener_complexTreeItemChange</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1a7b91c6eba8d7cdb136a0049b6a7bf1fb">listener_complexTreeInvokeMenu</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1a22adbc62227cf0b51adfd6ff73eebf5a">updateView</link> (
+)<para><emphasis>SEÑALES DEL MODELO.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1a8c3b3d3fd9babba416964676853f9e56">isOver</link> (
+widget )<para><emphasis>LOGICA PURA.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/dc4/classPRESENTER_1_1PRESENTER_1a8bd1eb70064c537dfc122f75c2e918d2">makeScene</link> (
+list )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Documentación de los datos miembro</title>
+        </section>
+        <section>
+            <title>Documentación de los datos miembro</title>
+        </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1af97bfbe93f876a84efee6370c70b15ea">
+                <title>def PRESENTER.PRESENTER.__init__ (self, view, model)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1a71c09e004c04b5732ea7734d8af85144">
+                <title>def PRESENTER.PRESENTER.listener_SaveProject (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1aef5a29ce7eaa71db436fc3f3af0cb23d">
+                <title>def PRESENTER.PRESENTER.listener_NewSimple (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1a80d36527ff1e2b3f14f491718b9baa78">
+                <title>def PRESENTER.PRESENTER.listener_NewComplex (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1a2ee80f6b7f4f9691236e2777d6fe1399">
+                <title>def PRESENTER.PRESENTER.listener_Undo (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1a7a01770cee5ba73bd50514f0e27de5cc">
+                <title>def PRESENTER.PRESENTER.listener_Redo (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1a8d0eec3d507e3cbfe838c50bead71b07">
+                <title>def PRESENTER.PRESENTER.listener_HideMenu (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1a0b896cf6bc09b461fdf40ba446e8a141">
+                <title>def PRESENTER.PRESENTER.listener_ZoomIn (self)</title> <emphasis>Aumenta la escala de la escena.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parámetros                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>self</entry>
+                                <entry>
+<para>Este objeto.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Devuelve: </title>
+
+<para>None </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1af628e17fcd2bb1d7291f6daaa6d6f664">
+                <title>def PRESENTER.PRESENTER.listener_Zoom100 (self)</title> <emphasis>Restaurar el nivel de Zoom al 100%.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parámetros                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>self</entry>
+                                <entry>
+<para>Este objeto.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Devuelve: </title>
+
+<para>None </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1ae9fdfffc7e945f47cf81fdef21a1065e">
+                <title>def PRESENTER.PRESENTER.listener_ZoomOut (self)</title> <emphasis>Disminuye la escala de la escena.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parámetros                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>self</entry>
+                                <entry>
+<para>Este objeto.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Devuelve: </title>
+
+<para>None </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1a32fd57d40745759ac69b5e63638238be">
+                <title>def PRESENTER.PRESENTER.listener_FullScreen (self)</title> <emphasis>Rota entre pantalla completa y el estado anterior.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parámetros                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>self</entry>
+                                <entry>
+<para>Este objeto.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Devuelve: </title>
+
+<para>None </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1a1f89ec6fa449d96ac0fae59ec11bd251">
+                <title>def PRESENTER.PRESENTER.listener_TrEs (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1afc431c940dbda3639b645fc9e6a73511">
+                <title>def PRESENTER.PRESENTER.listener_TrEn (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1a394a901227fcda0dc5f1eb24bcf17554">
+                <title>def PRESENTER.PRESENTER.listener_TrFr (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1a137ef67ff968e829f2644a2fb04c069a">
+                <title>def PRESENTER.PRESENTER.listener_TrDe (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1a741654f64dc599f7d8a3bacc16a25778">
+                <title>def PRESENTER.PRESENTER.listener_ZInc (self)</title> <emphasis>SEÑALES DE COMPONENTES SIMPLES.</emphasis>
+                
+<para>Al pulsar sobre un item en la vista, buscar este en el arbol y seleccionarlo, al lanzar las siguientes señales, funcionar solo con el arbol. NOTA: Fuciona si desactivo el dockwidget que contiene el arbol? </para>
+
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1af7e3ee6de0a84cf98a759bc93a964626">
+                <title>def PRESENTER.PRESENTER.listener_ZDec (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1a2a79789a690784b9e3e37adfa439dd46">
+                <title>def PRESENTER.PRESENTER.listener_Active (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1ad5be5f76d6acaa7251b5b0de0634255f">
+                <title>def PRESENTER.PRESENTER.listener_Visible (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1a9164832bac99aae557f62212bbef25b1">
+                <title>def PRESENTER.PRESENTER.listener_Delete (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1a2daf30a03ae808a8534b34dbb738e06c">
+                <title>def PRESENTER.PRESENTER.listener_Detail (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1ada7dece9e1ccb5c37a6b8ee7de327c11">
+                <title>def PRESENTER.PRESENTER.listener_simpleTreeItemChange (self)</title> <emphasis>SEÑALES DEL ARBOL DE COMPONENTES SIMPLES.</emphasis>
+                
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1ab54dc24020204083dbe65cacaa94c0f8">
+                <title>def PRESENTER.PRESENTER.listener_simpleTreeInvokeMenu (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1accfe6f4fce8e35cfe86d32dfff60f7ff">
+                <title>def PRESENTER.PRESENTER.listener_complexTreeItemChange (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1a7b91c6eba8d7cdb136a0049b6a7bf1fb">
+                <title>def PRESENTER.PRESENTER.listener_complexTreeInvokeMenu (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1a22adbc62227cf0b51adfd6ff73eebf5a">
+                <title>def PRESENTER.PRESENTER.updateView ()</title> <emphasis>SEÑALES DEL MODELO.</emphasis>
+                
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1a8c3b3d3fd9babba416964676853f9e56">
+                <title>def PRESENTER.PRESENTER.isOver (widget)</title> <emphasis>LOGICA PURA.</emphasis>
+                
+            </section>
+            <section xml:id="d0/dc4/classPRESENTER_1_1PRESENTER_1a8bd1eb70064c537dfc122f75c2e918d2">
+                <title>def PRESENTER.PRESENTER.makeScene (list)</title> <emphasis></emphasis>
+                
+            </section>
+</section>

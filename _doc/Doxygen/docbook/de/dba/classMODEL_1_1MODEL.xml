@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="de/dba/classMODEL_1_1MODEL">
+<title>MODEL::MODEL class Reference</title>
+        <section>
+            <title>Atributos privados</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>__scene</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>__simpleCompStorage</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="de/dba/classMODEL_1_1MODEL_1ad963701400ad8c34f26f0582e71ff542">__init__</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="de/dba/classMODEL_1_1MODEL_1a0176eee8f5a64b1d45d31b03225a027b">getSceneStorage</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="de/dba/classMODEL_1_1MODEL_1ae8d3989f919f9f49bd7f3d2b53addd18">setSceneStorage</link> (
+self , newVal )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="de/dba/classMODEL_1_1MODEL_1aae23e5bc3410073905f82bb57a7d3d85">newComponent</link> (
+self , component )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="de/dba/classMODEL_1_1MODEL_1aa5921afa93cb28d09f0064aa8ba48339">delComponent</link> (
+self , component )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="de/dba/classMODEL_1_1MODEL_1ade137427087f36163ce517e3745193df">modComponent</link> (
+self , compId , updateData )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="de/dba/classMODEL_1_1MODEL_1ad2ecb4bb468c75c161840dfa23f118f0">getComponent</link> (
+self , compId )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Documentación de los datos miembro</title>
+        </section>
+            <section xml:id="de/dba/classMODEL_1_1MODEL_1ad963701400ad8c34f26f0582e71ff542">
+                <title>def MODEL.MODEL.__init__ (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="de/dba/classMODEL_1_1MODEL_1a0176eee8f5a64b1d45d31b03225a027b">
+                <title>def MODEL.MODEL.getSceneStorage (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="de/dba/classMODEL_1_1MODEL_1ae8d3989f919f9f49bd7f3d2b53addd18">
+                <title>def MODEL.MODEL.setSceneStorage (self, newVal)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="de/dba/classMODEL_1_1MODEL_1aae23e5bc3410073905f82bb57a7d3d85">
+                <title>def MODEL.MODEL.newComponent (self, component)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="de/dba/classMODEL_1_1MODEL_1aa5921afa93cb28d09f0064aa8ba48339">
+                <title>def MODEL.MODEL.delComponent (self, component)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="de/dba/classMODEL_1_1MODEL_1ade137427087f36163ce517e3745193df">
+                <title>def MODEL.MODEL.modComponent (self, compId, updateData)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="de/dba/classMODEL_1_1MODEL_1ad2ecb4bb468c75c161840dfa23f118f0">
+                <title>def MODEL.MODEL.getComponent (self, compId)</title> <emphasis></emphasis>
+                
+            </section>
+</section>

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d7/dad/namespacePARSER">
+<title>PARSER</title>
+        <section>
+            <title>Funciones</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d7/d35/PARSER_8py_1a07b58e86aaa4c65d4e09c495d9d2e2fc">prettify</link> (
+node )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d7/d35/PARSER_8py_1a278786f81339b583988d91f89890a90e">simple2xml</link> (
+simple )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+</section>

@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="db/de2/VIEW_8py">
+    <title>VIEW.py File Reference</title>
+        <section>
+            <title> Clases </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="df/da4/classVIEW_1_1VIEW">VIEW::VIEW</link></para>
+<para><emphasis>Clase encargada de la estructura visual de la aplicacion.</emphasis></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <simplesect>
+            <title> Namespaces </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="dd/d5a/namespaceVIEW">VIEW</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </simplesect>
+    <simplesect>
+        <title>Descripción detallada</title>
+    <para>Definition in file D:/devbox/py/prototype_definition_tool/VIEW.py</para>
+    </simplesect>
+</section>

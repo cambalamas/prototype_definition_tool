@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="de/dcd/MODEL_8py">
+    <title>MODEL.py File Reference</title>
+        <section>
+            <title> Clases </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="de/dba/classMODEL_1_1MODEL">MODEL::MODEL</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <simplesect>
+            <title> Namespaces </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="dc/d78/namespaceMODEL">MODEL</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </simplesect>
+    <simplesect>
+        <title>Descripción detallada</title>
+    <para>Definition in file D:/devbox/py/prototype_definition_tool/MODEL.py</para>
+    </simplesect>
+</section>

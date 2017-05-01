@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<chapter xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>README</title>
+
+<para> </para>
+
+<para><literallayout># See `TODO.md` file to knows project status ☕.
+</literallayout></para>
+
+<para><formalpara><title>WITH <link xlink:href="https://www.docker.com/what-docker">Docker</link>.</title></formalpara>
+</para>
+
+<para><blockquote>
+<para><emphasis><emphasis role="bold">INSIDE THE CLONED DIRECTORY ...</emphasis></emphasis> </para>
+</blockquote></para>
+
+<para><literallayout><computeroutput>#&#32;first,&#32;build&#32;the&#32;docker&#32;image.
+docker&#32;build&#32;-t&#32;pdt&#32;.
+</computeroutput></literallayout></para>
+
+<para>```shell <formalpara><title>windows (Powershell, and Xming or similar will be needed).</title></formalpara>
+</para>
+
+<para>docker run -it <computeroutput> -v &quot;$((Get-Location).path):/app&quot;</computeroutput> -e DISPLAY=&quot;$((Get-NetAdapter &quot;vEthernet (DockerNAT)&quot; | Get-NetIPAddress).IPAddress):0&quot; ` protoe python3 /app/EGui.py <literallayout><computeroutput>```shell
+#&#32;linux&#32;(just&#32;works).
+docker&#32;run&#32;-it&#32;\
+&#32;&#32;&#32;&#32;-v&#32;/tmp/.X11-unix:/tmp/.X11-unix&#32;\
+&#32;&#32;&#32;&#32;-v&#32;$(pwd):/app&#32;\
+&#32;&#32;&#32;&#32;-e&#32;DISPLAY=$DISPLAY&#32;\
+&#32;&#32;&#32;&#32;protoe&#32;python3&#32;/app/EGui.py
+</computeroutput></literallayout></para>
+
+<para><formalpara><title>WITHOUT <link xlink:href="https://www.docker.com/what-docker">Docker</link>.</title></formalpara>
+</para>
+
+<para><formalpara><title>Requeriments.</title></formalpara>
+</para>
+
+<para><itemizedlist>
+<listitem>
+<para><emphasis><emphasis role="bold">python3</emphasis></emphasis></para>
+</listitem><listitem>
+<para><emphasis role="bold">i18n</emphasis></para>
+</listitem><listitem>
+<para><computeroutput>pip install python-i18n[YAML]</computeroutput></para>
+</listitem><listitem>
+<para><emphasis role="bold">lxml</emphasis></para>
+</listitem><listitem>
+<para><computeroutput>pip3 install lxml</computeroutput> <emphasis>or</emphasis></para>
+</listitem><listitem>
+<para><computeroutput>apt-get install -y python3-lxml</computeroutput></para>
+</listitem><listitem>
+<para><emphasis role="bold">pyqt5</emphasis></para>
+</listitem><listitem>
+<para><computeroutput>pip3 install PyQt5</computeroutput> <emphasis>or</emphasis></para>
+</listitem><listitem>
+<para><computeroutput>apt-get install -y python3-pyqt5</computeroutput></para>
+</listitem></itemizedlist>
+</para>
+
+<para><formalpara><title>Run locally from source.</title></formalpara>
+</para>
+
+<para><blockquote>
+<para><emphasis><emphasis role="bold">With the requirements installed correctly ...</emphasis></emphasis> </para>
+</blockquote></para>
+
+<para><literallayout><computeroutput>python3&#32;EGui.py
+</computeroutput></literallayout> </para>
+
+</chapter>

@@ -29,8 +29,8 @@
 
 # MENU
 
-- [x] **Edit**: *Undo*
-- [x] **Edit**: *Redo*
+- [ ] **Edit**: *Undo*
+- [ ] **Edit**: *Redo*
 - [ ] **Help**: *Docs*
 - [ ] **Help**: *About*
 - [ ] **Help**: *User Manual*
@@ -43,11 +43,10 @@
 
 
 # MOUSE
-## LB
 - [x] **ElemSimple**: *Mover*
 - [x] **ElemSimple**: Seleccionar `Para luego poder realizar cambios con teclas`
 
-## WHEEL
+
 - [x] **ElemSimple**: *Rescalar*
 
 ## RB

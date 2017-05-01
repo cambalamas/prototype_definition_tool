@@ -1,0 +1,1107 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="df/da4/classVIEW_1_1VIEW">
+<title>VIEW::VIEW class Reference</title>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_SaveProject</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_NewSimple</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_NewComplex</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_Undo</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_Redo</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_HideMenu</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_ZoomIn</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_Zoom100</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_ZoomOut</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_FullScreen</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_TrEs</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_TrEn</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_TrFr</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_TrDe</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_ZInc</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_ZDec</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_Active</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_Visible</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_Delete</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_Detail</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_simpleTreeItemChange</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_simpleTreeInvokeMenu</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_complexTreeItemChange</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>signal_complexTreeInvokeMenu</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Atributos privados</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>_prevState</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>_simpleTree</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>_complexTree</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>_simpleDockbar</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>_complexDockbar</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1a1d26d3be9e04a1288190fd7aadd15b4c">emit_SaveProject</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1a12e8a4143321545ce897ed840eac7511">emit_NewSimple</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1ab3c82a625d9e5f362e12e5761d2b4675">emit_NewComplex</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1a3141a98172ac77c85e50653d6a46da9c">emit_Undo</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1abe47cfa828b7b99f4ffa3e9b5969514f">emit_Redo</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1a51053a0b1674cdab2d5db11508fefe9c">emit_HideMenu</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1a3fae6ce5c88525e76e09a304ae0fdde2">emit_ZoomIn</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1ab26c2b51daa25a99e9b4cea2575689ab">emit_Zoom100</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1ae9ea252e5b1fa6dda50c4f9748803391">emit_ZoomOut</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1aaa5fa23f29ed218f39c44f0fca361413">emit_FullScreen</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1ae45769fb2afb3d805743220e74fa8c01">emit_TrEs</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1a84ea6df5a31d42e8013430aa16e2a5a0">emit_TrEn</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1aa264645bf97316ab083b913bf6f1d8dd">emit_TrFr</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1a70a540f09de86de476e0cd63e680c1bb">emit_TrDe</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1a83f72d061c98ab7f69ad5615afcd0795">emit_ZInc</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1a3d6922014c701c0c0ce891acc746356d">emit_ZDec</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1ac865573ac38288d2ac8bcafbf3b6a07c">emit_Active</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1a963d9531d1dbf00b4486520e2276fa4f">emit_Visible</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1a0ad294426fbf5befe54179baf7ae53fd">emit_Delete</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1abe2d5f4467315df05af64b46076609a1">emit_Detail</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1af838483f5607128e3a63d202c7fb1a36">emit_simpleTreeItemChange</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1a57a81d0622eb52177614d47969c7293d">emit_simpleTreeInvokeMenu</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1aa1b91560221bb053f5cf08c9f23f1839">emit_complexTreeItemChange</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1ad58c0328dd5d0e1fb16d5ce28dc8f9a4">emit_complexTreeInvokeMenu</link> (
+self )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1a31d4aaf78c264405ba2cf4fed6243c25">__init__</link> (
+self )<para><emphasis>Constructor del objeto vista, que será la ventana principal.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1a0abdfe814035579b08d081207192b4d2">connectSignals</link> (
+self , actions , emitters )<para><emphasis>Conecta acciones dadas con los emisores corresondientes.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1ae11b84ffb5154cee9db79cd90ed94419">simpleTree</link> (
+self )<para><emphasis>Propiedad de lectura de la lista de componentes simples.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1af92e8bece0f9d706e69f06ef48c59ecc">simpleMenu</link> (
+self )<para><emphasis>Propiedad de lectura del menu para componentes simples.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1a33daa21dc3fa29a1e4212c8e0e32ccfd">complexTree</link> (
+self )<para><emphasis>Propiedad de lectura de la lista de componentes complejos.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1a4e0c187dc8ce8a1c6464066ede999bf0">complexMenu</link> (
+self )<para><emphasis>Propiedad de lectura del menu para componentes complejos.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1adda4e4cf730875d34dc752f15f4243b1">workArea</link> (
+self )<para><emphasis>Propiedad de lectura del &apos;viewport&apos;.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1a24e02b2e0bc62224eee1b5ef2e575835">workScene</link> (
+self )<para><emphasis>Propiedad de lectura de la escena actual.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1a16bf30093e66a5b0e3394ffb40ad1962">viewRectF</link> (
+self )<para><emphasis>Propiedad de lectura del area del lienzo.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1ab92769cf23ca789e7a2eb5de17665ad9">scale</link> (
+self )<para><emphasis>Propiedad de lectura de la escala actual del area de trabajo.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1ae9834eb7d9106c0594280ace22aedc55">prevState</link> (
+self )<para><emphasis>Propiedad de lectura del estado anterior de la ventana.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1a1f2ffa11c7ba775e98b895668772d529">prevState</link> (
+self , prevState )<para><emphasis>Propiedad de escritura del estado anterior de la ventana.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1ad99f7752799e498720fade186e380c13">closeEvent</link> (
+self , ev )<para><emphasis>Solicita confirmación al intentar cerrar la ventana.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1a3251a9b14a41f6dd1631c933d9a680b4">openEvent</link> (
+self )<para><emphasis>Restaura al estado anterior cuando se abre esta ventana.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="df/da4/classVIEW_1_1VIEW_1af6fb27b7075a9a747aa73cf039aa8649">keyPressEvent</link> (
+self , ev )<para><emphasis>Captura cuando se pulsa una o una combiancion de teclas.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+    <simplesect>
+
+<para>Clase encargada de la estructura visual de la aplicacion. </para>
+    </simplesect>
+        <section>
+            <title>Documentación de los datos miembro</title>
+        </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1a1d26d3be9e04a1288190fd7aadd15b4c">
+                <title>def VIEW.VIEW.emit_SaveProject (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1a12e8a4143321545ce897ed840eac7511">
+                <title>def VIEW.VIEW.emit_NewSimple (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1ab3c82a625d9e5f362e12e5761d2b4675">
+                <title>def VIEW.VIEW.emit_NewComplex (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1a3141a98172ac77c85e50653d6a46da9c">
+                <title>def VIEW.VIEW.emit_Undo (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1abe47cfa828b7b99f4ffa3e9b5969514f">
+                <title>def VIEW.VIEW.emit_Redo (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1a51053a0b1674cdab2d5db11508fefe9c">
+                <title>def VIEW.VIEW.emit_HideMenu (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1a3fae6ce5c88525e76e09a304ae0fdde2">
+                <title>def VIEW.VIEW.emit_ZoomIn (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1ab26c2b51daa25a99e9b4cea2575689ab">
+                <title>def VIEW.VIEW.emit_Zoom100 (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1ae9ea252e5b1fa6dda50c4f9748803391">
+                <title>def VIEW.VIEW.emit_ZoomOut (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1aaa5fa23f29ed218f39c44f0fca361413">
+                <title>def VIEW.VIEW.emit_FullScreen (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1ae45769fb2afb3d805743220e74fa8c01">
+                <title>def VIEW.VIEW.emit_TrEs (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1a84ea6df5a31d42e8013430aa16e2a5a0">
+                <title>def VIEW.VIEW.emit_TrEn (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1aa264645bf97316ab083b913bf6f1d8dd">
+                <title>def VIEW.VIEW.emit_TrFr (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1a70a540f09de86de476e0cd63e680c1bb">
+                <title>def VIEW.VIEW.emit_TrDe (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1a83f72d061c98ab7f69ad5615afcd0795">
+                <title>def VIEW.VIEW.emit_ZInc (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1a3d6922014c701c0c0ce891acc746356d">
+                <title>def VIEW.VIEW.emit_ZDec (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1ac865573ac38288d2ac8bcafbf3b6a07c">
+                <title>def VIEW.VIEW.emit_Active (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1a963d9531d1dbf00b4486520e2276fa4f">
+                <title>def VIEW.VIEW.emit_Visible (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1a0ad294426fbf5befe54179baf7ae53fd">
+                <title>def VIEW.VIEW.emit_Delete (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1abe2d5f4467315df05af64b46076609a1">
+                <title>def VIEW.VIEW.emit_Detail (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1af838483f5607128e3a63d202c7fb1a36">
+                <title>def VIEW.VIEW.emit_simpleTreeItemChange (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1a57a81d0622eb52177614d47969c7293d">
+                <title>def VIEW.VIEW.emit_simpleTreeInvokeMenu (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1aa1b91560221bb053f5cf08c9f23f1839">
+                <title>def VIEW.VIEW.emit_complexTreeItemChange (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1ad58c0328dd5d0e1fb16d5ce28dc8f9a4">
+                <title>def VIEW.VIEW.emit_complexTreeInvokeMenu (self)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1a31d4aaf78c264405ba2cf4fed6243c25">
+                <title>def VIEW.VIEW.__init__ (self)</title> <emphasis>Constructor del objeto vista, que será la ventana principal.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parámetros                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>self</entry>
+                                <entry>
+<para>Esta ventana. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1a0abdfe814035579b08d081207192b4d2">
+                <title>def VIEW.VIEW.connectSignals (self, actions, emitters)</title> <emphasis>Conecta acciones dadas con los emisores corresondientes.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parámetros                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>self</entry>
+                                <entry>
+<para>Esta ventana. </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>actions</entry>
+                                <entry>
+<para>Lista de &apos;QAction&apos;s </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>emitters</entry>
+                                <entry>
+<para>Lista de funciones.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Devuelve: </title>
+
+<para>None </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1ae11b84ffb5154cee9db79cd90ed94419">
+                <title>def VIEW.VIEW.simpleTree (self)</title> <emphasis>Propiedad de lectura de la lista de componentes simples.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parámetros                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>self</entry>
+                                <entry>
+<para>Esta ventana.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Devuelve: </title>
+
+<para>PyQt5.QtWidgets.QTreeView </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1af92e8bece0f9d706e69f06ef48c59ecc">
+                <title>def VIEW.VIEW.simpleMenu (self)</title> <emphasis>Propiedad de lectura del menu para componentes simples.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parámetros                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>self</entry>
+                                <entry>
+<para>Esta ventana.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Devuelve: </title>
+
+<para>PyQt.QtWidgets.QMenu </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1a33daa21dc3fa29a1e4212c8e0e32ccfd">
+                <title>def VIEW.VIEW.complexTree (self)</title> <emphasis>Propiedad de lectura de la lista de componentes complejos.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parámetros                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>self</entry>
+                                <entry>
+<para>Esta ventana.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Devuelve: </title>
+
+<para>PyQt5.QtWidgets.QTreeView </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1a4e0c187dc8ce8a1c6464066ede999bf0">
+                <title>def VIEW.VIEW.complexMenu (self)</title> <emphasis>Propiedad de lectura del menu para componentes complejos.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parámetros                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>self</entry>
+                                <entry>
+<para>Esta ventana.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Devuelve: </title>
+
+<para>PyQt.QtWidgets.QMenu </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1adda4e4cf730875d34dc752f15f4243b1">
+                <title>def VIEW.VIEW.workArea (self)</title> <emphasis>Propiedad de lectura del &apos;viewport&apos;.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parámetros                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>self</entry>
+                                <entry>
+<para>Esta ventana.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Devuelve: </title>
+
+<para>PyQt.QtWidgets.QGraphicsView </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1a24e02b2e0bc62224eee1b5ef2e575835">
+                <title>def VIEW.VIEW.workScene (self)</title> <emphasis>Propiedad de lectura de la escena actual.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parámetros                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>self</entry>
+                                <entry>
+<para>Esta ventana.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Devuelve: </title>
+
+<para>PyQt.QtWidgets.QGraphicsScene </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1a16bf30093e66a5b0e3394ffb40ad1962">
+                <title>def VIEW.VIEW.viewRectF (self)</title> <emphasis>Propiedad de lectura del area del lienzo.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parámetros                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>self</entry>
+                                <entry>
+<para>Esta ventana.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Devuelve: </title>
+
+<para>PyQt5.QtCore.QRectF </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1ab92769cf23ca789e7a2eb5de17665ad9">
+                <title>def VIEW.VIEW.scale (self)</title> <emphasis>Propiedad de lectura de la escala actual del area de trabajo.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parámetros                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>self</entry>
+                                <entry>
+<para>Esta ventana.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Devuelve: </title>
+
+<para>qreal </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1ae9834eb7d9106c0594280ace22aedc55">
+                <title>def VIEW.VIEW.prevState (self)</title> <emphasis>Propiedad de lectura del estado anterior de la ventana.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parámetros                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>self</entry>
+                                <entry>
+<para>Esta ventana</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Devuelve: </title>
+
+<para>PyQt5.QtCore.Qt.WindowStates </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1a1f2ffa11c7ba775e98b895668772d529">
+                <title>def VIEW.VIEW.prevState (self, prevState)</title> <emphasis>Propiedad de escritura del estado anterior de la ventana.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parámetros                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>self</entry>
+                                <entry>
+<para>Esta ventana. </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>self</entry>
+                                <entry>
+<para>Estado a guardar.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Devuelve: </title>
+
+<para>None </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1ad99f7752799e498720fade186e380c13">
+                <title>def VIEW.VIEW.closeEvent (self, ev)</title> <emphasis>Solicita confirmación al intentar cerrar la ventana.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parámetros                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>self</entry>
+                                <entry>
+<para>Esta ventana. </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>ev</entry>
+                                <entry>
+<para>El objeto con la informacion que da este evento.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Devuelve: </title>
+
+<para>None </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1a3251a9b14a41f6dd1631c933d9a680b4">
+                <title>def VIEW.VIEW.openEvent (self)</title> <emphasis>Restaura al estado anterior cuando se abre esta ventana.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parámetros                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>self</entry>
+                                <entry>
+<para>Esta ventana</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Devuelve: </title>
+
+<para>None </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="df/da4/classVIEW_1_1VIEW_1af6fb27b7075a9a747aa73cf039aa8649">
+                <title>def VIEW.VIEW.keyPressEvent (self, ev)</title> <emphasis>Captura cuando se pulsa una o una combiancion de teclas.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parámetros                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>self</entry>
+                                <entry>
+<para>Esta ventana. </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>ev</entry>
+                                <entry>
+<para>El objeto con la informacion que da este evento.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Devuelve: </title>
+
+<para>None </para>
+</formalpara>
+</para>
+
+            </section>
+</section>

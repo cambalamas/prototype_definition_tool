@@ -2,37 +2,44 @@
 # -*- coding: utf-8 -*-
 
 import os, i18n
+
 from PyQt5.QtGui import *
-from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import *
+from PyQt5.QtCore import Qt, QRectF
 
+from PresetValues import pv
 
+iconsPath = os.path.join(os.path.dirname(__file__),'Icons')
+i18n.load_path.append(os.path.join(os.path.dirname(__file__),'Translations'))
 
-# Ruta de los iconos.
-icoPath = os.path.join(os.path.dirname(__file__),'Icons')
-
-
-# Genera un QIcon a partir del nombre de la imagen.
+##
+## @brief      Genera un icono a partir del nombre de la imagen.
+##
+## @param      name  Nombre de la imagen.
+##
+## @return     PyQt5.QtGui.QIcon
+##
 def icon(name):
-	return QIcon(os.path.join(icoPath,name))
+	return QIcon(os.path.join(iconsPath,name))
 
-
-# Establece el logo y el titulo a la ventana.
+##
+## @brief      Establece el icono y el titulo.
+##
+## @param      window  Ventana a configurar.
+##
+## @return     None
+##
 def configWindow(window):
-	# Icono del dock.
-	window.setWindowIcon(icon('logo.png'))
-	# Titulo de la ventana.
-	window.setWindowTitle(i18n.t('E.title'))
+	window.setWindowIcon(icon('logo.png'))		# Icono del dock.
+	window.setWindowTitle(i18n.t('E.title'))	# Titulo de la ventana.
 
 ##
-# DIALOGO DE ENTRADA.
+## @brief      Presenta un dialogo para confimar la salida de la app.
 ##
-
-
+## @param      view  Ventana padre.
 ##
-# DIALOGO DE SALIDA.
+## @return     PyQt5.QtWidgets.QMessageBox
 ##
-
 def exitDialog(view):
 	return QMessageBox.question( view,
 						  		 '¡CONFIRMAR!',
@@ -40,230 +47,296 @@ def exitDialog(view):
 						  		 QMessageBox.Ok | QMessageBox.No,
 						  		 QMessageBox.No ) # <--- Por defecto.
 
-
 ##
-# MENU CONTEXTUAL DE ARBOLES.
+## @brief      Crea los componentes de menus de la ventana principal.
 ##
-
-def simpleTreeViewMenu():
-	return QMenu('MENU: Arbol de componentes simples')
-
-def complexTreeViewMenu():
-	return QMenu('MENU: Arbol de componentes complejos')
-
-
+## @return     PyQt5.QtWidgets.QMenuBar
+## @return     PyQt5.QtWidgets.QToolBar
+## @return     list<PyQt5.QtWidgets.QAction>
 ##
-# BARRA DE MENUS.
-##
+def mainBars():
+	mb = QMenuBar()
+	mb.setNativeMenuBar(True)
 
-def statusBar():
-	return QStatusBar()
+	mFile = mb.addMenu('Archivo')
+	mEdit = mb.addMenu('Editar')
+	mView = mb.addMenu('Vista')
+	mHelp = mb.addMenu('Ayuda')
 
-def toolBar():
-	return QToolBar('HERRAMIENTAS')
+	tb = QToolBar('Herramientas')
 
-def menuBar():
-	menubar = QMenuBar()
-	menubar.setNativeMenuBar(True)
-	return menubar
+	actions = []
 
-def menuFile(view):
-	return view.menuBar().addMenu('Archivo')
-
-def menuView(view):
-	return view.menuBar().addMenu('Vista')
-
-def menuHelp(view):
-	return view.menuBar().addMenu('Ayuda')
-
-
-##
-# ACCIONES BARRA DE MENUS.
-##
-
-def saveProjectAction(menu,emitter):
-	act = menu.addAction(i18n.t('E.save'))
+	act = mFile.addAction(i18n.t('E.save'))
 	act.setShortcut(QKeySequence.Save)
 	act.setIcon(icon('saveProject.ico'))
 	act.setStatusTip('Guarda el estado del proyecto.')
-	act.triggered.connect(emitter)
-	return act
 
-def newCompSimpleAction(menu,emitter):
-	act = menu.addAction('Nuevo Componente(s) simple(s)')
+	tb.addAction(act)
+	mb.addSeparator()
+	tb.addSeparator()
+	actions.append(act)
+
+	act = mFile.addAction('Nuevo Componente(s) simple(s)')
 	act.setShortcut('Ctrl+I')
 	act.setIcon(icon('simpleComp.ico'))
 	act.setStatusTip('Crea un componente simple en base a una imagen.')
-	act.triggered.connect(emitter)
-	return act
 
-def newCompComplexAction(menu,emitter):
-	act = menu.addAction('Nuevo Componente complejo')
+	tb.addAction(act)
+	actions.append(act)
+
+	act = mFile.addAction('Nuevo Componente complejo')
 	act.setShortcut('Ctrl+Shift+I')
 	act.setIcon(icon('complexComp.ico'))
 	act.setStatusTip('Crea un componente complejo en base a varias imgs.')
-	act.triggered.connect(emitter)
-	return act
 
-def closeAction(menu,emitter):
-	act = menu.addAction('Salir (!)')
+	tb.addAction(act)
+	tb.addSeparator()
+	mb.addSeparator()
+	actions.append(act)
+
+	act = mFile.addAction('Salir (!)')
 	act.setShortcut(QKeySequence.Close)
 	act.setIcon(icon('appExit.ico'))
 	act.setStatusTip('Cierra la aplicacion...')
-	act.triggered.connect(emitter)
-	return act
 
+	actions.append(act)
 
-def hideMenuAction(menu,emitter):
-	act = menu.addAction('Ocultar menu')
+	act = mEdit.addAction('Deshacer')
+	act.setShortcut(QKeySequence.Undo)
+	act.setIcon(icon('undo.ico'))
+	act.setStatusTip('Deshace la ultima accion ejecutada.')
+
+	tb.addAction(act)
+	actions.append(act)
+
+	act = mEdit.addAction('Rehacer')
+	act.setShortcut(QKeySequence.Redo)
+	act.setIcon(icon('redo.ico'))
+	act.setStatusTip('Rehace la ultima accion ejecutada.')
+
+	tb.addAction(act)
+	tb.addSeparator()
+	actions.append(act)
+
+	act = mView.addAction('Interfaz minima')
 	act.setCheckable(True)
 	act.setShortcut('Ctrl+H')
 	act.setIcon(icon('hideMenu.ico'))
-	act.setStatusTip('Oculta la barra de menu. (Visualizable con [ALT]')
-	act.triggered.connect(emitter)
-	return act
+	act.setStatusTip('Oculta la barras de mView y los paneles')
 
-def zoomInAction(menu,emitter):
-	act = menu.addAction('Zoom +')
+	mb.addSeparator()
+	actions.append(act)
+
+	act = mView.addAction('Zoom +')
 	act.setShortcut(QKeySequence.ZoomIn)
 	act.setIcon(icon('zoomIn.ico'))
 	act.setStatusTip('Incrementa el zoom de la escena.')
-	act.triggered.connect(emitter)
-	return act
 
-def zoom100Action(menu,emitter):
-	act = menu.addAction('Zoom 100%')
+	tb.addAction(act)
+	actions.append(act)
+
+	act = mView.addAction('Zoom 100%')
 	act.setShortcut('Ctrl+0')
 	act.setIcon(icon('zoom100.ico'))
 	act.setStatusTip('Restablece el zoom de la escena.')
-	act.triggered.connect(emitter)
-	return act
 
-def zoomOutAction(menu,emitter):
-	act = menu.addAction('Zoom -')
+	tb.addAction(act)
+	actions.append(act)
+
+	act = mView.addAction('Zoom -')
 	act.setShortcut(QKeySequence.ZoomOut)
 	act.setIcon(icon('zoomOut.ico'))
 	act.setStatusTip('Decrementa el zoom de la escena.')
-	act.triggered.connect(emitter)
-	return act
 
-def fullScreenAction(menu,emitter):
-	act = menu.addAction('Pantalla completa')
+	tb.addAction(act)
+	mb.addSeparator()
+	actions.append(act)
+
+	act = mView.addAction('Pantalla completa')
 	act.setCheckable(True)
 	act.setShortcut(QKeySequence.FullScreen)
 	act.setIcon(icon('fullScreen.ico'))
 	act.setStatusTip('Rota entre pantalla completa y el estado anterior.')
-	act.triggered.connect(emitter)
-	return act
 
+	tb.addAction(act)
+	actions.append(act)
 
-def trEsAction(menu,emitter):
-	act = menu.addAction('Traducir a Español')
+	act = mHelp.addAction('Traducir a Español')
 	act.setCheckable(True)
 	act.setIcon(icon('trES.ico'))
 	act.setStatusTip('Traduce los textos de la app a Español')
-	act.triggered.connect(emitter)
-	return act
 
-def trEnAction(menu,emitter):
-	act = menu.addAction('Traducir a Ingles')
+	actions.append(act)
+
+	act = mHelp.addAction('Traducir a Ingles')
 	act.setCheckable(True)
 	act.setIcon(icon('trEN.ico'))
 	act.setStatusTip('Traduce los textos de la app a Ingles')
-	act.triggered.connect(emitter)
-	return act
 
-def trFrAction(menu,emitter):
-	act = menu.addAction('Traducir a Frances')
+	actions.append(act)
+
+	act = mHelp.addAction('Traducir a Frances')
 	act.setCheckable(True)
 	act.setIcon(icon('trFR.ico'))
 	act.setStatusTip('Traduce los textos de la app a Frances')
-	act.triggered.connect(emitter)
-	return act
 
-def trDeAction(menu,emitter):
-	act = menu.addAction('Traducir a Aleman')
+	actions.append(act)
+
+	act = mHelp.addAction('Traducir a Aleman')
 	act.setCheckable(True)
 	act.setIcon(icon('trDE.ico'))
 	act.setStatusTip('Traduce los textos de la app a Aleman')
-	act.triggered.connect(emitter)
-	return act
 
+	actions.append(act)
+
+	return mb, tb, actions
 
 ##
-# ACCIONES COMP SIMPLE.
+## @brief      Crea el menu contextual de un componente simple.
 ##
+## @return     PyQt5.QtWidgets.QMenu
+## @return     list<PyQt5.QtWidgets.QAction>
+##
+def simpleMenu():
 
-def simpleZIncAction(menu,emitter):
-	act = menu.addAction('INCREMENTA Profundidad')
-	act.triggered.connect(emitter)
+	ms = QMenu()
 
-def simpleZDecAction(menu,emitter):
-	act = menu.addAction('DECREMENTA Profundidad')
-	act.triggered.connect(emitter)
+	actions = []
 
-def simpleToggleActiveAction(menu,emitter):
-	act = menu.addAction('Rota estado: ACTIVO')
+	act = ms.addAction('INCREMENTA Profundidad')
+	actions.append(act)
+
+	act = ms.addAction('DECREMENTA Profundidad')
+	actions.append(act)
+
+	act = ms.addAction('Rota estado: ACTIVO')
 	act.setCheckable(True)
-	act.triggered.connect(emitter)
+	actions.append(act)
 
-def simpleToggleVisibleAction(menu,emitter):
-	act = menu.addAction('Rota estado: VISIBLE')
+	act = ms.addAction('Rota estado: VISIBLE')
 	act.setCheckable(True)
-	act.triggered.connect(emitter)
+	actions.append(act)
 
-def simpleDeleteAction(menu,emitter):
-	act = menu.addAction('BORRA el elemento')
-	act.triggered.connect(emitter)
+	act = ms.addAction('BORRA el elemento')
+	actions.append(act)
 
-def simpleDetailAction(menu,emitter):
-	act = menu.addAction('Informacion detallada...')
-	act.triggered.connect(emitter)
-
+	return ms, actions
 
 ##
-# WIDGETS.
+## @brief      Crea un area de trabajo usando QGraphicsView y QGraphicsScene.
 ##
+## @return     PyQt5.QtWidgets.QGraphicsView
+##
+def workArea(screenRect):
+	workArea = QGraphicsView()
+	workArea.setBackgroundBrush(Qt.darkGray)
+	workArea.resize(screenRect.width(),screenRect.height())
 
+	rect   = workArea.rect()
+	width  = rect.width() - rect.width()*pv['viewRectMargin']
+	height = rect.height() - rect.height()*pv['viewRectMargin']
+	rectF   = QRectF(0,0,width,height)
+
+	# Escena a la que se agregaran los Items con los que trabajamos.
+	workAreaScene = QGraphicsScene(rectF,workArea)
+	workAreaScene.addRect(rectF,Qt.black,Qt.lightGray)
+
+	# Asignamos la escena al area de trabajo.
+	workArea.setScene(workAreaScene)
+
+	return workArea
+
+##
+## @brief      Llama al cosntructor de arboles con el header de un comp simple.
+##
+## @param      emitters  Funciones a lanzar por diferentes acciones.
+##
+## @return     PyQt5.QtWidgets.QTreeView.
+##
 def simpleTreeView(*emitters):
-	header = ['Nombre', 'Visb.', 'Act.', 'Z']
+	# header = ['Nombre', 'Visb.', 'Act.', 'Z']
+	header = ['Nombre', '']
 	return treeView(header,*emitters)
 
+##
+## @brief      Llama al cosntructor de arboles con el header de un comp simple.
+##
+## @param      emitters  Funciones a lanzar por diferentes acciones.
+##
+## @return     PyQt5.QtWidgets.QTreeView
+##
 def complexTreeView(*emitters):
 	header = ['Nombre']
 	return treeView(header,*emitters)
 
+##
+## @brief      Llama al cosntructor de docks para componentes simples.
+##
+## @param      widget  Panel que visualizaremos.
+##
+## @return     PyQt5.QtWidgets.QDockWidget
+##
 def simpleDockBar(widget):
-	title = 'COMPONENTES SIMPLES'
+	title = 'SIMPLES'
 	return dockBar(title,widget)
 
+##
+## @brief      Llama al cosntructor de docks para componentes simples.
+##
+## @param      widget  Panel que visualizaremos.
+##
+## @return     PyQt5.QtWidgets.QDockWidget
+##
 def complexDockBar(widget):
-	title = 'COMPONENTES COMPLEJOS'
+	title = 'COMPLEJOS'
 	return dockBar(title,widget)
 
+##
+## @brief      Dialogo para seleccionar imagenes.
+##
+## @param      parent   Ventana principal.
+## @param      defPath  Ruta donde se abrira el dialogo.
+##
+## @return     PyQt5.QtWidgets.QFileDialog
+##
+def imgDialog(parent,defPath):
+	title = 'Pick imgs!'
+	supportList = 'JPEG (*.jpg *.jpeg);;PNG (*.png);;GIF (*.gif)'
+	return QFileDialog.getOpenFileNames( parent,
+	                              		 title,
+	                              		 defPath,
+	                              		 supportList,
+	                              		 'PNG (*.png)')
+
+
+# -------------------------------------------------------------------------- #
 
 
 ##
-# CONSTRUCTORES DE WIDGETS.
+## @brief      Constructor con las propiedades deseadas de una barra lateral.
 ##
-
-
-""" Constructor con ciertas propiedades ya configuradas de un 'QDockWidget',
-estas widgets se caracterizan por poderse anclar en cualquier borde de
-la pantalla"""
-
+## @param      title   Titulo de cabecera del widget.
+## @param      widget  Panel que visualizaremos.
+##
+## @return     PyQt5.QtWidgets.QDockWidget
+##
 def dockBar(title,widget):
 	dockbar = QDockWidget(title)
 	dockbar.setWidget(widget)
 
 	# Limitamos su anclaje a los laterales.
-	dockbar.setAllowedAreas( Qt.LeftDockWidgetArea
-	                         | Qt.RightDockWidgetArea )
+	dockbar.setAllowedAreas(Qt.LeftDockWidgetArea|Qt.RightDockWidgetArea)
 	return dockbar
 
-
-""" Constructor con ciertas propiedades ya configuradas de un 'TreeView' """
-
+##
+## @brief      Constructor con las propiedades deseadas para un arbol.
+##
+## @param      header    Cabecera con las distintas columnas del arbol.
+## @param      emitters  Funciones a lanzar por diferentes acciones.
+##
+## @return     PyQt5.QtWidgets.QTreeView
+##
 def treeView(header,*emitters):
 	tree = QTreeView()
 	model = QStandardItemModel()
@@ -276,13 +349,13 @@ def treeView(header,*emitters):
 	model.itemChanged.connect(emitters[0])
 
 	# Propiedades del cabecero.
-	tree.header().resizeSection(1,44)
-	tree.header().resizeSection(2,38)
-	tree.header().resizeSection(3,30)
+	# tree.header().resizeSection(1,44)
+	# tree.header().resizeSection(2,38)
+	# tree.header().resizeSection(3,30)
 
 	'''Propiedades del arbol. '''
 
-	# Señal de menu contextual.
+	# Señal de menu contextual. (Por defecto se dispara con 'boton derecho')
 	tree.customContextMenuRequested.connect(emitters[1])
 	# Menu contextual solicitado por señal.
 	tree.setContextMenuPolicy(Qt.CustomContextMenu)
@@ -295,6 +368,6 @@ def treeView(header,*emitters):
 	# Dibuja el recuadro de seleccion en toda la fila.
 	tree.setSelectionBehavior(QAbstractItemView.SelectRows)
 	# Solo permite seleccionar un elemento a la vez.
-	tree.setSelectionMode(QAbstractItemView.SingleSelection)
+	tree.setSelectionMode(QAbstractItemView.ExtendedSelection)
 
 	return tree

@@ -1,385 +1,352 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os, sys, i18n
-from datetime import datetime
-
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import *
 
 import GUI
+from PresetValues import pv
 
-
-################### UNDO y REDO EN EL MENU DE EDIT!!!
-
-
-
-i18n.load_path.append(os.path.join(os.path.dirname(__file__),'Translations'))
-
-
+##
+## @brief      Clase encargada de la estructura visual de la aplicacion.
+##
 class VIEW( QMainWindow ):
 
-	# ----------------------------------------------------------------- #
-	#								SEÑALES								#
-	#		(Se definenen obligatoriamente fuera del construcctor)		#
-	# ----------------------------------------------------------------- #
-
+	# Señales que luego se conectarán con el Presentador..
 	signal_SaveProject           	= 	pyqtSignal()
 	signal_NewSimple             	= 	pyqtSignal()
 	signal_NewComplex            	= 	pyqtSignal()
-
+	signal_Undo                     =   pyqtSignal()
+	signal_Redo                     =	pyqtSignal()
 	signal_HideMenu                	= 	pyqtSignal()
-	signal_ZoomIn                	= 	pyqtSignal()
-	signal_ZoomOut               	= 	pyqtSignal()
+	signal_Minimalist              	= 	pyqtSignal()
+	signal_ZoomIn               	= 	pyqtSignal()
 	signal_Zoom100               	= 	pyqtSignal()
+	signal_ZoomOut               	= 	pyqtSignal()
 	signal_FullScreen            	= 	pyqtSignal()
-
 	signal_TrEs                  	= 	pyqtSignal()
 	signal_TrEn                  	= 	pyqtSignal()
 	signal_TrFr                  	= 	pyqtSignal()
 	signal_TrDe                  	= 	pyqtSignal()
-
-	signal_SimpleZInc            	= 	pyqtSignal()
-	signal_SimpleZDec            	= 	pyqtSignal()
-	signal_SimpleActive          	= 	pyqtSignal()
-	signal_SimpleVisible         	= 	pyqtSignal()
-	signal_SimpleDelete          	= 	pyqtSignal()
-	signal_SimpleDetail          	= 	pyqtSignal()
-
+	signal_ZInc            			= 	pyqtSignal()
+	signal_ZDec            			= 	pyqtSignal()
+	signal_Active          			= 	pyqtSignal()
+	signal_Visible         			= 	pyqtSignal()
+	signal_Delete          			= 	pyqtSignal()
+	signal_Resize          			= 	pyqtSignal(int)
 	signal_simpleTreeItemChange  	= 	pyqtSignal()
-	signal_simpleTreeInvokeMenu  	= 	pyqtSignal()
-
+	signal_SimpleMenu  				= 	pyqtSignal()
 	signal_complexTreeItemChange 	= 	pyqtSignal()
-	signal_complexTreeInvokeMenu 	= 	pyqtSignal()
+	signal_ComplexMenu 				= 	pyqtSignal()
 
+	# Emisores de las señales anteriores.
+	def emit_SaveProject(self):
+		self.signal_SaveProject.emit()
+	def emit_NewSimple(self):
+		self.signal_NewSimple.emit()
+	def emit_NewComplex(self):
+		self.signal_NewComplex.emit()
+	def emit_Undo(self):
+		self.signal_Undo.emit()
+	def emit_Redo(self):
+		self.signal_Redo.emit()
+	def emit_HideMenu(self):
+		self.signal_HideMenu.emit()
+	def emit_ZoomIn(self):
+		self.signal_ZoomIn.emit()
+	def emit_Zoom100(self):
+		self.signal_Zoom100.emit()
+	def emit_ZoomOut(self):
+		self.signal_ZoomOut.emit()
+	def emit_FullScreen(self):
+		self.signal_FullScreen.emit()
+	def emit_TrEs(self):
+		self.signal_TrEs.emit()
+	def emit_TrEn(self):
+		self.signal_TrEn.emit()
+	def emit_TrFr(self):
+		self.signal_TrFr.emit()
+	def emit_TrDe(self):
+		self.signal_TrDe.emit()
+	def emit_ZInc(self):
+		self.signal_ZInc.emit()
+	def emit_ZDec(self):
+		self.signal_ZDec.emit()
+	def emit_Active(self):
+		self.signal_Active.emit()
+	def emit_Visible(self):
+		self.signal_Visible.emit()
+	def emit_Delete(self):
+		self.signal_Delete.emit()
+	def emit_Resize(self,delta):
+		self.signal_Resize.emit(delta)
+	def emit_simpleTreeItemChange(self):
+		self.signal_simpleTreeItemChange.emit()
+	def emit_SimpleMenu(self):
+		self.signal_SimpleMenu.emit()
+	def emit_complexTreeItemChange(self):
+		self.signal_complexTreeItemChange.emit()
+	def emit_ComplexMenu(self):
+		self.signal_ComplexMenu.emit()
 
-
-	def __init__(self,w,h):
+	##
+	## @brief      Constructor del objeto vista, que será la ventana principal.
+	##
+	## @param      self  Esta ventana.
+	##
+	def __init__(self,screenRect):
 
 		super().__init__()
 
 		GUI.configWindow(self)
 
+		# Guarda la resolucion de la pantalla del usuario.
+		self.screenRect = screenRect
 
+		# Estado anterior a Pantalla Completa.
+		self._prevState = Qt.WindowStates
 
-		# ----------------------------------------------------------------- #
-		#						 CLASE :: VARIABLES 						#
-		# ----------------------------------------------------------------- #
+		# Emisores de las señales relacionadas con la aplicacion o proyecto.
+		mainEmitters = [ self.emit_SaveProject,
+						 self.emit_NewSimple,
+						 self.emit_NewComplex,
+						 self.close,
+						 self.emit_Undo,
+						 self.emit_Redo,
+						 self.emit_HideMenu,
+						 self.emit_ZoomIn,
+						 self.emit_Zoom100,
+						 self.emit_ZoomOut,
+						 self.emit_FullScreen,
+						 self.emit_TrEs,
+						 self.emit_TrEn,
+						 self.emit_TrFr,
+						 self.emit_TrDe ]
 
-		# Control del factor de escalado.
-		self.__viewScale = 1.0
-		self.__viewScaleMOD = 1.1
-		self.__viewScaleMAX = 15.0
-		self.__viewScaleMIN = 0.05
+		# Construir la GUI de la barra de menus.
+		# Construir la GUI de la barra de tareas.
+		# Lista de acciones ejectuables por dichas barras.
+		menubar, toolbar, mainActions = GUI.mainBars()
+		self.setMenuBar(menubar)
+		self.addToolBar(toolbar)
+		self.connectSignals(mainActions,mainEmitters)
 
-		# Guarda el estado anterior de la ventana.
-		self.__previousWindowState = str()
+		# Arbol de componentes simples.
+		self._simpleTree = GUI.simpleTreeView(
+			self.emit_simpleTreeItemChange, # Cuando cambia un valor.
+			self.emit_SimpleMenu  # Pulsando boton derecho.
+		)
 
+		# Emisores de las señales relacionadas con componentes simples.
+		simpleEmitters = [ self.emit_ZInc,
+						   self.emit_ZDec,
+						   self.emit_Active,
+						   self.emit_Visible,
+						   self.emit_Delete ]
 
+		# Menu contextual arbol simple.
+		self._simpleMenu, simpleActions = GUI.simpleMenu()
+		self.connectSignals(simpleActions,simpleEmitters)
 
-		# ----------------------------------------------------------------- #
-		#						GUI :: BARRA DE MENUS 						#
-		# ----------------------------------------------------------------- #
+		# Arbol de componentes complejos.
+		self._complexTree=GUI.complexTreeView(
+			self.emit_complexTreeItemChange, # Cuando cambia un valor.
+			self.emit_ComplexMenu  # Pulsando boton derecho.
+		) # ........
 
-		self.setMenuBar(GUI.menuBar())
+		# Barra lateral.
+		self._simpleDockbar = GUI.simpleDockBar( self._simpleTree )
+		self.addDockWidget(Qt.LeftDockWidgetArea, self._simpleDockbar)
+		self._complexDockbar = GUI.complexDockBar(self._complexTree)
+		self.addDockWidget(Qt.LeftDockWidgetArea,self._complexDockbar)
 
-		''' MENU: Archivo. '''
-		_mFile = GUI.menuFile(self)
-		# Guardar proyecto.
-		_save = GUI.saveProjectAction( _mFile, self._emit_SaveProject )
-		# Nuevo componente simple.
-		_newSimple = GUI.newCompSimpleAction( _mFile, self._emit_NewSimple )
-		# Nuevo componente complejo.
-		_newComplex = GUI.newCompComplexAction( _mFile, self._emit_NewComplex )
-		# Salir de la app.
-		_exit = GUI.closeAction( _mFile, self.close )
-
-		''' MENU: Vista. '''
-		_mView = GUI.menuView(self)
-		# Ocultar menu.
-		_hideMenu = GUI.hideMenuAction( _mView, self._emit_HideMenu )
-		# Aumetar zoom.
-		_zoomIn = GUI.zoomInAction( _mView, self._emit_ZoomIn )
-		# Restablece el zoom.
-		_zoom100 = GUI.zoom100Action( _mView, self._emit_Zoom100 )
-		# Disminuir zoom.
-		_zoomOut = GUI.zoomOutAction( _mView, self._emit_ZoomOut )
-		# Rota entre pantalla completa y el estado anterior.
-		_fullScreen = GUI.fullScreenAction( _mView, self._emit_FullScreen )
-
-		''' MENU: Ayuda. '''
-		_mHelp = GUI.menuHelp(self)
-		# Traducir a Español.
-		_trEsAction = GUI.trEsAction( _mHelp, self._emit_TrEs )
-		# Traducir a Ingles.
-		_trEnAction = GUI.trEnAction( _mHelp, self._emit_TrEn )
-		# Traducir a Frances.
-		_trFrAction = GUI.trFrAction( _mHelp, self._emit_TrFr )
-		# Traducir a Aleman.
-		_trDeAction = GUI.trDeAction( _mHelp, self._emit_TrDe )
-		# Convierte estas acciones a seleccion exclusiva.
-		_mHelpGroup = QActionGroup(_mHelp)
-		_mHelpGroup.addAction(_trEsAction)
-		_mHelpGroup.addAction(_trEnAction)
-		_mHelpGroup.addAction(_trFrAction)
-		_mHelpGroup.addAction(_trDeAction)
-
-
-		# ----------------------------------------------------------------- #
-		#					GUI :: BARRA DE HERRAMIENTAS 					#
-		# ----------------------------------------------------------------- #
-
-		_toolbar = GUI.toolBar()
-		self.addToolBar(_toolbar)
-
-		# Acceso rapido a acciones ya definidas en la barra de menu.
-		_toolbar.addAction(_save)
-		_toolbar.addAction(_newSimple)
-		_toolbar.addAction(_newComplex)
-		_toolbar.addAction(_exit)
-		_toolbar.addSeparator()
-		_toolbar.addAction(_zoomOut)
-		_toolbar.addAction(_zoom100)
-		_toolbar.addAction(_zoomIn)
-		_toolbar.addAction(_fullScreen)
-
-
-
-		# ----------------------------------------------------------------- #
-		#					  GUI :: AREA DE TRABAJO 						#
-		# ----------------------------------------------------------------- #
-
-		# QGraphicsView, otorga ventajas como Escala y Profundidad.
-		_workArea = QGraphicsView()
-		_workArea.setBackgroundBrush(Qt.gray)
-		_workArea.resize(w,h)
+		# Area de trabajo.
+		_workArea = GUI.workArea(screenRect)
 		self.setCentralWidget(_workArea)
 
-		# Escena a la que se agregaran los Items con los que trabajamos.
-		_workAreaScene = QGraphicsScene(self.getViewRectF(),_workArea)
-		_workAreaScene.addRect(self.getViewRectF(),Qt.white,Qt.white)
-
-		# Asignamos la escena al area de trabajo.
-		_workArea.setScene(_workAreaScene)
-
-
-		# ----------------------------------------------------------------- #
-		#					  GUI :: BARRA DE ESTADO 						#
-		# ----------------------------------------------------------------- #
-
-		_statusbar = GUI.statusBar()
+		_statusbar = QStatusBar()
 		self.setStatusBar(_statusbar)
 
 
-		# ----------------------------------------------------------------- #
-		#				GUI :: MENU CONTEXTUAL ARBOL SIMPLE					#
-		# ----------------------------------------------------------------- #
-
-		self.__simpleTreeMenu = GUI.simpleTreeViewMenu()
-
-		# Incrementar profundidad del objeto.
-		GUI.simpleZIncAction( self.__simpleTreeMenu,
-							  self._emit_SimpleZInc )
-
-		# Decrementar profundidad del objeto.
-		GUI.simpleZDecAction( self.__simpleTreeMenu,
-							  self._emit_SimpleZDec )
-
-		self.__simpleTreeMenu.addSeparator() # Dibuja una linea horizontal.
-
-		# Activa / Desactiva el objeto.
-		GUI.simpleToggleActiveAction( self.__simpleTreeMenu,
-									  self._emit_SimpleActive )
-
-		# ACCION: Muestra / Oculta el objeto.
-		GUI.simpleToggleVisibleAction( self.__simpleTreeMenu,
-									   self._emit_SimpleVisible )
-
-		self.__simpleTreeMenu.addSeparator() # Dibuja una linea horizontal.
-
-		# Borra el objeto de la escena y el modelo.
-		GUI.simpleDeleteAction( self.__simpleTreeMenu,
-								self._emit_SimpleDelete )
-
-		self.__simpleTreeMenu.addSeparator() # Dibuja una linea horizontal.
-
-		# Muestra un pop-up con los detalles del objeto.
-		GUI.simpleDetailAction( self.__simpleTreeMenu,
-								self._emit_SimpleDetail )
+# --------------------------------------------------------------------------- #
 
 
-		# ----------------------------------------------------------------- #
-		#				   			GUI :: ARBOLES 							#
-		# ----------------------------------------------------------------- #
+	##
+	## @brief      Propiedad de lectura de la lista de componentes simples.
+	##
+	## @param      self  Esta ventana.
+	##
+	## @return     PyQt5.QtWidgets.QTreeView
+	##
+	@property
+	def simpleTree(self):
+		return self._simpleTree
 
-		# Arbol de componentes simples.
-		self.__simpleTree = GUI.simpleTreeView(self._emit_simpleTreeItemChange,
-										  	   self._emit_simpleTreeInvokeMenu)
+	##
+	## @brief      Propiedad de lectura del menu para componentes simples.
+	##
+	## @param      self  Esta ventana.
+	##
+	## @return     PyQt.QtWidgets.QMenu
+	##
+	@property
+	def simpleMenu(self):
+		return self._simpleMenu
 
-		# Arbol de componentes complejos.
-		self.__complexTree=GUI.complexTreeView(self._emit_complexTreeItemChange,
-		                                       self._emit_complexTreeInvokeMenu)
+	##
+	## @brief      Propiedad de lectura de la lista de componentes complejos.
+	##
+	## @param      self  Esta ventana.
+	##
+	## @return     PyQt5.QtWidgets.QTreeView
+	##
+	@property
+	def complexTree(self):
+		return self._complexTree
 
+	##
+	## @brief      Propiedad de lectura del menu para componentes complejos.
+	##
+	## @param      self  Esta ventana.
+	##
+	## @return     PyQt.QtWidgets.QMenu
+	##
+	@property
+	def complexMenu(self):
+		return self._complexMenu
 
-		# ----------------------------------------------------------------- #
-		#					   GUI :: BARRA LATERAL 						#
-		# ----------------------------------------------------------------- #
-
-		_simpleDockbar = GUI.simpleDockBar( self.__simpleTree )
-		_complexDockbar = GUI.complexDockBar( self.__complexTree )
-		self.addDockWidget(Qt.LeftDockWidgetArea, _simpleDockbar)
-		self.addDockWidget(Qt.LeftDockWidgetArea, _complexDockbar)
-
-
-
-	# ----------------------------------------------------------------- #
-	#						   GUI :: 'GETTERS' 						#
-	# ----------------------------------------------------------------- #
-
-
-	""" GUI """
-
-	def getSimpleTree(self):
-		return self.__simpleTree
-
-	def getSimpleTreeMenu(self):
-		return self.__simpleTreeMenu
-
-	def getComplexTree(self):
-		return self.__complexTree
-
-	def getWorkArea(self):
+	##
+	## @brief      Propiedad de lectura del 'viewport'.
+	##
+	## @param      self  Esta ventana.
+	##
+	## @return     PyQt.QtWidgets.QGraphicsView
+	##
+	@property
+	def workArea(self):
 		return self.centralWidget()
 
-	def getScene(self):
+	##
+	## @brief      Propiedad de lectura de la escena actual.
+	##
+	## @param      self  Esta ventana.
+	##
+	## @return     PyQt.QtWidgets.QGraphicsScene
+	##
+	@property
+	def workScene(self):
 		return self.centralWidget().scene()
 
-	def getViewRectF(self):
+	# !!!! APAÑO TEMPORAL !!!!
+	def resetWorkScene(self):
+		scale = self.scale
+		workArea = GUI.workArea(self.screenRect)
+		workArea.scale(scale,scale)
+		self.setCentralWidget(workArea)
+
+	##
+	## @brief      Propiedad de lectura del area del lienzo.
+	##
+	## @param      self  Esta ventana.
+	##
+	## @return     PyQt5.QtCore.QRectF
+	##
+	@property
+	def viewRectF(self):
 		viewRect = self.centralWidget().rect()
-		return QRectF(viewRect)
+		width  = viewRect.width() - viewRect.width()*pv['viewRectMargin']
+		height = viewRect.height() - viewRect.height()*pv['viewRectMargin']
+		return QRectF(0,0,width,height)
 
+	##
+	## @brief      Propiedad de lectura de la escala actual del area de trabajo.
+	##
+	## @param      self  Esta ventana.
+	##
+	## @return     qreal
+	##
+	@property
+	def scale(self):
+		return self.workArea.transform().m11()
 
-	""" VARS """
+	##
+	## @brief      Propiedad de lectura del estado anterior de la ventana.
+	##
+	## @param      self  Esta ventana
+	##
+	## @return     PyQt5.QtCore.Qt.WindowStates
+	##
+	@property
+	def prevState(self):
+		return self._prevState
 
-	def getScale(self):
-		return self.__viewScale
+	##
+	## @brief      Propiedad de escritura del estado anterior de la ventana.
+	##
+	## @param      self  Esta ventana.
+	## @param      self  Estado a guardar.
+	##
+	## @return     None
+	##
+	@prevState.setter
+	def prevState(self,prevState):
+		self._prevState = prevState
 
-	def getScaleMod(self):
-		return self.__viewScaleMOD
+	##
+	## @brief      Conecta acciones dadas con los emisores corresondientes.
+	##
+	## @param      self      Esta ventana.
+	## @param      actions   Lista de 'QAction's
+	## @param      emitters  Lista de funciones.
+	##
+	## @return     None
+	##
+	def connectSignals(self,actions,emitters):
+		for i in range(min(len(actions),len(emitters))):
+			actions[i].triggered.connect(emitters[i])
 
-	def getScaleMax(self):
-		return self.__viewScaleMAX
+	##
+	## @brief      Restaura al estado anterior cuando se abre esta ventana.
+	##
+	## @param      self  Esta ventana
+	##
+	## @return     None
+	##
+	def openEvent(self):
+		settings = QSettings("DCL", "PDT");
+		prevRect = settings.value('rect')
+		self.setGeometry(prevRect)
 
-	def getScaleMin(self):
-		return self.__viewScaleMIN
-
-	def getPrevWindowState(self):
-		return self.__previousWindowState
-
-
-
-	# ----------------------------------------------------------------- #
-	#						   GUI :: 'SETTERS' 						#
-	# ----------------------------------------------------------------- #
-
-	def setScale(self, newVal):
-		self.__viewScale = newVal
-
-	def setPrevWindowState(self,newVal):
-		self.__previousWindowState = newVal
-
-
-
-	# ----------------------------------------------------------------- #
-	#					  	 - EMITIR SEÑALES -							#
-	# ----------------------------------------------------------------- #
-
-	def _emit_SaveProject(self):
-		self.signal_SaveProject.emit()
-
-	def _emit_NewSimple(self):
-		self.signal_NewSimple.emit()
-
-	def _emit_NewComplex(self):
-		self.signal_NewComplex.emit()
-
-	def _emit_HideMenu(self):
-		self.signal_HideMenu.emit()
-
-	def _emit_ZoomIn(self):
-		self.signal_ZoomIn.emit()
-
-	def _emit_ZoomOut(self):
-		self.signal_ZoomOut.emit()
-
-	def _emit_Zoom100(self):
-		self.signal_Zoom100.emit()
-
-	def _emit_FullScreen(self):
-		self.signal_FullScreen.emit()
-
-	def _emit_TrEs(self):
-		self.signal_TrEs.emit()
-
-	def _emit_TrEn(self):
-		self.signal_TrEn.emit()
-
-	def _emit_TrFr(self):
-		self.signal_TrFr.emit()
-
-	def _emit_TrDe(self):
-		self.signal_TrDe.emit()
-
-	def _emit_SimpleZInc(self):
-		self.signal_SimpleZInc.emit()
-
-	def _emit_SimpleZDec(self):
-		self.signal_SimpleZDec.emit()
-
-	def _emit_SimpleActive(self):
-		self.signal_SimpleActive.emit()
-
-	def _emit_SimpleVisible(self):
-		self.signal_SimpleVisible.emit()
-
-	def _emit_SimpleDelete(self):
-		self.signal_SimpleDelete.emit()
-
-	def _emit_SimpleDetail(self):
-		self.signal_SimpleDetail.emit()
-
-	def _emit_simpleTreeItemChange(self):
-		self.signal_simpleTreeItemChange.emit()
-
-	def _emit_simpleTreeInvokeMenu(self):
-		self.signal_simpleTreeInvokeMenu.emit()
-
-	def _emit_complexTreeItemChange(self):
-		self.signal_complexTreeItemChange.emit()
-
-	def _emit_complexTreeInvokeMenu(self):
-		self.signal_complexTreeInvokeMenu.emit()
-
-
-
-
-
-	""" ------------------------------------------------------------------ """
-	""" - Dispara el evento de cierre la ventana, pidiendo confirmacion. - """
-	""" ------------------------------------------------------------------ """
-
+	##
+	## @brief      Solicita confirmación al intentar cerrar la ventana.
+	##
+	## @param      self  Esta ventana.
+	## @param      ev    El objeto con la informacion que da este evento.
+	##
+	## @return     None
+	##
 	def closeEvent(self,ev):
-		# reply = GUI.exitDialog(self)
-		# if reply == QMessageBox.Ok:
-		# 	qDebug('SESSION ENDED !\n\n\n')
-		# 	ev.accept()
-		# else:
-		# 	ev.ignore()
-		qDebug('SESSION ENDED !\n\n\n')
+		settings = QSettings("DCL", "PDT");
+		settings.setValue("rect", self.geometry());
 
+		reply = GUI.exitDialog(self)
+		if reply == QMessageBox.Ok:
+			qDebug(pv['endMsg'])
+			ev.accept()
+		else:
+			ev.ignore()
 
+	##
+	## @brief      Captura cuando se pulsa una o una combiancion de teclas.
+	##
+	## @param      self  Esta ventana.
+	## @param      ev    El objeto con la informacion que da este evento.
+	##
+	## @return     None
+	##
 	def keyPressEvent(self,ev):
 		if ev.key() == Qt.Key_Alt:
-			self._emit_HideMenu()
+			self.emit_HideMenu()
 		ev.accept()

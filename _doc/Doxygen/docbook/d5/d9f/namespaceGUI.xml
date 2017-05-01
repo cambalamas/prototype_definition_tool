@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d5/d9f/namespaceGUI">
+<title>GUI</title>
+        <section>
+            <title>Variables</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d0/d61/GUI_8py_1a89d034c9e272292157f7198d78bd0be1">iconsPath</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Funciones</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/d61/GUI_8py_1a560f17d53d2ba87cb5a40b20d7514336">icon</link> (
+name )<para><emphasis>Genera un icono a partir del nombre de la imagen.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/d61/GUI_8py_1a49fb555902301abcd856bfb440ad78ee">configWindow</link> (
+window )<para><emphasis>Establece el icono y el titulo.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/d61/GUI_8py_1a12f956d779848ba790a3cc917e9d97b4">exitDialog</link> (
+view )<para><emphasis>Presenta un dialogo para confimar la salida de la app.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/d61/GUI_8py_1a47102f4e7d424e198aa26e13b9122f54">mainBars</link> (
+)<para><emphasis>Crea los componentes de menus de la ventana principal.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/d61/GUI_8py_1a28e594e2b54ea6e10b5405f094aad98f">simpleMenu</link> (
+)<para><emphasis>Crea el menu contextual de un componente simple.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/d61/GUI_8py_1aa23838b0e8f79a76c5264d8754d979b4">workArea</link> (
+)<para><emphasis>Crea un area de trabajo usando QGraphicsView y QGraphicsScene.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/d61/GUI_8py_1af67409213f422884ceb1f21217459695">simpleTreeView</link> (
+emitters )<para><emphasis>Llama al cosntructor de arboles con el header de un comp simple.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/d61/GUI_8py_1a97717e7a6b2bdeb792c5904589866ccb">complexTreeView</link> (
+emitters )<para><emphasis>Llama al cosntructor de arboles con el header de un comp simple.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/d61/GUI_8py_1a21384e6fea8913b3c8d335c0c4fb4d1b">simpleDockBar</link> (
+widget )<para><emphasis>Llama al cosntructor de docks para componentes simples.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/d61/GUI_8py_1a2af7c22acb8542e253dc488068903817">complexDockBar</link> (
+widget )<para><emphasis>Llama al cosntructor de docks para componentes simples.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/d61/GUI_8py_1ac24e6ab53bf7a2b67c3105be0f8c4a8f">imgDialog</link> (
+parent , defPath )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/d61/GUI_8py_1a45efa9f9b1841f1c7419bfe6c56c935b">dockBar</link> (
+title , widget )<para><emphasis>Constructor con las propiedades deseadas de una barra lateral.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>def <link linkend="d0/d61/GUI_8py_1af5748f4067510bc9d44d69d39990c8c3">treeView</link> (
+header , emitters )<para><emphasis>Constructor con las propiedades deseadas para un arbol.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+</section>

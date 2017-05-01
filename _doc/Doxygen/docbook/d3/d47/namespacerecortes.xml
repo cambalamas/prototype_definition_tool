@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d3/d47/namespacerecortes">
+<title>recortes</title>
+        <section>
+            <title>Variables</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="df/df2/recortes_8py_1ab40638f9202c36bdf237892aca760547">geometry</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="df/df2/recortes_8py_1a24d7069da5231ea9efc2b70aa7115aa9">doExit</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+</section>

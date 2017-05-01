@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<chapter xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Dependencies. (Mac)</title>
+
+<para><computeroutput>brew install gtk+3</computeroutput> <computeroutput>brew install pygobject3 --with-python3</computeroutput></para>
+
+<para><literallayout><computeroutput>import&#32;gi
+gi.require_version(&apos;Gtk&apos;,&#32;&apos;3.0&apos;)
+from&#32;gi.repository&#32;import&#32;Gtk
+</computeroutput></literallayout> </para>
+
+</chapter>

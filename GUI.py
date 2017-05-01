@@ -102,6 +102,21 @@ def mainBars():
 
 	actions.append(act)
 
+	act = mEdit.addAction('Seleccionar todos')
+	act.setShortcut('Ctrl+A')
+	# act.setIcon(icon('undo.ico'))
+	act.setStatusTip('Selecciona todos los elementos de la escena.')
+
+	actions.append(act)
+
+	act = mEdit.addAction('Deseleccionar todos')
+	act.setShortcut('Ctrl+D')
+	# act.setIcon(icon('undo.ico'))
+	act.setStatusTip('Deselecciona todos los elementos seleccionados.')
+
+	mb.addSeparator()
+	actions.append(act)
+
 	act = mEdit.addAction('Deshacer')
 	act.setShortcut(QKeySequence.Undo)
 	act.setIcon(icon('undo.ico'))
@@ -120,7 +135,6 @@ def mainBars():
 	actions.append(act)
 
 	act = mView.addAction('Interfaz minima')
-	act.setCheckable(True)
 	act.setShortcut('Ctrl+H')
 	act.setIcon(icon('hideMenu.ico'))
 	act.setStatusTip('Oculta la barras de mView y los paneles')
@@ -221,6 +235,9 @@ def simpleMenu():
 	act = ms.addAction('BORRA el elemento')
 	actions.append(act)
 
+	act = ms.addAction('Ver detalles...')
+	actions.append(act)
+
 	return ms, actions
 
 ##
@@ -230,7 +247,7 @@ def simpleMenu():
 ##
 def workArea(screenRect):
 	workArea = QGraphicsView()
-	workArea.setBackgroundBrush(Qt.darkGray)
+	workArea.setBackgroundBrush(QColor(pv['bgColor']))
 	workArea.resize(screenRect.width(),screenRect.height())
 
 	rect   = workArea.rect()
@@ -240,7 +257,7 @@ def workArea(screenRect):
 
 	# Escena a la que se agregaran los Items con los que trabajamos.
 	workAreaScene = QGraphicsScene(rectF,workArea)
-	workAreaScene.addRect(rectF,Qt.black,Qt.lightGray)
+	workAreaScene.addRect(rectF,Qt.black,QColor(pv['sceneColor']))
 
 	# Asignamos la escena al area de trabajo.
 	workArea.setScene(workAreaScene)
@@ -255,8 +272,7 @@ def workArea(screenRect):
 ## @return     PyQt5.QtWidgets.QTreeView.
 ##
 def simpleTreeView(*emitters):
-	# header = ['Nombre', 'Visb.', 'Act.', 'Z']
-	header = ['Nombre', '']
+	header = ['Nombre', 'Visb.', 'Act.', 'Z']
 	return treeView(header,*emitters)
 
 ##
@@ -349,9 +365,9 @@ def treeView(header,*emitters):
 	model.itemChanged.connect(emitters[0])
 
 	# Propiedades del cabecero.
-	# tree.header().resizeSection(1,44)
-	# tree.header().resizeSection(2,38)
-	# tree.header().resizeSection(3,30)
+	tree.header().resizeSection(1,44)
+	tree.header().resizeSection(2,38)
+	tree.header().resizeSection(3,30)
 
 	'''Propiedades del arbol. '''
 

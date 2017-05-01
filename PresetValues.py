@@ -9,6 +9,9 @@ import json
 
 pv = {
 
+	'bgColor': '#333333',
+	'sceneColor':'#555555',
+
 	'startMsg' : 'SESSION STARTED !',
 	'endMsg' : 'SESSION ENDED !\n\n\n',
 
@@ -24,7 +27,8 @@ pv = {
 	'imgMaxScale'		: 5.025,
 
 	'maxOpacity'		: 1.0,
-	'minOpacity'		: 0.3,
+	'noActiveOpacity'	: 0.3,
+	'noVisibleOpacity'	: 0.0,
 
 	'zJump'				: 1.0,
 }

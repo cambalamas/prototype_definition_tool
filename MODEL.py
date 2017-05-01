@@ -127,3 +127,16 @@ class MODEL( QObject ):
 		for component in components:
 			self._scene.remove(component)
 		self.emit_modelUpdated()
+
+	##
+	## @brief      Obtiene un componente en base a un ID dado.
+	##
+	## @param      self  Este modelo.
+	## @param      id    El identificador a buscar.
+	##
+	## @return     Un componente de la escena.
+	##
+	def getComponentById(self,id):
+		for component in self._scene:
+			if component.id == id:
+				return component

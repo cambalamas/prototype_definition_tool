@@ -36,6 +36,9 @@ class VIEW( QMainWindow ):
 	signal_Visible         			= 	pyqtSignal()
 	signal_Delete          			= 	pyqtSignal()
 	signal_Resize          			= 	pyqtSignal(int)
+	signal_Details         			= 	pyqtSignal()
+	signal_SelectAll       			= 	pyqtSignal()
+	signal_UnSelectAll       		= 	pyqtSignal()
 	signal_simpleTreeItemChange  	= 	pyqtSignal()
 	signal_SimpleMenu  				= 	pyqtSignal()
 	signal_complexTreeItemChange 	= 	pyqtSignal()
@@ -52,6 +55,8 @@ class VIEW( QMainWindow ):
 		self.signal_Undo.emit()
 	def emit_Redo(self):
 		self.signal_Redo.emit()
+	def emit_Minimalist(self):
+		self.signal_Minimalist.emit()
 	def emit_HideMenu(self):
 		self.signal_HideMenu.emit()
 	def emit_ZoomIn(self):
@@ -82,6 +87,12 @@ class VIEW( QMainWindow ):
 		self.signal_Delete.emit()
 	def emit_Resize(self,delta):
 		self.signal_Resize.emit(delta)
+	def emit_Details(self):
+		self.signal_Details.emit()
+	def emit_SelectAll(self):
+		self.signal_SelectAll.emit()
+	def emit_UnSelectAll(self):
+		self.signal_UnSelectAll.emit()
 	def emit_simpleTreeItemChange(self):
 		self.signal_simpleTreeItemChange.emit()
 	def emit_SimpleMenu(self):
@@ -94,7 +105,8 @@ class VIEW( QMainWindow ):
 	##
 	## @brief      Constructor del objeto vista, que será la ventana principal.
 	##
-	## @param      self  Esta ventana.
+	## @param      self        Esta ventana.
+	## @param      screenRect  Resolucion de la pantalla del usuario.
 	##
 	def __init__(self,screenRect):
 
@@ -113,9 +125,11 @@ class VIEW( QMainWindow ):
 						 self.emit_NewSimple,
 						 self.emit_NewComplex,
 						 self.close,
+						 self.emit_SelectAll,
+						 self.emit_UnSelectAll,
 						 self.emit_Undo,
 						 self.emit_Redo,
-						 self.emit_HideMenu,
+						 self.emit_Minimalist,
 						 self.emit_ZoomIn,
 						 self.emit_Zoom100,
 						 self.emit_ZoomOut,
@@ -128,9 +142,9 @@ class VIEW( QMainWindow ):
 		# Construir la GUI de la barra de menus.
 		# Construir la GUI de la barra de tareas.
 		# Lista de acciones ejectuables por dichas barras.
-		menubar, toolbar, mainActions = GUI.mainBars()
+		menubar, self._toolbar, mainActions = GUI.mainBars()
 		self.setMenuBar(menubar)
-		self.addToolBar(toolbar)
+		self.addToolBar(self._toolbar)
 		self.connectSignals(mainActions,mainEmitters)
 
 		# Arbol de componentes simples.
@@ -144,7 +158,8 @@ class VIEW( QMainWindow ):
 						   self.emit_ZDec,
 						   self.emit_Active,
 						   self.emit_Visible,
-						   self.emit_Delete ]
+						   self.emit_Delete,
+						   self.emit_Details ]
 
 		# Menu contextual arbol simple.
 		self._simpleMenu, simpleActions = GUI.simpleMenu()

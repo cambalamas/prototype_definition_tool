@@ -126,7 +126,21 @@ class PRESENTER( object ):
 	## @return     None
 	##
 	def listener_Minimalist(self):
-		pass
+		mtb = self.view._toolbar
+		sdb = self.view._simpleDockbar
+		cdb = self.view._complexDockbar
+		stb = self.view.statusBar()
+		if(mtb.isVisible() == sdb.isVisible()
+		   == cdb.isVisible() == stb.isVisible() == True):
+			mtb.setVisible(False)
+			sdb.setVisible(False)
+			cdb.setVisible(False)
+			stb.setVisible(False)
+		else:
+			mtb.setVisible(True)
+			sdb.setVisible(True)
+			cdb.setVisible(True)
+			stb.setVisible(True)
 
 	##
 	## @brief      Oculta la barra de menus.
@@ -136,7 +150,6 @@ class PRESENTER( object ):
 	## @return     None
 	##
 	def listener_HideMenu(self):
-		qDebug('hide')
 		menuBar = self.view.menuBar()
 		if menuBar.height() is not 0:
 			menuBar.setFixedHeight(0)
@@ -239,6 +252,7 @@ class PRESENTER( object ):
 		for item in self.selectedItems():
 			newZ = item.getPosZ() + pv['zJump']
 			item.setZValue(newZ)
+		self.updateTree()
 
 	def listener_ZDec(self):
 		for item in self.selectedItems():
@@ -250,17 +264,20 @@ class PRESENTER( object ):
 					if elem != item: # Sin afectar al objeto que quiero bajar.
 						zUp = elem.getPosZ() + pv['zJump']
 						elem.setZValue(zUp)
+		self.updateTree()
 
 	def listener_Active(self):
 		for item in self.selectedItems():
 			toggle = not item.active
 			item.active = toggle
 			item.activeEffect()
+		self.updateTree()
 
 	def listener_Visible(self):
 		for item in self.selectedItems():
-			toggle = not item.getVisible()
-			item.setVisible(toggle)
+			item.visible = not item.visible
+			item.visibleEffect()
+		self.updateTree()
 
 	def listener_Delete(self):
 		self.model.delComponent(self.selectedItems())
@@ -275,10 +292,33 @@ class PRESENTER( object ):
 				if not item.scale() / pv['imgModScale'] < pv['imgMinScale']:
 					item.setScale(item.scale() / pv['imgModScale'])
 
+		self.updateTree()
+
+	def listener_Details(self):
+		for item in self.selectedItems():
+			item.detailsDialog()
+
+	def listener_SelectAll(self):
+		for item in self.view.workScene.items():
+			item.setSelected(True)
+
+	def listener_UnSelectAll(self):
+		for item in self.selectedItems():
+			item.setSelected(False)
+
+
 	""" Menu contextual activado con el boton derecho donde se muestran
 	las distintas acciones que se pueden ejecutar sobre componentes simples. """
 
 	def listener_SimpleMenu(self):
+		if self.isOver(self.view.simpleTree):
+			self.listener_UnSelectAll()
+			for index in self.view.simpleTree.selectedIndexes():
+				row = self.view.simpleTree.model().itemFromIndex(index)
+				if row.child(0,0) is not None:
+					id = row.child(0,0).data(Qt.UserRole)
+					comp = self.model.getComponentById(id)
+					comp.setSelected(True)
 		self.view.simpleMenu.exec(self.view.cursor().pos())
 
 
@@ -308,15 +348,13 @@ class PRESENTER( object ):
 	##
 	def listener_modelUpdated(self):
 		scene = [copy(x) for x in self.model.scene]
-		tree = self.view.simpleTree.model()
-		self.view.resetWorkScene()
-		tree.removeRows(0, tree.rowCount())
+		# self.view.resetWorkScene()
+		self.view.workScene.clear()
 		for component in scene:
+			print(component)
 			self.view.workScene.addItem(component)
-			treePtr =  QStandardItem(component.name)
-			treePtr.setData(component,1)
-			self.view.simpleTree.model().appendRow(treePtr)
 		self.model.scene = scene
+		self.updateTree()
 
 
 
@@ -347,3 +385,40 @@ class PRESENTER( object ):
 			if item.isSelected():
 				selectedItems.append(item)
 		return selectedItems
+
+
+	def updateTree(self):
+		treeModel = self.view.simpleTree.model()
+		treeModel.removeRows(0, treeModel.rowCount())
+
+		# Rellenamos el arbol en base al contenido de la cola.
+		for elem in self.view.workScene.items():
+			col1 = QStandardItem(elem.name) # Nombre del elemento.
+			col2 = QStandardItem()	# Estado Visible del elemento.
+			col3 = QStandardItem() 	# Estado Acvtivo del elemento.
+
+			col2.setEditable(False)
+			if elem.visible == True:
+				col2.setCheckState(Qt.Checked)
+			else:
+				col2.setCheckState(Qt.Unchecked)
+
+
+			col3.setEditable(False)
+			# Estado del check.
+			if elem.active == True:
+				col3.setCheckState(Qt.Checked)
+			else:
+				col3.setCheckState(Qt.Unchecked)
+
+			# Posicion Z para facilitar el control de la profundidad.
+			col4 = QStandardItem(str(elem.getPosZ()))
+			col4.setEditable(False)
+
+			# Guardamos el ID de forma oculta.
+			child = QStandardItem()
+			child.setData(elem.id,Qt.UserRole)
+			col1.setChild(0,0,child)
+
+			# Componemos la fila y la agregamos al arbol.
+			treeModel.appendRow( [col1 , col2, col3, col4] )

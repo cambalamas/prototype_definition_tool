@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os, sys,, json, hashlib
+import os, sys, json, hashlib
 from pprint import pprint
 from os.path import basename, normpath
 
@@ -37,8 +37,30 @@ class SimpleComponent(QGraphicsPixmapItem):
 
 		# Atributos no heredados.
 		self._active = True
+		self._visible = True
 		self._path = imgPath
 		self._name = '[S]'+basename(normpath(imgPath))[:-4]
+
+	##
+	## @brief      Genera un diccionario con los datos del componente.
+	##
+	## @param      self  El componente simple.
+	##
+	## @return     <dict>
+	##
+	def readObj(self):
+		data = {
+			'Ruta'   	: self._path,
+			'Nombre' 	: self._name,
+			'Activo' 	: self._active,
+			'Visible'	: self._visible,
+			'SizeX'  	: self.getSizeX(),
+			'SizeY'  	: self.getSizeY(),
+			'PosX'	 	: self.getPosX(),
+			'PosY'	 	: self.getPosY(),
+			'PosZ'	 	: self.getPosZ()
+		}
+		return data
 
 	##
 	## @brief      Sobrecarga del metodo __str__.
@@ -48,7 +70,9 @@ class SimpleComponent(QGraphicsPixmapItem):
 	## @return     Cadena que representa al objeto componente simple.
 	##
 	def __str__( self ):
-		return json.dumps(self.__dict__,indent=4)
+		toString = json.dumps(self.readObj(),indent=0)
+		return toString[1:-1]
+
 
 	##
 	## @brief      Sobrecarga del metodo __copy__.
@@ -63,8 +87,8 @@ class SimpleComponent(QGraphicsPixmapItem):
 		new.setPos(self.getPosX(),self.getPosY())
 		new.setScale(self.getSizeX()/self.boundingRect().width())
 		new.setZValue(self.getPosZ())
-		new.setVisible(self.getVisible())
 		new.activeEffect()
+		new.visibleEffect()
 		return new
 
 
@@ -150,18 +174,31 @@ class SimpleComponent(QGraphicsPixmapItem):
 	def active(self,active):
 		self._active = active
 
-
-	# --- Lectura de los atributos heredados.
-
 	##
-	## @brief      Comprueba si el componente es visbile o no.
+	## @brief      Propiedad de lectura del estado visbile o no visible.
 	##
 	## @param      self  El componente simple.
 	##
-	## @return     True si lo es, False en caso contrario.
+	## @return     True si lo está, False en caso contrario.
 	##
-	def getVisible(self):
-		return self.isVisible()
+	@property
+	def visible(self):
+		return self._visible
+
+	##
+	## @brief      Propiedad de escritura del estado visbile o no visible.
+	##
+	## @param      self    El componente simple.
+	## @param      visible  El estado a escribir.
+	##
+	## @return     None
+	##
+	@visible.setter
+	def visible(self,visible):
+		self._visible = visible
+
+
+	# --- Lectura de los atributos heredados.
 
 	##
 	## @brief      Calcula el ancho en base a la imagen original y la escala.
@@ -253,26 +290,6 @@ class SimpleComponent(QGraphicsPixmapItem):
 	# --- Acciones emisoras.
 
 	##
-	## @brief      Emite señal para cambiar su visibilidad.
-	##
-	## @param      self  El componente simple.
-	##
-	## @return     None
-	##
-	def toggleVisible(self):
-		# self.getWindow().emit_Visible()
-
-	##
-	## @brief      Emite señal para cambiar su estado activo.
-	##
-	## @param      self  El componente simple.
-	##
-	## @return     None
-	##
-	def toggleActive(self):
-		self.getWindow().emit_Active()
-
-	##
 	## @brief      Resta opacidad si el componente no esta activo.
 	##
 	## @param      self  El componente simple.
@@ -283,27 +300,20 @@ class SimpleComponent(QGraphicsPixmapItem):
 		if self.active is True:
 			self.setOpacity(pv['maxOpacity'])
 		else:
-			self.setOpacity(pv['minOpacity'])
+			self.setOpacity(pv['noActiveOpacity'])
 
 	##
-	## @brief      Incrementa el valor de la Z.
+	## @brief      Resta opacidad si el componente no es visible.
 	##
 	## @param      self  El componente simple.
 	##
 	## @return     None
 	##
-	def incZ(self):
-		self.getWindow().emit_ZInc()
-
-	##
-	## @brief      Incrementa el valor de la Z.
-	##
-	## @param      self  El componente simple.
-	##
-	## @return     None
-	##
-	def decZ(self):
-		self.getWindow().emit_ZDec()
+	def visibleEffect(self):
+		if self.visible is True:
+			self.setOpacity(pv['maxOpacity'])
+		else:
+			self.setOpacity(pv['noVisibleOpacity'])
 
 	# Dialogo de detalles.
 	def detailsDialog(self):

@@ -80,6 +80,7 @@ class PRESENTER( object ):
 			for imgPath in imgPathSet[0]:
 				item = SIMPLE.SimpleComponent(imgPath) # Crea comp simpmle.
 				if item is not None:
+					item.setZValue(1.0)
 					self.model.newComponent(item) # Lo agrega a la pila.
 
 	##
@@ -248,6 +249,23 @@ class PRESENTER( object ):
 
 	# --- Señales de componentes.
 
+	def listener_Name(self):
+		newName, noCancel = QInputDialog.getText( self.view,
+		                                'Renombrando componente(s)',
+		                                'Nuevo nombre del componente.' )
+		if noCancel:
+			if len(self.selectedItems()) > 1:
+				i = 0
+				for item in self.selectedItems():
+					i += 1
+					item.name = str(i)+'_'+newName
+			else:
+				for item in self.selectedItems():
+					item.name = newName
+			self.updateTree()
+
+
+
 	def listener_ZInc(self):
 		for item in self.selectedItems():
 			newZ = item.getPosZ() + pv['zJump']
@@ -257,13 +275,8 @@ class PRESENTER( object ):
 	def listener_ZDec(self):
 		for item in self.selectedItems():
 			newZ = item.getPosZ() - pv['zJump']
-			if newZ > 0:
+			if newZ >= 0:
 				item.setZValue(newZ)
-			else: # Si Z es 0 y quier bajar un elem tengo que subir el resto.
-				for elem in self.view.workScene.items():
-					if elem != item: # Sin afectar al objeto que quiero bajar.
-						zUp = elem.getPosZ() + pv['zJump']
-						elem.setZValue(zUp)
 		self.updateTree()
 
 	def listener_Active(self):
@@ -321,20 +334,9 @@ class PRESENTER( object ):
 					comp.setSelected(True)
 		self.view.simpleMenu.exec(self.view.cursor().pos())
 
-
-	# --- Señales de arboles.
-
-	""" Cuando alguno de los campos que permiten edicion de una fila
-	del arbol sufre cualquier cambio, sera evaluado desde aqui. """
-
-	def listener_simpleTreeItemChange(self):
+	def listener_ComplexMenu(self):
 		pass
 
-	def listener_complexTreeItemChange(self):
-		pass
-
-	def listener_complexTreeInvokeMenu(self):
-		pass
 
 
 	# --- Señales del Modelo.
@@ -348,10 +350,8 @@ class PRESENTER( object ):
 	##
 	def listener_modelUpdated(self):
 		scene = [copy(x) for x in self.model.scene]
-		# self.view.resetWorkScene()
-		self.view.workScene.clear()
+		self.view.resetWorkScene()
 		for component in scene:
-			print(component)
 			self.view.workScene.addItem(component)
 		self.model.scene = scene
 		self.updateTree()
@@ -386,39 +386,40 @@ class PRESENTER( object ):
 				selectedItems.append(item)
 		return selectedItems
 
-
+	##
+	## @brief      Actualiza los arboles de la aplicacion.
+	##
+	## @param      self  Este objeto.
+	##
+	## @return     None
+	##
 	def updateTree(self):
 		treeModel = self.view.simpleTree.model()
-		treeModel.removeRows(0, treeModel.rowCount())
-
-		# Rellenamos el arbol en base al contenido de la cola.
-		for elem in self.view.workScene.items():
-			col1 = QStandardItem(elem.name) # Nombre del elemento.
-			col2 = QStandardItem()	# Estado Visible del elemento.
-			col3 = QStandardItem() 	# Estado Acvtivo del elemento.
-
+		treeModel.removeRows(0, treeModel.rowCount()) # Vaciamos el arbol.
+		for elem in self.model.scene:
+			# Nombre del elemento.
+			col1 = QStandardItem(elem.name)
+			col1.setEditable(False)
+			# Estado Visible del elemento.
+			col2 = QStandardItem()
 			col2.setEditable(False)
 			if elem.visible == True:
 				col2.setCheckState(Qt.Checked)
 			else:
 				col2.setCheckState(Qt.Unchecked)
-
-
+			# Estado Acvtivo del elemento.
+			col3 = QStandardItem()
 			col3.setEditable(False)
-			# Estado del check.
 			if elem.active == True:
 				col3.setCheckState(Qt.Checked)
 			else:
 				col3.setCheckState(Qt.Unchecked)
-
 			# Posicion Z para facilitar el control de la profundidad.
 			col4 = QStandardItem(str(elem.getPosZ()))
 			col4.setEditable(False)
-
 			# Guardamos el ID de forma oculta.
 			child = QStandardItem()
 			child.setData(elem.id,Qt.UserRole)
 			col1.setChild(0,0,child)
-
 			# Componemos la fila y la agregamos al arbol.
 			treeModel.appendRow( [col1 , col2, col3, col4] )

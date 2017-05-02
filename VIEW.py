@@ -30,6 +30,7 @@ class VIEW( QMainWindow ):
 	signal_TrEn                  	= 	pyqtSignal()
 	signal_TrFr                  	= 	pyqtSignal()
 	signal_TrDe                  	= 	pyqtSignal()
+	signal_Name            			= 	pyqtSignal()
 	signal_ZInc            			= 	pyqtSignal()
 	signal_ZDec            			= 	pyqtSignal()
 	signal_Active          			= 	pyqtSignal()
@@ -75,6 +76,8 @@ class VIEW( QMainWindow ):
 		self.signal_TrFr.emit()
 	def emit_TrDe(self):
 		self.signal_TrDe.emit()
+	def emit_Name(self):
+		self.signal_Name.emit()
 	def emit_ZInc(self):
 		self.signal_ZInc.emit()
 	def emit_ZDec(self):
@@ -154,7 +157,8 @@ class VIEW( QMainWindow ):
 		)
 
 		# Emisores de las señales relacionadas con componentes simples.
-		simpleEmitters = [ self.emit_ZInc,
+		simpleEmitters = [ self.emit_Name,
+						   self.emit_ZInc,
 						   self.emit_ZDec,
 						   self.emit_Active,
 						   self.emit_Visible,
@@ -364,4 +368,24 @@ class VIEW( QMainWindow ):
 	def keyPressEvent(self,ev):
 		if ev.key() == Qt.Key_Alt:
 			self.emit_HideMenu()
+
+		if ev.key() == Qt::Key_Shift and ev.key() == Qt.Key_Up:
+			orig = self.workScene.sceneRect()
+			orig.setY(orig.y()+25)
+			self.workScene.setSceneRect(orig)
+
+		if ev.key() == Qt::Key_Shift and ev.key() == Qt.Key_Down:
+			orig = self.workScene.sceneRect()
+			orig.setY(orig.y()-25)
+			self.workScene.setSceneRect(orig)
+
+			# if ev.key() == Qt.Key_Left:
+			# 	orig = self.workScene.sceneRect()
+			# 	orig.setX(orig.x()+25)
+			# 	self.workScene.setSceneRect(orig)
+			# if ev.key() == Qt.Key_Right:
+			# 	orig = self.workScene.sceneRect()
+			# 	orig.setX(orig.x()-25)
+			# 	self.workScene.setSceneRect(orig)
 		ev.accept()
+

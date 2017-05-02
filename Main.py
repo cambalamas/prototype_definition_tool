@@ -50,6 +50,12 @@ if __name__ == '__main__':
 	V = VIEW(scrRect)
 	P = PRESENTER(V,M)
 
+	# Colores. (Hay que aplicarlos a cada objeto, no desde aqui)
+	# app.setStyleSheet("QMainWindow{background:#000000;}")
+	# app.setStyleSheet("QToolBar{background:#000000;}")
+	# app.setStyleSheet("QTreeView{background:#000000;}")
+	# app.setStyleSheet("QDockWidget{background:#000000;}")
+
 	# Conecta las señales del modelo.
 	M.signal_modelUpdated.connect(P.listener_modelUpdated)
 
@@ -69,6 +75,7 @@ if __name__ == '__main__':
 	V.signal_TrEn.connect(P.listener_TrEn)
 	V.signal_TrFr.connect(P.listener_TrFr)
 	V.signal_TrDe.connect(P.listener_TrDe)
+	V.signal_Name.connect(P.listener_Name)
 	V.signal_ZInc.connect(P.listener_ZInc)
 	V.signal_ZDec.connect(P.listener_ZDec)
 	V.signal_Active.connect(P.listener_Active)
@@ -78,10 +85,8 @@ if __name__ == '__main__':
 	V.signal_Details.connect(P.listener_Details)
 	V.signal_SelectAll.connect(P.listener_SelectAll)
 	V.signal_UnSelectAll.connect(P.listener_UnSelectAll)
-	# V.signal_simpleTreeItemChange.connect(P.listener_simpleTreeItemChange)
 	V.signal_SimpleMenu.connect(P.listener_SimpleMenu)
-	# V.signal_complexTreeItemChange.connect(P.listener_complexTreeItemChange)
-	# V.signal_complexTreeInvokeMenu.connect(P.listener_complexTreeInvokeMenu)
+	V.signal_ComplexMenu.connect(P.listener_ComplexMenu)
 
 	# Muestra la ventana maximizada.
 	V.showMaximized()

@@ -104,14 +104,14 @@ def mainBars():
 
 	act = mEdit.addAction('Seleccionar todos')
 	act.setShortcut('Ctrl+A')
-	# act.setIcon(icon('undo.ico'))
+	act.setIcon(icon('selectAll.ico'))
 	act.setStatusTip('Selecciona todos los elementos de la escena.')
 
 	actions.append(act)
 
 	act = mEdit.addAction('Deseleccionar todos')
 	act.setShortcut('Ctrl+D')
-	# act.setIcon(icon('undo.ico'))
+	act.setIcon(icon('unSelectAll.ico'))
 	act.setStatusTip('Deselecciona todos los elementos seleccionados.')
 
 	mb.addSeparator()
@@ -218,24 +218,27 @@ def simpleMenu():
 
 	actions = []
 
-	act = ms.addAction('INCREMENTA Profundidad')
+	act = ms.addAction('Cambiar Nombre')
 	actions.append(act)
 
-	act = ms.addAction('DECREMENTA Profundidad')
+	act = ms.addAction('Incrementa Profundidad')
 	actions.append(act)
 
-	act = ms.addAction('Rota estado: ACTIVO')
+	act = ms.addAction('Decrementa Profundidad')
+	actions.append(act)
+
+	act = ms.addAction('Rota estado: Activo')
 	act.setCheckable(True)
 	actions.append(act)
 
-	act = ms.addAction('Rota estado: VISIBLE')
+	act = ms.addAction('Rota estado: Visible')
 	act.setCheckable(True)
 	actions.append(act)
 
-	act = ms.addAction('BORRA el elemento')
+	act = ms.addAction('Borra el elemento')
 	actions.append(act)
 
-	act = ms.addAction('Ver detalles...')
+	act = ms.addAction('Ver detalles')
 	actions.append(act)
 
 	return ms, actions
@@ -342,7 +345,7 @@ def dockBar(title,widget):
 	dockbar.setWidget(widget)
 
 	# Limitamos su anclaje a los laterales.
-	dockbar.setAllowedAreas(Qt.LeftDockWidgetArea|Qt.RightDockWidgetArea)
+	# dockbar.setAllowedAreas(Qt.LeftDockWidgetArea|Qt.RightDockWidgetArea)
 	return dockbar
 
 ##

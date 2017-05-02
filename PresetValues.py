@@ -9,8 +9,8 @@ import json
 
 pv = {
 
-	'bgColor': '#333333',
-	'sceneColor':'#555555',
+	'bgColor': '#999',
+	'sceneColor':'#DDD',
 
 	'startMsg' : 'SESSION STARTED !',
 	'endMsg' : 'SESSION ENDED !\n\n\n',

@@ -55,11 +55,7 @@ def saveStateFromRedo():
 	state = getCurState(__V)
 	__M.saveStateFromRedo(state)
 
-def getCurState(__V):
-
-	# Creamos una copia de las escena actual.
-	scene = []
-
+def getCurState(sceneCopy):
 	# Creamos una copia de la cola de componentes simples actual.
 	simpleStorage = []
 	for item in __M.getSimpleCompStorage():

@@ -42,10 +42,40 @@ def configWindow(window):
 ##
 def exitDialog(view):
 	return QMessageBox.question( view,
-						  		 '¡CONFIRMAR!',
-						  		 '¿Seguro que quieres salir?',
-						  		 QMessageBox.Ok | QMessageBox.No,
-						  		 QMessageBox.No ) # <--- Por defecto.
+								 '¡CONFIRMAR!',
+								 '¿Seguro que quieres salir?',
+								 QMessageBox.Ok | QMessageBox.No,
+								 QMessageBox.No ) # <--- Por defecto.
+
+##
+## @brief      Dialogo para seleccionar imagenes.
+##
+## @param      parent   Ventana principal.
+## @param      defPath  Ruta donde se abrira el dialogo.
+##
+## @return     PyQt5.QtWidgets.QFileDialog
+##
+def imgDialog(parent,defPath):
+	title = 'Pick imgs!'
+	supportList = 'JPEG (*.jpg *.jpeg);;PNG (*.png);;GIF (*.gif)'
+	return QFileDialog.getOpenFileNames( parent,
+										 title,
+										 defPath,
+										 supportList,
+										 'PNG (*.png)')
+
+##
+## @brief      Dialogo para cambiar el nombre de un componente.
+##
+## @param      parent  Ventana padre.
+##
+## @return     PyQt.QtGui.QInputDialog
+##
+def nameDialog(parent):
+	newName, noCancel = QInputDialog.getText( parent,
+								 'Renombrando componente(s)',
+								 'Nuevo nombre del componente')
+	return newName, noCancel
 
 ##
 ## @brief      Crea los componentes de menus de la ventana principal.
@@ -253,14 +283,9 @@ def workArea(screenRect):
 	workArea.setBackgroundBrush(QColor(pv['bgColor']))
 	workArea.resize(screenRect.width(),screenRect.height())
 
-	rect   = workArea.rect()
-	width  = rect.width() - rect.width()*pv['viewRectMargin']
-	height = rect.height() - rect.height()*pv['viewRectMargin']
-	rectF   = QRectF(0,0,width,height)
-
 	# Escena a la que se agregaran los Items con los que trabajamos.
-	workAreaScene = QGraphicsScene(rectF,workArea)
-	workAreaScene.addRect(rectF,Qt.black,QColor(pv['sceneColor']))
+	workAreaScene = QGraphicsScene(QRectF(screenRect),workArea)
+	workAreaScene.addRect(QRectF(screenRect),Qt.black,QColor(pv['sceneColor']))
 
 	# Asignamos la escena al area de trabajo.
 	workArea.setScene(workAreaScene)
@@ -310,23 +335,6 @@ def simpleDockBar(widget):
 def complexDockBar(widget):
 	title = 'COMPLEJOS'
 	return dockBar(title,widget)
-
-##
-## @brief      Dialogo para seleccionar imagenes.
-##
-## @param      parent   Ventana principal.
-## @param      defPath  Ruta donde se abrira el dialogo.
-##
-## @return     PyQt5.QtWidgets.QFileDialog
-##
-def imgDialog(parent,defPath):
-	title = 'Pick imgs!'
-	supportList = 'JPEG (*.jpg *.jpeg);;PNG (*.png);;GIF (*.gif)'
-	return QFileDialog.getOpenFileNames( parent,
-	                              		 title,
-	                              		 defPath,
-	                              		 supportList,
-	                              		 'PNG (*.png)')
 
 
 # -------------------------------------------------------------------------- #

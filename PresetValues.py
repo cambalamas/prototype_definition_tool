@@ -9,6 +9,7 @@ import json
 
 pv = {
 
+
 	'bgColor': '#999',
 	'sceneColor':'#DDD',
 
@@ -17,18 +18,17 @@ pv = {
 
 	'defaultPath' 		: '~',
 
-	'viewRectMargin'	: 0.20,
 	'viewModScale'		: 1.1,
 	'viewMinScale'		: 0.05,
 	'viewMaxScale'		: 15.0,
+	'viewRectMargin'	: 0.85,
 
+	'zJump'				: 1.0,
+	'mrTimer' 			: 5.0,
+	'maxOpacity'		: 1.0,
+	'noVisibleOpacity'	: 0.0,
+	'noActiveOpacity'	: 0.3,
 	'imgModScale'		: 1.025,
 	'imgMinScale'		: 0.025,
 	'imgMaxScale'		: 5.025,
-
-	'maxOpacity'		: 1.0,
-	'noActiveOpacity'	: 0.3,
-	'noVisibleOpacity'	: 0.0,
-
-	'zJump'				: 1.0,
 }

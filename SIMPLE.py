@@ -30,7 +30,7 @@ class SimpleComponent(QGraphicsPixmapItem):
 		self.setPixmap(QPixmap(imgPath))
 		self.setCursor(QCursor(Qt.PointingHandCursor)) # Cursor = mano.
 		self.setTransformationMode(Qt.SmoothTransformation) # AntiAliasing.
-		self.setFlags(self.ItemIsSelectable|self.ItemIsMovable) # Move & Select
+		self.setFlags(self.ItemIsSelectable) # Implemnt tipica de seleccion.
 
 		# Id para localizar el elemento en una estructura de datos.
 		self._id = hashlib.sha1(os.urandom(128)).hexdigest()
@@ -263,6 +263,35 @@ class SimpleComponent(QGraphicsPixmapItem):
 
 	# --- Manejo de eventos.
 
+	# Necesario para luego tener acceso a 'e.lastPos()'.
+
+	##
+	## @brief      Acepta el primer clic para luego poder leer la pos anterior.
+	##
+	## @param      self  El componente simple.
+	## @param      ev    Objeto con los datos del evento.
+	##
+	## @return     None
+	##
+	def mousePressEvent(self, ev):
+		if ev.buttons() == Qt.LeftButton:
+			ev.accept()
+
+	# Mientras se manteniene clicado.
+
+	##
+	## @brief      Controla el desplazamiento para mover el componente.
+	##
+	## @param      self  El componente simple.
+	## @param      ev    Objeto con los datos del evento.
+	##
+	## @return     None
+	##
+	def mouseMoveEvent(self, ev):
+		if self.isSelected():
+			if ev.buttons() == Qt.LeftButton:
+				self.getWindow().emit_Move(ev.lastPos(),ev.pos())
+
 	##
 	## @brief      Controlar el giro de la rueda para escalar el componente.
 	##
@@ -272,7 +301,8 @@ class SimpleComponent(QGraphicsPixmapItem):
 	## @return     None
 	##
 	def wheelEvent(self, ev):
-		self.getWindow().emit_Resize(ev.delta())
+		if self.isSelected():
+			self.getWindow().emit_Resize(ev.delta())
 
 	##
 	## @brief      Invoca el menu contextual relativo a este componente.

@@ -36,8 +36,9 @@ class VIEW( QMainWindow ):
 	signal_Active          			= 	pyqtSignal()
 	signal_Visible         			= 	pyqtSignal()
 	signal_Delete          			= 	pyqtSignal()
-	signal_Resize          			= 	pyqtSignal(int)
 	signal_Details         			= 	pyqtSignal()
+	signal_Resize          			= 	pyqtSignal(int)
+	signal_Move          			= 	pyqtSignal(QPointF,QPointF)
 	signal_SelectAll       			= 	pyqtSignal()
 	signal_UnSelectAll       		= 	pyqtSignal()
 	signal_simpleTreeItemChange  	= 	pyqtSignal()
@@ -88,10 +89,12 @@ class VIEW( QMainWindow ):
 		self.signal_Visible.emit()
 	def emit_Delete(self):
 		self.signal_Delete.emit()
-	def emit_Resize(self,delta):
-		self.signal_Resize.emit(delta)
 	def emit_Details(self):
 		self.signal_Details.emit()
+	def emit_Resize(self,delta):
+		self.signal_Resize.emit(delta)
+	def emit_Move(self,posO,posD):
+		self.signal_Move.emit(posO,posD)
 	def emit_SelectAll(self):
 		self.signal_SelectAll.emit()
 	def emit_UnSelectAll(self):
@@ -119,6 +122,8 @@ class VIEW( QMainWindow ):
 
 		# Guarda la resolucion de la pantalla del usuario.
 		self.screenRect = screenRect
+		self.screenRect.setWidth(self.screenRect.width()*pv['viewRectMargin'])
+		self.screenRect.setHeight(self.screenRect.height()*pv['viewRectMargin'])
 
 		# Estado anterior a Pantalla Completa.
 		self._prevState = Qt.WindowStates
@@ -182,7 +187,7 @@ class VIEW( QMainWindow ):
 		self.addDockWidget(Qt.LeftDockWidgetArea,self._complexDockbar)
 
 		# Area de trabajo.
-		_workArea = GUI.workArea(screenRect)
+		_workArea = GUI.workArea(self.screenRect)
 		self.setCentralWidget(_workArea)
 
 		_statusbar = QStatusBar()
@@ -258,26 +263,16 @@ class VIEW( QMainWindow ):
 	def workScene(self):
 		return self.centralWidget().scene()
 
-	# !!!! APAÑO TEMPORAL !!!!
-	def resetWorkScene(self):
-		scale = self.scale
-		workArea = GUI.workArea(self.screenRect)
-		workArea.scale(scale,scale)
-		self.setCentralWidget(workArea)
-
 	##
-	## @brief      Propiedad de lectura del area del lienzo.
+	## @brief      Borra el contenido de la escena.
 	##
 	## @param      self  Esta ventana.
 	##
-	## @return     PyQt5.QtCore.QRectF
+	## @return     None
 	##
-	@property
-	def viewRectF(self):
-		viewRect = self.centralWidget().rect()
-		width  = viewRect.width() - viewRect.width()*pv['viewRectMargin']
-		height = viewRect.height() - viewRect.height()*pv['viewRectMargin']
-		return QRectF(0,0,width,height)
+	def resetWorkScene(self):
+		self.workScene.clear()
+		self.workScene.addRect(QRectF(self.screenRect),Qt.black,QColor(pv['sceneColor']))
 
 	##
 	## @brief      Propiedad de lectura de la escala actual del area de trabajo.
@@ -369,4 +364,3 @@ class VIEW( QMainWindow ):
 		if ev.key() == Qt.Key_Alt:
 			self.emit_HideMenu()
 		ev.accept()
-

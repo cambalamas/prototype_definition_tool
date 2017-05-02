@@ -369,12 +369,12 @@ class VIEW( QMainWindow ):
 		if ev.key() == Qt.Key_Alt:
 			self.emit_HideMenu()
 
-		if ev.key() == Qt::Key_Shift and ev.key() == Qt.Key_Up:
+		if ev.key() == Qt.Key_Shift and ev.key() == Qt.Key_Up:
 			orig = self.workScene.sceneRect()
 			orig.setY(orig.y()+25)
 			self.workScene.setSceneRect(orig)
 
-		if ev.key() == Qt::Key_Shift and ev.key() == Qt.Key_Down:
+		if ev.key() == Qt.Key_Shift and ev.key() == Qt.Key_Down:
 			orig = self.workScene.sceneRect()
 			orig.setY(orig.y()-25)
 			self.workScene.setSceneRect(orig)

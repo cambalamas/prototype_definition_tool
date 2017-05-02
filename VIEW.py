@@ -368,24 +368,5 @@ class VIEW( QMainWindow ):
 	def keyPressEvent(self,ev):
 		if ev.key() == Qt.Key_Alt:
 			self.emit_HideMenu()
-
-		if ev.key() == Qt.Key_Shift and ev.key() == Qt.Key_Up:
-			orig = self.workScene.sceneRect()
-			orig.setY(orig.y()+25)
-			self.workScene.setSceneRect(orig)
-
-		if ev.key() == Qt.Key_Shift and ev.key() == Qt.Key_Down:
-			orig = self.workScene.sceneRect()
-			orig.setY(orig.y()-25)
-			self.workScene.setSceneRect(orig)
-
-			# if ev.key() == Qt.Key_Left:
-			# 	orig = self.workScene.sceneRect()
-			# 	orig.setX(orig.x()+25)
-			# 	self.workScene.setSceneRect(orig)
-			# if ev.key() == Qt.Key_Right:
-			# 	orig = self.workScene.sceneRect()
-			# 	orig.setX(orig.x()-25)
-			# 	self.workScene.setSceneRect(orig)
 		ev.accept()
 

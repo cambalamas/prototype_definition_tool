@@ -1,4 +1,61 @@
 # Español
 es:
-  title: Herramienta de definicion de prototipos
-  save: Guardar proyecto
+  title             : Herramienta de definicion de prototipos
+  # Dialogos.
+  exitDialogTitle   : ¡CONFIRMAR!
+  exitDialogQuest   : ¿Seguro que quieres salir?
+  imgDialogTitle    : Seleccionar imagen(es)
+  nameDialogTitle   : Renombrando componente(s)
+  nameDialogQuest   : Nuevo nombre del componente
+  # Barra de menus.
+  toolbarName       : Herramientas
+  fileMenu          : Archivo
+  editMenu          : Editar
+  viewMenu          : Vista
+  helpMenu          : Ayuda
+  # Menu archivo.
+  save              : Guardar proyecto
+  saveHint          : Guarda el estado del proyecto.
+  addSimple         : Nuevo Componente(s) simple(s)
+  addSimpleHint     : Crea un componente simple en base a una imagen.
+  addComplex        : Nuevo Componente complejo
+  addComplexHint    : Crea un componente complejo en base a varias imgs.
+  exit              : Salir (!)
+  exitHint          : Cierra la aplicacion...
+  # Menu editar.
+  selectAll         : Seleccionar todos
+  selectAllHint     : Selecciona todos los elementos de la escena.
+  unSelectAll       : Deseleccionar todos
+  unSelectAllHint   : Deselecciona todos los elementos seleccionados.
+  undo              : Deshacer
+  undoHint          : Deshace la ultima accion ejecutada.
+  redo              : Rehacer
+  redoHint          : Rehace la ultima accion ejecutada.
+  # Menu vista.
+  minimal           : Interfaz minima
+  minimalHint       : Oculta la barras de herramientas y los paneles.
+  zoomIn            : Zoom +
+  zoomInHint        : Incrementa el zoom de la escena.
+  zoom100           : Zoom 100%
+  zoom100Hint       : Restablece el zoom de la escena.
+  zoomOut           : Zoom -
+  zoomOutHint       : Decrementa el zoom de la escena.
+  fullScreen        : Pantalla completa
+  fullScreenHint    : Rota entre pantalla completa y el estado anterior.
+  # Menu sComp.
+  compChName        : Cambiar Nombre
+  compZInc          : Incrementa Profundidad
+  compZDec          : Decrementa Profundidad
+  compToggleActive  : Rota estado Activo
+  compToggleVisible : Rota estado Visible
+  compDelete        : Borra el elemento
+  compDetails       : Ver detalles
+  # Arbol sComp.
+  scHeaderName      : Nombre
+  scHeaderVisible   : Visib.
+  scHeaderActive    : Act.
+  # Arbol cComp.
+  ccHeaderName      : Nombre
+  # Dockwidgets.
+  scTreeTitle       : SIMPLES
+  ccTreeTitle       : COMPLEJOS

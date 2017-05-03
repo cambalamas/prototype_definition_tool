@@ -1,4 +1,61 @@
 # Aleman
 de:
-  title: Definition-Tool-Prototypen
-  save: Projekt speichern
+  title             : Prototyp Definition Werkzeug.
+  # Dialogos.
+  exitDialogTitle   : BESTÄTIGEN!
+  exitDialogQuest   : Bist du sicher dass du gehen willst?
+  imgDialogTitle    : Bild (e) auswählen
+  nameDialogTitle   : Umbenennen der Komponente (n)
+  nameDialogQuest   : Neuer Komponentenname
+  # Barra de menus.
+  toolbarName       : Werkzeuge
+  fileMenu          : Archiv
+  editMenu          : Bearbeiten
+  viewMenu          : Aussicht
+  helpMenu          : Hilfe
+  # Menu archivo.
+  save              : Projekt speichern
+  saveHint          : Sichert den Projektstatus.
+  addSimple         : Neue einfache Komponente (n)
+  addSimpleHint     : Erstellen Sie eine einfache Komponente basierend auf einem Bild.
+  addComplex        : Neue komplexe Komponente
+  addComplexHint    : Erstellt eine komplexe Komponente, die auf mehreren Bildern basiert.
+  exit              : Geh raus (!)
+  exitHint          : Schließen Sie die Anwendung ...
+  # Menu editar.
+  selectAll         : Alles auswählen
+  selectAllHint     : Wählen Sie alle Elemente der Szene aus.
+  unSelectAll       : Alle abwählen
+  unSelectAllHint   : Deaktivieren Sie alle ausgewählten Elemente.
+  undo              : Rückgängig machen
+  undoHint          : Die letzte ausgeführte Aktion rückgängig machen
+  redo              : Wiederherstellen
+  redoHint          : Wiederholen Sie die zuletzt ausgeführte Aktion.
+  # Menu vista.
+  minimal           : Minimale Schnittstelle
+  minimalHint       : Versteckt Symbolleisten und Panels.
+  zoomIn            : Zoom +
+  zoomInHint        : Erhöht den Zoom der Szene.
+  zoom100           : Zoom 100%
+  zoom100Hint       : Setzt den Zoom der Szene zurück.
+  zoomOut           : Zoom -
+  zoomOutHint       : Verringert den Szenen-Zoom.
+  fullScreen        : Vollbild
+  fullScreenHint    : Vollbild einschalten.
+  # Menu sComp.
+  compChName        : Umbenennen
+  compZInc          : Tiefe erhöhen
+  compZDec          : Tiefe verringern
+  compToggleActive  : Toggle aktiv
+  compToggleVisible : Toggle sichtbar
+  compDelete        : Löschen
+  compDetails       : Siehe Einzelheiten
+  # Arbol sComp.
+  scHeaderName      : Name
+  scHeaderVisible   : Sicht.
+  scHeaderActive    : Akt.
+  # Arbol cComp.
+  ccHeaderName      : Name
+  # Dockwidgets.
+  scTreeTitle       : EINFACH
+  ccTreeTitle       : COMPLEX

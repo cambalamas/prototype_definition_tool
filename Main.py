@@ -1,9 +1,10 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
-import sys
+import sys, i18n
 from datetime import datetime
 import PyQt5
 from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
 from VIEW import VIEW
 from MODEL import MODEL
 from PRESENTER import PRESENTER
@@ -22,7 +23,22 @@ def logger(type, context, msg):
 	fmtMsg  = '\n {}\n-----------------\n{}'.format(datetime.now().time(),msg)
 	ts      << fmtMsg+'\n' # '<<' Operador propio para recibir cadenas.
 
+## @brief      Ejecutar en cuanto se crea la app antes de cargar la GUI.
+## @return     None
+def onOpen():
+	opts=['Español','English','Français','Deutsch']
+	reply,ok=QInputDialog.getItem(None,'Langs...','Select your language:',opts)
+	print(reply)
+	# Segun lo seleccionado establecemos el idioma para i18n.
+	if reply == 'Español'		: i18n.set('locale', 'es')
+	elif reply == 'English'		: i18n.set('locale', 'en')
+	elif reply == 'Français'	: i18n.set('locale', 'fr')
+	elif reply == 'Deutsch'	    : i18n.set('locale', 'de')
+	else 						: i18n.set('locale', 'es')
+
+#
 # Punto de entrada a la aplicación.
+#
 if __name__ == '__main__':
 	# Instancia de una aplicacion basada en Qt.
 	app = PyQt5.QtWidgets.QApplication(sys.argv)
@@ -32,6 +48,7 @@ if __name__ == '__main__':
 	# Resolucion del dispositivo del usuario.
 	scrRect = app.primaryScreen().availableGeometry()
 	# Inicializaciones.
+	onOpen()
 	M = MODEL()
 	V = VIEW(scrRect)
 	P = PRESENTER(V,M)
@@ -49,10 +66,7 @@ if __name__ == '__main__':
 	V.signal_Zoom100.connect(P.listener_Zoom100)
 	V.signal_ZoomOut.connect(P.listener_ZoomOut)
 	V.signal_FullScreen.connect(P.listener_FullScreen)
-	V.signal_TrEs.connect(P.listener_TrEs)
-	V.signal_TrEn.connect(P.listener_TrEn)
-	V.signal_TrFr.connect(P.listener_TrFr)
-	V.signal_TrDe.connect(P.listener_TrDe)
+	V.signal_Details.connect(P.listener_Details)
 	V.signal_Name.connect(P.listener_Name)
 	V.signal_ZInc.connect(P.listener_ZInc)
 	V.signal_ZDec.connect(P.listener_ZDec)
@@ -61,7 +75,6 @@ if __name__ == '__main__':
 	V.signal_Delete.connect(P.listener_Delete)
 	V.signal_Resize.connect(P.listener_Resize)
 	V.signal_Move.connect(P.listener_Move)
-	V.signal_Details.connect(P.listener_Details)
 	V.signal_SelectAll.connect(P.listener_SelectAll)
 	V.signal_UnSelectAll.connect(P.listener_UnSelectAll)
 	V.signal_SimpleMenu.connect(P.listener_SimpleMenu)

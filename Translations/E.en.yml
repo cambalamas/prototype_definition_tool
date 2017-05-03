@@ -1,4 +1,61 @@
 # Ingles
 en:
-  title: Prototype definition tool
-  save: Save project
+  title             : Prototype Definition Tool.
+  # Dialogos.
+  exitDialogTitle   : CONFIRM!
+  exitDialogQuest   : Are you sure you want to leave?
+  imgDialogTitle    : Select image(s)
+  nameDialogTitle   : Renaming component(s)
+  nameDialogQuest   : New component name
+  # Barra de menus.
+  toolbarName       : Tools
+  fileMenu          : Archive
+  editMenu          : Edit
+  viewMenu          : View
+  helpMenu          : Help
+  # Menu archivo.
+  save              : Save Project
+  saveHint          : Saves project status.
+  addSimple         : New Simple Component(s)
+  addSimpleHint     : Create a simple component based on an image.
+  addComplex        : New Complex Component
+  addComplexHint    : Creates a complex component based on several images.
+  exit              : Get out (!)
+  exitHint          : Close the application...
+  # Menu editar.
+  selectAll         : Select All
+  selectAllHint     : Select all the elements of the scene.
+  unSelectAll       : Deselect All
+  unSelectAllHint   : Deselect all selected items.
+  undo              : Undo
+  undoHint          : Undo the last executed action.
+  redo              : Redo
+  redoHint          : Redo the last executed action.
+  # Menu vista.
+  minimal           : Minimal interface
+  minimalHint       : Hides Toolbars and Panels.
+  zoomIn            : Zoom +
+  zoomInHint        : Increases the scene's zoom.
+  zoom100           : Zoom 100%
+  zoom100Hint       : Resets the scene's zoom.
+  zoomOut           : Zoom -
+  zoomOutHint       : Decreases scene zoom.
+  fullScreen        : Fullscreen
+  fullScreenHint    : Toggle fullScreen.
+  # Menu sComp.
+  compChName        : Rename
+  compZInc          : Increase Depth
+  compZDec          : Decrease Depth
+  compToggleActive  : Toggle active
+  compToggleVisible : Toggle visible
+  compDelete        : Delete
+  compDetails       : See details
+  # Arbol sComp.
+  scHeaderName      : Name
+  scHeaderVisible   : Visib.
+  scHeaderActive    : Act.
+  # Arbol cComp.
+  ccHeaderName      : Name
+  # Dockwidgets.
+  scTreeTitle       : SIMPLE
+  ccTreeTitle       : COMPLEX

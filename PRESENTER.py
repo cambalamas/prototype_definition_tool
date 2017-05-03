@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 import i18n
-import threading
+from threading import Timer
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -24,7 +24,6 @@ class PRESENTER( object ):
 		# Flags para evitar drenaje de RAM.
 		self.saveFlagMove = True
 		self.saveFlagResize = True
-		self._tFlags = threading.Timer(pv['mrTimer'], self.flagsTimer)
 
 	## @brief      Propiedad de lectura de la variable vista.
 	## @param      self  El objeto presentador.
@@ -53,10 +52,10 @@ class PRESENTER( object ):
 	## @param      self  El objeto presentador.
 	## @return     None
 	def listener_NewSimple(self):
-		self.model.saveState()
 		home = os.path.expanduser(pv['defaultPath'])
 		imgPathSet = GUI.imgDialog(self.view,home) # ret: ([<path>],<formato>)
 		if imgPathSet[0]:
+			self.model.saveState()
 			for imgPath in imgPathSet[0]:
 				item = SIMPLE.SimpleComponent(imgPath) # Crea comp simpmle.
 				if item is not None:
@@ -121,6 +120,7 @@ class PRESENTER( object ):
 	## @param      self  El objeto presentador.
 	## @return     None
 	def listener_ZoomIn(self):
+		print(self.view.workArea.transform().mapRect(self.view.contentsRect()))
 		if not self.view.scale * pv['viewModScale'] > pv['viewMaxScale']:
 			self.view.workArea.scale(pv['viewModScale'],pv['viewModScale'])
 
@@ -128,12 +128,14 @@ class PRESENTER( object ):
 	## @param      self  El objeto presentador.
 	## @return     None
 	def listener_Zoom100(self):
+		print(self.view.workArea.transform().mapRect(self.view.contentsRect()))
 		self.view.workArea.scale(1/self.view.scale,1/self.view.scale)
 
 	## @brief      Disminuye la escala de la escena.
 	## @param      self  El objeto presentador.
 	## @return     None
 	def listener_ZoomOut(self):
+		print(self.view.workArea.transform().mapRect(self.view.contentsRect()))
 		if not self.view.scale / pv['viewModScale'] < pv['viewMinScale']:
 			self.view.workArea.scale(1/pv['viewModScale'],1/pv['viewModScale'])
 
@@ -148,31 +150,7 @@ class PRESENTER( object ):
 			self.view.showFullScreen()
 
 
-	# --- Señales del menu Ayuda.
 
-	## @brief      Configura 'locale' de i18n para ver la interfaz en Español.
-	## @param      self  Este objeto
-	## @return     None
-	def listener_TrEs(self):
-		i18n.set('locale', 'es')
-
-	## @brief      Configura 'locale' de i18n para ver la interfaz en Ingles.
-	## @param      self  El objeto presentador.
-	## @return     None
-	def listener_TrEn(self):
-		i18n.set('locale', 'en')
-
-	## @brief      Configura 'locale' de i18n para ver la interfaz en Frances.
-	## @param      self  El objeto presentador.
-	## @return     None
-	def listener_TrFr(self):
-		i18n.set('locale', 'fr')
-
-	## @brief      Configura 'locale' de i18n para ver la interfaz en Aleman.
-	## @param      self  El objeto presentador.
-	## @return     None
-	def listener_TrDe(self):
-		i18n.set('locale', 'de')
 
 
 	# --- Señales de componentes.
@@ -230,18 +208,19 @@ class PRESENTER( object ):
 		if self.saveFlagMove:
 			self.saveFlagMove = False
 			self.model.saveState()
-			self._tFlags.start()
+			Timer(pv['moveTimer'],self.thMoveFlag).start()
 		for item in self.selectedItems():
 			x = despl.x() * item.scale()
 			y = despl.y() * item.scale()
 			item.moveBy(x,y)
+			print(item.pos())
 
 
 	def listener_Resize(self,delta):
 		if self.saveFlagResize:
 			self.saveFlagResize = False
 			self.model.saveState()
-			self._tFlags.start()
+			Timer(pv['resizeTimer'],self.thResizeFlag).start()
 		if delta > 0:
 			for item in self.selectedItems():
 				if not item.scale() * pv['imgModScale'] > pv['imgMaxScale']:
@@ -302,17 +281,17 @@ class PRESENTER( object ):
 
 	# --- Logicas externas a las señales.
 
-	##
-	## @brief      Resetea los flags que controlan el guardar estado.
-	##
+	## @brief      Resetea el flag que controla guardar estado al redimesionar.
 	## @param      self  El componente simple.
-	##
 	## @return     None
-	##
-	def flagsTimer(self):
-		print('timer proof')
-		self.saveFlagMove = True
+	def thResizeFlag(self):
 		self.saveFlagResize = True
+
+	## @brief      Resetea el flag que controla guardar estado al mover.
+	## @param      self  El componente simple.
+	## @return     None
+	def thMoveFlag(self):
+		self.saveFlagMove = True
 
 	## @brief      Comprueba si el cursor se encuentra sobre un widget dado.
 	## @param      self    El objeto presentador.

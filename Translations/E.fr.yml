@@ -1,4 +1,61 @@
 # Frances
 fr:
-  title: Définition des prototypes d'outils.
-  save: Enregistrer le projet
+  title             : Outil de définition de prototype.
+  # Dialogos.
+  exitDialogTitle   : CONFIRMEZ-VOUS!
+  exitDialogQuest   : Êtes-vous sûr de vouloir quitter?
+  imgDialogTitle    : Sélectionnez l'image(s)
+  nameDialogTitle   : Renommer le(s) composant(s)
+  nameDialogQuest   : Nouveau nom de composant
+  # Barra de menus.
+  toolbarName       : Outils
+  fileMenu          : Archive
+  editMenu          : Modifier
+  viewMenu          : Vue
+  helpMenu          : Aidez-moi
+  # Menu archivo.
+  save              : Sauvegarder le projet
+  saveHint          : Enregistre l'état du projet.
+  addSimple         : Nouveau composant simple (s)
+  addSimpleHint     : Créez un composant simple basé sur une image.
+  addComplex        : Nouveau composant complexe
+  addComplexHint    : Crée un composant complexe basé sur plusieurs images.
+  exit              : Sortez (!)
+  exitHint          : Fermer l'application ...
+  # Menu editar.
+  selectAll         : Tout sélectionner
+  selectAllHint     : Sélectionnez tous les éléments de la scène.
+  unSelectAll       : Tout déselectionner
+  unSelectAllHint   : Désélectionnez tous les éléments sélectionnés.
+  undo              : Annuler
+  undoHint          : Annule la dernière action exécutée.
+  redo              : Refaire
+  redoHint          : Refaire la dernière action exécutée.
+  # Menu vista.
+  minimal           : Interface minimale
+  minimalHint       : Cache les barres d'outils et les panneaux.
+  zoomIn            : Zoom +
+  zoomInHint        : Augmente le zoom de la scène.
+  zoom100           : Zoom 100%
+  zoom100Hint       : Réinitialise le zoom de la scène.
+  zoomOut           : Zoom -
+  zoomOutHint       : Diminue le zoom de la scène.
+  fullScreen        : Plein écran
+  fullScreenHint    : Basculer en plein écran.
+  # Menu sComp.
+  compChName        : Renommer
+  compZInc          : Augmenter la profondeur
+  compZDec          : Diminuer la profondeur
+  compToggleActive  : Basculer actif
+  compToggleVisible : Toggle visible
+  compDelete        : Effacer
+  compDetails       : Voir les détails
+  # Arbol sComp.
+  scHeaderName      : Nom
+  scHeaderVisible   : Visib.
+  scHeaderActive    : Act.
+  # Arbol cComp.
+  ccHeaderName      : Nom
+  # Dockwidgets.
+  scTreeTitle       : SIMPLE
+  ccTreeTitle       : COMPLEXE

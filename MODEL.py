@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 
 from copy import copy
-from queue import LifoQueue
 from collections import deque
 
 from PyQt5.QtCore import *
+
+from PresetValues import pv
 
 ## @brief      Clase que se encarga de la gestion de datos y persistencia.
 class MODEL( QObject ):
@@ -35,9 +36,9 @@ class MODEL( QObject ):
 		# Como la edicion de un componente complejo.
 		self._tempScene = deque()
 		# Pila con los estados anteriores de la interfaz.
-		self._undo = LifoQueue()
+		self._undo = deque(maxlen=pv['historyLimit'])
 		# Pila con los estados posteriores de la interfaz.
-		self._redo = LifoQueue()
+		self._redo = deque(maxlen=pv['historyLimit'])
 
 
 	## @brief      Propieda de lectura del componente interfaz.
@@ -115,22 +116,23 @@ class MODEL( QObject ):
 	## @param      self  Este modelo.
 	## @return     None
 	def saveState(self):
-		self._undo.put(self.copyScene())
+		self._undo.append(self.copyScene())
+		self._redo.clear()
 
 	## @brief      Operacion sobre datos al solicitar la accion deshacer.
 	## @param      self  Este modelo.
 	## @return     None
 	def undo(self):
-		if not self._undo.empty():
-			self._redo.put(self.copyScene())
-			self._scene = self._undo.get()
+		if not len(self._undo) == 0:
+			self._redo.append(self.copyScene())
+			self._scene = self._undo.pop()
 			self.emit_modelUpdated()
 
 	## @brief      Operacion sobre datos al solicitar la accion rehacer.
 	## @param      self  Este modelo.
 	## @return     None
 	def redo(self):
-		if not self._redo.empty():
-			self._undo.put(self.copyScene())
-			self._scene = self._redo.get()
+		if not len(self._redo) == 0:
+			self._undo.append(self.copyScene())
+			self._scene = self._redo.pop()
 			self.emit_modelUpdated()

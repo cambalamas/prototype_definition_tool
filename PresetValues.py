@@ -9,26 +9,28 @@ import json
 
 pv = {
 
-
-	'bgColor': '#999',
-	'sceneColor':'#DDD',
-
-	'startMsg' : 'SESSION STARTED !',
-	'endMsg' : 'SESSION ENDED !\n\n\n',
+	'startMsg' 			: 'SESSION STARTED !',
+	'endMsg' 			: 'SESSION ENDED !\n\n\n',
 
 	'defaultPath' 		: '~',
+	'bgColor'			: '#999',
+	'sceneColor'		: '#DDD',
 
 	'viewModScale'		: 1.1,
 	'viewMinScale'		: 0.05,
 	'viewMaxScale'		: 15.0,
 	'viewRectMargin'	: 0.85,
 
-	'zJump'				: 1.0,
-	'mrTimer' 			: 5.0,
+	'moveTimer'			: 5.0,
+	'resizeTimer'		: 5.0,
+
 	'maxOpacity'		: 1.0,
 	'noVisibleOpacity'	: 0.0,
 	'noActiveOpacity'	: 0.3,
+	'zJump'				: 1.0,
 	'imgModScale'		: 1.025,
 	'imgMinScale'		: 0.025,
 	'imgMaxScale'		: 5.025,
+
+	'historyLimit'			: 100
 }

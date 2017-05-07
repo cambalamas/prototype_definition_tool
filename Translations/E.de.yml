@@ -4,8 +4,8 @@ de:
   # Dialogos.
   exitDialogTitle   : BESTÄTIGEN!
   exitDialogQuest   : Bist du sicher dass du gehen willst?
-  imgDialogTitle    : Bild (e) auswählen
-  nameDialogTitle   : Umbenennen der Komponente (n)
+  imgDialogTitle    : Bild(e) auswählen
+  nameDialogTitle   : Umbenennen der Komponente(n)
   nameDialogQuest   : Neuer Komponentenname
   # Barra de menus.
   toolbarName       : Werkzeuge
@@ -16,7 +16,7 @@ de:
   # Menu archivo.
   save              : Projekt speichern
   saveHint          : Sichert den Projektstatus.
-  addSimple         : Neue einfache Komponente (n)
+  addSimple         : Neue einfache Komponente(n)
   addSimpleHint     : Erstellen Sie eine einfache Komponente basierend auf einem Bild.
   addComplex        : Neue komplexe Komponente
   addComplexHint    : Erstellt eine komplexe Komponente, die auf mehreren Bildern basiert.

@@ -1,0 +1,61 @@
+# Español
+gl:
+  title             : Ferramenta de definición de prototipados
+  # Dialogos.
+  exitDialogTitle   : CONFIRMAR!
+  exitDialogQuest   : Seguro que quieres sair?
+  imgDialogTitle    : Seleccionar imaxe(s)
+  nameDialogTitle   : Rebatizar compoñente(s)
+  nameDialogQuest   : Novo nome do compoñente
+  # Barra de menus.
+  toolbarName       : Ferramentas
+  fileMenu          : Arquivo
+  editMenu          : Editar
+  viewMenu          : Vista
+  helpMenu          : Axuda
+  # Menu archivo.
+  save              : Gardar proxecto.
+  saveHint          : Garda o estado do proxecto.
+  addSimple         : Novo Compoñente(s) simple(s)
+  addSimpleHint     : Crea un compoñente simple en base a unha imaxe.
+  addComplex        : Novo Compñente complexo
+  addComplexHint    : Crea un compoñente complexo en base a varias imaxes.
+  exit              : Sair (!)
+  exitHint          : Pecha a aplicación...
+  # Menu editar.
+  selectAll         : Seleccioar todos
+  selectAllHint     : Seleccioa todos os elementos da escea.
+  unSelectAll       : Deseleccioar todos
+  unSelectAllHint   : Deseleccioa todos os elementos seleccioados.
+  undo              : Desfacer
+  undoHint          : Desfai a última acción executada.
+  redo              : Refacer
+  redoHint          : Refai a última acción executada.
+  # Menu vista.
+  minimal           : Interfaz mínima
+  minimalHint       : Oculta as barras de ferramentas e os paneis.
+  zoomIn            : Zoom +
+  zoomInHint        : Incrementa o zoom da escea.
+  zoom100           : Zoom 100%
+  zoom100Hint       : Restablece o zoom da escea.
+  zoomOut           : Zoom -
+  zoomOutHint       : Decrementa o zoom da escea.
+  fullScreen        : Pantalla completa
+  fullScreenHint    : Rota entre pantalla completa e o estado anterior.
+  # Menu sComp.
+  compChName        : Cambiar Nome
+  compZInc          : Incrementa Profundidade
+  compZDec          : Decrementa Profundidade
+  compToggleActive  : Rota estado Activo
+  compToggleVisible : Rota estado Visible
+  compDelete        : Borra o elemento
+  compDetails       : Ver detalles
+  # Arbol sComp.
+  scHeaderName      : Nome
+  scHeaderVisible   : Visib.
+  scHeaderActive    : Act.
+  # Arbol cComp.
+  ccHeaderName      : Nome
+  # Dockwidgets.
+  scTreeTitle       : SIMPLES
+  ccTreeTitle       : COMPLEXOS

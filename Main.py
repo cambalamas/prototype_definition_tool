@@ -26,11 +26,12 @@ def logger(type, context, msg):
 ## @brief      Ejecutar en cuanto se crea la app antes de cargar la GUI.
 ## @return     None
 def onOpen():
-	opts=['Español','English','Français','Deutsch']
+	opts=['','Español','Galego','English','Français','Deutsch']
 	reply,ok=QInputDialog.getItem(None,'Langs...','Select your language:',opts)
 	print(reply)
 	# Segun lo seleccionado establecemos el idioma para i18n.
-	if reply == 'Español'		: i18n.set('locale', 'es')
+	if   reply == 'Español'		: i18n.set('locale', 'es')
+	elif reply == 'Galego'		: i18n.set('locale', 'gl')
 	elif reply == 'English'		: i18n.set('locale', 'en')
 	elif reply == 'Français'	: i18n.set('locale', 'fr')
 	elif reply == 'Deutsch'	    : i18n.set('locale', 'de')

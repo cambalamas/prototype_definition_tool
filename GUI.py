@@ -186,7 +186,7 @@ def simpleMenu():
 	ms = QMenu()
 	actions = []
 
-	act = ms.addAction(i18n.t('E.compVisible'))
+	act = ms.addAction(i18n.t('E.compDetails'))
 	actions.append(act)
 
 	ms.addSeparator()

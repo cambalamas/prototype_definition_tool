@@ -6,7 +6,7 @@ from threading import Timer
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-import GUI, HIST, PARSER, SIMPLE
+import GUI, PARSER, SIMPLE
 from PresetValues import pv
 
 ## @brief      Clase que define la logica de negocio de la aplicacion.

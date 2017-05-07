@@ -16,7 +16,7 @@ fr:
   # Menu archivo.
   save              : Sauvegarder le projet
   saveHint          : Enregistre l'état du projet.
-  addSimple         : Nouveau composant simple (s)
+  addSimple         : Nouveau(s) composant(s) simple(s)
   addSimpleHint     : Créez un composant simple basé sur une image.
   addComplex        : Nouveau composant complexe
   addComplexHint    : Crée un composant complexe basé sur plusieurs images.

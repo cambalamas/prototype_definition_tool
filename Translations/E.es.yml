@@ -1,6 +1,6 @@
 # Español
 es:
-  title             : Herramienta de definicion de prototipos
+  title             : Herramienta de definición de prototipados
   # Dialogos.
   exitDialogTitle   : ¡CONFIRMAR!
   exitDialogQuest   : ¿Seguro que quieres salir?
@@ -16,24 +16,24 @@ es:
   # Menu archivo.
   save              : Guardar proyecto
   saveHint          : Guarda el estado del proyecto.
-  addSimple         : Nuevo Componente(s) simple(s)
+  addSimple         : Nuevo(s) Componente(s) simple(s)
   addSimpleHint     : Crea un componente simple en base a una imagen.
   addComplex        : Nuevo Componente complejo
-  addComplexHint    : Crea un componente complejo en base a varias imgs.
+  addComplexHint    : Crea un componente complejo en base a varias imagenes.
   exit              : Salir (!)
-  exitHint          : Cierra la aplicacion...
+  exitHint          : Cierra la aplicación...
   # Menu editar.
   selectAll         : Seleccionar todos
   selectAllHint     : Selecciona todos los elementos de la escena.
   unSelectAll       : Deseleccionar todos
   unSelectAllHint   : Deselecciona todos los elementos seleccionados.
   undo              : Deshacer
-  undoHint          : Deshace la ultima accion ejecutada.
+  undoHint          : Deshace la ultima acción ejecutada.
   redo              : Rehacer
-  redoHint          : Rehace la ultima accion ejecutada.
+  redoHint          : Rehace la ultima acción ejecutada.
   # Menu vista.
-  minimal           : Interfaz minima
-  minimalHint       : Oculta la barras de herramientas y los paneles.
+  minimal           : Interfaz mínima
+  minimalHint       : Oculta las barras de herramientas y los paneles.
   zoomIn            : Zoom +
   zoomInHint        : Incrementa el zoom de la escena.
   zoom100           : Zoom 100%

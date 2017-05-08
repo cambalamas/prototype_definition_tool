@@ -1,11 +1,11 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
-
-# http://stackoverflow.com/a/7631951/7901063
-# - '.get(key)' es un método de búsqueda y llamada.
-# - '[key]' se implementa en bytecode. (Más eficiente)
-
 import json
+
+
+# .----------------------------------------.
+# | Diccionario de valores preestablecidos |
+# --------------------------------------------------------------------------- #
 
 pv = {
 
@@ -21,8 +21,8 @@ pv = {
 	'viewMaxScale'		: 15.0,
 	'viewRectMargin'	: 0.85,
 
-	'moveTimer'			: 5.0,
-	'resizeTimer'		: 5.0,
+	'moveTimer'			: 5.0, #secs
+	'resizeTimer'		: 5.0, #secs
 
 	'maxOpacity'		: 1.0,
 	'noVisibleOpacity'	: 0.0,
@@ -32,5 +32,13 @@ pv = {
 	'imgMinScale'		: 0.025,
 	'imgMaxScale'		: 5.025,
 
-	'historyLimit'			: 100
+	'historyLimit'		: 100
 }
+
+
+# .------------------.
+# | Metodo de acceso |
+# --------------------------------------------------------------------------- #
+#  http://stackoverflow.com/a/7631951/7901063
+#	  - '.get(key)' es un método de búsqueda y llamada.
+#	  - '[key]' se implementa en bytecode. (Más eficiente)

@@ -17,9 +17,24 @@ def icon(name):
 ## @brief      Establece el icono y el titulo.
 ## @param      window  Ventana a configurar.
 ## @return     None
-def configWindow(window):
-	window.setWindowIcon(icon('logo.png'))		# Icono del dock.
-	window.setWindowTitle(i18n.t('E.title'))	# Titulo de la ventana.
+def configWindow(view):
+	# Icono del dock.
+	view.setWindowIcon(icon('logo.png'))
+	# Dialogo para solicitar idioma.
+	opts = ['Español','Galego','English','Français','Deutsch']
+	reply,ok = QInputDialog.getItem( view,
+	                                 'IDIOM',
+	                                 'Do you want to choose a language?',
+	                                 opts, editable = False )
+	# Según lo seleccionado establecemos el idioma para i18n.
+	if   reply == 'Español'		: i18n.set('locale', 'es')
+	elif reply == 'Galego'		: i18n.set('locale', 'gl')
+	elif reply == 'English'		: i18n.set('locale', 'en')
+	elif reply == 'Français'	: i18n.set('locale', 'fr')
+	elif reply == 'Deutsch'	    : i18n.set('locale', 'de')
+	else 						: i18n.set('locale', 'es')
+	# Titulo de la ventana.
+	view.setWindowTitle(i18n.t('E.title'))
 
 ## @brief      Presenta un dialogo para confimar la salida de la app.
 ## @param      view  Ventana padre.
@@ -228,11 +243,11 @@ def workArea(screenRect):
 ## @brief      Llama al cosntructor de arboles con el header de un comp simple.
 ## @param      emitters  Funciones a lanzar por diferentes acciones.
 ## @return     PyQt5.QtWidgets.QTreeView.
-def simpleTreeView(*emitters):
+def simpleTreeView(emitter):
 	header = [ i18n.t('E.scHeaderName'),
 			   i18n.t('E.scHeaderVisible'),
 			   i18n.t('E.scHeaderActive'), 'Z']
-	return treeView(header,*emitters)
+	return treeView(header,emitter)
 
 ## @brief      Llama al cosntructor de arboles con el header de un comp simple.
 ## @param      emitters  Funciones a lanzar por diferentes acciones.
@@ -274,20 +289,19 @@ def dockBar(title,widget):
 ## @param      header    Cabecera con las distintas columnas del arbol.
 ## @param      emitters  Funciones a lanzar por diferentes acciones.
 ## @return     PyQt5.QtWidgets.QTreeView
-def treeView(header,*emitters):
+def treeView(header,emitter):
 	tree = QTreeView()
 	model = QStandardItemModel()
 	# Asigna el modelo a la vista.
 	tree.setModel(model)
 	# Propiedades del modelo.
 	model.setHorizontalHeaderLabels(header)
-	model.itemChanged.connect(emitters[0])
 	# Propiedades del cabecero.
 	tree.header().resizeSection(1,44)
 	tree.header().resizeSection(2,38)
 	tree.header().resizeSection(3,30)
 	# Señal de menu contextual. (Por defecto se dispara con 'boton derecho')
-	tree.customContextMenuRequested.connect(emitters[1])
+	tree.customContextMenuRequested.connect(emitter)
 	# Menu contextual solicitado por señal.
 	tree.setContextMenuPolicy(Qt.CustomContextMenu)
 	# Oculta las flechas de hijos.

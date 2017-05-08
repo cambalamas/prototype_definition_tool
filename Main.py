@@ -21,21 +21,7 @@ def logger(type, context, msg):
 	logFile.open(QIODevice.WriteOnly | QIODevice.Append)
 	ts      = QTextStream(logFile) # Canal para enviar texto al log.
 	fmtMsg  = '\n {}\n-----------------\n{}'.format(datetime.now().time(),msg)
-	ts      << fmtMsg+'\n' # '<<' Operador propio para recibir cadenas.
-
-## @brief      Ejecutar en cuanto se crea la app antes de cargar la GUI.
-## @return     None
-def onOpen():
-	opts=['','Español','Galego','English','Français','Deutsch']
-	reply,ok=QInputDialog.getItem(None,'Langs...','Select your language:',opts)
-	print(reply)
-	# Segun lo seleccionado establecemos el idioma para i18n.
-	if   reply == 'Español'		: i18n.set('locale', 'es')
-	elif reply == 'Galego'		: i18n.set('locale', 'gl')
-	elif reply == 'English'		: i18n.set('locale', 'en')
-	elif reply == 'Français'	: i18n.set('locale', 'fr')
-	elif reply == 'Deutsch'	    : i18n.set('locale', 'de')
-	else 						: i18n.set('locale', 'es')
+	ts      << fmtMsg + '\n' # '<<' Operador propio para recibir cadenas.
 
 #
 # Punto de entrada a la aplicación.
@@ -49,7 +35,6 @@ if __name__ == '__main__':
 	# Resolucion del dispositivo del usuario.
 	scrRect = app.primaryScreen().availableGeometry()
 	# Inicializaciones.
-	onOpen()
 	M = MODEL()
 	V = VIEW(scrRect)
 	P = PRESENTER(V,M)

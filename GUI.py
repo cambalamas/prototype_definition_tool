@@ -204,6 +204,9 @@ def simpleMenu():
 	act = ms.addAction(i18n.t('E.compDetails'))
 	actions.append(act)
 
+	act = ms.addAction(i18n.t('E.compCenter')) #!!!
+	actions.append(act)
+
 	ms.addSeparator()
 
 	act = ms.addAction(i18n.t('E.compChName'))

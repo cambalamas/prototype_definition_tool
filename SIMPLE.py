@@ -195,8 +195,6 @@ class SimpleComponent(QGraphicsPixmapItem):
 # | Manejo de eventos |
 # --------------------------------------------------------------------------- #
 
-	# Necesario para luego tener acceso a 'e.lastPos()'.
-
 	## @brief      Acepta el primer clic para luego poder leer la pos anterior.
 	## @param      self  Componente Simple.
 	## @param      ev    Objeto con los datos del evento.
@@ -204,8 +202,6 @@ class SimpleComponent(QGraphicsPixmapItem):
 	def mousePressEvent(self, ev):
 		if ev.buttons() == Qt.LeftButton:
 			ev.accept()
-
-	# Mientras se manteniene clicado.
 
 	## @brief      Controla el desplazamiento para mover el componente.
 	## @param      self  Componente Simple.
@@ -215,6 +211,28 @@ class SimpleComponent(QGraphicsPixmapItem):
 		if self.isSelected():
 			if ev.buttons() == Qt.LeftButton:
 				self.getWindow().emit_Move(ev.lastPos(),ev.pos())
+
+	# AQUI ES INUTIL, HAY QUE MOVERLO A LA ESCENA.
+
+	## @brief      Controla el desplazamiento para mover el componente.
+	## @param      self  Componente Simple.
+	## @param      ev    Objeto con los datos del evento.
+	## @return     None
+	def keyPressEvent(self, ev):
+		# if self.isSelected():
+		if ev.modifiers() == Qt.ShiftModifier:
+			moveRng = 10.0
+		else:
+			moveRng = 1.0
+
+		if ev.key() == Qt.LeftArrow:
+			self.getWindow().emit_Move(self.pos(),QPointF(-moveRng,0.0))
+		if ev.key() == Qt.RightArrow:
+			self.getWindow().emit_Move(self.pos(),QPointF(moveRng,0.0))
+		if ev.key() == Qt.DownArrow:
+			self.getWindow().emit_Move(self.pos(),QPointF(0.0,-moveRng))
+		if ev.key() == Qt.UpArrow:
+			self.getWindow().emit_Move(self.pos(),QPointF(0.0,moveRng))
 
 	## @brief      Controlar el giro de la rueda para escalar el componente.
 	## @param      self  Componente Simple.

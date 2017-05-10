@@ -53,6 +53,7 @@ if __name__ == '__main__':
 	V.signal_ZoomOut.connect(P.listener_ZoomOut)
 	V.signal_FullScreen.connect(P.listener_FullScreen)
 	V.signal_Details.connect(P.listener_Details)
+	V.signal_Center.connect(P.listener_Center)
 	V.signal_Name.connect(P.listener_Name)
 	V.signal_ZInc.connect(P.listener_ZInc)
 	V.signal_ZDec.connect(P.listener_ZDec)

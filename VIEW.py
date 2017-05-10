@@ -33,13 +33,14 @@ class VIEW( QMainWindow ):
 	signal_FullScreen            	= 	pyqtSignal()
 	# Simple menu
 	signal_SimpleMenu  				= 	pyqtSignal()
+	signal_Details         			= 	pyqtSignal()
+	signal_Center          			= 	pyqtSignal()
 	signal_Name            			= 	pyqtSignal()
 	signal_ZInc            			= 	pyqtSignal()
 	signal_ZDec            			= 	pyqtSignal()
 	signal_Active          			= 	pyqtSignal()
 	signal_Visible         			= 	pyqtSignal()
 	signal_Delete          			= 	pyqtSignal()
-	signal_Details         			= 	pyqtSignal()
 	# Simple callbacks
 	signal_Resize          			= 	pyqtSignal(int)
 	signal_Move          			= 	pyqtSignal(QPointF,QPointF)
@@ -85,6 +86,8 @@ class VIEW( QMainWindow ):
 		self.signal_SimpleMenu.emit()
 	def emit_Details(self):
 		self.signal_Details.emit()
+	def emit_Center(self):
+		self.signal_Center.emit()
 	def emit_Name(self):
 		self.signal_Name.emit()
 	def emit_ZInc(self):
@@ -156,6 +159,7 @@ class VIEW( QMainWindow ):
 
 		# Emisores de las señales relacionadas con componentes simples.
 		simpleEmitters = [ self.emit_Details,
+						   self.emit_Center,
 						   self.emit_Name,
 						   self.emit_ZInc,
 						   self.emit_ZDec,

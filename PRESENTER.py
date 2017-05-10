@@ -201,6 +201,24 @@ class PRESENTER( object ):
 					comp.setSelected(True)
 		self.view.simpleMenu.exec(self.view.cursor().pos())
 
+	## @brief      Abre un cuadro de dialogo con el ToString del componente.
+	## @param      self  Presentador.
+	## @return     None
+	def listener_Details(self):
+		for item in self._selectedItems():
+			item.detailsDialog()
+
+	## @brief      Centra los componentes en la escena.
+	## @param      self  Presentador.
+	## @return     None
+	def listener_Center(self):
+		x = self.view.workScene.sceneRect().width()/2
+		y = self.view.workScene.sceneRect().height()/2
+		for item in self._selectedItems():
+			itemX = item.getSizeX()/2
+			itemY = item.getSizeY()/2
+			item.setPos(x-itemX,y-itemY)
+
 	## @brief      Dialogo para cambiar el nombre los comps. seleccionados.
 	## @param      self  Presentador.
 	## @return     None
@@ -272,13 +290,6 @@ class PRESENTER( object ):
 		self.model.saveState()
 		self.model.delComponent(self._selectedItems())
 
-	## @brief      Abre un cuadro de dialogo con el ToString del componente.
-	## @param      self  Presentador.
-	## @return     None
-	def listener_Details(self):
-		for item in self._selectedItems():
-			item.detailsDialog()
-
 
 # .-------------------------------------------.
 # | Señales 'callback' de componentes simples |
@@ -299,7 +310,6 @@ class PRESENTER( object ):
 			x = despl.x() * item.scale()
 			y = despl.y() * item.scale()
 			item.moveBy(x,y)
-			print(item.pos())
 
 	## @brief      Escala virtualmente los comps. según el giro de la rueda.
 	## @param      self   Presentador.
@@ -310,20 +320,16 @@ class PRESENTER( object ):
 			self.__saveFlagResize = False
 			self.model.saveState()
 			Timer(pv['resizeTimer'],self._thResizeFlag).start()
-		# offsetX = lambda x,sign: x.offset().x() + pv['imgModScale'] *sign
-		# offsetY = lambda y,sign: y.offset().y() + pv['imgModScale'] *sign
 		if delta > 0:
 			for item in self._selectedItems():
 				if not item.scale() * pv['imgModScale'] > pv['imgMaxScale']:
 					# item.setOffset(offsetX(item,1), offsetY(item,1))
 					item.setScale(item.scale() * pv['imgModScale'])
-					print(item.offset().x(),item.offset().y())
 		else:
 			for item in self._selectedItems():
 				if not item.scale() / pv['imgModScale'] < pv['imgMinScale']:
 					# item.setOffset(offsetX(item,-1), offsetY(item,-1))
 					item.setScale(item.scale() / pv['imgModScale'])
-					print(item.offset().x(),item.offset().y())
 		# Actualiza los datos en el arbol de componentes.
 		self._updateTree()
 

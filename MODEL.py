@@ -1,9 +1,13 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
+
 from copy import copy
 from collections import deque
+
 from PyQt5.QtCore import *
+
 from PresetValues import pv
+
 
 ## @brief      Clase que se encarga de la gestion de datos y persistencia.
 class MODEL( QObject ):
@@ -11,7 +15,7 @@ class MODEL( QObject ):
 
 # .---------.
 # | Señales |
-# --------------------------------------------------------------------------- #
+# -------------------------------------------------------------------------- #
 
 	## Señal para solicitar actualizacion de la vista.
 	signal_modelUpdated = pyqtSignal()
@@ -19,7 +23,7 @@ class MODEL( QObject ):
 
 # .----------.
 # | Emisores |
-# --------------------------------------------------------------------------- #
+# -------------------------------------------------------------------------- #
 
 	## @brief      Emisor de la señal de actualizacion.
 	## @param      self  Modelo.
@@ -30,7 +34,7 @@ class MODEL( QObject ):
 
 # .-------------.
 # | Constructor |
-# --------------------------------------------------------------------------- #
+# -------------------------------------------------------------------------- #
 
 	## @brief      Cosntructor del Modelo.
 	## @param      self  Modelo.
@@ -55,7 +59,7 @@ class MODEL( QObject ):
 
 # .-------------------------------------------.
 # | Acceso 'publico' a las variables privadas |
-# --------------------------------------------------------------------------- #
+# -------------------------------------------------------------------------- #
 
 	## @brief      Propieda de lectura del componente interfaz.
 	## @param      self  Modelo.
@@ -98,7 +102,7 @@ class MODEL( QObject ):
 
 # .----------------------.
 # | Gestion de los datos |
-# --------------------------------------------------------------------------- #
+# -------------------------------------------------------------------------- #
 
 	## @brief      Agrega un componente a la pila.
 	## @param      self       Modelo.
@@ -129,7 +133,7 @@ class MODEL( QObject ):
 
 # .----------------------.
 # | Gestion de historico |
-# --------------------------------------------------------------------------- #
+# -------------------------------------------------------------------------- #
 
 	## @brief      Guarda el estado actual en la pila de deshacer.
 	## @param      self  Modelo.
@@ -159,7 +163,7 @@ class MODEL( QObject ):
 
 # .----------------------.
 # | Funciones auxiliares |
-# --------------------------------------------------------------------------- #
+# -------------------------------------------------------------------------- #
 
 	## @brief      Devuelve una copia de la escena actual.
 	## @param      self  Modelo.

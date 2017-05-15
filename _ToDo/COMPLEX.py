@@ -7,7 +7,7 @@ class Complex(QGraphicsPixmapItem):
 
 # .-------------.
 # | Constructor |
-# --------------------------------------------------------------------------- #
+# -------------------------------------------------------------------------- #
 
     ## @brief      Constructor de componentes complejos.
     ## @param      self  Componente Complejo.
@@ -29,7 +29,7 @@ class Complex(QGraphicsPixmapItem):
 
 # .------------------------------------.
 # | Sobreescritura de metodos internos |
-# --------------------------------------------------------------------------- #
+# -------------------------------------------------------------------------- #
 
 	## @brief      Genera un diccionario con los datos del componente.
 	## @param      self  Componente Complejo
@@ -63,7 +63,7 @@ class Complex(QGraphicsPixmapItem):
 
 # .------------.
 # | SUB CLASES |
-# --------------------------------------------------------------------------- #
+# -------------------------------------------------------------------------- #
 
 # Cc/Estado
 class State:

@@ -1,9 +1,11 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
+
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import *
+
 import GUI
 from PresetValues import pv
 
@@ -13,7 +15,7 @@ class VIEW( QMainWindow ):
 
 # .---------.
 # | Señales |
-# --------------------------------------------------------------------------- #
+# -------------------------------------------------------------------------- #
 
 	# File menu
 	signal_SaveProject           	= 	pyqtSignal()
@@ -31,6 +33,7 @@ class VIEW( QMainWindow ):
 	signal_Zoom100               	= 	pyqtSignal()
 	signal_ZoomOut               	= 	pyqtSignal()
 	signal_FullScreen            	= 	pyqtSignal()
+	signal_SceneCenter            	= 	pyqtSignal()
 	# Simple menu
 	signal_SimpleMenu  				= 	pyqtSignal()
 	signal_Details         			= 	pyqtSignal()
@@ -44,13 +47,16 @@ class VIEW( QMainWindow ):
 	# Simple callbacks
 	signal_Resize          			= 	pyqtSignal(int)
 	signal_Move          			= 	pyqtSignal(QPointF,QPointF)
-	# Complex menu
-	signal_ComplexMenu 				= 	pyqtSignal()
+	# Scene callbacks
+	signal_SceneMove 				= 	pyqtSignal(QPointF,QPointF)
+	signal_SelectArea 				= 	pyqtSignal(QRect)
+	#Tree callbacks
+	signal_ItemChanged              =   pyqtSignal(QStandardItem)
 
 
 # .----------.
 # | Emisores |
-# --------------------------------------------------------------------------- #
+# -------------------------------------------------------------------------- #
 
 	# File menu
 	def emit_SaveProject(self):
@@ -81,6 +87,8 @@ class VIEW( QMainWindow ):
 		self.signal_ZoomOut.emit()
 	def emit_FullScreen(self):
 		self.signal_FullScreen.emit()
+	def emit_SceneCenter(self):
+		self.signal_SceneCenter.emit()
 	# Simple menu
 	def emit_SimpleMenu(self):
 		self.signal_SimpleMenu.emit()
@@ -105,14 +113,19 @@ class VIEW( QMainWindow ):
 		self.signal_Resize.emit(delta)
 	def emit_Move(self,posO,posD):
 		self.signal_Move.emit(posO,posD)
-	# Complex menu
-	def emit_ComplexMenu(self):
-		self.signal_ComplexMenu.emit()
+	# Scene callbacks
+	def emit_SceneMove(self,posO,posD):
+		self.signal_SceneMove.emit(posO,posD)
+	def emit_SelectArea(self,rect):
+		self.signal_SelectArea.emit(rect)
+	# Tree callbacks
+	def emit_ItemChanged(self,item):
+		self.signal_ItemChanged.emit(item)
 
 
 # .-------------.
 # | Constructor |
-# --------------------------------------------------------------------------- #
+# -------------------------------------------------------------------------- #
 
 	## @brief      Constructor del objeto vista, que será la ventana principal.
 	## @param      self        Vista.
@@ -144,18 +157,20 @@ class VIEW( QMainWindow ):
 						 self.emit_ZoomIn,
 						 self.emit_Zoom100,
 						 self.emit_ZoomOut,
-						 self.emit_FullScreen ]
+						 self.emit_FullScreen,
+						 self.emit_SceneCenter ]
 
 		# Construir la GUI de la barra de menus.
 		# Construir la GUI de la barra de tareas.
 		# Lista de acciones ejectuables por dichas barras.
 		_menubar, self.__toolbar, mainActions = GUI.mainBars()
 		self.setMenuBar(_menubar)
-		self.addToolBar(self.__toolbar)
+		self.addToolBar(Qt.LeftToolBarArea,self.__toolbar)
 		self._connectSignals(mainActions,mainEmitters)
 
 		# Arbol de componentes simples.
-		self.__simpleTree = GUI.simpleTreeView(self.emit_SimpleMenu)
+		self.__simpleTree = GUI.simpleTreeView( self.emit_ItemChanged,
+		                                        self.emit_SimpleMenu )
 
 		# Emisores de las señales relacionadas con componentes simples.
 		simpleEmitters = [ self.emit_Details,
@@ -172,13 +187,13 @@ class VIEW( QMainWindow ):
 		self._connectSignals(simpleActions,simpleEmitters)
 
 		# Arbol de componentes complejos.
-		self.__complexTree=GUI.complexTreeView(self.emit_ComplexMenu)
+		# self.__complexTree=GUI.complexTreeView(self.emit_ComplexMenu)
 
 		# Barra lateral.
 		self.__simpleDockbar = GUI.complexDockBar( self.__simpleTree )
-		self.addDockWidget(Qt.LeftDockWidgetArea, self.__simpleDockbar)
-		self.__complexDockbar = GUI.complexDockBar(self.__complexTree)
-		self.addDockWidget(Qt.LeftDockWidgetArea,self.__complexDockbar)
+		self.addDockWidget(Qt.RightDockWidgetArea, self.__simpleDockbar)
+		# self.__complexDockbar = GUI.complexDockBar(self.__complexTree)
+		# self.addDockWidget(Qt.LeftDockWidgetArea,self.__complexDockbar)
 
 		# Area de trabajo.
 		_workArea = GUI.workArea(self.screenRect)
@@ -190,7 +205,7 @@ class VIEW( QMainWindow ):
 
 # .-------------------------------------------.
 # | Acceso 'publico' a las variables privadas |
-# --------------------------------------------------------------------------- #
+# -------------------------------------------------------------------------- #
 
 	## @brief      Propiedad de lectura del estado anterior de la ventana.
 	## @param      self  Esta ventana
@@ -239,7 +254,6 @@ class VIEW( QMainWindow ):
 	## @param      self  Vista.
 	## @return     PyQt5.QtWidget.QDockWidget
 	@property
-	@property
 	def simpleDockbar(self):
 		return self.__simpleDockbar
 
@@ -271,7 +285,7 @@ class VIEW( QMainWindow ):
 	def workScene(self):
 		return self.workArea.scene()
 
-	## @brief      Propiedad de lectura de la escala actual del area de trabajo.
+	## @brief      Propiedad de lectura de la escala del area de trabajo.
 	## @param      self  Vista.
 	## @return     qreal
 	@property
@@ -281,14 +295,7 @@ class VIEW( QMainWindow ):
 
 # .----------------------.
 # | Funciones auxiliares |
-# --------------------------------------------------------------------------- #
-
-	## @brief      Borra el contenido de la escena.
-	## @param      self  Vista.
-	## @return     None
-	def resetWorkScene(self):
-		self.workScene.clear()
-		self.workScene.addRect(QRectF(self.screenRect),Qt.black,QColor(pv['sceneColor']))
+# -------------------------------------------------------------------------- #
 
 	## @brief      Conecta acciones dadas con los emisores corresondientes.
 	## @param      self      Vista.
@@ -299,10 +306,29 @@ class VIEW( QMainWindow ):
 		for i in range(min(len(actions),len(emitters))):
 			actions[i].triggered.connect(emitters[i])
 
+	## @brief      Borra el contenido de la escena.
+	## @param      self  Vista.
+	## @return     None
+	def resetWorkScene(self):
+		# Guardo la ubiacion y estado de la escena
+		x = self.workScene.sceneRect().x()
+		y = self.workScene.sceneRect().y()
+		w = self.workScene.sceneRect().width()
+		h = self.workScene.sceneRect().height()
+
+		self.workScene.clear()
+
+		rect = QRectF(self.screenRect)
+		borderColor = Qt.black
+		fillColor = QColor(pv['sceneColor'])
+		self.workScene.addRect(rect,borderColor,fillColor)
+
+		self.workScene.setSceneRect(x,y,w,h)
+
 
 # .-----------------------.
 # | Sobrecarga de eventos |
-# --------------------------------------------------------------------------- #
+# -------------------------------------------------------------------------- #
 
 	## @brief      Solicita confirmación al intentar cerrar la ventana.
 	## @param      self  Vista.
@@ -323,4 +349,3 @@ class VIEW( QMainWindow ):
 	def keyPressEvent(self,ev):
 		if ev.key() == Qt.Key_Alt: # Al pulsar la tecla Alt.
 			self.emit_HideMenu()   # Se Oculta/Muestra la barra de menús.
-		ev.accept()

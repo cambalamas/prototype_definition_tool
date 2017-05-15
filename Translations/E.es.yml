@@ -52,8 +52,8 @@ es:
   compDetails       : Ver detalles
   # Arbol sComp.
   scHeaderName      : Nombre
-  scHeaderVisible   : Visib.
-  scHeaderActive    : Act.
+  scHeaderVisible   : V.
+  scHeaderActive    : A.
   # Arbol cComp.
   ccHeaderName      : Nombre
   # Dockwidgets.

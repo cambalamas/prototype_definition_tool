@@ -69,7 +69,7 @@ class PRESENTER( object ):
     ## @return     None
     def listener_SaveProject(self):
         pass # PARSER.save(self.model.interface)
-        qDebug('Saving project...')   #[LOG]
+        qDebug('Saving project...')
 
 
     ## @brief      Crea un nuevo componente simple.
@@ -85,7 +85,7 @@ class PRESENTER( object ):
                 if item is not None:
                     item.setZValue(1.0)
                     self.model.newComponent(item) # Lo agrega a la pila.
-                    qDebug('New component from '+self._nfc(imgPath))   #[LOG]
+                    qDebug('Created new component from '+self._nfc(imgPath))
 
     ## @brief      Crea un nuevo componente complejo.
     ## @param      self  Presentador.
@@ -104,7 +104,7 @@ class PRESENTER( object ):
     def listener_SelectAll(self):
         for item in self.view.workScene.items():
             item.setSelected(True)
-        qDebug('Selected all components')   #[LOG]
+        qDebug('Selected all components')
 
     ## @brief      Establece False la propiedad 'selected' de todos los comps.
     ## @param      self  Presentador.
@@ -112,21 +112,21 @@ class PRESENTER( object ):
     def listener_UnSelectAll(self):
         for item in self._selectedItems():
             item.setSelected(False)
-        qDebug('Unselected all components')   #[LOG]
+        qDebug('Unselected all components')
 
     ## @brief      Devuelve el area de trabajo a su estado anterior.
     ## @param      self  Presentador.
     ## @return     None
     def listener_Undo(self):
         self.model.undo()
-        qDebug('Undo previous action')   #[LOG]
+        qDebug('Undone previous action')
 
     ## @brief      Devuelve el area de trabajo a un estado posterior.
     ## @param      self  Presentador.
     ## @return     None
     def listener_Redo(self):
         self.model.redo()
-        qDebug('Redo subsequent action')   #[LOG]
+        qDebug('Redone subsequent action')
 
 
 # .------------------------.
@@ -155,7 +155,7 @@ class PRESENTER( object ):
             sdb.setVisible(True)
             # cdb.setVisible(True)
             stb.setVisible(True)
-        qDebug('Hide all interface stuff')   #[LOG]
+        qDebug('Hided all interface stuff')
 
     ## @brief      Devuelve la escena al centro de la ventana.
     ## @param      self  Presenter
@@ -166,7 +166,7 @@ class PRESENTER( object ):
         w = self.view.workScene.sceneRect().width()
         h = self.view.workScene.sceneRect().height()
         self.view.workScene.setSceneRect(x,y,w,h)
-        qDebug('Re-Center the scene')   #[LOG]
+        qDebug('Re-Centered the scene')
 
     ## @brief      Oculta la barra de menus.
     ## @param      self  Presentador.
@@ -177,7 +177,7 @@ class PRESENTER( object ):
             menuBar.setFixedHeight(0)
         else:
             menuBar.setFixedHeight(menuBar.sizeHint().height())
-        qDebug('Hide the menubar')   #[LOG]
+        qDebug('Hided the menubar')
 
     ## @brief      Aumenta la escala de la escena.
     ## @param      self  Presentador.
@@ -185,17 +185,17 @@ class PRESENTER( object ):
     def listener_ZoomIn(self):
         if not self.view.scale * pv['viewModScale'] > pv['viewMaxScale']:
             self.view.workArea.scale(pv['viewModScale'],pv['viewModScale'])
-            qDebug('Increment viewport zoom to: '
-                    +self._nfc(round(self.view.scale*100,2))+'%' )   #[LOG]
+            qDebug('Increment viewport zoom to '
+                    +self._nfc(round(self.view.scale*100,2))+'%' )
         else:
-            qDebug('Trying to increment, but has reached the maximum')   #[LOG]
+            qDebug('Trying to increment, but has reached the maximum')
 
     ## @brief      Restaurar el nivel de Zoom al 100%.
     ## @param      self  Presentador.
     ## @return     None
     def listener_Zoom100(self):
         self.view.workArea.scale(1/self.view.scale,1/self.view.scale)
-        qDebug('Reset viewport zoom to 100%')   #[LOG]
+        qDebug('Reset viewport zoom to 100%')
 
     ## @brief      Disminuye la escala de la escena.
     ## @param      self  Presentador.
@@ -203,10 +203,11 @@ class PRESENTER( object ):
     def listener_ZoomOut(self):
         if not self.view.scale / pv['viewModScale'] < pv['viewMinScale']:
             self.view.workArea.scale(1/pv['viewModScale'],1/pv['viewModScale'])
-            qDebug( 'Decrement viewport zoom to: '
-                    +self._nfc(round(self.view.scale*100,2))+'%' )   #[LOG]
+            qDebug( 'Decremented viewport zoom to '
+                    +self._nfc(round(self.view.scale*100,2))+'%' )
         else:
-            qDebug('Trying to decrement, but has reached the minimun')   #[LOG]
+            qDebug( 'Trying to decrement viewport scale, \
+                    but has reached the minimun' )
 
     ## @brief      Rota entre pantalla completa y el estado anterior.
     ## @param      self  Presentador.
@@ -214,12 +215,12 @@ class PRESENTER( object ):
     def listener_FullScreen(self):
         if self.view.isFullScreen():
             self.view.setWindowState(self.view.prevState)
-            qDebug('Window set to: '+self._nfc(self.view.prevState))   #[LOG]
+            qDebug('Window exit of FullScreen')
         else:
             self.view.prevState = self.view.windowState()
             self.view.showFullScreen()
-            qDebug( 'Window set to FullScreen, from: '
-                    +self._nfc(self.view.prevState) )   #[LOG]
+            qDebug( 'Window enter to FullScreen, from '
+                    +self._nfc(self.view.prevState) )
 
 
 # .---------------------------------------.
@@ -241,9 +242,9 @@ class PRESENTER( object ):
                         id = row.child(0,0).data(Qt.UserRole)
                         comp = self.model.getComponentById(id)
                         comp.setSelected(True)
-            qDebug('Context menu, over the components tree')   #[LOG]
+            qDebug('Invoked context menu, over the components\' tree')
         else:
-            qDebug('Context menu, over a component')   #[LOG]
+            qDebug('Invoked context menu, over a component')
         # Ejecuta el menu contextual.
         self.view.simpleMenu.exec(self.view.cursor().pos())
 
@@ -253,7 +254,7 @@ class PRESENTER( object ):
     def listener_Details(self):
         for item in self._selectedItems():
             item.detailsDialog()
-            qDebug('Details of: '+self._nfc(item.name))   #[LOG] ! FOLLOW HERE
+            qDebug('Details of '+self._nfc(item.name))
 
     ## @brief      Centra los componentes en la escena.
     ## @param      self  Presentador.
@@ -265,6 +266,7 @@ class PRESENTER( object ):
             itemX = item.getSizeX()/2
             itemY = item.getSizeY()/2
             item.setPos(x-itemX,y-itemY)
+            qDebug('Centered component '+self._nfc(item.name))
 
     ## @brief      Dialogo para cambiar el nombre los comps. seleccionados.
     ## @param      self  Presentador.
@@ -281,11 +283,15 @@ class PRESENTER( object ):
                 for item in self._selectedItems():
                     i += 1
                     item.name = str(i)+'_'+newName
+                    qDebug( 'Changed name for '+self._nfc(item.imgPath)
+                            +', to'+self._nfc(item.name) )
             # Si solo afecta a un componente,
             # sera el texto de la caja, sin ninugna secuencia.
             else:
                 for item in self._selectedItems():
                     item.name = newName
+                    qDebug( 'Changed name for '+self._nfc(item.imgPath)
+                            )
             # Actualiza los datos en el arbol de componentes.
             self._updateTree()
 
@@ -297,6 +303,8 @@ class PRESENTER( object ):
         for item in self._selectedItems():
             newZ = item.getPosZ() + pv['zJump']
             item.setZValue(newZ)
+            qDebug( 'Incremented Z of '+self._nfc(item.name)
+                    +', to'+self._nfc(newZ) )
         # Actualiza los datos en el arbol de componentes.
         self._updateTree()
 
@@ -309,6 +317,10 @@ class PRESENTER( object ):
             newZ = item.getPosZ() - pv['zJump']
             if newZ >= 0:
                 item.setZValue(newZ)
+                qDebug( 'Decremented Z of '+self._nfc(item.name)
+                        +', to'+self._nfc(newZ) )
+            else:
+                qDebug('Z has reached the minimun on '+self._nfc(item.name))
         # Actualiza los datos en el arbol de componentes.
         self._updateTree()
 
@@ -321,6 +333,7 @@ class PRESENTER( object ):
             toggle = not item.active
             item.active = toggle
             item.activeEffect()
+            qDebug('Toggle active status of '+self._nfc(item.name))
         # Actualiza los datos en el arbol de componentes.
         self._updateTree()
 
@@ -332,6 +345,7 @@ class PRESENTER( object ):
         for item in self._selectedItems():
             item.visible = not item.visible
             item.visibleEffect()
+            qDebug('Toggle visible status of '+self._nfc(item.name))
         # Actualiza los datos en el arbol de componentes.
         self._updateTree()
 
@@ -341,6 +355,7 @@ class PRESENTER( object ):
     def listener_Delete(self):
         self.model.saveState()  # Guarda el estado previo.
         self.model.delComponent(self._selectedItems())
+        qDebug('Deleted a batch of components')
 
 
 # .-------------------------------------------.
@@ -366,6 +381,9 @@ class PRESENTER( object ):
             x = despl.x() * item.scale()
             y = despl.y() * item.scale()
             item.moveBy(x,y)
+            qDebug( 'Moved item '+self._nfc(item.name)
+                    +', '+self._nfc(x)+' times on X, '
+                    +self._nfc(y)+' times on Y' )
 
     ## @brief      Escala virtualmente los comps. según el giro de la rueda.
     ## @param      self   Presentador.
@@ -385,6 +403,10 @@ class PRESENTER( object ):
                 # Si no excede el maximo.
                 if not item.scale() * pv['imgModScale'] > pv['imgMaxScale']:
                     item.setScale(item.scale() * pv['imgModScale'])
+                    qDebug( 'Scaled component '+self._nfc(item.name)
+                            +', to '+self._nfc(round(item.scale()*100,2))+'%' )
+                else:
+                    qDebug('Component has reached the maximun scale')
         # Giro de la rueda hacia atras.
         else:
             # Escala todos los items seleccionados.
@@ -392,6 +414,10 @@ class PRESENTER( object ):
                 # Si no excede el minimo.
                 if not item.scale() / pv['imgModScale'] < pv['imgMinScale']:
                     item.setScale(item.scale() / pv['imgModScale'])
+                    qDebug( 'Scaled component '+self._nfc(item.name)
+                            +', to '+self._nfc(round(item.scale()*100,2))+'%' )
+                else:
+                    qDebug('Component has reached the minimun scale')
         # Actualiza los datos en el arbol de componentes.
         self._updateTree()
 
@@ -424,6 +450,7 @@ class PRESENTER( object ):
         w = self.view.workScene.sceneRect().width()
         h = self.view.workScene.sceneRect().height()
         self.view.workScene.setSceneRect(x,y,w,h)
+        qDebug('Moved scene to (X:'+self._nfc(x)+', Y:'+self._nfc(y)+')')
 
     ## @brief      Selecciona los componentes dentro del area de seleccion.
     ## @param      self  Presentador.
@@ -433,6 +460,7 @@ class PRESENTER( object ):
         for child in self._getComponents():
             if rect.contains(child.getRect()):
                 child.setSelected(True)
+                qDebug('Component '+self._nfc(child.name)+', selected on area')
 
 
 # .------------------------------.
@@ -449,6 +477,8 @@ class PRESENTER( object ):
         # Si el dato modificado fue el nombre.
         if item.column() == 0:
             component.name = item.data(0)
+            qDebug('Changed name of'+self._nfc(component.imgPath)
+                   +'from components\' tree, to '+self._nfc(component.name))
         # Si el dato modificado fue la visibilidad.
         if item.column() == 1:
             if item.checkState() == 0:
@@ -456,6 +486,8 @@ class PRESENTER( object ):
             elif item.checkState() == 2:
                 component.visible = True
             component.visibleEffect()
+            qDebug('Changed visible status of'+self._nfc(component.name)
+                   +'from components\' tree, to '+self._nfc(component.visible))
         # Si el dato modificado fue el estado activo.
         if item.column() == 2:
             if item.checkState() == 0:
@@ -463,11 +495,19 @@ class PRESENTER( object ):
             elif item.checkState() == 2:
                 component.active = True
             component.activeEffect()
+            qDebug('Changed active status of'+self._nfc(component.name)
+                   +'from components\' tree, to '+self._nfc(component.active))
         # Si el dato modificado fue la posicion Z.
         if item.column() == 3:
             newZ = item.data(0)
             if re.match("\d+\.\d*", newZ):
                 component.setZValue(float(newZ))
+                qDebug('Changed Z value of'+self._nfc(component.name)
+                       +'from components\' tree, to '
+                       +self._nfc(component.zValue()))
+            else:
+                qDebug('Trying to chang Z value of'+self._nfc(component.name)
+                       +'from components\' tree, but entered an invalid value')
         # Actualiza los datos del arbol.
         self._updateTree()
 
@@ -485,6 +525,7 @@ class PRESENTER( object ):
         for component in scene:
             self.view.workScene.addItem(component)
         self.model.scene = scene
+        qDebug('Updated VIEW by MODEL notification')
         # Actualiza los datos en el arbol de componentes.
         self._updateTree()
 
@@ -575,3 +616,4 @@ class PRESENTER( object ):
             col3.setChild(0,0,child3)
             # Compone la fila y la agregamos al arbol.
             treeModel.appendRow( [col0 , col1, col2, col3] )
+            qDebug('Updated components\' tree')

@@ -1,5 +1,6 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
+
 import os
 
 import i18n
@@ -12,6 +13,7 @@ from PresetValues import pv
 
 iconsPath = os.path.join(os.path.dirname(__file__),'Icons')
 i18n.load_path.append(os.path.join(os.path.dirname(__file__),'Translations'))
+
 
 ## @brief      Genera un icono a partir del nombre de la imagen.
 ## @param      name  Nombre de la imagen.
@@ -28,8 +30,8 @@ def configWindow(view):
     # Dialogo para solicitar idioma.
     opts = ['Español','Galego','English','Français','Deutsch']
     reply,ok = QInputDialog.getItem( view,
-                                     'IDIOM',
-                                     'Do you want to choose a language?',
+                                     'LANGUAGE',
+                                     'Please, choose yours:',
                                      opts, editable = False )
     # Según lo seleccionado establecemos el idioma para i18n.
     if   reply == 'Español'     : i18n.set('locale', 'es')
@@ -37,9 +39,11 @@ def configWindow(view):
     elif reply == 'English'     : i18n.set('locale', 'en')
     elif reply == 'Français'    : i18n.set('locale', 'fr')
     elif reply == 'Deutsch'     : i18n.set('locale', 'de')
-    else                        : i18n.set('locale', 'es')
+    else                        : i18n.set('locale', 'en')
     # Titulo de la ventana.
     view.setWindowTitle(i18n.t('E.title'))
+    # Devuelve el valor del dialogo.
+    return ok
 
 ## @brief      Presenta un dialogo para confimar la salida de la app.
 ## @param      view  Ventana padre.
@@ -90,7 +94,7 @@ def mainBars():
 
     act = mFile.addAction(i18n.t('E.save'))
     act.setShortcut(QKeySequence.Save)
-    act.setIcon(icon('saveProject.ico'))
+    act.setIcon(icon('saveProjectAs.ico'))
     act.setStatusTip(i18n.t('E.saveHint'))
 
     tb.addAction(act)
@@ -106,10 +110,10 @@ def mainBars():
     tb.addAction(act)
     actions.append(act)
 
-    act = mFile.addAction(i18n.t('E.addComplex'))
-    act.setShortcut('Ctrl+Shift+I')
-    act.setIcon(icon('complexComp.ico'))
-    act.setStatusTip(i18n.t('E.addComplexHint'))
+    act = mFile.addAction(i18n.t('E.addState'))
+    act.setShortcut('Ctrl+E')
+    act.setIcon(icon('newState.ico'))
+    act.setStatusTip(i18n.t('E.addStateHint'))
 
     tb.addAction(act)
     tb.addSeparator()
@@ -200,7 +204,7 @@ def mainBars():
 
     act = mView.addAction(i18n.t('E.centerScene'))
     act.setShortcut('Ctrl+Shift+C')
-    # act.setIcon(icon('centerScene.ico'))
+    act.setIcon(icon('centerScene.ico'))
     act.setStatusTip(i18n.t('E.centerSceneHint'))
 
     actions.append(act)

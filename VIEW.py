@@ -132,7 +132,11 @@ class VIEW( QMainWindow ):
 	## @param      screenRect  Resolucion de la pantalla del usuario.
 	def __init__(self,screenRect):
 		super().__init__()
-		GUI.configWindow(self)
+
+		self.setGeometry(screenRect)
+
+		# Configura el i18n ANTES de cargar interfaz.
+		self.ok = GUI.configWindow(self)
 
 		# Guarda la resolucion de la pantalla del usuario.
 		self.screenRect = screenRect
@@ -334,18 +338,18 @@ class VIEW( QMainWindow ):
 	## @param      self  Vista.
 	## @param      ev    El objeto con la informacion que da este evento.
 	## @return     None
-	def closeEvent(self,ev):
-		reply = GUI.exitDialog(self)
-		if reply == QMessageBox.Ok:
-			qDebug(pv['endMsg'])
-			ev.accept()
-		else:
-			ev.ignore()
+	# def closeEvent(self,ev):
+	# 	reply = GUI.exitDialog(self)
+	# 	if reply == QMessageBox.Ok:
+	# 		qDebug(pv['endMsg'])
+	# 		ev.accept()
+	# 	else:
+	# 		ev.ignore()
 
 	## @brief      Captura cuando se pulsa una o una combiancion de teclas.
 	## @param      self  Vista.
 	## @param      ev    El objeto con la informacion que da este evento.
 	## @return     None
-	def keyPressEvent(self,ev):
+	def keyReleaseEvent(self,ev):
 		if ev.key() == Qt.Key_Alt: # Al pulsar la tecla Alt.
 			self.emit_HideMenu()   # Se Oculta/Muestra la barra de menús.

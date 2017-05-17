@@ -235,18 +235,19 @@ class PRESENTER( object ):
         if self._isOver(self.view.simpleTree):
             indexes = self.view.simpleTree.selectedIndexes()
             if indexes:
+                self.view.simpleMenu.exec(self.view.cursor().pos())
                 self.listener_UnSelectAll()
                 for index in indexes:
                     row = self.view.simpleTree.model().itemFromIndex(index)
                     if row.child(0,0) is not None:
-                        id = row.child(0,0).data(Qt.UserRole)
+                        id = row.child(0,0).data(0)
                         comp = self.model.getComponentById(id)
                         comp.setSelected(True)
             qDebug('Invoked context menu, over the components\' tree')
         else:
+            # Ejecuta el menu contextual.
+            self.view.simpleMenu.exec(self.view.cursor().pos())
             qDebug('Invoked context menu, over a component')
-        # Ejecuta el menu contextual.
-        self.view.simpleMenu.exec(self.view.cursor().pos())
 
     ## @brief      Abre un cuadro de dialogo con el ToString del componente.
     ## @param      self  Presentador.
@@ -377,13 +378,14 @@ class PRESENTER( object ):
             self.model.saveState()
             Timer(pv['moveTimer'],self._thMoveFlag).start()
         # Desplaza todos los items seleccionados.
+        fItem = self._selectedItems()[0]
         for item in self._selectedItems():
-            x = despl.x() * item.scale()
-            y = despl.y() * item.scale()
+            x = despl.x() * fItem.scale()
+            y = despl.y() * fItem.scale()
             item.moveBy(x,y)
             qDebug( 'Moved item '+self._nfc(item.name)
-                    +', '+self._nfc(x)+' times on X, '
-                    +self._nfc(y)+' times on Y' )
+                    +', '+self._nfc(x)+' pos on X, '
+                    +self._nfc(y)+' pos on Y' )
 
     ## @brief      Escala virtualmente los comps. según el giro de la rueda.
     ## @param      self   Presentador.
@@ -450,7 +452,8 @@ class PRESENTER( object ):
         w = self.view.workScene.sceneRect().width()
         h = self.view.workScene.sceneRect().height()
         self.view.workScene.setSceneRect(x,y,w,h)
-        qDebug('Moved scene to (X:'+self._nfc(x)+', Y:'+self._nfc(y)+')')
+        qDebug( 'Moved scene, '+self._nfc(x)
+                +' pos on X and '+self._nfc(y)+' pos on Y' )
 
     ## @brief      Selecciona los componentes dentro del area de seleccion.
     ## @param      self  Presentador.
@@ -494,13 +497,13 @@ class PRESENTER( object ):
                 component.active = False
             elif item.checkState() == 2:
                 component.active = True
-            component.activeEffect()
+            component.visibleEffect()
             qDebug('Changed active status of'+self._nfc(component.name)
                    +'from components\' tree, to '+self._nfc(component.active))
         # Si el dato modificado fue la posicion Z.
         if item.column() == 3:
             newZ = item.data(0)
-            if re.match("\d+\.\d*", newZ):
+            if re.match("\d+\.\d*", newZ) or newZ.isdigit():
                 component.setZValue(float(newZ))
                 qDebug('Changed Z value of'+self._nfc(component.name)
                        +'from components\' tree, to '
@@ -534,9 +537,13 @@ class PRESENTER( object ):
 # | Logicas externas a las señales |
 # -------------------------------------------------------------------------- #
 
-    def _nfc(self,text):
-        text = str(text)
-        nfc = unicodedata.normalize('NFC',text)
+    ## @brief      Convierte el valor de entrada a una cadena Unicode-NFC
+    ## @param      self     Presentador.
+    ## @param      inValue  Valor de entrada.
+    ## @return     str
+    def _nfc(self,inValue):
+        inValue = str(inValue)
+        nfc = unicodedata.normalize('NFC',inValue)
         return re.sub(r'[^\x00-\x7f]',r'',nfc)
 
     ## @brief      Resetea el flag que controla guardar estado al redimesionar.
@@ -617,3 +624,14 @@ class PRESENTER( object ):
             # Compone la fila y la agregamos al arbol.
             treeModel.appendRow( [col0 , col1, col2, col3] )
             qDebug('Updated components\' tree')
+
+    ## @brief      Muestra mensajes en la barra de estado.
+    ## @param      self  Presentador.
+    ## @param      text  Texto del mensaje.
+    ## @return     None
+    def _SbMsg(self,text):
+        zoomInfo = QLabel('[{}%]'.format(self.view.scale*100))
+        self.view.statusBar().addPermanentWidget(zoomInfo)
+        self.view.statusBar().showMessage(str(text))
+
+        # DEBE SER UNA SEÑAL DE LA VISTA...

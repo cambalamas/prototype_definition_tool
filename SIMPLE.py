@@ -25,11 +25,12 @@ class SimpleComponent(QGraphicsPixmapItem):
     def __init__(self, imgPath):
         super().__init__()
 
-        # Configura ciertas propiedades.
         self.imgPath = imgPath
         self.setPixmap(QPixmap(self.imgPath))
+
+        # Configura ciertas propiedades.
+        self.setAcceptHoverEvents(True)
         self.setFlags(self.ItemIsSelectable) # Implemnt tipica de seleccion.
-        self.setCursor(QCursor(Qt.PointingHandCursor)) # Cursor = mano.
         self.setTransformationMode(Qt.SmoothTransformation) # AntiAliasing.
 
         # Id para localizar el elemento en una estructura de datos.
@@ -216,7 +217,8 @@ class SimpleComponent(QGraphicsPixmapItem):
     ## @param      ev    Objeto con los datos del evento.
     ## @return     None
     def mousePressEvent(self, ev):
-        if ev.buttons() == Qt.LeftButton:
+        # self.setCursor(QCursor(Qt.ClosedHandCursor))
+        if ev.button() == Qt.LeftButton:
             ev.accept()
         else:
             ev.ignore()
@@ -227,6 +229,7 @@ class SimpleComponent(QGraphicsPixmapItem):
     ## @param      ev    Objeto con los datos del evento.
     ## @return     None
     def mouseMoveEvent(self, ev):
+        self.getWindow().setCursor(QCursor(Qt.ClosedHandCursor))
         if self.isSelected():
             if ev.buttons() == Qt.LeftButton:
                 ev.accept()
@@ -237,6 +240,20 @@ class SimpleComponent(QGraphicsPixmapItem):
             ev.ignore()
         super(SimpleComponent, self).mouseMoveEvent(ev)
 
+    ## @brief      Controla el momento de liberar el clic.
+    ## @param      self  Componente Simple.
+    ## @param      ev    Objeto con los datos del evento.
+    ## @return     None
+    def mouseReleaseEvent(self, ev):
+        if ev.button() == Qt.LeftButton:
+            self.getWindow().setCursor(QCursor(Qt.OpenHandCursor))
+            if ev.modifiers() == Qt.ControlModifier:
+                self.setSelected(True)
+            else:
+                self.getWindow().emit_UnSelectAll()
+                self.setSelected(True)
+        super(SimpleComponent, self).mouseMoveEvent(ev)
+
     ## @brief      Controlar el giro de la rueda para escalar el componente.
     ## @param      self  Componente Simple.
     ## @param      ev    Objeto con los datos del evento.
@@ -244,22 +261,35 @@ class SimpleComponent(QGraphicsPixmapItem):
     def wheelEvent(self, ev):
         if self.isSelected():
             self.getWindow().emit_Resize(ev.delta())
-        super(SimpleComponent, self).wheelEvent(ev)
+        # super(SimpleComponent, self).wheelEvent(ev)
 
     ## @brief      Invoca el menu contextual relativo a este componente.
     ## @param      self  Componente Simple.
     ## @param      ev    Objeto con los datos del evento.
     ## @return     None
     def contextMenuEvent(self, ev):
-        self.setSelected(True)
+        if ev.modifiers() == Qt.ControlModifier:
+            self.setSelected(True)
+        else:
+            self.getWindow().emit_UnSelectAll()
+            self.setSelected(True)
         self.getWindow().emit_SimpleMenu()
-        super(SimpleComponent, self).contextMenuEvent(ev)
 
-    # def hoverEnterEvent(self, ev):
-    #     self.setFocus(Qt.MouseFocusReason)
+    ## @brief      Cuando el cursor entra en el compoente, dibuja una mano.
+    ## @param      self  Componente Simple.
+    ## @param      ev    Objeto con los datos del evento.
+    ## @return     None
+    def hoverEnterEvent(self, ev):
+        self.scene().overComp = True
+        self.getWindow().setCursor(Qt.OpenHandCursor)
 
-    # def hoverLeaveEvent(self, ev):
-    #     self.clearFocus()
+    ## @brief      Cuando el cursor abandona el componente, dibuja la flecha.
+    ## @param      self  Còmponente Simple.
+    ## @param      ev    Objeto con los datos del evento.
+    ## @return     None
+    def hoverLeaveEvent(self, ev):
+        self.scene().overComp = False
+        self.getWindow().setCursor(Qt.ArrowCursor)
 
 
 # .---------------------.

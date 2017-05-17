@@ -91,8 +91,12 @@ if __name__ == '__main__':
     V.signal_SelectArea.connect(P.listener_SelectArea)
     V.signal_ItemChanged.connect(P.listener_ItemChanged)
 
+
     # Muestra la ventana maximizada.
-    V.showMaximized()
+    if V.ok:
+        V.showMaximized()
+    else:
+        sys.exit()
 
     # Espera la señal 'QT' de Cierre.
     sys.exit(app.exec_())

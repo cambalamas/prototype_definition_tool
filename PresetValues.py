@@ -17,7 +17,7 @@ pv = {
 	'bgColor'			: '#999',
 	'sceneColor'		: '#DDD',
 
-	'moveTimer'			: 5.0, #secs
+	'moveTimer'			: 2.0, #secs
 	'resizeTimer'		: 5.0, #secs
 
 	'zJump'				: 1.0,

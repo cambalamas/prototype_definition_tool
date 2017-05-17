@@ -7,6 +7,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import *
 
 import GUI
+from SIMPLE import SimpleComponent as sc
 from PresetValues import pv
 
 ## @brief      Clase encargada de la estructura visual de la aplicacion.
@@ -46,7 +47,7 @@ class VIEW( QMainWindow ):
 	signal_Delete          			= 	pyqtSignal()
 	# Simple callbacks
 	signal_Resize          			= 	pyqtSignal(int)
-	signal_Move          			= 	pyqtSignal(QPointF,QPointF)
+	signal_Move          			= 	pyqtSignal(QPointF,QPointF,sc)
 	# Scene callbacks
 	signal_SceneMove 				= 	pyqtSignal(QPointF,QPointF)
 	signal_SelectArea 				= 	pyqtSignal(QRect)
@@ -111,8 +112,8 @@ class VIEW( QMainWindow ):
 	# Simple callbacks
 	def emit_Resize(self,delta):
 		self.signal_Resize.emit(delta)
-	def emit_Move(self,posO,posD):
-		self.signal_Move.emit(posO,posD)
+	def emit_Move(self,posO,posD,sc):
+		self.signal_Move.emit(posO,posD,sc)
 	# Scene callbacks
 	def emit_SceneMove(self,posO,posD):
 		self.signal_SceneMove.emit(posO,posD)

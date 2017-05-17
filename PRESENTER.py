@@ -368,7 +368,7 @@ class PRESENTER( object ):
     ## @param      posO  Posición de origen.
     ## @param      posD  Posición de destiono.
     ## @return     None
-    def listener_Move(self,posO,posD):
+    def listener_Move(self,posO,posD,overItem):
         # Calculo de desplazamiento.
         despl = posD - posO
         # Temporizador para el guardado de estados.
@@ -378,10 +378,9 @@ class PRESENTER( object ):
             self.model.saveState()
             Timer(pv['moveTimer'],self._thMoveFlag).start()
         # Desplaza todos los items seleccionados.
-        fItem = self._selectedItems()[0]
         for item in self._selectedItems():
-            x = despl.x() * fItem.scale()
-            y = despl.y() * fItem.scale()
+            x = despl.x() * overItem.scale()
+            y = despl.y() * overItem.scale()
             item.moveBy(x,y)
             qDebug( 'Moved item '+self._nfc(item.name)
                     +', '+self._nfc(x)+' pos on X, '

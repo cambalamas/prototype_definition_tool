@@ -217,11 +217,11 @@ class SimpleComponent(QGraphicsPixmapItem):
     ## @param      ev    Objeto con los datos del evento.
     ## @return     None
     def mousePressEvent(self, ev):
-        # self.setCursor(QCursor(Qt.ClosedHandCursor))
         if ev.button() == Qt.LeftButton:
+            self.getWindow().setCursor(QCursor(Qt.ClosedHandCursor))
             ev.accept()
-        else:
-            ev.ignore()
+        elif ev.button() == Qt.MidButton:
+            self.getWindow().setCursor(QCursor(Qt.SizeAllCursor))
         super(SimpleComponent, self).mousePressEvent(ev)
 
     ## @brief      Controla el desplazamiento para mover el componente.
@@ -229,15 +229,10 @@ class SimpleComponent(QGraphicsPixmapItem):
     ## @param      ev    Objeto con los datos del evento.
     ## @return     None
     def mouseMoveEvent(self, ev):
-        self.getWindow().setCursor(QCursor(Qt.ClosedHandCursor))
         if self.isSelected():
             if ev.buttons() == Qt.LeftButton:
                 ev.accept()
-                self.getWindow().emit_Move(ev.lastPos(),ev.pos())
-            else:
-                ev.ignore()
-        else:
-            ev.ignore()
+                self.getWindow().emit_Move(ev.lastPos(),ev.pos(),self)
         super(SimpleComponent, self).mouseMoveEvent(ev)
 
     ## @brief      Controla el momento de liberar el clic.
@@ -248,9 +243,6 @@ class SimpleComponent(QGraphicsPixmapItem):
         if ev.button() == Qt.LeftButton:
             self.getWindow().setCursor(QCursor(Qt.OpenHandCursor))
             if ev.modifiers() == Qt.ControlModifier:
-                self.setSelected(True)
-            else:
-                self.getWindow().emit_UnSelectAll()
                 self.setSelected(True)
         super(SimpleComponent, self).mouseMoveEvent(ev)
 
@@ -280,6 +272,14 @@ class SimpleComponent(QGraphicsPixmapItem):
     ## @param      ev    Objeto con los datos del evento.
     ## @return     None
     def hoverEnterEvent(self, ev):
+        self.scene().overComp = True
+        self.getWindow().setCursor(Qt.OpenHandCursor)
+
+    ## @brief      Cuando el cursor se mueve en el compoente, dibuja una mano.
+    ## @param      self  Componente Simple.
+    ## @param      ev    Objeto con los datos del evento.
+    ## @return     None
+    def hoverMoveEvent(self, ev):
         self.scene().overComp = True
         self.getWindow().setCursor(Qt.OpenHandCursor)
 

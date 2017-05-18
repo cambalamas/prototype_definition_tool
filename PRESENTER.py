@@ -40,6 +40,12 @@ class PRESENTER( object ):
         self.__saveFlagMove = True
         self.__saveFlagResize = True
 
+        scr = QStandardItem()
+        scr.setData(self._sceneScr(), Qt.DecorationRole)
+        self.view.statesTree.model().appendColumn([scr])
+
+
+
 
 # .----------------------------------------.
 # | Acceso 'publico' la variables privadas |
@@ -71,7 +77,6 @@ class PRESENTER( object ):
         pass # PARSER.save(self.model.interface)
         qDebug('Saving project...')
 
-
     ## @brief      Crea un nuevo componente simple.
     ## @param      self  Presentador.
     ## @return     None
@@ -86,6 +91,9 @@ class PRESENTER( object ):
                     item.setZValue(1.0)
                     self.model.newComponent(item) # Lo agrega a la pila.
                     qDebug('Created new component from '+self._nfc(imgPath))
+                    scr = QStandardItem()
+                    scr.setData(self._sceneScr(), Qt.DecorationRole)
+                    self.view.statesTree.model().appendColumn([scr])
 
     ## @brief      Crea un nuevo componente complejo.
     ## @param      self  Presentador.
@@ -535,6 +543,22 @@ class PRESENTER( object ):
 # .--------------------------------.
 # | Logicas externas a las señales |
 # -------------------------------------------------------------------------- #
+
+    ## @brief      Genera un icono con el estado de la escena.
+    ## @param      self  Presentador.
+    ## @return     QIcon
+    def _sceneScr(self):
+        scene = self.view.workScene
+        size = QSize(scene.width(), scene.height())
+        thumb = QImage(size, QImage.Format_ARGB32_Premultiplied) # Eficiencia.
+        thumb.fill(Qt.transparent) # Obligatorio inicializar.
+        imgPainter = QPainter(thumb)
+        imgPainter.setRenderHint(QPainter.Antialiasing) # Evita +/- pixelado.
+        scene.render(imgPainter) # Vuelva la escena actual a una imagen.
+        imgPainter.end()
+        thumb_icon = QPixmap.fromImage(thumb) # QIcon para la lista.
+        thumb_icon = thumb_icon.scaled(QSize(100,100),1,1)
+        return thumb_icon
 
     ## @brief      Convierte el valor de entrada a una cadena Unicode-NFC
     ## @param      self     Presentador.

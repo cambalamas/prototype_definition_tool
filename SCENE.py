@@ -33,6 +33,7 @@ class SCENE(QGraphicsScene):
         self.__moveIni = QPointF(0,0)
         self.__selRubber = QRubberBand(QRubberBand.Rectangle, self.parent())
 
+
 # .------------------------------------.
 # | Lectura de los atributos heredados |
 # -------------------------------------------------------------------------- #
@@ -126,10 +127,3 @@ class SCENE(QGraphicsScene):
         else:
             ev.ignore()
         super(SCENE,self).mouseReleaseEvent(ev)
-
-    ## @brief      Ignora los eventos de rueda en la escena.
-    ## @param      self  The object
-    ## @param      ev    { parameter_description }
-    ## @return     { description_of_the_return_value }
-    # def wheelEvent(self, ev):
-    #     ev.ignore()

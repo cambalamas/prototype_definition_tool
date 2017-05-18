@@ -173,9 +173,6 @@ class VIEW( QMainWindow ):
 		self.addToolBar(Qt.LeftToolBarArea,self.__toolbar)
 		self._connectSignals(mainActions,mainEmitters)
 
-		# Arbol de componentes simples.
-		self.__simpleTree = GUI.simpleTreeView( self.emit_ItemChanged,
-		                                        self.emit_SimpleMenu )
 
 		# Emisores de las señales relacionadas con componentes simples.
 		simpleEmitters = [ self.emit_Details,
@@ -187,18 +184,21 @@ class VIEW( QMainWindow ):
 						   self.emit_Visible,
 						   self.emit_Delete ]
 
+
 		# Menu contextual arbol simple.
 		self.__simpleMenu, simpleActions = GUI.simpleMenu()
 		self._connectSignals(simpleActions,simpleEmitters)
 
-		# Arbol de componentes complejos.
-		# self.__complexTree=GUI.complexTreeView(self.emit_ComplexMenu)
+		# Arbol de componentes simples.
+		self.__simpleTree = GUI.simpleTreeView( self.emit_ItemChanged,
+		                                        self.emit_SimpleMenu )
+		self.__statesTree = GUI.statesTreeView()
 
-		# Barra lateral.
-		self.__simpleDockbar = GUI.complexDockBar( self.__simpleTree )
+		# Barras anexas.
+		self.__simpleDockbar = GUI.simpleDockBar(self.__simpleTree)
 		self.addDockWidget(Qt.RightDockWidgetArea, self.__simpleDockbar)
-		# self.__complexDockbar = GUI.complexDockBar(self.__complexTree)
-		# self.addDockWidget(Qt.LeftDockWidgetArea,self.__complexDockbar)
+		self.__statesDockbar = GUI.statesDockBar(self.__statesTree)
+		self.addDockWidget(Qt.TopDockWidgetArea, self.__statesDockbar)
 
 		# Area de trabajo.
 		_workArea = GUI.workArea(self.screenRect)
@@ -245,8 +245,8 @@ class VIEW( QMainWindow ):
 	## @param      self  Vista.
 	## @return     PyQt5.QtWidgets.QTreeView
 	@property
-	def complexTree(self):
-		return self.__complexTree
+	def statesTree(self):
+		return self.__statesTree
 
 	## @brief      Propiedad de lectura de la barra de herramientas.
 	## @param      self  Vista.
@@ -266,15 +266,15 @@ class VIEW( QMainWindow ):
 	## @param      self  Vista.
 	## @return     PyQt5.QtWidget.QDockWidget
 	@property
-	def complexDockbar(self):
-		return self.__complexDockbar
+	def statesDockbar(self):
+		return self.__statesDockbar
 
 	## @brief      Propiedad de lectura del menu para componentes complejos.
 	## @param      self  Vista.
 	## @return     PyQt.QtWidgets.QMenu
 	@property
-	def complexMenu(self):
-		return self.__complexMenu
+	def statesMenu(self):
+		return self.__statesMenu
 
 	## @brief      Propiedad de lectura del 'viewport'.
 	## @param      self  Vista.

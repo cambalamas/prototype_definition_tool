@@ -258,62 +258,18 @@ def workArea(screenRect):
     wAreaScene.addRect(QRectF(screenRect),Qt.black,QColor(pv['sceneColor']))
     # Asignamos la escena al area de trabajo.
     wArea.setScene(wAreaScene)
-
+    # Devolvemos el area de trabajo creada.
     return wArea
 
-## @brief      Llama al cosntructor de arboles con el header de un comp simple.
+## @brief      Constructor con las propiedades deseadas para un arbol 'simple'.
 ## @param      emitters  Funciones a lanzar por diferentes acciones.
-## @return     PyQt5.QtWidgets.QTreeView.
+## @return     PyQt5.QtWidgets.QTreeView
 def simpleTreeView(*emitters):
+    tree = QTreeView()
+    model = QStandardItemModel()
     header = [ i18n.t('E.scHeaderName'),
                i18n.t('E.scHeaderVisible'),
                i18n.t('E.scHeaderActive'), 'Z']
-    return treeView(header,*emitters)
-
-## @brief      Llama al cosntructor de arboles con el header de un comp simple.
-## @param      emitters  Funciones a lanzar por diferentes acciones.
-## @return     PyQt5.QtWidgets.QTreeView
-def complexTreeView(*emitters):
-    header = [i18n.t('E.ccHeaderName')]
-    return treeView(header,*emitters)
-
-## @brief      Llama al cosntructor de docks para componentes simples.
-## @param      widget  Panel que visualizaremos.
-## @return     PyQt5.QtWidgets.QDockWidget
-def simpleDockBar(widget):
-    title = i18n.t('E.scTreeTitle')
-    return dockBar(title,widget)
-
-## @brief      Llama al cosntructor de docks para componentes simples.
-## @param      widget  Panel que visualizaremos.
-## @return     PyQt5.QtWidgets.QDockWidget
-def complexDockBar(widget):
-    title = i18n.t('E.ccTreeTitle')
-    return dockBar(title,widget)
-
-
-# -------------------------------------------------------------------------- #
-
-
-## @brief      Constructor con las propiedades deseadas de una barra lateral.
-## @param      title   Titulo de cabecera del widget.
-## @param      widget  Panel que visualizaremos.
-## @return     PyQt5.QtWidgets.QDockWidget
-def dockBar(title,widget):
-    dockbar = QDockWidget(title)
-    dockbar.setWidget(widget)
-    # dockbar.setFixedWidth(190)
-    # Limitamos su anclaje a los laterales.
-    dockbar.setAllowedAreas(Qt.LeftDockWidgetArea|Qt.RightDockWidgetArea)
-    return dockbar
-
-## @brief      Constructor con las propiedades deseadas para un arbol.
-## @param      header    Cabecera con las distintas columnas del arbol.
-## @param      emitters  Funciones a lanzar por diferentes acciones.
-## @return     PyQt5.QtWidgets.QTreeView
-def treeView(header,*emitters):
-    tree = QTreeView()
-    model = QStandardItemModel()
     # Asigna el modelo a la vista.
     tree.setModel(model)
     # Propiedades del modelo.
@@ -333,12 +289,63 @@ def treeView(header,*emitters):
     tree.setRootIsDecorated(False)
     # No permite expandir los hijos.
     tree.setItemsExpandable(False)
-    # Iguala la altura de las filas.
-    # tree.setUniformRowHeights(True)
     # Alterna colores en las filas
     tree.setAlternatingRowColors(True)
     # Dibuja el recuadro de seleccion en toda la fila.
     tree.setSelectionBehavior(QAbstractItemView.SelectRows)
-    # Solo permite seleccionar un elemento a la vez.
+    # Permite multi eleccion.
     tree.setSelectionMode(QAbstractItemView.ExtendedSelection)
     return tree
+
+## @brief      Constructor con las propiedades para una lista de estados.
+## @param      emitters  Funciones a lanzar por diferentes acciones.
+## @return     PyQt5.QtWidgets.QTreeView
+def statesTreeView():
+    tree = QTreeView()
+    model = QStandardItemModel()
+    # header = [i18n.t('E.stHeaderName')]
+    # Asigna el modelo a la vista.
+    tree.setModel(model)
+    # Propiedades del modelo.
+    model.setVerticalHeaderLabels(['1'])
+    # Señal de menu contextual. (Por defecto se dispara con 'boton derecho')
+    # tree.customContextMenuRequested.connect(emitter)
+    # Menu contextual solicitado por señal.
+    tree.setContextMenuPolicy(Qt.CustomContextMenu)
+    # Oculta las flechas de hijos.
+    tree.setRootIsDecorated(False)
+    # No permite expandir los hijos.
+    tree.setItemsExpandable(False)
+    # Dibuja el recuadro de seleccion por item.
+    tree.setSelectionBehavior(QAbstractItemView.SelectItems)
+    # Permite eleccion simple.
+    tree.setSelectionMode(QAbstractItemView.SingleSelection)
+    return tree
+
+
+# -------------------------------------------------------------------------- #
+
+## @brief      Llama al cosntructor de docks para componentes simples.
+## @param      widget  Panel que visualizaremos.
+## @return     PyQt5.QtWidgets.QDockWidget
+def simpleDockBar(widget):
+    title = i18n.t('E.scTreeTitle')
+    return dockBar(title,widget)
+
+## @brief      Llama al cosntructor de docks para componentes simples.
+## @param      widget  Panel que visualizaremos.
+## @return     PyQt5.QtWidgets.QDockWidget
+def statesDockBar(widget):
+    title = i18n.t('E.stTreeTitle')
+    return dockBar(title,widget)
+
+## @brief      Constructor con las propiedades deseadas de una barra lateral.
+## @param      title   Titulo de cabecera del widget.
+## @param      widget  Panel que visualizaremos.
+## @return     PyQt5.QtWidgets.QDockWidget
+def dockBar(title,widget):
+    dockbar = QDockWidget(title)
+    dockbar.setWidget(widget)
+    return dockbar
+
+

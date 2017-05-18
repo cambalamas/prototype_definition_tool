@@ -1,4 +1,4 @@
-<p align="center"> <img src="Icons/logo.png" height="350" width="350"> </p>
+<p align="center"> <img src="Src/Icons/logo.png" height="350" width="350"> </p>
 
 	# See `TODO.md` file to knows project status ☕.
 

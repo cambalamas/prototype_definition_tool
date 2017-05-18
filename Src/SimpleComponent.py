@@ -280,7 +280,6 @@ class SimpleComponent(QGraphicsPixmapItem):
     ## @param      ev    Objeto con los datos del evento.
     ## @return     None
     def hoverMoveEvent(self, ev):
-        self.scene().overComp = True
         self.getWindow().setCursor(Qt.OpenHandCursor)
 
     ## @brief      Cuando el cursor abandona el componente, dibuja la flecha.
@@ -288,7 +287,6 @@ class SimpleComponent(QGraphicsPixmapItem):
     ## @param      ev    Objeto con los datos del evento.
     ## @return     None
     def hoverLeaveEvent(self, ev):
-        self.scene().overComp = False
         self.getWindow().setCursor(Qt.ArrowCursor)
 
 

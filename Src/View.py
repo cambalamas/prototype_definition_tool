@@ -6,12 +6,12 @@ from PyQt5.QtCore import *
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import *
 
-import GUI
-from SIMPLE import SimpleComponent as sc
+import Gui
+from SimpleComponent import SimpleComponent as sc
 from PresetValues import pv
 
 ## @brief      Clase encargada de la estructura visual de la aplicacion.
-class VIEW( QMainWindow ):
+class View( QMainWindow ):
 
 
 # .---------.
@@ -47,7 +47,7 @@ class VIEW( QMainWindow ):
 	signal_Delete          			= 	pyqtSignal()
 	# Simple callbacks
 	signal_Resize          			= 	pyqtSignal(int)
-	signal_Move          			= 	pyqtSignal(QPointF,QPointF,sc)
+	signal_Move          			= 	pyqtSignal(QPointF,QPointF,tuple)
 	# Scene callbacks
 	signal_SceneMove 				= 	pyqtSignal(QPointF,QPointF)
 	signal_SelectArea 				= 	pyqtSignal(QRect)
@@ -112,7 +112,7 @@ class VIEW( QMainWindow ):
 	# Simple callbacks
 	def emit_Resize(self,delta):
 		self.signal_Resize.emit(delta)
-	def emit_Move(self,posO,posD,sc):
+	def emit_Move(self,posO,posD,*sc):
 		self.signal_Move.emit(posO,posD,sc)
 	# Scene callbacks
 	def emit_SceneMove(self,posO,posD):
@@ -137,7 +137,7 @@ class VIEW( QMainWindow ):
 		self.setGeometry(screenRect)
 
 		# Configura el i18n ANTES de cargar interfaz.
-		self.ok = GUI.configWindow(self)
+		self.ok = Gui.configWindow(self)
 
 		# Guarda la resolucion de la pantalla del usuario.
 		self.screenRect = screenRect
@@ -168,7 +168,7 @@ class VIEW( QMainWindow ):
 		# Construir la GUI de la barra de menus.
 		# Construir la GUI de la barra de tareas.
 		# Lista de acciones ejectuables por dichas barras.
-		_menubar, self.__toolbar, mainActions = GUI.mainBars()
+		_menubar, self.__toolbar, mainActions = Gui.mainBars()
 		self.setMenuBar(_menubar)
 		self.addToolBar(Qt.LeftToolBarArea,self.__toolbar)
 		self._connectSignals(mainActions,mainEmitters)
@@ -184,24 +184,23 @@ class VIEW( QMainWindow ):
 						   self.emit_Visible,
 						   self.emit_Delete ]
 
-
 		# Menu contextual arbol simple.
-		self.__simpleMenu, simpleActions = GUI.simpleMenu()
+		self.__simpleMenu, simpleActions = Gui.simpleMenu()
 		self._connectSignals(simpleActions,simpleEmitters)
 
 		# Arbol de componentes simples.
-		self.__simpleTree = GUI.simpleTreeView( self.emit_ItemChanged,
+		self.__simpleTree = Gui.simpleTreeView( self.emit_ItemChanged,
 		                                        self.emit_SimpleMenu )
-		self.__statesTree = GUI.statesTreeView()
+		self.__statesTree = Gui.statesTreeView()
 
 		# Barras anexas.
-		self.__simpleDockbar = GUI.simpleDockBar(self.__simpleTree)
+		self.__simpleDockbar = Gui.simpleDockBar(self.__simpleTree)
 		self.addDockWidget(Qt.RightDockWidgetArea, self.__simpleDockbar)
-		self.__statesDockbar = GUI.statesDockBar(self.__statesTree)
+		self.__statesDockbar = Gui.statesDockBar(self.__statesTree)
 		self.addDockWidget(Qt.TopDockWidgetArea, self.__statesDockbar)
 
 		# Area de trabajo.
-		_workArea = GUI.workArea(self.screenRect)
+		_workArea = Gui.workArea(self.screenRect)
 		self.setCentralWidget(_workArea)
 
 		_statusbar = QStatusBar()
@@ -340,7 +339,7 @@ class VIEW( QMainWindow ):
 	## @param      ev    El objeto con la informacion que da este evento.
 	## @return     None
 	# def closeEvent(self,ev):
-	# 	reply = GUI.exitDialog(self)
+	# 	reply = Gui.exitDialog(self)
 	# 	if reply == QMessageBox.Ok:
 	# 		qDebug(pv['endMsg'])
 	# 		ev.accept()

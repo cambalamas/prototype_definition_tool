@@ -12,15 +12,15 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
-import GUI
-import PARSER
-import SIMPLE
+import Gui
+import Parser
+from SimpleComponent import SimpleComponent
 
 from PresetValues import pv
 
 
 ## @brief      Clase que define la logica de negocio de la aplicacion.
-class PRESENTER( object ):
+class Presenter( object ):
 
 
 # .-------------.
@@ -53,14 +53,14 @@ class PRESENTER( object ):
 
     ## @brief      Propiedad de lectura de la variable vista.
     ## @param      self  Presentador.
-    ## @return     VIEW.VIEW
+    ## @return     View.View
     @property
     def view(self):
         return self.__view
 
     ## @brief      Propiedad de lectura de la variable modelo.
     ## @param      self  Presentador.
-    ## @return     MODEL.MODEL
+    ## @return     Model.Model
     @property
     def model(self):
         return self.__model
@@ -74,7 +74,7 @@ class PRESENTER( object ):
     ## @param      self  Presentador.
     ## @return     None
     def listener_SaveProject(self):
-        pass # PARSER.save(self.model.interface)
+        pass # Parser.save(self.model.interface)
         qDebug('Saving project...')
 
     ## @brief      Crea un nuevo componente simple.
@@ -82,11 +82,11 @@ class PRESENTER( object ):
     ## @return     None
     def listener_NewSimple(self):
         home = os.path.expanduser(pv['defaultPath'])
-        imgPathSet = GUI.imgDialog(self.view,home) # ret: ([<path>],<formato>)
+        imgPathSet = Gui.imgDialog(self.view,home) # ret: ([<path>],<formato>)
         if imgPathSet[0]:
             self.model.saveState()  # Guarda el estado previo.
             for imgPath in imgPathSet[0]:
-                item = SIMPLE.SimpleComponent(imgPath) # Crea comp simpmle.
+                item = SimpleComponent(imgPath) # Crea comp simpmle.
                 if item is not None:
                     item.setZValue(1.0)
                     self.model.newComponent(item) # Lo agrega a la pila.
@@ -243,7 +243,6 @@ class PRESENTER( object ):
         if self._isOver(self.view.simpleTree):
             indexes = self.view.simpleTree.selectedIndexes()
             if indexes:
-                self.view.simpleMenu.exec(self.view.cursor().pos())
                 self.listener_UnSelectAll()
                 for index in indexes:
                     row = self.view.simpleTree.model().itemFromIndex(index)
@@ -251,6 +250,7 @@ class PRESENTER( object ):
                         id = row.child(0,0).data(0)
                         comp = self.model.getComponentById(id)
                         comp.setSelected(True)
+                self.view.simpleMenu.exec(self.view.cursor().pos())
             qDebug('Invoked context menu, over the components\' tree')
         else:
             # Ejecuta el menu contextual.
@@ -282,7 +282,7 @@ class PRESENTER( object ):
     ## @return     None
     def listener_Name(self):
         self.model.saveState()  # Guarda el estado previo.
-        newName, noCancel = GUI.nameDialog(self.view)
+        newName, noCancel = Gui.nameDialog(self.view)
         # Si se acepta el cambio de nombre.
         if noCancel:
             # Si hay seleccionados varios componentes,
@@ -365,6 +365,8 @@ class PRESENTER( object ):
         self.model.saveState()  # Guarda el estado previo.
         self.model.delComponent(self._selectedItems())
         qDebug('Deleted a batch of components')
+        # Actualiza los datos en el arbol de componentes.
+        self._updateTree()
 
 
 # .-------------------------------------------.
@@ -385,10 +387,15 @@ class PRESENTER( object ):
             self.__saveFlagMove = False
             self.model.saveState()
             Timer(pv['moveTimer'],self._thMoveFlag).start()
+        # Calcula factor de correccion por escala.
+        if overItem:
+            factor = overItem[0].scale()
+        else:
+            factor = self._selectedItems()[0].scale()
         # Desplaza todos los items seleccionados.
         for item in self._selectedItems():
-            x = despl.x() * overItem.scale()
-            y = despl.y() * overItem.scale()
+            x = despl.x() * factor
+            y = despl.y() * factor
             item.moveBy(x,y)
             qDebug( 'Moved item '+self._nfc(item.name)
                     +', '+self._nfc(x)+' pos on X, '
@@ -427,8 +434,6 @@ class PRESENTER( object ):
                             +', to '+self._nfc(round(item.scale()*100,2))+'%' )
                 else:
                     qDebug('Component has reached the minimun scale')
-        # Actualiza los datos en el arbol de componentes.
-        self._updateTree()
 
 
 # .---------------------------------.
@@ -535,9 +540,8 @@ class PRESENTER( object ):
         for component in scene:
             self.view.workScene.addItem(component)
         self.model.scene = scene
+        self._updateTree() # Actualiza los datos en el arbol de componentes.
         qDebug('Updated VIEW by MODEL notification')
-        # Actualiza los datos en el arbol de componentes.
-        self._updateTree()
 
 
 # .--------------------------------.

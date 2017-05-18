@@ -22,16 +22,16 @@ pv = {
 
 	'zJump'				: 1.0,
 	'maxOpacity'		: 1.0,
-	'noVisibleOpacity'	: 0.0,
-	'noActiveOpacity'	: 0.3,
+	'noVisibleOpacity'	: 0.001,	# Invisible pero interactuable (0,001)
+	'noActiveOpacity'	: 0.25,
 
 	'imgModScale'		: 1.025,
 	'imgMinScale'		: 0.025,
-	'imgMaxScale'		: 5.025,
+	'imgMaxScale'		: 10.00,
 
 	'viewModScale'		: 1.1,
-	'viewMinScale'		: 0.05,
-	'viewMaxScale'		: 15.0,
+	'viewMinScale'		: 0.0013, 	# Como photoshop
+	'viewMaxScale'		: 32.0,		# Como photoshop
 	'viewRectMargin'	: 0.70,
 
 	'historyLimit'		: 100,

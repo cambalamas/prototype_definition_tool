@@ -8,9 +8,9 @@ import i18n
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
-from VIEW import VIEW
-from MODEL import MODEL
-from PRESENTER import PRESENTER
+from View import View
+from Model import Model
+from Presenter import Presenter
 
 from PresetValues import pv
 
@@ -54,9 +54,9 @@ if __name__ == '__main__':
     scrRect = app.primaryScreen().availableGeometry()
 
     # Inicializaciones.
-    M = MODEL()
-    V = VIEW(scrRect)
-    P = PRESENTER(V,M)
+    M = Model()
+    V = View(scrRect)
+    P = Presenter(V,M)
 
     # Conecta las señales del modelo.
     M.signal_modelUpdated.connect(P.listener_modelUpdated)

@@ -9,7 +9,7 @@ from PresetValues import pv
 
 
 ## @brief      Clase que define un area de trabajo.
-class SCENE(QGraphicsScene):
+class Scene(QGraphicsScene):
 
 
 # .-------------.
@@ -26,7 +26,6 @@ class SCENE(QGraphicsScene):
         # self.getWindow().setMouseTracking(True)
         self.parent().setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.parent().setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.overComp = False
         self.__selIni = QPointF(0,0)
         self.__selPosO = QPointF(0,0)
         self.__selPosD = QPointF(0,0)
@@ -94,7 +93,7 @@ class SCENE(QGraphicsScene):
             self.getWindow().setCursor(QCursor(Qt.CrossCursor))
         else:
             ev.ignore()
-        super(SCENE,self).mousePressEvent(ev)
+        super(Scene,self).mousePressEvent(ev)
 
     ## @brief      Controla el desplazamiento del raton.
     ## @param      self  Escena.
@@ -108,7 +107,7 @@ class SCENE(QGraphicsScene):
             self.getWindow().emit_SceneMove(posO,posD)
         else:
             ev.ignore()
-        super(SCENE,self).mouseMoveEvent(ev)
+        super(Scene,self).mouseMoveEvent(ev)
 
     ## @brief      Controla cuando se libera el clic.
     ## @param      self  Escena.
@@ -126,4 +125,4 @@ class SCENE(QGraphicsScene):
             self.getWindow().setCursor(QCursor(Qt.ArrowCursor))
         else:
             ev.ignore()
-        super(SCENE,self).mouseReleaseEvent(ev)
+        super(Scene,self).mouseReleaseEvent(ev)

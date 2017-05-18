@@ -8,7 +8,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt, QRectF
 
-from SCENE import SCENE
+from Scene import Scene
 from PresetValues import pv
 
 iconsPath = os.path.join(os.path.dirname(__file__),'Icons')
@@ -221,7 +221,7 @@ def simpleMenu():
     act = ms.addAction(i18n.t('E.compDetails'))
     actions.append(act)
 
-    act = ms.addAction(i18n.t('E.compCenter')) #!!!
+    act = ms.addAction(i18n.t('E.compCenter'))
     actions.append(act)
 
     ms.addSeparator()
@@ -246,15 +246,35 @@ def simpleMenu():
 
     return ms, actions
 
+## @brief      Crea el menu contextual de un componente simple.
+## @return     PyQt5.QtWidgets.QMenu
+## @return     list<PyQt5.QtWidgets.QAction>
+def stateMenu():
+    ms = QMenu()
+    actions = []
+
+    act = ms.addAction(i18n.t('E.stateOpen'))
+    actions.append(act)
+
+    act = ms.addAction(i18n.t('E.stateClone'))
+    actions.append(act)
+
+    ms.addSeparator()
+
+    act = ms.addAction(i18n.t('E.stateDelete'))
+    actions.append(act)
+
+    return ms, actions
+
 ## @brief      Crea un area de trabajo usando QGraphicsView y QGraphicsScene.
 ## @return     PyQt5.QtWidgets.QGraphicsView
 def workArea(screenRect):
     wArea = QGraphicsView()
-    wArea.setTransformationAnchor(wArea.AnchorUnderMouse)
     wArea.setBackgroundBrush(QColor(pv['bgColor']))
-    wArea.resize(screenRect.width(),screenRect.height())
+    # wArea.resize(screenRect.width(),screenRect.height())
+    wArea.setTransformationAnchor(wArea.AnchorUnderMouse)
     # Escena a la que se agregaran los Items con los que trabajamos.
-    wAreaScene = SCENE(QRectF(screenRect),wArea)
+    wAreaScene = Scene(QRectF(screenRect),wArea)
     wAreaScene.addRect(QRectF(screenRect),Qt.black,QColor(pv['sceneColor']))
     # Asignamos la escena al area de trabajo.
     wArea.setScene(wAreaScene)
@@ -277,7 +297,7 @@ def simpleTreeView(*emitters):
     # Señal de cambio en los datos.
     model.itemChanged.connect(emitters[0])
     # Propiedades del cabecero.
-    tree.header().resizeSection(0,90)
+    tree.header().resizeSection(0,115)
     tree.header().resizeSection(1,25)
     tree.header().resizeSection(2,25)
     tree.header().resizeSection(3,25)
@@ -330,14 +350,23 @@ def statesTreeView():
 ## @return     PyQt5.QtWidgets.QDockWidget
 def simpleDockBar(widget):
     title = i18n.t('E.scTreeTitle')
-    return dockBar(title,widget)
+    db = dockBar(title,widget)
+    db.setFixedWidth(215)
+    db.setTitleBarWidget(QLabel(''))
+    db.setFeatures(db.DockWidgetClosable)
+    return db
 
 ## @brief      Llama al cosntructor de docks para componentes simples.
 ## @param      widget  Panel que visualizaremos.
 ## @return     PyQt5.QtWidgets.QDockWidget
 def statesDockBar(widget):
     title = i18n.t('E.stTreeTitle')
-    return dockBar(title,widget)
+    db = dockBar(title,widget)
+    db.setFixedHeight(100)
+    db.setTitleBarWidget(QLabel(''))
+    db.setFeatures( db.DockWidgetVerticalTitleBar
+                    | db.DockWidgetClosable )
+    return db
 
 ## @brief      Constructor con las propiedades deseadas de una barra lateral.
 ## @param      title   Titulo de cabecera del widget.

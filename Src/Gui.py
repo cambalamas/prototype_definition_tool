@@ -9,6 +9,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt, QRectF
 
 from Scene import Scene
+from TreeState import TreeState
 from PresetValues import pv
 
 iconsPath = os.path.join(os.path.dirname(__file__),'Icons')
@@ -320,24 +321,11 @@ def simpleTreeView(*emitters):
 ## @brief      Constructor con las propiedades para una lista de estados.
 ## @param      emitters  Funciones a lanzar por diferentes acciones.
 ## @return     PyQt5.QtWidgets.QTreeView
-def statesTreeView():
-    tree = QTreeView()
-    model = QStandardItemModel()
-    # header = [i18n.t('E.stHeaderName')]
-    # Asigna el modelo a la vista.
-    tree.setModel(model)
+def statesTreeView(*emitters):
+    tree = TreeState()
     # Señal de menu contextual. (Por defecto se dispara con 'boton derecho')
-    # tree.customContextMenuRequested.connect(emitter)
-    # Menu contextual solicitado por señal.
-    tree.setContextMenuPolicy(Qt.CustomContextMenu)
-    # Oculta las flechas de hijos.
-    tree.setRootIsDecorated(False)
-    # No permite expandir los hijos.
-    tree.setItemsExpandable(False)
-    # Dibuja el recuadro de seleccion por item.
-    tree.setSelectionBehavior(QAbstractItemView.SelectItems)
-    # Permite eleccion simple.
-    tree.setSelectionMode(QAbstractItemView.SingleSelection)
+    # tree.customContextMenuRequested.connect(emitters[0])
+    tree.pressed.connect(emitters[0])
     return tree
 
 

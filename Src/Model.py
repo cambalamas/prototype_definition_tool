@@ -66,6 +66,7 @@ class Model(QObject):
 	@curStatePos.setter
 	def curStatePos(self,curStatePos):
 		self.__curStatePos = curStatePos
+		self.emit_modelUpdated()
 
 
 # .----------------------.
@@ -120,12 +121,14 @@ class Model(QObject):
 	## @return     None
 	def undo(self):
 		self.curState().undo()
+		self.emit_modelUpdated()
 
 	## @brief      Operacion rehacer del estado actual.
 	## @param      self  Modelo.
 	## @return     None
 	def redo(self):
 		self.curState().redo()
+		self.emit_modelUpdated()
 
 
 # .----------------------.

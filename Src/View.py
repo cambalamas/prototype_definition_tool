@@ -51,8 +51,10 @@ class View( QMainWindow ):
 	# Scene callbacks
 	signal_SceneMove 				= 	pyqtSignal(QPointF,QPointF)
 	signal_SelectArea 				= 	pyqtSignal(QRect)
-	#Tree callbacks
+	# Comps tree callbacks
 	signal_ItemChanged              =   pyqtSignal(QStandardItem)
+	# States tree callbacks
+	signal_StateThumbPressed        =   pyqtSignal(QModelIndex)
 
 
 # .----------.
@@ -119,9 +121,12 @@ class View( QMainWindow ):
 		self.signal_SceneMove.emit(posO,posD)
 	def emit_SelectArea(self,rect):
 		self.signal_SelectArea.emit(rect)
-	# Tree callbacks
+	# Comps tree callbacks
 	def emit_ItemChanged(self,item):
 		self.signal_ItemChanged.emit(item)
+	# States tree callbacks
+	def emit_StateThumbPressed(self,item):
+		self.signal_StateThumbPressed.emit(item)
 
 
 # .-------------.
@@ -192,7 +197,7 @@ class View( QMainWindow ):
 		self.__simpleTree = Gui.simpleTreeView( self.emit_ItemChanged,
 		                                        self.emit_SimpleMenu )
 		# Arbol de estados.
-		self.__statesTree = Gui.statesTreeView()
+		self.__statesTree = Gui.statesTreeView( self.emit_StateThumbPressed )
 
 		# Barras anexas.
 		self.__simpleDockbar = Gui.simpleDockBar(self.__simpleTree)

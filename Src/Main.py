@@ -61,12 +61,18 @@ if __name__ == '__main__':
     # Conecta las señales del modelo.
     M.signal_modelUpdated.connect(P.listener_modelUpdated)
 
-    # Conecta señales de la vista.
+    # Conecta señales del menu archivo.
     V.signal_SaveProject.connect(P.listener_SaveProject)
     V.signal_NewSimple.connect(P.listener_NewSimple)
     V.signal_NewState.connect(P.listener_NewState)
+
+    # Conecta señales del menu editar.
+    V.signal_SelectAll.connect(P.listener_SelectAll)
+    V.signal_UnSelectAll.connect(P.listener_UnSelectAll)
     V.signal_Undo.connect(P.listener_Undo)
     V.signal_Redo.connect(P.listener_Redo)
+
+    # Conecta señales del menu vista.
     V.signal_HideMenu.connect(P.listener_HideMenu)
     V.signal_Minimalist.connect(P.listener_Minimalist)
     V.signal_ZoomIn.connect(P.listener_ZoomIn)
@@ -74,9 +80,13 @@ if __name__ == '__main__':
     V.signal_ZoomOut.connect(P.listener_ZoomOut)
     V.signal_FullScreen.connect(P.listener_FullScreen)
     V.signal_SceneCenter.connect(P.listener_SceneCenter)
+
+    # Conecta señales del componente simple.
+    V.signal_SimpleMenu.connect(P.listener_SimpleMenu)
     V.signal_Details.connect(P.listener_Details)
     V.signal_Center.connect(P.listener_Center)
     V.signal_Name.connect(P.listener_Name)
+
     V.signal_ZInc.connect(P.listener_ZInc)
     V.signal_ZDec.connect(P.listener_ZDec)
     V.signal_Active.connect(P.listener_Active)
@@ -84,12 +94,16 @@ if __name__ == '__main__':
     V.signal_Delete.connect(P.listener_Delete)
     V.signal_Resize.connect(P.listener_Resize)
     V.signal_Move.connect(P.listener_Move)
-    V.signal_SelectAll.connect(P.listener_SelectAll)
-    V.signal_UnSelectAll.connect(P.listener_UnSelectAll)
-    V.signal_SimpleMenu.connect(P.listener_SimpleMenu)
+
+    # Conecta señales de la escena.
     V.signal_SceneMove.connect(P.listener_SceneMove)
     V.signal_SelectArea.connect(P.listener_SelectArea)
+
+    # Conecta señales del arbol de componentes.
     V.signal_ItemChanged.connect(P.listener_ItemChanged)
+
+    # Conecta señales del arbol de estados.
+    V.signal_StateThumbPressed.connect(P.listener_StateThumbPressed)
 
 
     # Muestra la ventana maximizada.

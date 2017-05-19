@@ -42,8 +42,7 @@ class Presenter( object ):
         # Otras...
         self.zoomInfo = QLabel()
         self._SbMsg('')
-
-
+        self.listener_NewState()
 
 
 # .----------------------------------------.
@@ -95,7 +94,10 @@ class Presenter( object ):
     ## @param      self  Presentador.
     ## @return     None
     def listener_NewState(self):
-        self.view.statesTree.model().appendColumn([QStandardItem('')])
+        self.model.curState().scene = self.model.copyScene()
+        item = QStandardItem()
+        item.setEditable(False)
+        self.view.statesTree.model().appendColumn([])
         self.model.createState()
 
 
@@ -489,8 +491,8 @@ class Presenter( object ):
                 qDebug('Component '+self._nfc(child.name)+', selected on area')
 
 
-# .------------------------------.
-# | Señales 'callback' del Arbol |
+# .---------------------------------------------.
+# | Señales 'callback' del Arbol de Componentes |
 # -------------------------------------------------------------------------- #
 
     ## @brief      Atiende la señal nativa del arbol cuando se cambia un dato.
@@ -539,6 +541,17 @@ class Presenter( object ):
         self._updateStatesTree()
 
 
+
+# .---------------------------------------------.
+# | Señales 'callback' del Arbol de Componentes |
+# -------------------------------------------------------------------------- #
+
+    def listener_StateThumbPressed(self,modelIndex):
+        self.model.curState().scene = self.model.copyScene()
+        item = self.view.statesTree.model().itemFromIndex(modelIndex)
+        self.model.curStatePos = item.column()
+
+
 # .--------------------.
 # | Señales del Modelo |
 # -------------------------------------------------------------------------- #
@@ -554,7 +567,7 @@ class Presenter( object ):
         self.model.curState().scene = scene
         self._updateCompsTree()   # Actualiza el arbol de componentes.
         self._updateStatesTree()  # Actualiza el arbol de estados.
-        qDebug('Updated VIEW by MODEL notification')
+        # qDebug('Updated VIEW by MODEL notification')
 
 
 # .--------------------------------.

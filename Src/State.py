@@ -27,6 +27,25 @@ class State(object):
         self.__redo = deque(maxlen=pv['historyLimit'])
 
 
+# .-------------------------------------------.
+# | Acceso 'publico' a las variables privadas |
+# -------------------------------------------------------------------------- #
+
+    ## @brief      Propiedad de lectura de la pila de items.
+    ## @param      self  Modelo.
+    ## @return     object, Scene
+    @property
+    def scene(self):
+        return self.__scene
+
+    ## @brief      Propiedad de lectura de la pila de items.
+    ## @param      self  Modelo.
+    ## @return     object, Scene
+    @scene.setter
+    def scene(self, scene):
+        self.__scene = scene
+
+
 # .----------------------.
 # | Gestion de los datos |
 # -------------------------------------------------------------------------- #

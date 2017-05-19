@@ -11,7 +11,7 @@ import json
 pv = {
 
 	'startMsg' 			: 'SESSION STARTED !',
-	'endMsg' 			: 'SESSION ENDED !\n\n\n',
+	'endMsg' 			: 'SESSION ENDED !\n\n',
 
 	'defaultPath' 		: '~',
 	'bgColor'			: '#999',
@@ -27,7 +27,7 @@ pv = {
 
 	'imgModScale'		: 1.025,
 	'imgMinScale'		: 0.025,
-	'imgMaxScale'		: 10.00,
+	'imgMaxScale'		: 200.00,
 
 	'viewModScale'		: 1.1,
 	'viewMinScale'		: 0.0013, 	# Como photoshop

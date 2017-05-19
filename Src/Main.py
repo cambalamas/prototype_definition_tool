@@ -32,7 +32,7 @@ def logger(type, context, msg):
     # Canal para enviar texto al log.
     ts = QTextStream(logFile)
     # Formato desesado para el mensaje.
-    fmt = '\n {}\n-----------------\n{}'.format(dt.time(), msg)
+    fmt = '({})\t{}'.format(dt.time(), msg)
     # Enviar el mensaje formateado por el canal al fichero de log.
     ts << fmt + '\n'
 
@@ -47,7 +47,7 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
 
     # Redefinimos el capturador de eventos con salida a fichero .log.
-    # qInstallMessageHandler(logger)
+    qInstallMessageHandler(logger)
     qDebug(pv['startMsg'])
 
     # Resolucion del dispositivo del usuario.
@@ -64,7 +64,7 @@ if __name__ == '__main__':
     # Conecta señales de la vista.
     V.signal_SaveProject.connect(P.listener_SaveProject)
     V.signal_NewSimple.connect(P.listener_NewSimple)
-    V.signal_NewComplex.connect(P.listener_NewComplex)
+    V.signal_NewState.connect(P.listener_NewState)
     V.signal_Undo.connect(P.listener_Undo)
     V.signal_Redo.connect(P.listener_Redo)
     V.signal_HideMenu.connect(P.listener_HideMenu)

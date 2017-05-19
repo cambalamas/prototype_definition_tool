@@ -326,8 +326,6 @@ def statesTreeView():
     # header = [i18n.t('E.stHeaderName')]
     # Asigna el modelo a la vista.
     tree.setModel(model)
-    # Propiedades del modelo.
-    model.setVerticalHeaderLabels(['1'])
     # Señal de menu contextual. (Por defecto se dispara con 'boton derecho')
     # tree.customContextMenuRequested.connect(emitter)
     # Menu contextual solicitado por señal.

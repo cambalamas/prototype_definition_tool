@@ -21,7 +21,7 @@ class View( QMainWindow ):
 	# File menu
 	signal_SaveProject           	= 	pyqtSignal()
 	signal_NewSimple             	= 	pyqtSignal()
-	signal_NewComplex            	= 	pyqtSignal()
+	signal_NewState             	= 	pyqtSignal()
 	# Edit menu
 	signal_SelectAll       			= 	pyqtSignal()
 	signal_UnSelectAll       		= 	pyqtSignal()
@@ -64,8 +64,8 @@ class View( QMainWindow ):
 		self.signal_SaveProject.emit()
 	def emit_NewSimple(self):
 		self.signal_NewSimple.emit()
-	def emit_NewComplex(self):
-		self.signal_NewComplex.emit()
+	def emit_NewState(self):
+		self.signal_NewState.emit()
 	# Edit menu
 	def emit_SelectAll(self):
 		self.signal_SelectAll.emit()
@@ -152,7 +152,7 @@ class View( QMainWindow ):
 		# Emisores de las señales relacionadas con la aplicacion o proyecto.
 		mainEmitters = [ self.emit_SaveProject,
 						 self.emit_NewSimple,
-						 self.emit_NewComplex,
+						 self.emit_NewState,
 						 self.close,
 						 self.emit_SelectAll,
 						 self.emit_UnSelectAll,

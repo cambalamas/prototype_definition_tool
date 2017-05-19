@@ -39,6 +39,9 @@ class Presenter( object ):
         # Flags para evitar drenaje de RAM.
         self.__saveFlagMove = True
         self.__saveFlagResize = True
+        # Otras...
+        self.zoomInfo = QLabel()
+        self._SbMsg('')
 
         scr = QStandardItem()
         scr.setData(self._sceneScr(), Qt.DecorationRole)
@@ -91,15 +94,15 @@ class Presenter( object ):
                     item.setZValue(1.0)
                     self.model.newComponent(item) # Lo agrega a la pila.
                     qDebug('Created new component from '+self._nfc(imgPath))
-                    scr = QStandardItem()
-                    scr.setData(self._sceneScr(), Qt.DecorationRole)
-                    self.view.statesTree.model().appendColumn([scr])
 
     ## @brief      Crea un nuevo componente complejo.
     ## @param      self  Presentador.
     ## @return     None
-    def listener_NewComplex(self):
-        pass
+    def listener_NewState(self):
+        scr = QStandardItem()
+        scr.setData(self._sceneScr(), Qt.DecorationRole)
+        self.view.statesTree.model().appendColumn([scr])
+        self.model.createState()
 
 
 # .-------------------------.
@@ -147,23 +150,24 @@ class Presenter( object ):
     def listener_Minimalist(self):
         mtb = self.view.toolbar
         sdb = self.view.simpleDockbar
-        # cdb = self.view.complexDockbar
+        cdb = self.view.statesDockbar
         stb = self.view.statusBar()
         if( mtb.isVisible()
                 == sdb.isVisible()
-                # == cdb.isVisible()
+                == cdb.isVisible()
                 == stb.isVisible()
                 == True):
             mtb.setVisible(False)
             sdb.setVisible(False)
-            # cdb.setVisible(False)
+            cdb.setVisible(False)
             stb.setVisible(False)
+            qDebug('Hided all interface stuff')
         else:
             mtb.setVisible(True)
             sdb.setVisible(True)
-            # cdb.setVisible(True)
+            cdb.setVisible(True)
             stb.setVisible(True)
-        qDebug('Hided all interface stuff')
+            qDebug('UnHided all interface stuff')
 
     ## @brief      Devuelve la escena al centro de la ventana.
     ## @param      self  Presenter
@@ -193,16 +197,19 @@ class Presenter( object ):
     def listener_ZoomIn(self):
         if not self.view.scale * pv['viewModScale'] > pv['viewMaxScale']:
             self.view.workArea.scale(pv['viewModScale'],pv['viewModScale'])
+            self._SbMsg('')
             qDebug('Increment viewport zoom to '
                     +self._nfc(round(self.view.scale*100,2))+'%' )
         else:
-            qDebug('Trying to increment, but has reached the maximum')
+            qDebug( 'Trying to increment viewport scale, '
+                    +'but has reached the maximun' )
 
     ## @brief      Restaurar el nivel de Zoom al 100%.
     ## @param      self  Presentador.
     ## @return     None
     def listener_Zoom100(self):
         self.view.workArea.scale(1/self.view.scale,1/self.view.scale)
+        self._SbMsg('')
         qDebug('Reset viewport zoom to 100%')
 
     ## @brief      Disminuye la escala de la escena.
@@ -211,11 +218,12 @@ class Presenter( object ):
     def listener_ZoomOut(self):
         if not self.view.scale / pv['viewModScale'] < pv['viewMinScale']:
             self.view.workArea.scale(1/pv['viewModScale'],1/pv['viewModScale'])
+            self._SbMsg('')
             qDebug( 'Decremented viewport zoom to '
                     +self._nfc(round(self.view.scale*100,2))+'%' )
         else:
-            qDebug( 'Trying to decrement viewport scale, \
-                    but has reached the minimun' )
+            qDebug( 'Trying to decrement viewport scale, '
+                    +'but has reached the minimun' )
 
     ## @brief      Rota entre pantalla completa y el estado anterior.
     ## @param      self  Presentador.
@@ -539,7 +547,7 @@ class Presenter( object ):
         self.view.resetWorkScene()
         for component in scene:
             self.view.workScene.addItem(component)
-        self.model.scene = scene
+        self.model.curState().scene = scene
         self._updateTree() # Actualiza los datos en el arbol de componentes.
         qDebug('Updated VIEW by MODEL notification')
 
@@ -619,7 +627,7 @@ class Presenter( object ):
     def _updateTree(self):
         treeModel = self.view.simpleTree.model()
         treeModel.removeRows(0, treeModel.rowCount()) # Vacia el arbol.
-        for elem in self.model.scene:
+        for elem in self.model.curState().scene:
             # Guarda el ID de forma oculta.
             child0 = QStandardItem(elem.id)
             child1 = QStandardItem(elem.id)
@@ -657,8 +665,11 @@ class Presenter( object ):
     ## @param      text  Texto del mensaje.
     ## @return     None
     def _SbMsg(self,text):
-        zoomInfo = QLabel('[{}%]'.format(self.view.scale*100))
-        self.view.statusBar().addPermanentWidget(zoomInfo)
-        self.view.statusBar().showMessage(str(text))
-
-        # DEBE SER UNA SEÑAL DE LA VISTA...
+        stb = self.view.statusBar()
+        stb.removeWidget(self.zoomInfo)
+        rect = self.view.screenRect
+        strRect = '[{} x {}]'.format(rect.width(),rect.height())
+        strViewScale = '[{}%]'.format(round(self.view.scale*100,2))
+        self.zoomInfo = QLabel(strRect+' :: '+strViewScale)
+        stb.addPermanentWidget(self.zoomInfo)
+        stb.showMessage(str(text))

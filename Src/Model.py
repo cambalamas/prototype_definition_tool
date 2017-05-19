@@ -37,7 +37,7 @@ class Model(QObject):
 	## @param      self  Modelo.
 	def __init__(self):
 		super().__init__()
-		self.__states = deque([State()])
+		self.__states = [State()]
 		self.__curStatePos = 0
 		self.curState = lambda : self.__states[self.__curStatePos]
 
@@ -50,7 +50,7 @@ class Model(QObject):
 	## @param      self  Modelo.
 	## @return     object, Scene
 	@property
-	def state(self):
+	def states(self):
 		return self.__states
 
 	## @brief      Propiedad de lectura del estado activo.
@@ -71,6 +71,15 @@ class Model(QObject):
 # .----------------------.
 # | Gestion de los datos |
 # -------------------------------------------------------------------------- #
+
+	## @brief      Crea un nuevo estado.
+	## @param      self  Modelo
+	## @return     None
+	def createState(self):
+		newState = State()
+		self.states.append(newState)
+		self.curStatePos = self.states.index(newState)
+		self.emit_modelUpdated()
 
 	## @brief      Agrega un componente a la pila del estado actual.
 	## @param      self       Modelo.

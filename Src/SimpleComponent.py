@@ -69,9 +69,9 @@ class SimpleComponent(QGraphicsPixmapItem):
     ## @brief      Sobrecarga del metodo __str__.
     ## @param      self  Componente simple.
     ## @return     Cadena que representa al objeto componente simple.
-    def __str__( self ):
-        toString = json.dumps(self.readObj(),indent=0)
-        return toString[1:-1]
+    # def __str__( self ):
+    #     toString = json.dumps(self.readObj(),indent=0)
+    #     return toString[1:-1]
 
     ## @brief      Sobrecarga del metodo __copy__.
     ## @param      self  Componente Simple.
@@ -166,7 +166,7 @@ class SimpleComponent(QGraphicsPixmapItem):
     ## @param      self  Componente Simple.
     ## @return     qreal, el ancho visual del componente.
     def getSizeX(self):
-        return self.boundingRect().width()  * self.scale()
+        return self.boundingRect().width() * self.scale()
 
     ## @brief      Calcula el alto en base a la imagen original y la escala.
     ## @param      self  Componente Simple.

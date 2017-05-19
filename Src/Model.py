@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+	#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 from collections import deque
@@ -78,7 +78,7 @@ class Model(QObject):
 	def createState(self):
 		newState = State()
 		self.states.append(newState)
-		self.curStatePos = self.states.index(newState)
+		self.curStatePos = self.states.index(newState) - 1
 		self.emit_modelUpdated()
 
 	## @brief      Agrega un componente a la pila del estado actual.

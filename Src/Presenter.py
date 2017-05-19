@@ -43,10 +43,6 @@ class Presenter( object ):
         self.zoomInfo = QLabel()
         self._SbMsg('')
 
-        scr = QStandardItem()
-        scr.setData(self._sceneScr(), Qt.DecorationRole)
-        self.view.statesTree.model().appendColumn([scr])
-
 
 
 
@@ -99,9 +95,7 @@ class Presenter( object ):
     ## @param      self  Presentador.
     ## @return     None
     def listener_NewState(self):
-        scr = QStandardItem()
-        scr.setData(self._sceneScr(), Qt.DecorationRole)
-        self.view.statesTree.model().appendColumn([scr])
+        self.view.statesTree.model().appendColumn([QStandardItem('')])
         self.model.createState()
 
 
@@ -284,6 +278,8 @@ class Presenter( object ):
             itemY = item.getSizeY()/2
             item.setPos(x-itemX,y-itemY)
             qDebug('Centered component '+self._nfc(item.name))
+        # Actualiza el arbol de miniaturas.
+        self._updateStatesTree()
 
     ## @brief      Dialogo para cambiar el nombre los comps. seleccionados.
     ## @param      self  Presentador.
@@ -310,7 +306,7 @@ class Presenter( object ):
                     qDebug( 'Changed name for '+self._nfc(item.imgPath)
                             )
             # Actualiza los datos en el arbol de componentes.
-            self._updateTree()
+            self._updateCompsTree()
 
     ## @brief      Mueve una posición al frente los componentes seleccionados.
     ## @param      self  Presentador.
@@ -323,7 +319,7 @@ class Presenter( object ):
             qDebug( 'Incremented Z of '+self._nfc(item.name)
                     +', to'+self._nfc(newZ) )
         # Actualiza los datos en el arbol de componentes.
-        self._updateTree()
+        self._updateCompsTree()
 
     ## @brief      Mueve una posición al fondo los componentes seleccionados.
     ## @param      self  Presentador.
@@ -339,7 +335,7 @@ class Presenter( object ):
             else:
                 qDebug('Z has reached the minimun on '+self._nfc(item.name))
         # Actualiza los datos en el arbol de componentes.
-        self._updateTree()
+        self._updateCompsTree()
 
     ## @brief      Rota el estado Activo de los componentes seleccionados.
     ## @param      self  Presentador.
@@ -351,8 +347,9 @@ class Presenter( object ):
             item.active = toggle
             item.activeEffect()
             qDebug('Toggle active status of '+self._nfc(item.name))
-        # Actualiza los datos en el arbol de componentes.
-        self._updateTree()
+        # Actualiza los datos en los arboles.
+        self._updateCompsTree()
+        self._updateStatesTree()
 
     ## @brief      Rota el estado Visible de los componentes seleccionados.
     ## @param      self  Presentador.
@@ -363,8 +360,9 @@ class Presenter( object ):
             item.visible = not item.visible
             item.visibleEffect()
             qDebug('Toggle visible status of '+self._nfc(item.name))
-        # Actualiza los datos en el arbol de componentes.
-        self._updateTree()
+        # Actualiza los datos en los arboles.
+        self._updateCompsTree()
+        self._updateStatesTree()
 
     ## @brief      Elimina por completo los componentes seleccionados.
     ## @param      self  Presentador.
@@ -373,8 +371,9 @@ class Presenter( object ):
         self.model.saveState()  # Guarda el estado previo.
         self.model.delComponent(self._selectedItems())
         qDebug('Deleted a batch of components')
-        # Actualiza los datos en el arbol de componentes.
-        self._updateTree()
+        # Actualiza los datos en los arboles.
+        self._updateCompsTree()
+        self._updateStatesTree()
 
 
 # .-------------------------------------------.
@@ -408,6 +407,8 @@ class Presenter( object ):
             qDebug( 'Moved item '+self._nfc(item.name)
                     +', '+self._nfc(x)+' pos on X, '
                     +self._nfc(y)+' pos on Y' )
+        # Actualizar arbol con miniaturas.
+        self._updateStatesTree()
 
     ## @brief      Escala virtualmente los comps. según el giro de la rueda.
     ## @param      self   Presentador.
@@ -442,6 +443,8 @@ class Presenter( object ):
                             +', to '+self._nfc(round(item.scale()*100,2))+'%' )
                 else:
                     qDebug('Component has reached the minimun scale')
+        # Actualizar arbol con miniaturas.
+        self._updateStatesTree()
 
 
 # .---------------------------------.
@@ -500,8 +503,8 @@ class Presenter( object ):
         # Si el dato modificado fue el nombre.
         if item.column() == 0:
             component.name = item.data(0)
-            qDebug('Changed name of'+self._nfc(component.imgPath)
-                   +'from components\' tree, to '+self._nfc(component.name))
+            qDebug('Changed name of '+self._nfc(component.imgPath)
+                   +' from components tree, to '+self._nfc(component.name))
         # Si el dato modificado fue la visibilidad.
         if item.column() == 1:
             if item.checkState() == 0:
@@ -509,8 +512,8 @@ class Presenter( object ):
             elif item.checkState() == 2:
                 component.visible = True
             component.visibleEffect()
-            qDebug('Changed visible status of'+self._nfc(component.name)
-                   +'from components\' tree, to '+self._nfc(component.visible))
+            qDebug('Changed visible status of '+self._nfc(component.name)
+                   +' from components tree, to '+self._nfc(component.visible))
         # Si el dato modificado fue el estado activo.
         if item.column() == 2:
             if item.checkState() == 0:
@@ -518,21 +521,22 @@ class Presenter( object ):
             elif item.checkState() == 2:
                 component.active = True
             component.visibleEffect()
-            qDebug('Changed active status of'+self._nfc(component.name)
-                   +'from components\' tree, to '+self._nfc(component.active))
+            qDebug('Changed active status of '+self._nfc(component.name)
+                   +' from components tree, to '+self._nfc(component.active))
         # Si el dato modificado fue la posicion Z.
         if item.column() == 3:
             newZ = item.data(0)
             if re.match("\d+\.\d*", newZ) or newZ.isdigit():
                 component.setZValue(float(newZ))
-                qDebug('Changed Z value of'+self._nfc(component.name)
-                       +'from components\' tree, to '
+                qDebug('Changed Z value of '+self._nfc(component.name)
+                       +' from components tree, to '
                        +self._nfc(component.zValue()))
             else:
-                qDebug('Trying to chang Z value of'+self._nfc(component.name)
-                       +'from components\' tree, but entered an invalid value')
-        # Actualiza los datos del arbol.
-        self._updateTree()
+                qDebug('Trying to chang Z value of '+self._nfc(component.name)
+                       +' from components tree, but entered an invalid value')
+        # Actualizar los arboles.
+        self._updateCompsTree()
+        self._updateStatesTree()
 
 
 # .--------------------.
@@ -548,7 +552,8 @@ class Presenter( object ):
         for component in scene:
             self.view.workScene.addItem(component)
         self.model.curState().scene = scene
-        self._updateTree() # Actualiza los datos en el arbol de componentes.
+        self._updateCompsTree()   # Actualiza el arbol de componentes.
+        self._updateStatesTree()  # Actualiza el arbol de estados.
         qDebug('Updated VIEW by MODEL notification')
 
 
@@ -559,7 +564,7 @@ class Presenter( object ):
     ## @brief      Genera un icono con el estado de la escena.
     ## @param      self  Presentador.
     ## @return     QIcon
-    def _sceneScr(self):
+    def _sceneShot(self):
         scene = self.view.workScene
         size = QSize(scene.width(), scene.height())
         thumb = QImage(size, QImage.Format_ARGB32_Premultiplied) # Eficiencia.
@@ -624,7 +629,7 @@ class Presenter( object ):
     ## @brief      Actualiza los arboles de la aplicacion.
     ## @param      self  Presentador.
     ## @return     None
-    def _updateTree(self):
+    def _updateCompsTree(self):
         treeModel = self.view.simpleTree.model()
         treeModel.removeRows(0, treeModel.rowCount()) # Vacia el arbol.
         for elem in self.model.curState().scene:
@@ -673,3 +678,8 @@ class Presenter( object ):
         self.zoomInfo = QLabel(strRect+' :: '+strViewScale)
         stb.addPermanentWidget(self.zoomInfo)
         stb.showMessage(str(text))
+
+    def _updateStatesTree(self):
+        treeModel = self.view.statesTree.model()
+        curStateThumb = treeModel.item(0, self.model.curStatePos)
+        curStateThumb.setData(self._sceneShot(), Qt.DecorationRole)

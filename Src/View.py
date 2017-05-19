@@ -191,6 +191,7 @@ class View( QMainWindow ):
 		# Arbol de componentes simples.
 		self.__simpleTree = Gui.simpleTreeView( self.emit_ItemChanged,
 		                                        self.emit_SimpleMenu )
+		# Arbol de estados.
 		self.__statesTree = Gui.statesTreeView()
 
 		# Barras anexas.

@@ -4,7 +4,7 @@
 import os
 import re
 import unicodedata
-from pprint import pprint #temp
+from copy import copy
 from threading import Timer
 
 import i18n
@@ -42,7 +42,7 @@ class Presenter( object ):
         # Otras...
         self.zoomInfo = QLabel()
         self._SbMsg('')
-        self.listener_NewState()
+        # self.listener_NewState()
 
 
 # .----------------------------------------.
@@ -97,7 +97,7 @@ class Presenter( object ):
         self.model.curState().scene = self.model.copyScene()
         item = QStandardItem()
         item.setEditable(False)
-        self.view.statesTree.model().appendColumn([])
+        self.view.statesTree.model().appendColumn([item])
         self.model.createState()
 
 
@@ -282,6 +282,16 @@ class Presenter( object ):
             qDebug('Centered component '+self._nfc(item.name))
         # Actualiza el arbol de miniaturas.
         self._updateStatesTree()
+
+    ## @brief      Crea una copia de los componentes seleccionados.
+    ## @param      self  Presentador
+    ## @return     None
+    def listener_Clone(self):
+        for item in self._selectedItems():
+            itemCopy = copy(item)
+            itemCopy.name = itemCopy.newRandomName()
+            self.model.curState().scene.append(itemCopy)
+            self.listener_modelUpdated()
 
     ## @brief      Dialogo para cambiar el nombre los comps. seleccionados.
     ## @param      self  Presentador.

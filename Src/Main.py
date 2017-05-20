@@ -56,6 +56,7 @@ if __name__ == '__main__':
     # Inicializaciones.
     M = Model()
     V = View(scrRect)
+
     P = Presenter(V,M)
 
     # Conecta las señales del modelo.
@@ -81,17 +82,19 @@ if __name__ == '__main__':
     V.signal_FullScreen.connect(P.listener_FullScreen)
     V.signal_SceneCenter.connect(P.listener_SceneCenter)
 
-    # Conecta señales del componente simple.
+    # Conecta señales del menu componente simple.
     V.signal_SimpleMenu.connect(P.listener_SimpleMenu)
     V.signal_Details.connect(P.listener_Details)
     V.signal_Center.connect(P.listener_Center)
+    V.signal_Clone.connect(P.listener_Clone)
     V.signal_Name.connect(P.listener_Name)
-
     V.signal_ZInc.connect(P.listener_ZInc)
     V.signal_ZDec.connect(P.listener_ZDec)
     V.signal_Active.connect(P.listener_Active)
     V.signal_Visible.connect(P.listener_Visible)
     V.signal_Delete.connect(P.listener_Delete)
+
+    # Conecta señales de 'callback' del componente simple.
     V.signal_Resize.connect(P.listener_Resize)
     V.signal_Move.connect(P.listener_Move)
 
@@ -109,6 +112,7 @@ if __name__ == '__main__':
     # Muestra la ventana maximizada.
     if V.ok:
         V.showMaximized()
+        P.listener_NewState()
     else:
         sys.exit()
 

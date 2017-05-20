@@ -66,6 +66,8 @@ class Scene(QGraphicsScene):
             self.getWindow().emit_Move(zero,QPointF(0.0,-moveRng))
         if ev.key() == Qt.Key_Down:
             self.getWindow().emit_Move(zero,QPointF(0.0,moveRng))
+        if ev.key() == Qt.Key_Delete:
+            self.getWindow().emit_Delete()
 
     ## @brief      Controla cuando se suelta una tecla.
     ## @param      self  Escena.

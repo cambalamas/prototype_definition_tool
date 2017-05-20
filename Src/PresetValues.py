@@ -31,7 +31,7 @@ pv = {
 
 	'viewModScale'		: 1.1,
 	'viewMinScale'		: 0.0013, 	# Como photoshop
-	'viewMaxScale'		: 32.0,		# Como photoshop
+	'viewMaxScale'		: 34.5,		# Como photoshop
 	'viewRectMargin'	: 0.70,
 
 	'historyLimit'		: 100,

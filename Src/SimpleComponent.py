@@ -41,8 +41,7 @@ class SimpleComponent(QGraphicsPixmapItem):
         self.__visible = True
         self.__path = imgPath
 
-        rng = string.ascii_letters + string.digits
-        self.__name = 'SC_'+''.join(SystemRandom().sample(rng*3,3))
+        self.__name = self.newRandomName()
 
 
 # .------------------------------------.
@@ -317,3 +316,10 @@ class SimpleComponent(QGraphicsPixmapItem):
     ## @return     None
     def detailsDialog(self):
         QMessageBox.information(self.getWindow(),'¡DETALLES!', self.__str__())
+
+    ## @brief      Genera un nuevo nombre aleatorio para el componente.
+    ## @param      self  Componente Simple.
+    ## @return     None
+    def newRandomName(self):
+        rng = string.ascii_letters + string.digits
+        return 'SC_'+''.join(SystemRandom().sample(rng*3,3))

@@ -56,11 +56,10 @@ if __name__ == '__main__':
     # Inicializaciones.
     M = Model()
     V = View(scrRect)
-
     P = Presenter(V,M)
 
     # Conecta las señales del modelo.
-    M.signal_modelUpdated.connect(P.listener_modelUpdated)
+    M.signal_ModelUpdated.connect(P.listener_ModelUpdated)
 
     # Conecta señales del menu archivo.
     V.signal_SaveProject.connect(P.listener_SaveProject)
@@ -105,8 +104,15 @@ if __name__ == '__main__':
     # Conecta señales del arbol de componentes.
     V.signal_ItemChanged.connect(P.listener_ItemChanged)
 
-    # Conecta señales del arbol de estados.
+    # Conecta señales de menu del arbol de estados.
+    V.signal_StateMoveLeft.connect(P.listener_StateMoveLeft)
+    V.signal_StateMoveRight.connect(P.listener_StateMoveRight)
+    V.signal_StateClone.connect(P.listener_StateClone)
+    V.signal_StateDelete.connect(P.listener_StateDelete)
+
+    # Conecta señales de 'callback' del arbol de estados.
     V.signal_StateThumbPressed.connect(P.listener_StateThumbPressed)
+    V.signal_StateContextMenu.connect(P.listener_StateContextMenu)
 
 
     # Muestra la ventana maximizada.

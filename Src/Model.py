@@ -17,7 +17,7 @@ class Model(QObject):
 # -------------------------------------------------------------------------- #
 
 	## Señal para solicitar actualizacion de la vista.
-	signal_modelUpdated = pyqtSignal()
+	signal_ModelUpdated = pyqtSignal()
 
 # .----------.
 # | Emisores |
@@ -26,8 +26,8 @@ class Model(QObject):
 	## @brief      Emisor de la señal de actualizacion.
 	## @param      self  Modelo.
 	## @return     None
-	def emit_modelUpdated(self):
-			self.signal_modelUpdated.emit()
+	def emit_ModelUpdated(self):
+			self.signal_ModelUpdated.emit()
 
 # .-------------.
 # | Constructor |
@@ -37,7 +37,7 @@ class Model(QObject):
 	## @param      self  Modelo.
 	def __init__(self):
 		super().__init__()
-		self.__states = [State()]
+		self.__states = deque()
 		self.__curStatePos = 0
 		self.curState = lambda : self.__states[self.__curStatePos]
 
@@ -66,7 +66,7 @@ class Model(QObject):
 	@curStatePos.setter
 	def curStatePos(self,curStatePos):
 		self.__curStatePos = curStatePos
-		self.emit_modelUpdated()
+		self.emit_ModelUpdated()
 
 
 # .----------------------.
@@ -79,8 +79,17 @@ class Model(QObject):
 	def createState(self):
 		newState = State()
 		self.states.append(newState)
-		self.curStatePos = self.states.index(newState) - 1
-		self.emit_modelUpdated()
+		self.curStatePos = self.states.index(newState)
+		self.emit_ModelUpdated()
+
+	## @brief      Borra un estado de la lista.
+	## @param      self   Modelo.
+	## @param      state  El estado a borrar.
+	## @return     None
+	def deleteState(self,state,*autoupdate):
+		self.states.remove(state)
+		if not autoupdate:
+			self.emit_ModelUpdated()
 
 	## @brief      Agrega un componente a la pila del estado actual.
 	## @param      self       Modelo.
@@ -88,7 +97,7 @@ class Model(QObject):
 	## @return     None
 	def newComponent(self,component):
 		self.curState().newComponent(component)
-		self.emit_modelUpdated()
+		self.emit_ModelUpdated()
 
 	## @brief      Elimina un componente de la pila del estado actual.
 	## @param      self       Modelo.
@@ -96,7 +105,7 @@ class Model(QObject):
 	## @return     None
 	def delComponent(self,components):
 		self.curState().delComponent(components)
-		self.emit_modelUpdated()
+		self.emit_ModelUpdated()
 
 	## @brief      Obtiene un componente por ID, del estado actual.
 	## @param      self  Modelo.
@@ -121,14 +130,14 @@ class Model(QObject):
 	## @return     None
 	def undo(self):
 		self.curState().undo()
-		self.emit_modelUpdated()
+		self.emit_ModelUpdated()
 
 	## @brief      Operacion rehacer del estado actual.
 	## @param      self  Modelo.
 	## @return     None
 	def redo(self):
 		self.curState().redo()
-		self.emit_modelUpdated()
+		self.emit_ModelUpdated()
 
 
 # .----------------------.

@@ -42,7 +42,6 @@ class Presenter( object ):
         # Otras...
         self.zoomInfo = QLabel()
         self._SbMsg('')
-        # self.listener_NewState()
 
 
 # .----------------------------------------.
@@ -94,7 +93,8 @@ class Presenter( object ):
     ## @param      self  Presentador.
     ## @return     None
     def listener_NewState(self):
-        self.model.curState().scene = self.model.copyScene()
+        if len(self.model.states) >= 1:
+            self.model.curState().scene = self.model.copyScene()
         item = QStandardItem()
         item.setEditable(False)
         self.view.statesTree.model().appendColumn([item])
@@ -273,6 +273,7 @@ class Presenter( object ):
     ## @param      self  Presentador.
     ## @return     None
     def listener_Center(self):
+        self.model.saveState()  # Guarda el estado previo.
         x = self.view.workScene.sceneRect().width()/2
         y = self.view.workScene.sceneRect().height()/2
         for item in self._selectedItems():
@@ -287,11 +288,13 @@ class Presenter( object ):
     ## @param      self  Presentador
     ## @return     None
     def listener_Clone(self):
+        self.model.saveState()  # Guarda el estado previo.
         for item in self._selectedItems():
             itemCopy = copy(item)
+            itemCopy.overWriteId()
             itemCopy.name = itemCopy.newRandomName()
             self.model.curState().scene.append(itemCopy)
-            self.listener_modelUpdated()
+        self.listener_ModelUpdated()
 
     ## @brief      Dialogo para cambiar el nombre los comps. seleccionados.
     ## @param      self  Presentador.
@@ -551,15 +554,101 @@ class Presenter( object ):
         self._updateStatesTree()
 
 
-
-# .---------------------------------------------.
-# | Señales 'callback' del Arbol de Componentes |
+# .-----------------------------------------.
+# | Señales 'callback' del Arbol de Estados |
 # -------------------------------------------------------------------------- #
 
+    def listener_StateClone(self):
+        toClone = self.model.copyScene()
+        self.listener_NewState()
+        self.model.curState().scene = toClone
+        self.listener_ModelUpdated()
+
+    def listener_StateMoveLeft(self):
+        curPos = self.model.curStatePos
+        desiredPos = curPos - 1
+        if desiredPos >= 0:
+            toLeft = self.model.curState()
+            toRight = self.model.states[desiredPos]
+            self.model.states.remove(toRight)
+            self.model.states.remove(toLeft)
+            self.model.states.insert(desiredPos,toLeft)
+            self.model.states.insert(curPos,toRight)
+            self.model.curStatePos = desiredPos
+            self._renderAllScenes()
+
+    def listener_StateMoveRight(self):
+        curPos = self.model.curStatePos
+        desiredPos = curPos + 1
+        if desiredPos <= len(self.model.states) - 1:
+            toRight = self.model.curState()
+            toLeft = self.model.states[desiredPos]
+            self.model.states.remove(toRight)
+            self.model.states.remove(toLeft)
+            self.model.states.insert(curPos,toLeft)
+            self.model.states.insert(desiredPos,toRight)
+            self.model.curStatePos = desiredPos
+            self._renderAllScenes()
+
+    def listener_StateDelete(self):
+        curPos = self.model.curStatePos
+        toDelete = self.model.curState()
+        desiredPosLeft = curPos - 1
+        desiredPosRight = curPos + 1
+        if desiredPosLeft >= 0:
+            self.model.curStatePos = desiredPosLeft
+            self.view.statesTree.model().removeColumn(curPos)
+            self.model.deleteState(toDelete)
+        elif desiredPosRight <= len(self.model.states) - 1:
+            self.model.curStatePos = curPos
+            self.view.statesTree.model().removeColumn(curPos)
+            self.model.deleteState(toDelete)
+        else:
+            self.view.statesTree.model().removeColumn(curPos)
+            self.model.deleteState(toDelete,False)
+            self.listener_NewState()
+
+
+
+
+
+# .-----------------------------------------.
+# | Señales 'callback' del Arbol de Estados |
+# -------------------------------------------------------------------------- #
+
+    ## @brief      Controla cuando se clica en una miniatura del arbol.
+    ## @param      self        Presentador.
+    ## @param      modelIndex  Indice del item en el modelo.
+    ## @return     None
     def listener_StateThumbPressed(self,modelIndex):
         self.model.curState().scene = self.model.copyScene()
         item = self.view.statesTree.model().itemFromIndex(modelIndex)
         self.model.curStatePos = item.column()
+
+    def listener_StateContextMenu(self):
+        self.view.statesMenu.exec(self.view.cursor().pos())
+
+    def _statesMarkedHeader(self):
+        data = []
+        current = self.model.curStatePos + 1
+        length = len(self.model.states)
+        for i in range(1,length + 1):
+            if i == current:
+                data.append(str(i)+'*')
+            else:
+                data.append(str(i))
+        self.view.statesTree.model().setHorizontalHeaderLabels(data)
+
+    def _renderAllScenes(self):
+        curPos = self.model.curStatePos
+        for state in self.model.states:
+            index = self.model.states.index(state)
+            self.model.curState().scene = self.model.copyScene()
+            self.model.curStatePos = index
+        self.model.curState().scene = self.model.copyScene()
+        self.model.curStatePos = curPos
+
+
 
 
 # .--------------------.
@@ -569,15 +658,16 @@ class Presenter( object ):
     ## @brief      Crea la escena segun el modelo al recibir la notificación.
     ## @param      self  Presentador.
     ## @return     None
-    def listener_modelUpdated(self):
+    def listener_ModelUpdated(self):
         scene = self.model.copyScene()
         self.view.resetWorkScene()
         for component in scene:
             self.view.workScene.addItem(component)
         self.model.curState().scene = scene
-        self._updateCompsTree()   # Actualiza el arbol de componentes.
-        self._updateStatesTree()  # Actualiza el arbol de estados.
-        # qDebug('Updated VIEW by MODEL notification')
+        self._updateCompsTree()    # Actualiza el arbol de componentes.
+        self._updateStatesTree()   # Actualiza el arbol de estados.
+        self._statesMarkedHeader() # Destaca el estado actual.
+        qDebug('Updated VIEW by MODEL notification')
 
 
 # .--------------------------------.

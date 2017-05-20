@@ -145,6 +145,17 @@ def mainBars():
     act.setStatusTip(i18n.t('E.redoHint'))
     tb.addAction(act)
     tb.addSeparator()
+    mb.addSeparator()
+    actions.append(act)
+    act = mEdit.addAction(i18n.t('E.duplicateComps'))
+    act.setShortcut('Ctrl+Shift+D')
+    # act.setIcon(icon('redo.ico'))
+    act.setStatusTip(i18n.t('E.duplicateCompsHint'))
+    actions.append(act)
+    act = mEdit.addAction(i18n.t('E.centerComps'))
+    act.setShortcut('Ctrl+Shift+M')
+    # act.setIcon(icon('redo.ico'))
+    act.setStatusTip(i18n.t('E.centerCompsHint'))
     actions.append(act)
     act = mView.addAction(i18n.t('E.minimal'))
     act.setShortcut('Ctrl+H')
@@ -196,7 +207,7 @@ def simpleMenu():
     actions.append(act)
     act = ms.addAction(i18n.t('E.compCenter'))
     actions.append(act)
-    act = ms.addAction(i18n.t('E.compClone'))
+    act = ms.addAction(i18n.t('E.compDuplicate'))
     actions.append(act)
     ms.addSeparator()
     act = ms.addAction(i18n.t('E.compChName'))
@@ -219,9 +230,11 @@ def simpleMenu():
 def statesMenu():
     ms = QMenu()
     actions = []
-    act = ms.addAction(i18n.t('E.stateOpen'))
-    actions.append(act)
     act = ms.addAction(i18n.t('E.stateClone'))
+    actions.append(act)
+    act = ms.addAction(i18n.t('E.stateMoveLeft'))
+    actions.append(act)
+    act = ms.addAction(i18n.t('E.stateMoveRight'))
     actions.append(act)
     ms.addSeparator()
     act = ms.addAction(i18n.t('E.stateDelete'))
@@ -278,6 +291,7 @@ def statesTreeView(*emitters):
     # Cabecero, creacion y propiedades.
     header = QHeaderView(1,tree) # Horizontal con el arbol como padre.
     header.setDragEnabled(False) # Prohibido arrastrar items.
+    header.setHighlightSections(True)
     header.setSectionResizeMode(QHeaderView.ResizeToContents) # Ajusta al item.
     # Asignaciones
     tree.setModel(model)
@@ -288,7 +302,7 @@ def statesTreeView(*emitters):
     tree.setItemsExpandable(False) # No permite expandir los hijos.
     tree.setContextMenuPolicy(Qt.CustomContextMenu) # Menu contextual = RB.
     tree.setSelectionBehavior(QAbstractItemView.SelectItems) # Sel x item.
-    tree.setSelectionMode(QAbstractItemView.SingleSelection) # Sel solo 1.
+    tree.setSelectionMode(QAbstractItemView.NoSelection) # Sin seleccion.
     # Señales.
     tree.customContextMenuRequested.connect(emitters[0])
     tree.pressed.connect(emitters[1])

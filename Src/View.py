@@ -147,7 +147,7 @@ class View( QMainWindow ):
     def emit_StateThumbPressed(self,item):
         self.signal_StateThumbPressed.emit(item)
     def emit_StateContextMenu(self):
-        self.StateContextMenu.emit()
+        self.signal_StateContextMenu.emit()
 
 
 # .-------------.
@@ -184,6 +184,8 @@ class View( QMainWindow ):
                          self.emit_UnSelectAll,
                          self.emit_Undo,
                          self.emit_Redo,
+                         self.emit_Clone,
+                         self.emit_Center,
                          self.emit_Minimalist,
                          self.emit_ZoomIn,
                          self.emit_Zoom100,
@@ -220,14 +222,14 @@ class View( QMainWindow ):
                                                 self.emit_SimpleMenu )
 
         # Emisores de las señales relacionadas con estados.
-        statesEmitters = [ self.emit_StateMoveLeft,
+        statesEmitters = [ self.emit_StateClone,
+                           self.emit_StateMoveLeft,
                            self.emit_StateMoveRight,
-                           self.emit_StateClone,
                            self.emit_StateDelete ]
 
         # Menu contextual de arbol de estados.
         self.__statesMenu, statesActions = Gui.statesMenu()
-        self._connectSignals(simpleActions,simpleEmitters)
+        self._connectSignals(statesActions,statesEmitters)
 
         # Arbol de estados.
         self.__statesTree = Gui.statesTreeView( self.emit_StateContextMenu,

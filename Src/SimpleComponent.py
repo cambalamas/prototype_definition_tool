@@ -259,11 +259,7 @@ class SimpleComponent(QGraphicsPixmapItem):
     ## @param      ev    Objeto con los datos del evento.
     ## @return     None
     def contextMenuEvent(self, ev):
-        if ev.modifiers() == Qt.ControlModifier:
-            self.setSelected(True)
-        else:
-            self.getWindow().emit_UnSelectAll()
-            self.setSelected(True)
+        self.setSelected(True)
         self.getWindow().emit_SimpleMenu()
 
     ## @brief      Cuando el cursor entra en el compoente, dibuja una mano.
@@ -323,3 +319,9 @@ class SimpleComponent(QGraphicsPixmapItem):
     def newRandomName(self):
         rng = string.ascii_letters + string.digits
         return 'SC_'+''.join(SystemRandom().sample(rng*3,3))
+
+    ## @brief      Genera un id nuevo.
+    ## @param      self  Componente Sìmple
+    ## @return     str
+    def overWriteId(self):
+        self.__id = hashlib.sha1(os.urandom(128)).hexdigest()

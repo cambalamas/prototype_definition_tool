@@ -20,7 +20,7 @@ class State(object):
         ## Cola doble de items en la escena.
         ## Se usa deque en lugar de queue.Queue porque
         ## sera necesario iterar, para construir la escena.
-        self.__scene = []
+        self.__scene = deque()
         ## Pila con los estados anteriores de la interfaz.
         self.__undo = deque(maxlen=pv['historyLimit'])
         ## Pila con los estados posteriores de la interfaz.

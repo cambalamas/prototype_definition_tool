@@ -91,111 +91,163 @@ def mainBars():
     mb = QMenuBar()
     mb.setNativeMenuBar(True)
     tb = QToolBar(i18n.t('E.toolbarName'))
+
     mFile = mb.addMenu(i18n.t('E.fileMenu'))
     mEdit = mb.addMenu(i18n.t('E.editMenu'))
     mView = mb.addMenu(i18n.t('E.viewMenu'))
     mHelp = mb.addMenu(i18n.t('E.helpMenu'))
+
+    # Archivo
     act = mFile.addAction(i18n.t('E.save'))
     act.setShortcut(QKeySequence.Save)
     act.setIcon(icon('saveProjectAs.ico'))
     act.setStatusTip(i18n.t('E.saveHint'))
+
     tb.addAction(act)
     mb.addSeparator()
     tb.addSeparator()
     actions.append(act)
+
     act = mFile.addAction(i18n.t('E.addSimple'))
     act.setShortcut('Ctrl+I')
     act.setIcon(icon('simpleComp.ico'))
     act.setStatusTip(i18n.t('E.addSimpleHint'))
+
     tb.addAction(act)
     actions.append(act)
+
     act = mFile.addAction(i18n.t('E.addState'))
-    act.setShortcut('Ctrl+E')
+    act.setShortcut('Ctrl+T')
     act.setIcon(icon('newState.ico'))
     act.setStatusTip(i18n.t('E.addStateHint'))
+
     tb.addAction(act)
     tb.addSeparator()
     mb.addSeparator()
+
     actions.append(act)
     act = mFile.addAction(i18n.t('E.exit'))
     act.setShortcut(QKeySequence.Close)
     act.setIcon(icon('appExit.ico'))
     act.setStatusTip(i18n.t('E.exitHint'))
+
     actions.append(act)
+
+    # Editar
     act = mEdit.addAction(i18n.t('E.selectAll'))
     act.setShortcut('Ctrl+A')
     act.setIcon(icon('selectAll.ico'))
     act.setStatusTip(i18n.t('E.selectAllHint'))
+
     actions.append(act)
+
     act = mEdit.addAction(i18n.t('E.unSelectAll'))
     act.setShortcut('Ctrl+D')
     act.setIcon(icon('unSelectAll.ico'))
     act.setStatusTip(i18n.t('E.unSelectAllHint'))
+
     mb.addSeparator()
     actions.append(act)
+
     act = mEdit.addAction(i18n.t('E.undo'))
     act.setShortcut(QKeySequence.Undo)
     act.setIcon(icon('undo.ico'))
     act.setStatusTip(i18n.t('E.undoHint'))
+
     tb.addAction(act)
     actions.append(act)
+
     act = mEdit.addAction(i18n.t('E.redo'))
     act.setShortcut(QKeySequence.Redo)
     act.setIcon(icon('redo.ico'))
     act.setStatusTip(i18n.t('E.redoHint'))
+
     tb.addAction(act)
     tb.addSeparator()
     mb.addSeparator()
     actions.append(act)
+
     act = mEdit.addAction(i18n.t('E.duplicateComps'))
     act.setShortcut('Ctrl+Shift+D')
     # act.setIcon(icon('redo.ico'))
     act.setStatusTip(i18n.t('E.duplicateCompsHint'))
+
     actions.append(act)
+
     act = mEdit.addAction(i18n.t('E.centerComps'))
     act.setShortcut('Ctrl+Shift+M')
     # act.setIcon(icon('redo.ico'))
     act.setStatusTip(i18n.t('E.centerCompsHint'))
+
+    mb.addSeparator()
     actions.append(act)
+
+    # Vista
     act = mView.addAction(i18n.t('E.minimal'))
     act.setShortcut('Ctrl+H')
     act.setIcon(icon('hideMenu.ico'))
     act.setStatusTip(i18n.t('E.minimalHint'))
+
     mb.addSeparator()
     actions.append(act)
+
     act = mView.addAction(i18n.t('E.zoomIn'))
     act.setShortcut(QKeySequence.ZoomIn)
     act.setIcon(icon('zoomIn.ico'))
     act.setStatusTip(i18n.t('E.zoomInHint'))
+
     tb.addAction(act)
     actions.append(act)
+
     act = mView.addAction(i18n.t('E.zoom100'))
     act.setShortcut('Ctrl+0')
     act.setIcon(icon('zoom100.ico'))
     act.setStatusTip(i18n.t('E.zoom100Hint'))
+
     tb.addAction(act)
     actions.append(act)
+
     act = mView.addAction(i18n.t('E.zoomOut'))
     act.setShortcut(QKeySequence.ZoomOut)
     act.setIcon(icon('zoomOut.ico'))
     act.setStatusTip(i18n.t('E.zoomOutHint'))
+
     tb.addAction(act)
     mb.addSeparator()
     actions.append(act)
+
     act = mView.addAction(i18n.t('E.fullScreen'))
     act.setCheckable(True)
     act.setShortcut(QKeySequence.FullScreen)
     act.setIcon(icon('fullScreen.ico'))
     act.setStatusTip(i18n.t('E.fullScreenHint'))
+
     tb.addAction(act)
     mb.addSeparator()
     actions.append(act)
+
     act = mView.addAction(i18n.t('E.centerScene'))
     act.setShortcut('Ctrl+Shift+C')
     act.setIcon(icon('centerScene.ico'))
     act.setStatusTip(i18n.t('E.centerSceneHint'))
+
     actions.append(act)
+
+    # Ayuda
+    act = mHelp.addAction(i18n.t('E.readTheDoc'))
+    # act.setIcon(icon('centerScene.ico'))
+    act.setStatusTip(i18n.t('E.readTheDocHint'))
+
+    actions.append(act)
+
+    act = mHelp.addAction(i18n.t('E.reportError'))
+    # act.setIcon(icon('centerScene.ico'))
+    act.setStatusTip(i18n.t('E.reportErrorHint'))
+
+    actions.append(act)
+
     return mb, tb, actions
+
 
 ## @brief      Crea el menu contextual de un componente simple.
 ## @return     PyQt5.QtWidgets.QMenu
@@ -203,26 +255,37 @@ def mainBars():
 def simpleMenu():
     ms = QMenu()
     actions = []
+
     act = ms.addAction(i18n.t('E.compDetails'))
     actions.append(act)
+
     act = ms.addAction(i18n.t('E.compCenter'))
     actions.append(act)
+
     act = ms.addAction(i18n.t('E.compDuplicate'))
     actions.append(act)
     ms.addSeparator()
+
     act = ms.addAction(i18n.t('E.compChName'))
     actions.append(act)
+
     act = ms.addAction(i18n.t('E.compZInc'))
     actions.append(act)
+
     act = ms.addAction(i18n.t('E.compZDec'))
     actions.append(act)
+
     act = ms.addAction(i18n.t('E.compToggleActive'))
     actions.append(act)
+
     act = ms.addAction(i18n.t('E.compToggleVisible'))
     actions.append(act)
+
     act = ms.addAction(i18n.t('E.compDelete'))
     actions.append(act)
+
     return ms, actions
+
 
 ## @brief      Crea el menu contextual de un componente simple.
 ## @return     PyQt5.QtWidgets.QMenu
@@ -230,16 +293,22 @@ def simpleMenu():
 def statesMenu():
     ms = QMenu()
     actions = []
+
     act = ms.addAction(i18n.t('E.stateClone'))
     actions.append(act)
+
     act = ms.addAction(i18n.t('E.stateMoveLeft'))
     actions.append(act)
+
     act = ms.addAction(i18n.t('E.stateMoveRight'))
     actions.append(act)
     ms.addSeparator()
+
     act = ms.addAction(i18n.t('E.stateDelete'))
     actions.append(act)
+
     return ms, actions
+
 
 ## @brief      Crea un area de trabajo usando QGraphicsView y QGraphicsScene.
 ## @return     PyQt5.QtWidgets.QGraphicsView
@@ -250,7 +319,9 @@ def workArea(screenRect):
     wArea.setTransformationAnchor(wArea.AnchorUnderMouse)
     wAreaScene = Scene(QRectF(screenRect),wArea)
     wArea.setScene(wAreaScene)
+
     return wArea
+
 
 ## @brief      Constructor con las propiedades deseadas para un arbol 'simple'.
 ## @param      emitters  Funciones a lanzar por diferentes acciones.
@@ -280,7 +351,9 @@ def simpleTreeView(*emitters):
     # Señales
     model.itemChanged.connect(emitters[0])
     tree.customContextMenuRequested.connect(emitters[1])
+
     return tree
+
 
 ## @brief      Constructor con las propiedades para una lista de estados.
 ## @param      emitters  Funciones a lanzar por diferentes acciones.
@@ -306,42 +379,33 @@ def statesTreeView(*emitters):
     # Señales.
     tree.customContextMenuRequested.connect(emitters[0])
     tree.pressed.connect(emitters[1])
-    # Devulve el arbol configurado.
+
     return tree
 
 
-# -------------------------------------------------------------------------- #
-
-## @brief      Llama al cosntructor de docks para componentes simples.
+## @brief      Crea dock para componentes simples.
 ## @param      widget  Panel que visualizaremos.
 ## @return     PyQt5.QtWidgets.QDockWidget
 def simpleDockBar(widget):
     title = i18n.t('E.scTreeTitle')
-    db = dockBar(title,widget)
+    db = QDockWidget(title)
+    db.setWidget(widget)
     db.setFixedWidth(213)
     db.setTitleBarWidget(QWidget())
     db.setFeatures(db.DockWidgetClosable)
+
     return db
 
-## @brief      Llama al cosntructor de docks para componentes simples.
+
+## @brief      Crea dock para estados.
 ## @param      widget  Panel que visualizaremos.
 ## @return     PyQt5.QtWidgets.QDockWidget
 def statesDockBar(widget):
     title = i18n.t('E.stTreeTitle')
-    db = dockBar(title,widget)
+    db = QDockWidget(title)
+    db.setWidget(widget)
     db.setFixedHeight(88)
     db.setTitleBarWidget(QWidget())
     db.setFeatures( db.DockWidgetVerticalTitleBar
                     | db.DockWidgetClosable )
     return db
-
-## @brief      Constructor con las propiedades deseadas de una barra lateral.
-## @param      title   Titulo de cabecera del widget.
-## @param      widget  Panel que visualizaremos.
-## @return     PyQt5.QtWidgets.QDockWidget
-def dockBar(title,widget):
-    dockbar = QDockWidget(title)
-    dockbar.setWidget(widget)
-    return dockbar
-
-

@@ -71,6 +71,8 @@ if __name__ == '__main__':
     V.signal_UnSelectAll.connect(P.listener_UnSelectAll)
     V.signal_Undo.connect(P.listener_Undo)
     V.signal_Redo.connect(P.listener_Redo)
+    V.signal_Center.connect(P.listener_Center)
+    V.signal_Clone.connect(P.listener_Clone)
 
     # Conecta señales del menu vista.
     V.signal_HideMenu.connect(P.listener_HideMenu)
@@ -84,8 +86,6 @@ if __name__ == '__main__':
     # Conecta señales del menu componente simple.
     V.signal_SimpleMenu.connect(P.listener_SimpleMenu)
     V.signal_Details.connect(P.listener_Details)
-    V.signal_Center.connect(P.listener_Center)
-    V.signal_Clone.connect(P.listener_Clone)
     V.signal_Name.connect(P.listener_Name)
     V.signal_ZInc.connect(P.listener_ZInc)
     V.signal_ZDec.connect(P.listener_ZDec)

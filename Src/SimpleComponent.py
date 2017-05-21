@@ -78,9 +78,9 @@ class SimpleComponent(QGraphicsPixmapItem):
     def __copy__(self):
         new = type(self)(self.__path)
         new.__dict__.update(self.__dict__)
-        new.setPos(self.getPosX(),self.getPosY())
-        new.setScale(self.getSizeX()/self.boundingRect().width())
-        new.setZValue(self.getPosZ())
+        new.setPos(self.pos())
+        new.setScale(self.scale())
+        new.setZValue(self.zValue())
         new.visibleEffect()
         return new
 

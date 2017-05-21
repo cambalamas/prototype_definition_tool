@@ -89,7 +89,7 @@ class Scene(QGraphicsScene):
             self.parent().setDragMode(0)
             self.getWindow().setCursor(QCursor(Qt.SizeAllCursor))
             self.__moveIni = ev.scenePos()
-        ## Shift+LB para seleccionar componentes.
+        ## LB para seleccionar componentes.
         elif ev.button() == Qt.LeftButton:
             self.parent().setDragMode(2)
             self.getWindow().setCursor(QCursor(Qt.CrossCursor))

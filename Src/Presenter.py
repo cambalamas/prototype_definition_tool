@@ -136,6 +136,35 @@ class Presenter( object ):
         qDebug('Redone subsequent action')
 
 
+    ## @brief      Centra los componentes en la escena.
+    ## @param      self  Presentador.
+    ## @return     None
+    def listener_Center(self):
+        self.model.saveState()  # Guarda el estado previo.
+        x = self.view.workScene.sceneRect().width()/2
+        y = self.view.workScene.sceneRect().height()/2
+        for item in self._selectedItems():
+            itemX = item.getSizeX()/2
+            itemY = item.getSizeY()/2
+            item.setPos(x-itemX,y-itemY)
+            qDebug('Centered component '+self._nfc(item.name))
+        # Actualiza el arbol de miniaturas.
+        self._updateStatesTree()
+
+    ## @brief      Crea una copia de los componentes seleccionados.
+    ## @param      self  Presentador
+    ## @return     None
+    def listener_Clone(self):
+        self.model.saveState()  # Guarda el estado previo.
+        for item in self._selectedItems():
+            itemCopy = copy(item)
+            itemCopy.overWriteId()
+            itemCopy.name = itemCopy.newRandomName()
+            self.model.curState().scene.append(itemCopy)
+            qDebug('Cloned component '+self._nfc(item.name))
+        self.listener_ModelUpdated()
+
+
 # .------------------------.
 # | Señales del menu Vista |
 # -------------------------------------------------------------------------- #
@@ -268,33 +297,6 @@ class Presenter( object ):
         for item in self._selectedItems():
             item.detailsDialog()
             qDebug('Details of '+self._nfc(item.name))
-
-    ## @brief      Centra los componentes en la escena.
-    ## @param      self  Presentador.
-    ## @return     None
-    def listener_Center(self):
-        self.model.saveState()  # Guarda el estado previo.
-        x = self.view.workScene.sceneRect().width()/2
-        y = self.view.workScene.sceneRect().height()/2
-        for item in self._selectedItems():
-            itemX = item.getSizeX()/2
-            itemY = item.getSizeY()/2
-            item.setPos(x-itemX,y-itemY)
-            qDebug('Centered component '+self._nfc(item.name))
-        # Actualiza el arbol de miniaturas.
-        self._updateStatesTree()
-
-    ## @brief      Crea una copia de los componentes seleccionados.
-    ## @param      self  Presentador
-    ## @return     None
-    def listener_Clone(self):
-        self.model.saveState()  # Guarda el estado previo.
-        for item in self._selectedItems():
-            itemCopy = copy(item)
-            itemCopy.overWriteId()
-            itemCopy.name = itemCopy.newRandomName()
-            self.model.curState().scene.append(itemCopy)
-        self.listener_ModelUpdated()
 
     ## @brief      Dialogo para cambiar el nombre los comps. seleccionados.
     ## @param      self  Presentador.
@@ -609,9 +611,6 @@ class Presenter( object ):
             self.listener_NewState()
 
 
-
-
-
 # .-----------------------------------------.
 # | Señales 'callback' del Arbol de Estados |
 # -------------------------------------------------------------------------- #
@@ -752,7 +751,7 @@ class Presenter( object ):
             child2 = QStandardItem(elem.id)
             child3 = QStandardItem(elem.id)
             # Nombre del elemento.
-            icon = QIcon(elem.imgPath)
+            icon = QIcon(elem.pixmap())
             col0 = QStandardItem(icon,elem.name)
             col0.setChild(0,0,child0)
             # Estado Visible del elemento.

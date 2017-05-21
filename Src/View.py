@@ -27,6 +27,8 @@ class View( QMainWindow ):
     signal_UnSelectAll              =   pyqtSignal()
     signal_Undo                     =   pyqtSignal()
     signal_Redo                     =   pyqtSignal()
+    signal_Center                   =   pyqtSignal()
+    signal_Clone                    =   pyqtSignal()
     # View menu
     signal_HideMenu                 =   pyqtSignal()
     signal_Minimalist               =   pyqtSignal()
@@ -38,8 +40,6 @@ class View( QMainWindow ):
     # Simple menu
     signal_SimpleMenu               =   pyqtSignal()
     signal_Details                  =   pyqtSignal()
-    signal_Center                   =   pyqtSignal()
-    signal_Clone                    =   pyqtSignal()
     signal_Name                     =   pyqtSignal()
     signal_ZInc                     =   pyqtSignal()
     signal_ZDec                     =   pyqtSignal()
@@ -85,6 +85,10 @@ class View( QMainWindow ):
         self.signal_Undo.emit()
     def emit_Redo(self):
         self.signal_Redo.emit()
+    def emit_Center(self):
+        self.signal_Center.emit()
+    def emit_Clone(self):
+        self.signal_Clone.emit()
     # View menu
     def emit_Minimalist(self):
         self.signal_Minimalist.emit()
@@ -100,15 +104,18 @@ class View( QMainWindow ):
         self.signal_FullScreen.emit()
     def emit_SceneCenter(self):
         self.signal_SceneCenter.emit()
+    # Help menu
+    def emit_ReadTheDoc(self):
+        url = 'https://github.com/cambalamas/prototype_definition_tool/wiki'
+        QDesktopServices.openUrl(QUrl(url))
+    def emit_ReportIssue(self):
+        url = 'https://github.com/cambalamas/prototype_definition_tool/issues'
+        QDesktopServices.openUrl(QUrl(url))
     # Simple menu
     def emit_SimpleMenu(self):
         self.signal_SimpleMenu.emit()
     def emit_Details(self):
         self.signal_Details.emit()
-    def emit_Center(self):
-        self.signal_Center.emit()
-    def emit_Clone(self):
-        self.signal_Clone.emit()
     def emit_Name(self):
         self.signal_Name.emit()
     def emit_ZInc(self):
@@ -176,22 +183,28 @@ class View( QMainWindow ):
         self.__prevState = Qt.WindowStates
 
         # Emisores de las señales relacionadas con la aplicacion o proyecto.
-        mainEmitters = [ self.emit_SaveProject,
+        mainEmitters = [ # File
+                         self.emit_SaveProject,
                          self.emit_NewSimple,
                          self.emit_NewState,
                          self.close,
+                         # Edit
                          self.emit_SelectAll,
                          self.emit_UnSelectAll,
                          self.emit_Undo,
                          self.emit_Redo,
                          self.emit_Clone,
                          self.emit_Center,
+                         # View
                          self.emit_Minimalist,
                          self.emit_ZoomIn,
                          self.emit_Zoom100,
                          self.emit_ZoomOut,
                          self.emit_FullScreen,
-                         self.emit_SceneCenter ]
+                         self.emit_SceneCenter,
+                         # Help
+                         self.emit_ReadTheDoc,
+                         self.emit_ReportIssue ]
 
         # Construir la GUI de la barra de menus.
         # Construir la GUI de la barra de tareas.

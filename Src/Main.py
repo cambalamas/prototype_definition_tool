@@ -63,8 +63,9 @@ if __name__ == '__main__':
 
     # Conecta señales del menu archivo.
     V.signal_SaveProject.connect(P.listener_SaveProject)
-    V.signal_NewSimple.connect(P.listener_NewSimple)
+    V.signal_LoadProject.connect(P.listener_LoadProject)
     V.signal_NewState.connect(P.listener_NewState)
+    V.signal_NewSimple.connect(P.listener_NewSimple)
 
     # Conecta señales del menu editar.
     V.signal_SelectAll.connect(P.listener_SelectAll)

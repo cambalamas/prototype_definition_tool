@@ -1,0 +1,79 @@
+
+<DGAIUINT>
+    <Composicion/>
+    <Estados>
+        <Estado>
+            <Numero>1</Numero>
+            <Descripcion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_T6w</Nombre>
+                    <Fichero>C:/Users/camba/Z/Noticias Filled-50.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>572.0</Px>
+                                <Py>222.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>51.0</Valorx>
+                        <Valory>51.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_4wL</Nombre>
+                    <Fichero>C:/Users/camba/Z/Reloj Filled-50.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>566.0</Px>
+                                <Py>289.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>51.0</Valorx>
+                        <Valory>51.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_NX0</Nombre>
+                    <Fichero>C:/Users/camba/Z/Teléfono Filled-50.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>637.0</Px>
+                                <Py>221.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>51.0</Valorx>
+                        <Valory>51.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_9ZJ</Nombre>
+                    <Fichero>C:/Users/camba/Z/Twitter Filled-50.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>635.0</Px>
+                                <Py>284.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>51.0</Valorx>
+                        <Valory>51.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+            </Descripcion>
+        </Estado>
+    </Estados>
+</DGAIUINT>

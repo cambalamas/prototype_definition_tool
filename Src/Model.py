@@ -53,6 +53,14 @@ class Model(QObject):
 	def states(self):
 		return self.__states
 
+	## @brief      Propiedad de escritura de la pila de items.
+	## @param      self  Modelo.
+	## @return     None
+	@states.setter
+	def states(self, states):
+		self.__states = states
+		self.curStatePos = 0 # Actualiza la posicion actual y la vista.
+
 	## @brief      Propiedad de lectura del estado activo.
 	## @param      self  Modelo.
 	## @return     int

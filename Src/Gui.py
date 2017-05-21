@@ -71,6 +71,23 @@ def imgDialog(parent,defPath):
                                          supportList,
                                          'PNG (*.png)')
 
+def saveDialog(parent,defPath):
+    title = i18n.t('E.saveDesign')
+    supportList = 'XML (*.xml)'
+    return QFileDialog.getSaveFileName( parent,
+                                        title,
+                                        defPath,
+                                        supportList,
+                                        'XML (*.xml)')
+
+def loadDialog(parent,defPath):
+    title = i18n.t('E.loadDesign')
+    supportList = 'XML (*.xml)'
+    return QFileDialog.getOpenFileName( parent,
+                                        title,
+                                        defPath,
+                                        supportList,
+                                        'XML (*.xml)')
 
 ## @brief      Dialogo para cambiar el nombre de un componente.
 ## @param      parent  Ventana padre.
@@ -91,6 +108,7 @@ def mainBars():
     mb = QMenuBar()
     mb.setNativeMenuBar(True)
     tb = QToolBar(i18n.t('E.toolbarName'))
+    tb.setMovable(False)
 
     mFile = mb.addMenu(i18n.t('E.fileMenu'))
     mEdit = mb.addMenu(i18n.t('E.editMenu'))
@@ -104,16 +122,15 @@ def mainBars():
     act.setStatusTip(i18n.t('E.saveHint'))
 
     tb.addAction(act)
-    mb.addSeparator()
-    tb.addSeparator()
     actions.append(act)
 
-    act = mFile.addAction(i18n.t('E.addSimple'))
-    act.setShortcut('Ctrl+I')
-    act.setIcon(icon('simpleComp.ico'))
-    act.setStatusTip(i18n.t('E.addSimpleHint'))
+    act = mFile.addAction(i18n.t('E.load'))
+    act.setShortcut(QKeySequence.Open)
+    act.setIcon(icon('openProject.ico'))
+    act.setStatusTip(i18n.t('E.saveHint'))
 
     tb.addAction(act)
+    mb.addSeparator()
     actions.append(act)
 
     act = mFile.addAction(i18n.t('E.addState'))
@@ -122,33 +139,26 @@ def mainBars():
     act.setStatusTip(i18n.t('E.addStateHint'))
 
     tb.addAction(act)
+    actions.append(act)
+
+    act = mFile.addAction(i18n.t('E.addSimple'))
+    act.setShortcut('Ctrl+I')
+    act.setIcon(icon('simpleComp.ico'))
+    act.setStatusTip(i18n.t('E.addSimpleHint'))
+
+    tb.addAction(act)
     tb.addSeparator()
     mb.addSeparator()
-
     actions.append(act)
+
     act = mFile.addAction(i18n.t('E.exit'))
-    act.setShortcut(QKeySequence.Close)
+    act.setShortcut(QKeySequence.Quit)
     act.setIcon(icon('appExit.ico'))
     act.setStatusTip(i18n.t('E.exitHint'))
 
     actions.append(act)
 
     # Editar
-    act = mEdit.addAction(i18n.t('E.selectAll'))
-    act.setShortcut('Ctrl+A')
-    act.setIcon(icon('selectAll.ico'))
-    act.setStatusTip(i18n.t('E.selectAllHint'))
-
-    actions.append(act)
-
-    act = mEdit.addAction(i18n.t('E.unSelectAll'))
-    act.setShortcut('Ctrl+D')
-    act.setIcon(icon('unSelectAll.ico'))
-    act.setStatusTip(i18n.t('E.unSelectAllHint'))
-
-    mb.addSeparator()
-    actions.append(act)
-
     act = mEdit.addAction(i18n.t('E.undo'))
     act.setShortcut(QKeySequence.Undo)
     act.setIcon(icon('undo.ico'))
@@ -167,28 +177,49 @@ def mainBars():
     mb.addSeparator()
     actions.append(act)
 
+    act = mEdit.addAction(i18n.t('E.selectAll'))
+    act.setShortcut('Ctrl+A')
+    act.setIcon(icon('selectAll.ico'))
+    act.setStatusTip(i18n.t('E.selectAllHint'))
+
+    tb.addAction(act)
+    actions.append(act)
+
+    act = mEdit.addAction(i18n.t('E.unSelectAll'))
+    act.setShortcut('Ctrl+D')
+    act.setIcon(icon('unSelectAll.ico'))
+    act.setStatusTip(i18n.t('E.unSelectAllHint'))
+
+    tb.addAction(act)
+    mb.addSeparator()
+    actions.append(act)
+
     act = mEdit.addAction(i18n.t('E.duplicateComps'))
     act.setShortcut('Ctrl+Shift+D')
-    # act.setIcon(icon('redo.ico'))
+    act.setIcon(icon('cloneComps.ico'))
     act.setStatusTip(i18n.t('E.duplicateCompsHint'))
 
+    tb.addAction(act)
     actions.append(act)
 
     act = mEdit.addAction(i18n.t('E.centerComps'))
     act.setShortcut('Ctrl+Shift+M')
-    # act.setIcon(icon('redo.ico'))
+    act.setIcon(icon('centerComps.ico'))
     act.setStatusTip(i18n.t('E.centerCompsHint'))
 
+    tb.addAction(act)
+    tb.addSeparator()
     mb.addSeparator()
     actions.append(act)
 
     # Vista
+
     act = mView.addAction(i18n.t('E.minimal'))
     act.setShortcut('Ctrl+H')
-    act.setIcon(icon('hideMenu.ico'))
+    act.setIcon(icon('minimalUI.ico'))
     act.setStatusTip(i18n.t('E.minimalHint'))
 
-    mb.addSeparator()
+    tb.addAction(act)
     actions.append(act)
 
     act = mView.addAction(i18n.t('E.zoomIn'))
@@ -216,6 +247,14 @@ def mainBars():
     mb.addSeparator()
     actions.append(act)
 
+    act = mView.addAction(i18n.t('E.centerScene'))
+    act.setShortcut('Ctrl+Shift+C')
+    act.setIcon(icon('centerScene.ico'))
+    act.setStatusTip(i18n.t('E.centerSceneHint'))
+
+    tb.addAction(act)
+    actions.append(act)
+
     act = mView.addAction(i18n.t('E.fullScreen'))
     act.setCheckable(True)
     act.setShortcut(QKeySequence.FullScreen)
@@ -223,27 +262,23 @@ def mainBars():
     act.setStatusTip(i18n.t('E.fullScreenHint'))
 
     tb.addAction(act)
+    tb.addSeparator()
     mb.addSeparator()
     actions.append(act)
 
-    act = mView.addAction(i18n.t('E.centerScene'))
-    act.setShortcut('Ctrl+Shift+C')
-    act.setIcon(icon('centerScene.ico'))
-    act.setStatusTip(i18n.t('E.centerSceneHint'))
-
-    actions.append(act)
-
     # Ayuda
-    act = mHelp.addAction(i18n.t('E.readTheDoc'))
-    # act.setIcon(icon('centerScene.ico'))
-    act.setStatusTip(i18n.t('E.readTheDocHint'))
-
-    actions.append(act)
-
     act = mHelp.addAction(i18n.t('E.reportError'))
-    # act.setIcon(icon('centerScene.ico'))
+    act.setIcon(icon('reportError.ico'))
     act.setStatusTip(i18n.t('E.reportErrorHint'))
 
+    tb.addAction(act)
+    actions.append(act)
+
+    act = mHelp.addAction(i18n.t('E.readTheDoc'))
+    act.setIcon(icon('readTheDoc.ico'))
+    act.setStatusTip(i18n.t('E.readTheDocHint'))
+
+    tb.addAction(act)
     actions.append(act)
 
     return mb, tb, actions

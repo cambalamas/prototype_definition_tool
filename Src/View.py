@@ -3,7 +3,6 @@
 
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
 import Gui
@@ -20,8 +19,9 @@ class View( QMainWindow ):
 
     # File menu
     signal_SaveProject              =   pyqtSignal()
-    signal_NewSimple                =   pyqtSignal()
+    signal_LoadProject              =   pyqtSignal()
     signal_NewState                 =   pyqtSignal()
+    signal_NewSimple                =   pyqtSignal()
     # Edit menu
     signal_SelectAll                =   pyqtSignal()
     signal_UnSelectAll              =   pyqtSignal()
@@ -72,6 +72,8 @@ class View( QMainWindow ):
     # File menu
     def emit_SaveProject(self):
         self.signal_SaveProject.emit()
+    def emit_LoadProject(self):
+        self.signal_LoadProject.emit()
     def emit_NewSimple(self):
         self.signal_NewSimple.emit()
     def emit_NewState(self):
@@ -185,14 +187,15 @@ class View( QMainWindow ):
         # Emisores de las señales relacionadas con la aplicacion o proyecto.
         mainEmitters = [ # File
                          self.emit_SaveProject,
-                         self.emit_NewSimple,
+                         self.emit_LoadProject,
                          self.emit_NewState,
+                         self.emit_NewSimple,
                          self.close,
                          # Edit
-                         self.emit_SelectAll,
-                         self.emit_UnSelectAll,
                          self.emit_Undo,
                          self.emit_Redo,
+                         self.emit_SelectAll,
+                         self.emit_UnSelectAll,
                          self.emit_Clone,
                          self.emit_Center,
                          # View
@@ -200,11 +203,11 @@ class View( QMainWindow ):
                          self.emit_ZoomIn,
                          self.emit_Zoom100,
                          self.emit_ZoomOut,
-                         self.emit_FullScreen,
                          self.emit_SceneCenter,
+                         self.emit_FullScreen,
                          # Help
-                         self.emit_ReadTheDoc,
-                         self.emit_ReportIssue ]
+                         self.emit_ReportIssue,
+                         self.emit_ReadTheDoc ]
 
         # Construir la GUI de la barra de menus.
         # Construir la GUI de la barra de tareas.

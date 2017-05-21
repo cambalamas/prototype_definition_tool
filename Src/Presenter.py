@@ -71,8 +71,20 @@ class Presenter( object ):
     ## @param      self  Presentador.
     ## @return     None
     def listener_SaveProject(self):
-        pass # Parser.save(self.model.interface)
-        qDebug('Saving project...')
+        home = os.path.expanduser(pv['defaultPath'])
+        fileName =  Gui.saveDialog(self.view, home)
+        Parser.save(self.model.states, fileName[0])
+        qDebug('Saving project on '+self._nfc(fileName[0]))
+
+    ## @brief      Carga la interfaz desde un XML.
+    ## @param      self  Presentador.
+    ## @return     None
+    def listener_LoadProject(self):
+        home = os.path.expanduser(pv['defaultPath'])
+        fileName =  Gui.loadDialog(self.view, home)
+        _, loadedData = Parser.load(fileName[0]) # return Bool, Deque
+        self.model.states = loadedData
+        qDebug('Loading project from '+self._nfc(fileName[0]))
 
     ## @brief      Crea un nuevo componente simple.
     ## @param      self  Presentador.

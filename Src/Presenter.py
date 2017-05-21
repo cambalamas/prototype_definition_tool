@@ -80,11 +80,15 @@ class Presenter( object ):
     ## @param      self  Presentador.
     ## @return     None
     def listener_LoadProject(self):
+        # PREGUNTAR POR GUARDAR ANTES EL PROYECTO ACTUAL.
         home = os.path.expanduser(pv['defaultPath'])
         fileName =  Gui.loadDialog(self.view, home)
         _, loadedData = Parser.load(fileName[0]) # return Bool, Deque
         self.model.states = loadedData
         qDebug('Loading project from '+self._nfc(fileName[0]))
+        self._renderAllScenes()
+        self._cureStatesTree()
+        # self._cureStatesTree()
 
     ## @brief      Crea un nuevo componente simple.
     ## @param      self  Presentador.
@@ -659,8 +663,17 @@ class Presenter( object ):
         self.model.curState().scene = self.model.copyScene()
         self.model.curStatePos = curPos
 
-
-
+    def _cureStatesTree(self):
+        treeModel = self.view.statesTree.model()
+        states = len(self.model.states) - 1
+        print('STATES: '+str(states))
+        thumbs = treeModel.columnCount()
+        print('COLUMNCOUNT: '+str(thumbs))
+        diff = thumbs - states
+        print('DIFF: '+str(diff))
+        if diff > 0:
+            for _ in range(states+1,diff):
+                treeModel.removeColumn(states+1)
 
 # .--------------------.
 # | Señales del Modelo |

@@ -15,6 +15,7 @@ from State import State
 from SimpleComponent import SimpleComponent
 
 
+
 # Convierte XML plano a XML indentado.
 def prettify(node):
     raw = cElementTree.tostring(node, 'utf-8')
@@ -73,7 +74,9 @@ def save(statesList, fileName):
 
 
 
-# Espera un nodo xml para cargarlo en un componente simple.
+## @brief      Genera la definicion de estados y componentes desde fichero XML.
+## @param      simple  Parser
+## @return     None
 def load(filePath):
 
     # VERIFICAR XML CONTRA EL DTD
@@ -91,7 +94,6 @@ def load(filePath):
             stateNum = stateNode.Numero
         else:
             return False, toRet
-        print('there')
         stateScene = deque()
 
         # Enumeraciones
@@ -121,7 +123,8 @@ def load(filePath):
 
                 comp.setPos(posX, posY)
                 comp.setZValue(posZ)
-                comp.setScale(comp.boundingRect().width() / width) #revisar
+                comp.setScale( width * comp.scale()
+                               / comp.boundingRect().width() ) #revisar
 
                 stateScene.append(comp)
 
@@ -129,16 +132,3 @@ def load(filePath):
         toRet.append(state)
 
     return True, toRet
-
-
-#     subNode         = node.Visual_Appearance.Enumeration
-#     simple.name     = node.get('Name')
-#     simple.visible  = node.get('Visible')
-#     simple.active   = node.get('Active')
-#     simple.img      = subNode.File
-#     simple.sizeType = subNode.Size.get('Type')
-#     simple.sizeX    = int(subNode.Size.ValueX)
-#     simple.sizeY    = int(subNode.Size.ValueY)
-#     simple.posType  = subNode.Position.Relative.tag
-#     simple.posX     = int(subNode.Position.Relative.Coordinate.Px)
-#     simple.posY     = int(subNode.Position.Relative.Coordinate.Py)

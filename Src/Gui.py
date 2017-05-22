@@ -57,6 +57,19 @@ def exitDialog(view):
                                  QMessageBox.Ok | QMessageBox.No,
                                  QMessageBox.No ) # <--- Por defecto.
 
+## @brief      Presenta un dialogo con errores de cargar un XML.
+## @param      view  Ventana padre.
+## @return     PyQt5.QtWidgets.QMessageBox
+def loadErrorDialog(parent,msg):
+    txt = ''
+    if   msg == 1:
+        txt = i18n.t('E.loadNotValidXML')
+    elif msg == 2:
+        txt = i18n.t('E.loadMissedState')
+    elif msg == 3:
+        txt = i18n.t('E.loadMissedImages')
+    QMessageBox.about(parent, i18n.t('E.loadErrorTitle'), txt)
+
 
 ## @brief      Dialogo para seleccionar imagenes.
 ## @param      parent   Ventana principal.

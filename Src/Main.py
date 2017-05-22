@@ -10,8 +10,8 @@ from PyQt5.QtWidgets import *
 
 from View import View
 from Model import Model
+from Parser import Parser
 from Presenter import Presenter
-
 from PresetValues import pv
 
 
@@ -56,7 +56,8 @@ if __name__ == '__main__':
     # Inicializaciones.
     M = Model()
     V = View(scrRect)
-    P = Presenter(V,M)
+    X = Parser(V,M)
+    P = Presenter(V,M,X)
 
     # Conecta las señales del modelo.
     M.signal_ModelUpdated.connect(P.listener_ModelUpdated)

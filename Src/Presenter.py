@@ -20,7 +20,7 @@ from PresetValues import pv
 
 
 ## @brief      Clase que define la logica de negocio de la aplicacion.
-class Presenter( object ):
+class Presenter(object):
 
 
 # .-------------.
@@ -31,11 +31,14 @@ class Presenter( object ):
     ## @param      self   Presentador.
     ## @param      view   La ventana principal.
     ## @param      model  El acceso a la capa de persistencia.
-    def __init__(self,view,model):
+    ## @param      parser El experto en XML.
+    def __init__(self, view, model, parser):
         # Ventana principal.
         self.__view = view
         # Gestion de datos y persistencia.
         self.__model = model
+        # Experto XML.
+        self.__parser = parser
         # Flags para evitar drenaje de RAM.
         self.__saveFlagMove = True
         self.__saveFlagResize = True
@@ -62,6 +65,13 @@ class Presenter( object ):
     def model(self):
         return self.__model
 
+    ## @brief      Propiedad de lectura de la variable parser.
+    ## @param      self  Presentador.
+    ## @return     Parser.Parser
+    @property
+    def parser(self):
+        return self.__parser
+
 
 # .--------------------------.
 # | Señales del menu Archivo |
@@ -73,8 +83,9 @@ class Presenter( object ):
     def listener_SaveProject(self):
         home = os.path.expanduser(pv['defaultPath'])
         fileName =  Gui.saveDialog(self.view, home)
-        Parser.save(self.model.states, fileName[0])
-        qDebug('Saving project on '+self._nfc(fileName[0]))
+        if fileName[0]:
+            self.parser.save(self.model.states, fileName[0])
+            qDebug('Saving project on '+self._nfc(fileName[0]))
 
     ## @brief      Carga la interfaz desde un XML.
     ## @param      self  Presentador.
@@ -83,12 +94,14 @@ class Presenter( object ):
         # PREGUNTAR POR GUARDAR ANTES EL PROYECTO ACTUAL.
         home = os.path.expanduser(pv['defaultPath'])
         fileName =  Gui.loadDialog(self.view, home)
-        _, loadedData = Parser.load(fileName[0]) # return Bool, Deque
-        self.model.states = loadedData
-        qDebug('Loading project from '+self._nfc(fileName[0]))
-        self._renderAllScenes()
-        self._cureStatesTree()
-        # self._cureStatesTree()
+        if fileName[0]:
+            msg = self.parser.load(fileName[0]) # return Bool, Deque
+            qDebug('Loading project from '+self._nfc(fileName[0]))
+            self._renderAllScenes()
+            self._cureStatesTree()
+            if msg > 0:
+                Gui.loadErrorDialog(self.view,msg)
+                qDebug('Issues with: '+self._nfc(fileName[0]))
 
     ## @brief      Crea un nuevo componente simple.
     ## @param      self  Presentador.
@@ -150,7 +163,6 @@ class Presenter( object ):
     def listener_Redo(self):
         self.model.redo()
         qDebug('Redone subsequent action')
-
 
     ## @brief      Centra los componentes en la escena.
     ## @param      self  Presentador.
@@ -576,12 +588,19 @@ class Presenter( object ):
 # | Señales 'callback' del Arbol de Estados |
 # -------------------------------------------------------------------------- #
 
+    ## @brief      Clona el estado seleccionado.
+    ## @param      self  Presentador
+    ## @return     None
     def listener_StateClone(self):
         toClone = self.model.copyScene()
         self.listener_NewState()
         self.model.curState().scene = toClone
         self.listener_ModelUpdated()
+        qDebug('Clonated state to the end')
 
+    ## @brief      Mueve el estado seleccionado a su inmediata izquierda.
+    ## @param      self  Presentador
+    ## @return     None
     def listener_StateMoveLeft(self):
         curPos = self.model.curStatePos
         desiredPos = curPos - 1
@@ -594,7 +613,11 @@ class Presenter( object ):
             self.model.states.insert(curPos,toRight)
             self.model.curStatePos = desiredPos
             self._renderAllScenes()
+            qDebug('State move to the left')
 
+    ## @brief      Mueve el estado seleccionado a su inmediata derecha.
+    ## @param      self  Presentador
+    ## @return     None
     def listener_StateMoveRight(self):
         curPos = self.model.curStatePos
         desiredPos = curPos + 1
@@ -607,7 +630,11 @@ class Presenter( object ):
             self.model.states.insert(desiredPos,toRight)
             self.model.curStatePos = desiredPos
             self._renderAllScenes()
+            qDebug('State move to the right')
 
+    ## @brief      Elimina el estado seleccionado.
+    ## @param      self  Presentador
+    ## @return     None
     def listener_StateDelete(self):
         curPos = self.model.curStatePos
         toDelete = self.model.curState()
@@ -625,6 +652,7 @@ class Presenter( object ):
             self.view.statesTree.model().removeColumn(curPos)
             self.model.deleteState(toDelete,False)
             self.listener_NewState()
+        qDebug('State deleted')
 
 
 # .-----------------------------------------.
@@ -639,10 +667,18 @@ class Presenter( object ):
         self.model.curState().scene = self.model.copyScene()
         item = self.view.statesTree.model().itemFromIndex(modelIndex)
         self.model.curStatePos = item.column()
+        qDebug('State switched to: '+str(item.column() + 1))
 
+    ## @brief      Invoca el menu contextual de los estados.
+    ## @param      self  Presentador
+    ## @return     None
     def listener_StateContextMenu(self):
         self.view.statesMenu.exec(self.view.cursor().pos())
+        qDebug('Context menu over states tree')
 
+    ## @brief      Genera el cabecero con una estrella en el actual.
+    ## @param      self  Presentador
+    ## @return     None
     def _statesMarkedHeader(self):
         data = []
         current = self.model.curStatePos + 1
@@ -654,6 +690,9 @@ class Presenter( object ):
                 data.append(str(i))
         self.view.statesTree.model().setHorizontalHeaderLabels(data)
 
+    ## @brief      Refresca la minitura de todos los estados.
+    ## @param      self  Presentador
+    ## @return     None
     def _renderAllScenes(self):
         curPos = self.model.curStatePos
         for state in self.model.states:
@@ -663,14 +702,14 @@ class Presenter( object ):
         self.model.curState().scene = self.model.copyScene()
         self.model.curStatePos = curPos
 
+    ## @brief      Elmina estado sobrantes al cargar una lista de estados.
+    ## @param      self  Presentador.
+    ## @return     None
     def _cureStatesTree(self):
         treeModel = self.view.statesTree.model()
         states = len(self.model.states) - 1
-        print('STATES: '+str(states))
         thumbs = treeModel.columnCount()
-        print('COLUMNCOUNT: '+str(thumbs))
         diff = thumbs - states
-        print('DIFF: '+str(diff))
         if diff > 0:
             for _ in range(states+1,diff):
                 treeModel.removeColumn(states+1)
@@ -691,7 +730,6 @@ class Presenter( object ):
         self._updateCompsTree()    # Actualiza el arbol de componentes.
         self._updateStatesTree()   # Actualiza el arbol de estados.
         self._statesMarkedHeader() # Destaca el estado actual.
-        qDebug('Updated VIEW by MODEL notification')
 
 
 # .--------------------------------.
@@ -800,7 +838,6 @@ class Presenter( object ):
             col3.setChild(0,0,child3)
             # Compone la fila y la agregamos al arbol.
             treeModel.appendRow( [col0 , col1, col2, col3] )
-            qDebug('Updated components\' tree')
 
     ## @brief      Muestra mensajes en la barra de estado.
     ## @param      self  Presentador.
@@ -816,7 +853,11 @@ class Presenter( object ):
         stb.addPermanentWidget(self.zoomInfo)
         stb.showMessage(str(text))
 
+    ## @brief      Actualiza la miniatura de la escena actual.
+    ## @param      self  Presentador
+    ## @return     None
     def _updateStatesTree(self):
-        treeModel = self.view.statesTree.model()
-        curStateThumb = treeModel.item(0, self.model.curStatePos)
-        curStateThumb.setData(self._sceneShot(), Qt.DecorationRole)
+        if self.model.states:
+            treeModel = self.view.statesTree.model()
+            curStateThumb = treeModel.item(0, self.model.curStatePos)
+            curStateThumb.setData(self._sceneShot(), Qt.DecorationRole)

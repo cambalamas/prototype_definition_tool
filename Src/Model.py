@@ -39,7 +39,8 @@ class Model(QObject):
 		super().__init__()
 		self.__states = deque()
 		self.__curStatePos = 0
-		self.curState = lambda : self.__states[self.__curStatePos]
+		self.curState = \
+			lambda : self.__states[self.__curStatePos]
 
 
 # .-------------------------------------------.
@@ -59,7 +60,7 @@ class Model(QObject):
 	@states.setter
 	def states(self, states):
 		self.__states = states
-		self.curStatePos = 0 # Actualiza la posicion actual y la vista.
+		# self.curStatePos = 0 # Actualiza la posicion actual y la vista.
 
 	## @brief      Propiedad de lectura del estado activo.
 	## @param      self  Modelo.

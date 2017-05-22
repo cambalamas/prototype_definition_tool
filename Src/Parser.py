@@ -15,120 +15,187 @@ from State import State
 from SimpleComponent import SimpleComponent
 
 
-
-# Convierte XML plano a XML indentado.
-def prettify(node):
-    raw = cElementTree.tostring(node, 'utf-8')
-    parsed = minidom.parseString(raw)
-    return parsed.toprettyxml(indent="    ")
+## @brief      Clase que define al experto en XML
+class Parser(object):
 
 
-## @brief      Genera fichero XML con la definicion de estados y componentes.
-## @param      simple  Parser
-## @return     None
-def save(statesList, fileName):
-    tfBool = lambda x : 't' if x is True else 'f'
+# .-------------.
+# | Constructor |
+# -------------------------------------------------------------------------- #
 
-    # Genera cadena XML.
-    root = Element('DGAIUINT')
-    composition = SubElement(root, 'Composicion')
-    states = SubElement(root, 'Estados')
-    transitions = SubElement(root, 'Transiciones')
-
-    for s in statesList:
-        state = SubElement(states, 'Estado')
-        num = SubElement(state, 'Numero')
-        num.text = str(statesList.index(s) + 1)
-        desc = SubElement(state, 'Descripcion')
-
-        for sc in s.scene:
-            enum = SubElement( desc, 'Enumeracion',
-                               { 'Activo'  : tfBool(sc.active),
-                                 'Visible' : tfBool(sc.visible) } )
-            name = SubElement(enum, 'Nombre')
-            name.text = sc.name
-            file = SubElement(enum, 'Fichero')
-            file.text = sc.path
-            position = SubElement(enum, 'Posicion')
-            posType = SubElement(position, 'Relativa')
-            cords = SubElement(posType, 'Coordenada')
-            cordX = SubElement(cords, 'Px')
-            cordX.text = str(sc.getPosX())
-            cordY = SubElement(cords, 'Py')
-            cordY.text = str(sc.getPosY())
-            cordZ = SubElement(cords, 'Pz')
-            cordZ.text = str(sc.getPosZ())
-            size = SubElement(enum, 'Tamano', {'Tipo':'fijo'})
-            sizeX = SubElement(size, 'Valorx')
-            sizeX.text = str(sc.getSizeX())
-            sizeY = SubElement(size, 'Valory')
-            sizeY.text = str(sc.getSizeY())
-
-    # Genera fichero XML.
-    QDir().mkpath(os.path.split(fileName)[0]) # Verifica directorio.
-    saveFile = QFile(fileName)# Crear fichero de guardado.
-    saveFile.open(QIODevice.WriteOnly) # Sobreescritura.
-    ts = QTextStream(saveFile) # Canal para enviar texto al log.
-    ts << prettify(root) # Escribe el XML en el archivo.
-    saveFile.close()
+    ## @brief      Constructor del parser.
+    ## @param      self  Parser
+    ## @param      view  Vista
+    ## @param      model Modelo
+    def __init__(self,view,model):
+        self.__view = view
+        self.__model = model
 
 
+# .-------------------------------------------.
+# | Acceso 'publico' a las variables privadas |
+# -------------------------------------------------------------------------- #
 
-## @brief      Genera la definicion de estados y componentes desde fichero XML.
-## @param      simple  Parser
-## @return     None
-def load(filePath):
+    ## @brief      Propiedad de lectura de la variable vista.
+    ## @param      self  Presentador.
+    ## @return     View.View
+    @property
+    def view(self):
+        return self.__view
 
-    # VERIFICAR XML CONTRA EL DTD
+    ## @brief      Propiedad de lectura de la variable modelo.
+    ## @param      self  Presentador.
+    ## @return     View.View
+    @property
+    def model(self):
+        return self.__model
 
-    toRet = deque()
-    rawFile = objectify.parse(filePath)
-    oneLine = etree.tostring(rawFile)
-    rootNode = objectify.fromstring(oneLine)
-    tfBool = lambda x : True if x is 't' else False
 
-    # Estados
-    for stateNode in rootNode.Estados.Estado:
-        state = State()
-        if str(stateNode.Numero).isdigit():
-            stateNum = stateNode.Numero
-        else:
-            return False, toRet
-        stateScene = deque()
+# .----------------------.
+# | Funciones auxiliares |
+# -------------------------------------------------------------------------- #
 
-        # Enumeraciones
-        if hasattr(stateNode.Descripcion, 'Enumeracion'):
-            for compNode in stateNode.Descripcion.Enumeracion:
-                if os.path.isfile(str(compNode.Fichero)):
-                    comp = SimpleComponent(str(compNode.Fichero))
-                else:
-                    return False, toRet
+    ## @brief      Convierte XML plano a XML indentado.
+    ## @param      self  Parser.
+    ## @param      node  Nodo xml.
+    ## @return     str
+    def prettify(self,node):
+        raw = cElementTree.tostring(node, 'utf-8')
+        parsed = minidom.parseString(raw)
+        return parsed.toprettyxml(indent="    ")
 
-                comp.name = str(compNode.Nombre)
-                comp.visible = tfBool(compNode.get('Visible'))
-                comp.active = tfBool(compNode.get('Activo'))
 
-                posX = compNode.Posicion.Relativa.Coordenada.Px
-                posY = compNode.Posicion.Relativa.Coordenada.Py
-                posZ = compNode.Posicion.Relativa.Coordenada.Pz
-                width  = compNode.Tamano.Valorx
-                height = compNode.Tamano.Valory
+# .----------------------.
+# | Volcado de los datos |
+# -------------------------------------------------------------------------- #
 
-                for data in [posX, posY, posZ, width, height]:
-                    data = str(data)
-                    if re.match("\d+\.\d*", data) or data.isdigit():
-                        data = float(data)
+    ## @brief      Genera XML con la definicion de estados y componentes.
+    ## @param      self        Parser.
+    ## @param      statesList  Lista de estados.
+    ## @param      fileName    Nombre del archivo.
+    ## @return     None
+    def save(self,statesList, fileName):
+        tfBool = lambda x : 't' if x is True else 'f'
+
+        # Genera cadena XML.
+        root = Element('DGAIUINT')
+        composition = SubElement(root, 'Composicion')
+        states = SubElement(root, 'Estados')
+        transitions = SubElement(root, 'Transiciones')
+
+        for s in statesList:
+            state = SubElement(states, 'Estado')
+            num = SubElement(state, 'Numero')
+            num.text = str(statesList.index(s) + 1)
+            desc = SubElement(state, 'Descripcion')
+
+            for sc in s.scene:
+                enum = SubElement( desc, 'Enumeracion',
+                                   { 'Activo'  : tfBool(sc.active),
+                                     'Visible' : tfBool(sc.visible) } )
+                name = SubElement(enum, 'Nombre')
+                name.text = sc.name
+                file = SubElement(enum, 'Fichero')
+                file.text = sc.path
+                position = SubElement(enum, 'Posicion')
+                posType = SubElement(position, 'Relativa')
+                cords = SubElement(posType, 'Coordenada')
+                cordX = SubElement(cords, 'Px')
+                cordX.text = str(sc.getPosX())
+                cordY = SubElement(cords, 'Py')
+                cordY.text = str(sc.getPosY())
+                cordZ = SubElement(cords, 'Pz')
+                cordZ.text = str(sc.getPosZ())
+                size = SubElement(enum, 'Tamano', {'Tipo':'fijo'})
+                sizeX = SubElement(size, 'Valorx')
+                sizeX.text = str(sc.getSizeX())
+                sizeY = SubElement(size, 'Valory')
+                sizeY.text = str(sc.getSizeY())
+
+        # Genera fichero XML.
+        QDir().mkpath(os.path.split(fileName)[0]) # Verifica directorio.
+        saveFile = QFile(fileName)# Crear fichero de guardado.
+        saveFile.open(QIODevice.WriteOnly) # Sobreescritura.
+        ts = QTextStream(saveFile) # Canal para enviar texto al log.
+        ts << self.prettify(root) # Escribe el XML en el archivo.
+        saveFile.close()
+
+
+# .--------------------.
+# | Carga de los datos |
+# -------------------------------------------------------------------------- #
+
+    ## @brief      Genera estados y componentes desde fichero XML.
+    ## @param      self  Parser.
+    ## @param      filePath  Archivo XML
+    ## @return     None
+    def load(self,filePath):
+
+        # Variables propias.
+        toRet = 0
+        tfBool = lambda x : True if x is 't' else False
+
+        # Variables xml.
+        rawFile = objectify.parse(filePath)
+        oneLine = etree.tostring(rawFile)
+        rootNode = objectify.fromstring(oneLine)
+
+        # Reseteo de vista y modelo.
+        self.model.states = deque()
+        treeModel = self.view.statesTree.model()
+        treeModel.removeColumns(0,treeModel.columnCount())
+
+        # Validacion del XML cargado.
+        dtd = etree.DTD('./validation.dtd')
+        qDebug('XML validation against DTD: '+str(dtd.validate(rootNode)))
+        if not dtd.validate(rootNode):
+            self.view.emit_NewState()
+            toRet = 1
+            return toRet
+
+        # Estados
+        for stateNode in rootNode.Estados.Estado:
+            if str(stateNode.Numero).isdigit():
+                stateNum = int(stateNode.Numero)
+            else:
+                toRet = 2
+                break
+            self.view.emit_NewState()
+            state = self.model.curState()
+            stateScene = deque()
+
+            # Enumeraciones
+            if hasattr(stateNode.Descripcion, 'Enumeracion'):
+                for compNode in stateNode.Descripcion.Enumeracion:
+                    if os.path.isfile(str(compNode.Fichero)):
+                        comp = SimpleComponent(str(compNode.Fichero))
                     else:
-                        data = 0.0
+                        toRet = 3
+                        break
 
-                comp.setPos(posX, posY)
-                comp.setZValue(posZ)
-                comp.setScale( width * comp.scale()
-                               / comp.boundingRect().width() ) #revisar
+                    comp.name = str(compNode.Nombre)
+                    comp.visible = tfBool(compNode.get('Visible'))
+                    comp.active = tfBool(compNode.get('Activo'))
 
-                stateScene.append(comp)
+                    posX = compNode.Posicion.Relativa.Coordenada.Px
+                    posY = compNode.Posicion.Relativa.Coordenada.Py
+                    posZ = compNode.Posicion.Relativa.Coordenada.Pz
+                    width  = compNode.Tamano.Valorx
+                    height = compNode.Tamano.Valory
 
-        state.scene = stateScene
-        toRet.append(state)
+                    for data in [posX, posY, posZ, width, height]:
+                        data = str(data)
+                        if re.match("\d+\.\d*", data) or data.isdigit():
+                            data = float(data)
+                        else:
+                            data = 0.0
 
-    return True, toRet
+                    comp.setPos(posX, posY)
+                    comp.setZValue(posZ)
+                    comp.setScale( width / comp.boundingRect().width() )
+
+                    stateScene.append(comp)
+
+            state.scene = stateScene
+
+        return toRet

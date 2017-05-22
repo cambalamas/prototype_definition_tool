@@ -17,7 +17,7 @@ xming -ac -multiwindow -clipboard    # This open x11 server.
 docker run -it `
 	-v "$((Get-Location).path):/app" `
 	-e DISPLAY="$((Get-NetAdapter "vEthernet (DockerNAT)" | Get-NetIPAddress).IPAddress):0" `
-	sncdtool python3 /Src/Main.py
+	sncdtool python3 /app/Src/Main.py
 ```
 
 ```shell
@@ -26,7 +26,7 @@ docker run -it \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -v $(pwd):/app \
     -e DISPLAY=$DISPLAY \
-    sncdtool python3 /Src/Main.py
+    sncdtool python3 /app/Src/Main.py
 ```
 
 
@@ -38,7 +38,7 @@ docker run -it \
 - ***python3***
 
 - **i18n**
-- `pip install python-i18n[YAML]`
+- `pip3 install python-i18n[YAML]`
 
 - **lxml**
 - `pip3 install lxml` *or*

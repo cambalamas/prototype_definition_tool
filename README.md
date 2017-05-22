@@ -50,11 +50,12 @@ docker run -it \
 
 
 
-### Run locally from source.
-
-> ***With the requirements installed correctly ...***
+### Run.
 
 ```shell
-python3 EGui.py
+python3 Src/Main.py
+# or...
+cd Src
+python3 Main.py
 ```
 

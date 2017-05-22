@@ -8,6 +8,7 @@ from collections import deque
 from PyQt5.QtCore import *
 from xml.dom import minidom
 from xml.etree import cElementTree
+import lxml
 from lxml import etree, objectify
 from lxml.etree import Element, SubElement
 
@@ -63,8 +64,6 @@ class Parser(object):
         raw = cElementTree.tostring(node, 'utf-8')
         parsed = minidom.parseString(raw)
         return parsed.toprettyxml(indent="    ")
-        # trampeaer reescribiendo la linea 1 como:
-        # <?xml version="1.0" encoding="ISO-8859-1"?>
 
 
 # .----------------------.
@@ -131,7 +130,10 @@ class Parser(object):
         saveFile = QFile(fileName)# Crear fichero de guardado.
         saveFile.open(QIODevice.WriteOnly) # Sobreescritura.
         ts = QTextStream(saveFile) # Canal para enviar texto al log.
-        ts << self.prettify(root) # Escribe el XML en el archivo.
+        xml = self.prettify(root)
+        xml = xml.replace( '<?xml version="1.0" ?>',
+                     '<?xml version="1.0" encoding="ISO-8859-1"?>' )
+        ts << xml # Escribe el XML en el archivo.
         saveFile.close()
 
 
@@ -151,15 +153,21 @@ class Parser(object):
         toRet = 0
         tfBool = lambda x : True if x is 't' else False
 
-        # Variables xml.
-        rawFile = objectify.parse(filePath)
-        oneLine = etree.tostring(rawFile)
-        rootNode = objectify.fromstring(oneLine)
-
         # Reseteo de vista y modelo.
         self.model.states = deque()
         treeModel = self.view.statesTree.model()
         treeModel.removeColumns(0,treeModel.columnCount())
+
+        # Variables xml.
+        try:
+            rawFile = objectify.parse(filePath)
+        except lxml.etree.XMLSyntaxError:
+            self.view.emit_NewState()
+            toRet = 1
+            return toRet
+
+        oneLine = etree.tostring(rawFile)
+        rootNode = objectify.fromstring(oneLine)
 
         # Validacion del XML cargado.
         execFolder = os.path.dirname(os.path.realpath(__file__))

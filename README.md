@@ -7,16 +7,17 @@
 > ***INSIDE THE CLONED DIRECTORY ...***
 
 ```shell
-# first, build the docker image.
-docker build -t pdt .
+# first, build the docker image. (Can take a long time)
+docker build -t sncdtool .
 ```
 
 ```shell
 # windows (Powershell, and Xming or similar will be needed).
+xming -ac -multiwindow -clipboard    # This open x11 server.
 docker run -it `
 	-v "$((Get-Location).path):/app" `
 	-e DISPLAY="$((Get-NetAdapter "vEthernet (DockerNAT)" | Get-NetIPAddress).IPAddress):0" `
-	protoe python3 /app/EGui.py
+	sncdtool python3 /Src/Main.py
 ```
 
 ```shell
@@ -25,7 +26,7 @@ docker run -it \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -v $(pwd):/app \
     -e DISPLAY=$DISPLAY \
-    protoe python3 /app/EGui.py
+    sncdtool python3 /Src/Main.py
 ```
 
 

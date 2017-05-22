@@ -1,8 +1,0 @@
-Vias de trabajo futuras:
-
-
-	(EXPERIENCIA DE USUARIO)
-
-	- Seleccionar el objeto tras un objeto inactivo.
-	- Escalado en base a selección.
-		(Offset =  actual - scala; generando así desplazamiento ¿?)

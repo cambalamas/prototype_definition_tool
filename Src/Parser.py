@@ -62,7 +62,9 @@ class Parser(object):
     def prettify(self,node):
         raw = cElementTree.tostring(node, 'utf-8')
         parsed = minidom.parseString(raw)
-        return parsed.toprettyxml(indent="    ")
+        return parsed.toprettyxml(indent="    ", encoding="ISO-8859-1")
+        # trampeaer reescribiendo la linea 1 como:
+        # <?xml version="1.0" encoding="ISO-8859-1"?>
 
 
 # .----------------------.
@@ -96,7 +98,19 @@ class Parser(object):
                 name = SubElement(enum, 'Nombre')
                 name.text = sc.name
                 file = SubElement(enum, 'Fichero')
-                file.text = sc.path
+
+                imgName = os.path.split(sc.path)[1]
+
+                imgFolder = os.path.split(
+                    fileName)[0] +'/'+os.path.split(fileName)[1][:-4]+'_imgs'
+
+                QDir().mkpath(imgFolder)
+                sc.pixmap().save(imgFolder+'/'+imgName,'png',100)
+
+                file.text = os.path.basename(
+                    imgFolder) +'/'+ os.path.split(sc.path)[1]
+
+
                 position = SubElement(enum, 'Posicion')
                 posType = SubElement(position, 'Relativa')
                 cords = SubElement(posType, 'Coordenada')
@@ -130,6 +144,8 @@ class Parser(object):
     ## @param      filePath  Archivo XML
     ## @return     None
     def load(self,filePath):
+
+        fileFolder = os.path.split(filePath)[0]
 
         # Variables propias.
         toRet = 0
@@ -167,8 +183,10 @@ class Parser(object):
                 if hasattr(stateNode.Descripcion, 'Enumeracion'):
                     for compNode in stateNode.Descripcion.Enumeracion:
 
-                        if os.path.isfile(str(compNode.Fichero)):
-                            comp = SimpleComponent(str(compNode.Fichero))
+                        file = fileFolder+'/'+str(compNode.Fichero)
+                        print(file)
+                        if os.path.isfile(file):
+                            comp = SimpleComponent(file)
                         else:
                             toRet = 3
                             break
@@ -192,7 +210,7 @@ class Parser(object):
 
                         comp.setPos(posX, posY)
                         comp.setZValue(posZ)
-                        comp.setScale( width / comp.boundingRect().width() )
+                        comp.setScale(width / comp.boundingRect().width())
 
                         stateScene.append(comp)
 

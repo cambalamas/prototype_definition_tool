@@ -47,7 +47,7 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
 
     # Redefinimos el capturador de eventos con salida a fichero .log.
-    # qInstallMessageHandler(logger)
+    qInstallMessageHandler(logger)
     qDebug(pv['startMsg'])
 
     # Resolucion del dispositivo del usuario.

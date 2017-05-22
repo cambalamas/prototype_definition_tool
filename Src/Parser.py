@@ -62,7 +62,7 @@ class Parser(object):
     def prettify(self,node):
         raw = cElementTree.tostring(node, 'utf-8')
         parsed = minidom.parseString(raw)
-        return parsed.toprettyxml(indent="    ", encoding="ISO-8859-1")
+        return parsed.toprettyxml(indent="    ")
         # trampeaer reescribiendo la linea 1 como:
         # <?xml version="1.0" encoding="ISO-8859-1"?>
 

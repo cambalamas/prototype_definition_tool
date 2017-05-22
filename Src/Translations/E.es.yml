@@ -6,7 +6,7 @@ es:
   exitDialogQuest       : ¿Seguro que quieres salir?
   loadNotValidXML       : El xml seleccionado, no es válido
   loadMissedState       : El xml seleccionado, contiene estados mal numerados
-  loadMissedImages      : El xml seleccionado, contiene rutas erroneas de algunas imagnes
+  loadMissedImages      : El xml seleccionado, contiene rutas erroneas de algunas imágenes
   loadErrorTitle        : Errores al cargar XML
   imgDialogTitle        : Seleccionar imagen(es)
   saveDesing            : Guardar definicion en XML
@@ -21,7 +21,7 @@ es:
   helpMenu              : Ayuda
   # Menu archivo.
   save                  : Guardar proyecto
-  saveHint              : Guarda la definicion actual en XML.
+  saveHint              : Guarda la definición actual en XML.
   load                  : Cargar proyecto
   loadHint              : Cargar definicion desde XML.
   addState              : Añadir nuevo estado
@@ -39,7 +39,7 @@ es:
   selectAllHint         : Selecciona todos los elementos de la escena.
   unSelectAll           : Deseleccionar todos
   unSelectAllHint       : Deselecciona todos los elementos seleccionados.
-  duplicateComps        : Clona este componente
+  duplicateComps        : Clonar componentes
   duplicateCompsHint    : Crea una copia identica del componente seleccionado.
   centerComps           : Centrar componentes
   centerCompsHint       : Centra los componentes en la escena.
@@ -58,8 +58,8 @@ es:
   fullScreenHint        : Rota entre pantalla completa y el estado anterior.
   # Menu ayuda.
   reportError           : Notificar problema
-  reportErrorHint       : Notifica de algun problema en la aplicacion.
-  readTheDoc            : Abre la página del proyecto
+  reportErrorHint       : Notifica de algun problema en la aplicación.
+  readTheDoc            : Página del proyecto
   readTheDocHint        : Abre la página del proyecto en github.
   # Menu Comps.
   compDetails           : Detalles

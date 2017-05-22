@@ -1,61 +1,80 @@
-# Español
+# Galego
 gl:
-  title             : Ferramenta de definición de prototipados
+  title                 : Ferramenta de definición de prototipados
   # Dialogos.
-  exitDialogTitle   : CONFIRMAR!
-  exitDialogQuest   : Seguro que quieres sair?
-  imgDialogTitle    : Seleccionar imaxe(s)
-  nameDialogTitle   : Rebatizar compoñente(s)
-  nameDialogQuest   : Novo nome do compoñente
+  exitDialogTitle       : CONFIRMAR!
+  exitDialogQuest       : Seguro que quieres sair?
+  loadNotValidXML       : O xml seleccionado, non é válido
+  loadMissedState       : O xml seleccionado, conten estados mal numerados
+  loadMissedImages      : O xml seleccionado, conten rutas erroneas dalgunhas imaxes
+  loadErrorTitle        : Errores ao cargares o XML
+  imgDialogTitle        : Seleccionar imaxe(s)
+  nameDialogTitle       : Rebatizar compoñente(s)
+  nameDialogQuest       : Novo nome do compoñente
   # Barra de menus.
-  toolbarName       : Ferramentas
-  fileMenu          : Arquivo
-  editMenu          : Editar
-  viewMenu          : Vista
-  helpMenu          : Axuda
+  toolbarName           : Ferramentas
+  fileMenu              : Arquivo
+  editMenu              : Editar
+  viewMenu              : Vista
+  helpMenu              : Axuda
   # Menu archivo.
-  save              : Gardar proxecto.
-  saveHint          : Garda o estado do proxecto.
-  addSimple         : Novo Compoñente(s) simple(s)
-  addSimpleHint     : Crea un compoñente simple en base a unha imaxe.
-  addComplex        : Novo Compñente complexo
-  addComplexHint    : Crea un compoñente complexo en base a varias imaxes.
-  exit              : Sair (!)
-  exitHint          : Pecha a aplicación...
+  save                  : Gardar proxecto.
+  saveHint              : Garda a definición actual do proxecto.
+  load                  : Cargar proxecto
+  loadHint              : Cargar definicion desde XML.
+  addState              : Engade novo estado
+  addStateHint          : Crea un novvo estado ao final da lista de estados.
+  addSimple             : Novo Compoñente(s) simple(s)
+  addSimpleHint         : Crea un compoñente simple en base a unha imaxe.
+  exit                  : Sair (!)
+  exitHint              : Pecha a aplicación...
   # Menu editar.
-  selectAll         : Seleccioar todos
-  selectAllHint     : Seleccioa todos os elementos da escea.
-  unSelectAll       : Deseleccioar todos
-  unSelectAllHint   : Deseleccioa todos os elementos seleccioados.
-  undo              : Desfacer
-  undoHint          : Desfai a última acción executada.
-  redo              : Refacer
-  redoHint          : Refai a última acción executada.
+  undo                  : Desfacer
+  undoHint              : Desfai a última acción executada.
+  redo                  : Refacer
+  redoHint              : Refai a última acción executada.
+  selectAll             : Seleccioar todos
+  selectAllHint         : Seleccioa todos os elementos da escea.
+  unSelectAll           : Deseleccioar todos
+  unSelectAllHint       : Deseleccioa todos os elementos seleccioados.
+  duplicateComps        : Clonar compoñentes
+  duplicateCompsHint    : Crea una copia identica do compoñente seleccioado.
+  centerComps           : Centrar compoñentes
+  centerCompsHint       : Centra os componentes na escea.
   # Menu vista.
-  minimal           : Interfaz mínima
-  minimalHint       : Oculta as barras de ferramentas e os paneis.
-  zoomIn            : Zoom +
-  zoomInHint        : Incrementa o zoom da escea.
-  zoom100           : Zoom 100%
-  zoom100Hint       : Restablece o zoom da escea.
-  zoomOut           : Zoom -
-  zoomOutHint       : Decrementa o zoom da escea.
-  fullScreen        : Pantalla completa
-  fullScreenHint    : Rota entre pantalla completa e o estado anterior.
-  # Menu sComp.
-  compChName        : Cambiar Nome
-  compZInc          : Incrementa Profundidade
-  compZDec          : Decrementa Profundidade
-  compToggleActive  : Rota estado Activo
-  compToggleVisible : Rota estado Visible
-  compDelete        : Borra o elemento
-  compDetails       : Ver detalles
-  # Arbol sComp.
-  scHeaderName      : Nome
-  scHeaderVisible   : Visib.
-  scHeaderActive    : Act.
-  # Arbol cComp.
-  ccHeaderName      : Nome
-  # Dockwidgets.
-  scTreeTitle       : SIMPLES
-  ccTreeTitle       : COMPLEXOS
+  minimal               : Interfaz mínima
+  minimalHint           : Oculta as barras de ferramentas e os paneis.
+  zoomIn                : Zoom +
+  zoomInHint            : Incrementa o zoom da escea.
+  zoom100               : Zoom 100%
+  zoom100Hint           : Restablece o zoom da escea.
+  zoomOut               : Zoom -
+  zoomOutHint           : Decrementa o zoom da escea.
+  centerScene           : Centrar escea
+  centerSceneHint       : Centrar escea na ventá.
+  fullScreen            : Pantalla completa
+  fullScreenHint        : Rota entre pantalla completa e o estado anterior.
+  # Menu ayuda.
+  reportError           : Notificar problema
+  reportErrorHint       : Notifica dalgún problema na aplicación.
+  readTheDoc            : Páxina do proxecto
+  readTheDocHint        : Abre a páxina do proxecto no github.
+  # Menu Comps.
+  compDetails           : Detalles
+  compCenter            : Centrar
+  compDuplicate         : Clonar
+  compChName            : Cambiar Nome
+  compZInc              : (+) Profundidade
+  compZDec              : (-) Profundidade
+  compToggleActive      : Rotar activo
+  compToggleVisible     : Rotar visible
+  compDelete            : Eliminar
+  # Estados.
+  stateClone            : Clonar
+  stateMoveLeft         : <- Mover
+  stateMoveRight        : Mover ->
+  stateDelete           : Eliminar
+  # Arbol Comps.
+  scHeaderName          : Nome
+  scHeaderVisible       : V.
+  scHeaderActive        : A.

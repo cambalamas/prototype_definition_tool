@@ -1,61 +1,82 @@
 # Aleman
 de:
-  title             : Prototyp Definition Werkzeug.
+  title                 : Einfacher Zustand und Komponenten-Designer.
   # Dialogos.
-  exitDialogTitle   : BESTÄTIGEN!
-  exitDialogQuest   : Bist du sicher dass du gehen willst?
-  imgDialogTitle    : Bild(e) auswählen
-  nameDialogTitle   : Umbenennen der Komponente(n)
-  nameDialogQuest   : Neuer Komponentenname
+  exitDialogTitle       : BESTÄTIGEN!
+  exitDialogQuest       : Bist du sicher dass du gehen willst?
+  loadNotValidXML       : Das ausgewählte xml ist ungültig
+  loadMissedState       : Die ausgewählte xml enthält schlecht nummerierte Zustände
+  loadMissedImages      : Das ausgewählte xml enthält fehlerhafte Routen einiger Bilder
+  loadErrorTitle        : Fehler beim Laden von XML
+  imgDialogTitle        : Bild (e) auswählen
+  saveDesing            : Definition in XML speichern
+  loadDesing            : Load Definition aus XML
+  nameDialogTitle       : Umbenennen der Komponente(n)
+  nameDialogQuest       : Neuer Komponentenname
   # Barra de menus.
-  toolbarName       : Werkzeuge
-  fileMenu          : Archiv
-  editMenu          : Bearbeiten
-  viewMenu          : Aussicht
-  helpMenu          : Hilfe
+  toolbarName           : Werkzeuge
+  fileMenu              : Archiv
+  editMenu              : Bearbeiten
+  viewMenu              : Aussicht
+  helpMenu              : Hilfe
   # Menu archivo.
-  save              : Projekt speichern
-  saveHint          : Sichert den Projektstatus.
-  addSimple         : Neue einfache Komponente(n)
-  addSimpleHint     : Erstellen Sie eine einfache Komponente basierend auf einem Bild.
-  addComplex        : Neue komplexe Komponente
-  addComplexHint    : Erstellt eine komplexe Komponente, die auf mehreren Bildern basiert.
-  exit              : Geh raus (!)
-  exitHint          : Schließen Sie die Anwendung ...
+  save                  : Projekt speichern
+  saveHint              : Speichert die aktuelle Definition in XML.
+  load                  : Projekt hochladen
+  loadHint              : Load Definition aus XML.
+  addState              : Neuen Status hinzufügen
+  addStateHint          : Erstellt einen neuen Zustand am Ende der Liste der Zustände.
+  addSimple             : Neue(s) einfache Komponente(n)
+  addSimpleHint         : Erstellt eine einfache Komponente basierend auf einem Bild.
+  exit                  : Geh raus (!)
+  exitHint              : Schließen Sie die Anwendung ...
   # Menu editar.
-  selectAll         : Alles auswählen
-  selectAllHint     : Wählen Sie alle Elemente der Szene aus.
-  unSelectAll       : Alle abwählen
-  unSelectAllHint   : Deaktivieren Sie alle ausgewählten Elemente.
-  undo              : Rückgängig machen
-  undoHint          : Die letzte ausgeführte Aktion rückgängig machen
-  redo              : Wiederherstellen
-  redoHint          : Wiederholen Sie die zuletzt ausgeführte Aktion.
+  undo                  : Rückgängig machen
+  undoHint              : Die zuletzt ausgeführte Aktion im aktuellen Zustand rückgängig machen
+  redo                  : Wiederherstellen
+  redoHint              : Wiederholt die letzte rückgängig gemachte Aktion im aktuellen Zustand.
+  selectAll             : Alles auswählen
+  selectAllHint         : Wählt alle Elemente der Szene aus.
+  unSelectAll           : Alle abwählen
+  unSelectAllHint       : Auswahl aller ausgewählten Elemente.
+  duplicateComps        : Klonen von Komponenten
+  duplicateCompsHint    : Erstellt eine identische Kopie der ausgewählten Komponente.
+  centerComps           : Zentralkomponenten
+  centerCompsHint       : Zentrieren Sie die Komponenten in der Szene.
   # Menu vista.
-  minimal           : Minimale Schnittstelle
-  minimalHint       : Versteckt Symbolleisten und Panels.
-  zoomIn            : Zoom +
-  zoomInHint        : Erhöht den Zoom der Szene.
-  zoom100           : Zoom 100%
-  zoom100Hint       : Setzt den Zoom der Szene zurück.
-  zoomOut           : Zoom -
-  zoomOutHint       : Verringert den Szenen-Zoom.
-  fullScreen        : Vollbild
-  fullScreenHint    : Vollbild einschalten.
-  # Menu sComp.
-  compChName        : Umbenennen
-  compZInc          : Tiefe erhöhen
-  compZDec          : Tiefe verringern
-  compToggleActive  : Toggle aktiv
-  compToggleVisible : Toggle sichtbar
-  compDelete        : Löschen
-  compDetails       : Siehe Einzelheiten
-  # Arbol sComp.
-  scHeaderName      : Name
-  scHeaderVisible   : Sicht.
-  scHeaderActive    : Akt.
-  # Arbol cComp.
-  ccHeaderName      : Name
-  # Dockwidgets.
-  scTreeTitle       : EINFACH
-  ccTreeTitle       : COMPLEX
+  minimal               : Minimale Schnittstelle
+  minimalHint           : Verbirgt Symbolleisten und Panels.
+  zoomIn                : Zoom +
+  zoomInHint            : Erhöht den Zoom der Szene.
+  zoom100               : Zoom 100%
+  zoom100Hint           : Setzt den Zoom der Szene zurück.
+  zoomOut               : Zoom -
+  zoomOutHint           : Verringert den Zoom der Szene.
+  centerScene           : Mittelszene
+  centerSceneHint       : Center-Szene im Fenster.
+  fullScreen            : Vollbild
+  fullScreenHint        : Vollbild und vorheriger Zustand umschalten.
+  # Menu ayuda.
+  reportError           : Probleme melden
+  reportErrorHint       : Benachrichtigt über ein Problem in der Anwendung.
+  readTheDoc            : Projektseite
+  readTheDocHint        : Öffnen Sie die Projektseite in Github.
+  # Menu Comps.
+  compDetails           : Details
+  compCenter            : Zum zentrieren
+  compDuplicate         : Klon
+  compChName            : Umbenennen
+  compZInc              : (+) Tiefe
+  compZDec              : (-) Tiefe
+  compToggleActive      : Aktivieren aktiv
+  compToggleVisible     : Sichtbar machen
+  compDelete            : Entfernen
+  # Estados.
+  stateClone            : Klon
+  stateMoveLeft         : <- Verschieben
+  stateMoveRight        : Verschieben ->
+  stateDelete           : Entfernen
+  # Arbol Comps.
+  scHeaderName          : Name
+  scHeaderVisible       : V.
+  scHeaderActive        : A.

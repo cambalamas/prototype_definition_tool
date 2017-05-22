@@ -95,8 +95,8 @@ class Presenter(object):
         home = os.path.expanduser(pv['defaultPath'])
         fileName =  Gui.loadDialog(self.view, home)
         if fileName[0]:
-            msg = self.parser.load(fileName[0]) # return Bool, Deque
             qDebug('Loading project from '+self._nfc(fileName[0]))
+            msg = self.parser.load(fileName[0]) # return Bool, Deque
             self._renderAllScenes()
             self._cureStatesTree()
             if msg > 0:

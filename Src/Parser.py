@@ -157,45 +157,47 @@ class Parser(object):
         for stateNode in rootNode.Estados.Estado:
             if str(stateNode.Numero).isdigit():
                 stateNum = int(stateNode.Numero)
+
+                self.view.emit_NewState()
+                state = self.model.curState()
+                stateScene = deque()
+
+                # Enumeraciones
+                if hasattr(stateNode.Descripcion, 'Enumeracion'):
+                    for compNode in stateNode.Descripcion.Enumeracion:
+
+                        if os.path.isfile(str(compNode.Fichero)):
+                            comp = SimpleComponent(str(compNode.Fichero))
+                        else:
+                            toRet = 3
+                            break
+
+                        comp.name = str(compNode.Nombre)
+                        comp.visible = tfBool(compNode.get('Visible'))
+                        comp.active = tfBool(compNode.get('Activo'))
+
+                        posX = compNode.Posicion.Relativa.Coordenada.Px
+                        posY = compNode.Posicion.Relativa.Coordenada.Py
+                        posZ = compNode.Posicion.Relativa.Coordenada.Pz
+                        width  = compNode.Tamano.Valorx
+                        height = compNode.Tamano.Valory
+
+                        for data in [posX, posY, posZ, width, height]:
+                            data = str(data)
+                            if re.match("\d+\.\d*", data) or data.isdigit():
+                                data = float(data)
+                            else:
+                                data = 0.0
+
+                        comp.setPos(posX, posY)
+                        comp.setZValue(posZ)
+                        comp.setScale( width / comp.boundingRect().width() )
+
+                        stateScene.append(comp)
+
+                state.scene = stateScene
+
             else:
                 toRet = 2
-                break
-            self.view.emit_NewState()
-            state = self.model.curState()
-            stateScene = deque()
-
-            # Enumeraciones
-            if hasattr(stateNode.Descripcion, 'Enumeracion'):
-                for compNode in stateNode.Descripcion.Enumeracion:
-                    if os.path.isfile(str(compNode.Fichero)):
-                        comp = SimpleComponent(str(compNode.Fichero))
-                    else:
-                        toRet = 3
-                        break
-
-                    comp.name = str(compNode.Nombre)
-                    comp.visible = tfBool(compNode.get('Visible'))
-                    comp.active = tfBool(compNode.get('Activo'))
-
-                    posX = compNode.Posicion.Relativa.Coordenada.Px
-                    posY = compNode.Posicion.Relativa.Coordenada.Py
-                    posZ = compNode.Posicion.Relativa.Coordenada.Pz
-                    width  = compNode.Tamano.Valorx
-                    height = compNode.Tamano.Valory
-
-                    for data in [posX, posY, posZ, width, height]:
-                        data = str(data)
-                        if re.match("\d+\.\d*", data) or data.isdigit():
-                            data = float(data)
-                        else:
-                            data = 0.0
-
-                    comp.setPos(posX, posY)
-                    comp.setZValue(posZ)
-                    comp.setScale( width / comp.boundingRect().width() )
-
-                    stateScene.append(comp)
-
-            state.scene = stateScene
 
         return toRet

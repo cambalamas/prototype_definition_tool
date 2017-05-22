@@ -328,6 +328,7 @@ def simpleMenu():
 
     act = ms.addAction(i18n.t('E.compToggleVisible'))
     actions.append(act)
+    ms.addSeparator()
 
     act = ms.addAction(i18n.t('E.compDelete'))
     actions.append(act)

@@ -140,7 +140,7 @@ def mainBars():
     act = mFile.addAction(i18n.t('E.load'))
     act.setShortcut(QKeySequence.Open)
     act.setIcon(icon('openProject.ico'))
-    act.setStatusTip(i18n.t('E.saveHint'))
+    act.setStatusTip(i18n.t('E.loadHint'))
 
     tb.addAction(act)
     mb.addSeparator()
@@ -435,8 +435,7 @@ def statesTreeView(*emitters):
 ## @param      widget  Panel que visualizaremos.
 ## @return     PyQt5.QtWidgets.QDockWidget
 def simpleDockBar(widget):
-    title = i18n.t('E.scTreeTitle')
-    db = QDockWidget(title)
+    db = QDockWidget()
     db.setWidget(widget)
     db.setFixedWidth(213)
     db.setTitleBarWidget(QWidget())
@@ -449,8 +448,7 @@ def simpleDockBar(widget):
 ## @param      widget  Panel que visualizaremos.
 ## @return     PyQt5.QtWidgets.QDockWidget
 def statesDockBar(widget):
-    title = i18n.t('E.stTreeTitle')
-    db = QDockWidget(title)
+    db = QDockWidget()
     db.setWidget(widget)
     db.setFixedHeight(88)
     db.setTitleBarWidget(QWidget())

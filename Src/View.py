@@ -108,7 +108,7 @@ class View( QMainWindow ):
         self.signal_SceneCenter.emit()
     # Help menu
     def emit_ReadTheDoc(self):
-        url = 'https://github.com/cambalamas/prototype_definition_tool/wiki'
+        url = 'https://github.com/cambalamas/prototype_definition_tool'
         QDesktopServices.openUrl(QUrl(url))
     def emit_ReportIssue(self):
         url = 'https://github.com/cambalamas/prototype_definition_tool/issues'

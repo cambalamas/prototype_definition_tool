@@ -146,7 +146,7 @@ class Parser(object):
         treeModel.removeColumns(0,treeModel.columnCount())
 
         # Validacion del XML cargado.
-        dtd = etree.DTD('./validation.dtd')
+        dtd = etree.DTD('./xml.dtd')
         qDebug('XML validation against DTD: '+str(dtd.validate(rootNode)))
         if not dtd.validate(rootNode):
             self.view.emit_NewState()

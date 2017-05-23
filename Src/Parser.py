@@ -192,7 +192,7 @@ class Parser(object):
                     for compNode in stateNode.Descripcion.Enumeracion:
 
                         file = fileFolder+'/'+str(compNode.Fichero)
-                        print(file)
+
                         if os.path.isfile(file):
                             comp = SimpleComponent(file)
                         else:

@@ -377,20 +377,7 @@ class View( QMainWindow ):
         y = self.workScene.sceneRect().y()
         w = self.workScene.sceneRect().width()
         h = self.workScene.sceneRect().height()
-
         self.workScene.clear()
-
-        brush = QBrush()
-        brush.setColor(QColor(pv['bgColor']))
-        brush.setStyle(Qt.CrossPattern)
-        self.workScene.setBackgroundBrush(brush)
-
-        rect = QRectF(self.screenRect)
-        borderColor = Qt.black
-        fillColor = QColor(pv['sceneColor'])
-        self.workScene.addRect(rect,borderColor,fillColor)
-        self.workScene.addRect(rect,borderColor,brush)
-
         self.workScene.setSceneRect(x,y,w,h)
 
 
@@ -402,13 +389,13 @@ class View( QMainWindow ):
     ## @param      self  Vista.
     ## @param      ev    El objeto con la informacion que da este evento.
     ## @return     None
-    # def closeEvent(self,ev):
-    #   reply = Gui.exitDialog(self)
-    #   if reply == QMessageBox.Ok:
-    #       qDebug(pv['endMsg'])
-    #       ev.accept()
-    #   else:
-    #       ev.ignore()
+    def closeEvent(self,ev):
+      reply = Gui.exitDialog(self)
+      if reply == QMessageBox.Ok:
+          qDebug(pv['endMsg'])
+          ev.accept()
+      else:
+          ev.ignore()
 
     ## @brief      Captura cuando se pulsa una o una combiancion de teclas.
     ## @param      self  Vista.

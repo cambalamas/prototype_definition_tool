@@ -14,7 +14,7 @@ pv = {
 	'endMsg' 			: 'SESSION ENDED !\n\n',
 
 	'defaultPath' 		: '~',
-	'bgColor'			: '#999',
+	'bgColor'			: '#DDD',
 	'sceneColor'		: '#DDD',
 
 	'moveTimer'			: 2.0, #secs
@@ -22,7 +22,7 @@ pv = {
 
 	'zJump'				: 1.0,
 	'maxOpacity'		: 1.0,
-	'noVisibleOpacity'	: 0.001,	# Invisible pero interactuable (0,001)
+	'noVisibleOpacity'	: 0.000,	# Invisible pero interactuable (0,001)
 	'noActiveOpacity'	: 0.25,
 
 	'imgModScale'		: 1.025,
@@ -30,7 +30,7 @@ pv = {
 	'imgMaxScale'		: 200.00,
 
 	'viewModScale'		: 1.1,
-	'viewMinScale'		: 0.0013, 	# Como photoshop
+	'viewMinScale'		: 0.05, 	# Como photoshop se hace muy pequeño
 	'viewMaxScale'		: 34.5,		# Como photoshop
 	'viewRectMargin'	: 0.70,
 

@@ -363,9 +363,15 @@ def statesMenu():
 ## @return     PyQt5.QtWidgets.QGraphicsView
 def workArea(screenRect):
     wArea = QGraphicsView()
-    wArea.setBackgroundBrush(QColor(pv['bgColor']))
     wArea.resize(screenRect.width(),screenRect.height())
     wArea.setTransformationAnchor(wArea.AnchorUnderMouse)
+
+    brush = QBrush()
+    brush.setStyle(Qt.CrossPattern)
+    brush.setColor(QColor(pv['bgColor']))
+
+    wArea.setBackgroundBrush(brush)
+
     wAreaScene = Scene(QRectF(screenRect),wArea)
     wArea.setScene(wAreaScene)
 
@@ -438,7 +444,7 @@ def statesTreeView(*emitters):
 def simpleDockBar(widget):
     db = QDockWidget()
     db.setWidget(widget)
-    db.setFixedWidth(213)
+    db.setFixedWidth(215)
     db.setTitleBarWidget(QWidget())
     db.setFeatures(db.DockWidgetClosable)
 
@@ -451,7 +457,7 @@ def simpleDockBar(widget):
 def statesDockBar(widget):
     db = QDockWidget()
     db.setWidget(widget)
-    db.setFixedHeight(88)
+    db.setFixedHeight(90)
     db.setTitleBarWidget(QWidget())
     db.setFeatures( db.DockWidgetVerticalTitleBar
                     | db.DockWidgetClosable )

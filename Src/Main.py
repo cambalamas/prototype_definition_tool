@@ -50,14 +50,10 @@ def handler(msgType, context, msg):
             or msgType == 1
             or msgType == 2
             or msgType == 3
-            or msgType == 4
-            or msgType == QtCriticalMsg ):
+            or msgType == 4 ):
         logger(msg)
 
-    if ( msgType == 1
-            or msgType == 2
-            or msgType == 3
-            or msgType == QtCriticalMsg ):
+    if msgType == 2 or msgType == 3:
         print('Something went wrong :(\nSee the logfile for more info.')
 
 

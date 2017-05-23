@@ -6,6 +6,7 @@ LABEL Description="A mouse-oriented editor for design statics states and simples
 
 RUN apt-get update && \
 	apt-get install -y --no-install-recommends\
+		dbus\
 		python3 \
 		python3-lxml \
 		python3-pyqt5 \
@@ -14,3 +15,10 @@ RUN apt-get update && \
 
 RUN pip3 install --upgrade pip
 RUN pip3 install python-i18n[YAML]
+
+RUN sed -i "s/^#\ es_ES/es_ES/g" /etc/locale.gen
+RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
+
+ENV LANGUAGE es_ES.ISO-8859-1
+ENV LANG es_ES.ISO-8859-1
+ENV LC_ALL es_ES.ISO-8859-1

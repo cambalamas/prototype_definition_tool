@@ -372,12 +372,32 @@ class View( QMainWindow ):
     ## @param      self  Vista.
     ## @return     None
     def resetWorkScene(self):
-        # Guardo la ubiacion y estado de la escena
+        # Guardo la ubiacion y estado de la escena.
         x = self.workScene.sceneRect().x()
         y = self.workScene.sceneRect().y()
         w = self.workScene.sceneRect().width()
         h = self.workScene.sceneRect().height()
+        # Limpio la escena.
         self.workScene.clear()
+        # Defino su pincel de fondo.
+        brush = QBrush()
+        brush.setColor(QColor(pv['bgColor']))
+        brush.setStyle(Qt.CrossPattern)
+        self.workScene.setBackgroundBrush(brush)
+        # Creo el area activa.
+        borderColor = Qt.black
+        rect = QRectF(0.0,0.0,1240.0,720.0)
+        fillColor = QColor(pv['sceneColor'])
+        rect1 = self.workScene.addRect(rect,borderColor,fillColor)
+        rect2 = self.workScene.addRect(rect,borderColor,brush)
+        # Calculo el centro.
+        sX = self.workScene.sceneRect().width()/2
+        sY = self.workScene.sceneRect().height()/2
+        iX = rect1.rect().width()/2
+        iY = rect1.rect().height()/2
+        rect1.setPos(sX-iX,sY-iY)
+        rect2.setPos(sX-iX,sY-iY)
+        # Recoloco la escena.
         self.workScene.setSceneRect(x,y,w,h)
 
 

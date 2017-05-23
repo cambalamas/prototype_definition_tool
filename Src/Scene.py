@@ -30,7 +30,6 @@ class Scene(QGraphicsScene):
         self.__selPosO = QPointF(0,0)
         self.__selPosD = QPointF(0,0)
         self.__moveIni = QPointF(0,0)
-        self.__selRubber = QRubberBand(QRubberBand.Rectangle, self.parent())
 
 
 # .------------------------------------.

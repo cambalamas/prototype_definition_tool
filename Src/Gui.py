@@ -363,16 +363,10 @@ def statesMenu():
 ## @return     PyQt5.QtWidgets.QGraphicsView
 def workArea(screenRect):
     wArea = QGraphicsView()
+    wArea.setBackgroundBrush(QColor(pv['bgColor']))
     wArea.resize(screenRect.width(),screenRect.height())
     wArea.setTransformationAnchor(wArea.AnchorUnderMouse)
-
-    brush = QBrush()
-    brush.setStyle(Qt.CrossPattern)
-    brush.setColor(QColor(pv['bgColor']))
-
-    wArea.setBackgroundBrush(brush)
-
-    wAreaScene = Scene(QRectF(screenRect),wArea)
+    wAreaScene = Scene(QRectF(0.0,0.0,1240.0,720.0),wArea)
     wArea.setScene(wAreaScene)
 
     return wArea

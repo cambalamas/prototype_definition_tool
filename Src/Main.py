@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import os
 import sys
 from datetime import datetime
 
@@ -15,18 +16,20 @@ from Presenter import Presenter
 from PresetValues import pv
 
 
-## @brief      Esto redefinira el EventHandler por defecto.
+## @brief      Funcion llamada por el event handler.
 ## @param      type     Info, Debug, Warning, Critial, Fatal.
 ## @param      context  Informacion de donde se recibio el mensaje.
 ## @param      msg      Informacion emitida. (Nuestra o del sistema)
 ## @return     None
-def logger(type, context, msg):
+def logger(msg):
     # Fecha y hora actual.
     dt = datetime.now()
     # Crear la carpeta de Logs si no existe.
-    QDir().mkpath('Logs')
+    exeFolder = os.path.split(os.path.realpath(__file__))[0]
+    folder = os.path.join(exeFolder,'Logs')
+    QDir().mkpath(folder)
     # Crear fichero de log por dia
-    logFile = QFile('Logs/'+str(dt.date())+'.log')
+    logFile = QFile(folder+'/'+str(dt.date())+'.log')
     # Agregar entradas al final del archivo.
     logFile.open(QIODevice.WriteOnly | QIODevice.Append)
     # Canal para enviar texto al log.
@@ -35,6 +38,28 @@ def logger(type, context, msg):
     fmt = '({})\t{}'.format(dt.time(), msg)
     # Enviar el mensaje formateado por el canal al fichero de log.
     ts << fmt + '\n'
+
+
+## @brief      Captura los mensajes de error e información.
+## @param      msgType  Gravedad del mensaje.
+## @param      context  Contexto
+## @param      msg      Mensaje
+## @return     None
+def handler(msgType, context, msg):
+    if ( msgType == 0
+            or msgType == 1
+            or msgType == 2
+            or msgType == 3
+            or msgType == 4
+            or msgType == QtCriticalMsg ):
+        logger(msg)
+
+    if ( msgType == 1
+            or msgType == 2
+            or msgType == 3
+            or msgType == QtCriticalMsg ):
+        print('Something went wrong :(\nSee the logfile for more info.')
+
 
 
 # .------------------.
@@ -47,7 +72,7 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
 
     # Redefinimos el capturador de eventos con salida a fichero .log.
-    qInstallMessageHandler(logger)
+    qInstallMessageHandler(handler)
     qDebug(pv['startMsg'])
 
     # Resolucion del dispositivo del usuario.

@@ -10,11 +10,12 @@ import json
 
 pv = {
 
-	'startMsg' 			: 'SESSION STARTED !',
-	'endMsg' 			: 'SESSION ENDED !\n\n',
+	'startMsg' 			: '\n\n\nSESSION STARTED !',
+	'endMsg' 			: 'SESSION ENDED !',
 
 	'defaultPath' 		: '~',
 	'bgColor'			: '#EEE',
+	'sceneColor'			: '#DDD',
 
 	'moveTimer'			: 2.0, 		#secs
 	'resizeTimer'		: 5.0, 		#secs
@@ -31,7 +32,7 @@ pv = {
 	'viewModScale'		: 1.1,
 	'viewMinScale'		: 0.05, 	# Como photoshop = muy pequeño (0.0013)
 	'viewMaxScale'		: 34.5,		# Como photoshop
-	'viewRectMargin'	: 0.70,
+	'viewRectMargin'	: 1.00,
 
 	'historyLimit'		: 100,
 

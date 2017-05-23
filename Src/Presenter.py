@@ -547,11 +547,13 @@ class Presenter(object):
         component = self.model.getComponentById(compID)
         # Si el dato modificado fue el nombre.
         if item.column() == 0:
+            self.model.saveState()  # Guarda el estado previo.
             component.name = item.data(0)
             qDebug('Changed name of '+self._nfc(component.imgPath)
                    +' from components tree, to '+self._nfc(component.name))
         # Si el dato modificado fue la visibilidad.
         if item.column() == 1:
+            self.model.saveState()  # Guarda el estado previo.
             if item.checkState() == 0:
                 component.visible = False
             elif item.checkState() == 2:
@@ -561,6 +563,7 @@ class Presenter(object):
                    +' from components tree, to '+self._nfc(component.visible))
         # Si el dato modificado fue el estado activo.
         if item.column() == 2:
+            self.model.saveState()  # Guarda el estado previo.
             if item.checkState() == 0:
                 component.active = False
             elif item.checkState() == 2:
@@ -570,6 +573,7 @@ class Presenter(object):
                    +' from components tree, to '+self._nfc(component.active))
         # Si el dato modificado fue la posicion Z.
         if item.column() == 3:
+            self.model.saveState()  # Guarda el estado previo.
             newZ = item.data(0)
             if re.match("\d+\.\d*", newZ) or newZ.isdigit():
                 component.setZValue(float(newZ))
@@ -846,7 +850,7 @@ class Presenter(object):
     def _SbMsg(self,text):
         stb = self.view.statusBar()
         stb.removeWidget(self.zoomInfo)
-        rect = self.view.screenRect
+        rect = self.view.workScene.sceneRect()
         strRect = '[{} x {}]'.format(rect.width(),rect.height())
         strViewScale = '[{}%]'.format(round(self.view.scale*100,2))
         self.zoomInfo = QLabel(strRect+' :: '+strViewScale)

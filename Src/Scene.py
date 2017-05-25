@@ -26,9 +26,6 @@ class Scene(QGraphicsScene):
         # self.getWindow().setMouseTracking(True)
         self.parent().setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.parent().setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.__selIni = QPointF(0,0)
-        self.__selPosO = QPointF(0,0)
-        self.__selPosD = QPointF(0,0)
         self.__moveIni = QPointF(0,0)
 
 

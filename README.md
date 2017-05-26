@@ -85,7 +85,7 @@ Ante un mensaje similar a: â€œ*D-Bus library appears to be incorrectly set up*â€
 sudo apt-get install -y dbus
 ```
 
-####Mac
+#### Mac
 
 ```
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"

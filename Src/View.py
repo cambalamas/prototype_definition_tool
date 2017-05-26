@@ -9,8 +9,10 @@ import Gui
 from SimpleComponent import SimpleComponent as sc
 from PresetValues import pv
 
-## @brief      Clase encargada de la estructura visual de la aplicacion.
-class View( QMainWindow ):
+
+# @brief      Clase encargada de la estructura visual de la aplicacion.
+
+class View(QMainWindow):
 
 
 # .---------.
@@ -18,51 +20,51 @@ class View( QMainWindow ):
 # -------------------------------------------------------------------------- #
 
     # File menu
-    signal_SaveProject              =   pyqtSignal()
-    signal_LoadProject              =   pyqtSignal()
-    signal_NewState                 =   pyqtSignal()
-    signal_NewSimple                =   pyqtSignal()
+    signal_SaveProject = pyqtSignal()
+    signal_LoadProject = pyqtSignal()
+    signal_NewState = pyqtSignal()
+    signal_NewSimple = pyqtSignal()
     # Edit menu
-    signal_SelectAll                =   pyqtSignal()
-    signal_UnSelectAll              =   pyqtSignal()
-    signal_Undo                     =   pyqtSignal()
-    signal_Redo                     =   pyqtSignal()
-    signal_Center                   =   pyqtSignal()
-    signal_Clone                    =   pyqtSignal()
+    signal_SelectAll = pyqtSignal()
+    signal_UnSelectAll = pyqtSignal()
+    signal_Undo = pyqtSignal()
+    signal_Redo = pyqtSignal()
+    signal_Center = pyqtSignal()
+    signal_Clone = pyqtSignal()
     # View menu
-    signal_HideMenu                 =   pyqtSignal()
-    signal_Minimalist               =   pyqtSignal()
-    signal_ZoomIn                   =   pyqtSignal()
-    signal_Zoom100                  =   pyqtSignal()
-    signal_ZoomOut                  =   pyqtSignal()
-    signal_FullScreen               =   pyqtSignal()
-    signal_SceneCenter              =   pyqtSignal()
+    signal_HideMenu = pyqtSignal()
+    signal_Minimalist = pyqtSignal()
+    signal_ZoomIn = pyqtSignal()
+    signal_Zoom100 = pyqtSignal()
+    signal_ZoomOut = pyqtSignal()
+    signal_FullScreen = pyqtSignal()
+    signal_SceneCenter = pyqtSignal()
     # Simple menu
-    signal_SimpleMenu               =   pyqtSignal()
-    signal_Details                  =   pyqtSignal()
-    signal_Name                     =   pyqtSignal()
-    signal_ZInc                     =   pyqtSignal()
-    signal_ZDec                     =   pyqtSignal()
-    signal_Active                   =   pyqtSignal()
-    signal_Visible                  =   pyqtSignal()
-    signal_Delete                   =   pyqtSignal()
+    signal_SimpleMenu = pyqtSignal()
+    signal_Details = pyqtSignal()
+    signal_Name = pyqtSignal()
+    signal_ZInc = pyqtSignal()
+    signal_ZDec = pyqtSignal()
+    signal_Active = pyqtSignal()
+    signal_Visible = pyqtSignal()
+    signal_Delete = pyqtSignal()
     # Simple callbacks
-    signal_Resize                   =   pyqtSignal(int)
-    signal_Move                     =   pyqtSignal(QPointF,QPointF,tuple)
+    signal_Resize = pyqtSignal(int)
+    signal_Move = pyqtSignal(QPointF, QPointF, tuple)
     # Scene callbacks
-    signal_SceneMove                =   pyqtSignal(QPointF,QPointF)
-    signal_SelectArea               =   pyqtSignal(QRect)
+    signal_SceneMove = pyqtSignal(QPointF, QPointF)
+    signal_SelectArea = pyqtSignal(QRect)
     # Comps tree callbacks
-    signal_ItemChanged              =   pyqtSignal(QStandardItem)
+    signal_ItemChanged = pyqtSignal(QStandardItem)
     # States menu
-    signal_StateMoveLeft            =   pyqtSignal()
-    signal_StateMoveRight           =   pyqtSignal()
-    signal_StateClone               =   pyqtSignal()
-    signal_StateDelete              =   pyqtSignal()
+    signal_StateMoveLeft = pyqtSignal()
+    signal_StateMoveRight = pyqtSignal()
+    signal_StateClone = pyqtSignal()
+    signal_StateDelete = pyqtSignal()
     # States tree callbacks
-    signal_StateThumbPressed        =   pyqtSignal(QModelIndex)
+    signal_StateThumbPressed = pyqtSignal(QModelIndex)
     # States states tree
-    signal_StateContextMenu         =   pyqtSignal()
+    signal_StateContextMenu = pyqtSignal()
 
 
 # .----------.
@@ -70,91 +72,138 @@ class View( QMainWindow ):
 # -------------------------------------------------------------------------- #
 
     # File menu
+
     def emit_SaveProject(self):
         self.signal_SaveProject.emit()
+
     def emit_LoadProject(self):
         self.signal_LoadProject.emit()
+
     def emit_NewSimple(self):
         self.signal_NewSimple.emit()
+
     def emit_NewState(self):
         self.signal_NewState.emit()
+
     # Edit menu
+
     def emit_SelectAll(self):
         self.signal_SelectAll.emit()
+
     def emit_UnSelectAll(self):
         self.signal_UnSelectAll.emit()
+
     def emit_Undo(self):
         self.signal_Undo.emit()
+
     def emit_Redo(self):
         self.signal_Redo.emit()
+
     def emit_Center(self):
         self.signal_Center.emit()
+
     def emit_Clone(self):
         self.signal_Clone.emit()
+
     # View menu
+
     def emit_Minimalist(self):
         self.signal_Minimalist.emit()
+
     def emit_HideMenu(self):
         self.signal_HideMenu.emit()
+
     def emit_ZoomIn(self):
         self.signal_ZoomIn.emit()
+
     def emit_Zoom100(self):
         self.signal_Zoom100.emit()
+
     def emit_ZoomOut(self):
         self.signal_ZoomOut.emit()
+
     def emit_FullScreen(self):
         self.signal_FullScreen.emit()
+
     def emit_SceneCenter(self):
         self.signal_SceneCenter.emit()
+
     # Help menu
+
     def emit_ReadTheDoc(self):
         url = 'https://github.com/cambalamas/prototype_definition_tool'
         QDesktopServices.openUrl(QUrl(url))
+
     def emit_ReportIssue(self):
         url = 'https://github.com/cambalamas/prototype_definition_tool/issues'
         QDesktopServices.openUrl(QUrl(url))
+
     # Simple menu
+
     def emit_SimpleMenu(self):
         self.signal_SimpleMenu.emit()
+
     def emit_Details(self):
         self.signal_Details.emit()
+
     def emit_Name(self):
         self.signal_Name.emit()
+
     def emit_ZInc(self):
         self.signal_ZInc.emit()
+
     def emit_ZDec(self):
         self.signal_ZDec.emit()
+
     def emit_Active(self):
         self.signal_Active.emit()
+
     def emit_Visible(self):
         self.signal_Visible.emit()
+
     def emit_Delete(self):
         self.signal_Delete.emit()
+
     # Simple callbacks
-    def emit_Resize(self,delta):
+
+    def emit_Resize(self, delta):
         self.signal_Resize.emit(delta)
-    def emit_Move(self,posO,posD,*sc):
-        self.signal_Move.emit(posO,posD,sc)
+
+    def emit_Move(self, posO, posD, *sc):
+        self.signal_Move.emit(posO, posD, sc)
+
     # Scene callbacks
-    def emit_SceneMove(self,posO,posD):
-        self.signal_SceneMove.emit(posO,posD)
-    def emit_SelectArea(self,rect):
+
+    def emit_SceneMove(self, posO, posD):
+        self.signal_SceneMove.emit(posO, posD)
+
+    def emit_SelectArea(self, rect):
         self.signal_SelectArea.emit(rect)
+
     # Comps tree callbacks
-    def emit_ItemChanged(self,item):
+
+    def emit_ItemChanged(self, item):
         self.signal_ItemChanged.emit(item)
+
     # States tree menu
+
     def emit_StateMoveLeft(self):
         self.signal_StateMoveLeft.emit()
+
     def emit_StateMoveRight(self):
         self.signal_StateMoveRight.emit()
+
     def emit_StateClone(self):
         self.signal_StateClone.emit()
+
     def emit_StateDelete(self):
         self.signal_StateDelete.emit()
+
     # States tree callbacks
-    def emit_StateThumbPressed(self,item):
+
+    def emit_StateThumbPressed(self, item):
         self.signal_StateThumbPressed.emit(item)
+
     def emit_StateContextMenu(self):
         self.signal_StateContextMenu.emit()
 
@@ -163,10 +212,10 @@ class View( QMainWindow ):
 # | Constructor |
 # -------------------------------------------------------------------------- #
 
-    ## @brief      Constructor del objeto vista, que será la ventana principal.
-    ## @param      self        Vista.
-    ## @param      screenRect  Resolucion de la pantalla del usuario.
-    def __init__(self,screenRect):
+    # @brief      Constructor del objeto vista, que será la ventana principal.
+    # @param      self        Vista.
+    # @param      screenRect  Resolucion de la pantalla del usuario.
+    def __init__(self, screenRect):
         super().__init__()
 
         self.setGeometry(screenRect)
@@ -185,7 +234,7 @@ class View( QMainWindow ):
         self.__prevState = Qt.WindowStates
 
         # Emisores de las señales relacionadas con la aplicacion o proyecto.
-        mainEmitters = [ # File
+        mainEmitters = [  # File
                          self.emit_SaveProject,
                          self.emit_LoadProject,
                          self.emit_NewState,
@@ -207,19 +256,18 @@ class View( QMainWindow ):
                          self.emit_FullScreen,
                          # Help
                          self.emit_ReportIssue,
-                         self.emit_ReadTheDoc ]
+                         self.emit_ReadTheDoc]
 
         # Construir la GUI de la barra de menus.
         # Construir la GUI de la barra de tareas.
         # Lista de acciones ejectuables por dichas barras.
         _menubar, self.__toolbar, mainActions = Gui.mainBars()
         self.setMenuBar(_menubar)
-        self.addToolBar(Qt.LeftToolBarArea,self.__toolbar)
-        self._connectSignals(mainActions,mainEmitters)
-
+        self.addToolBar(Qt.LeftToolBarArea, self.__toolbar)
+        self._connectSignals(mainActions, mainEmitters)
 
         # Emisores de las señales relacionadas con componentes simples.
-        simpleEmitters = [ self.emit_Details,
+        simpleEmitters = [self.emit_Details,
                            self.emit_Center,
                            self.emit_Clone,
                            self.emit_Name,
@@ -227,29 +275,29 @@ class View( QMainWindow ):
                            self.emit_ZDec,
                            self.emit_Active,
                            self.emit_Visible,
-                           self.emit_Delete ]
+                           self.emit_Delete]
 
         # Menu contextual arbol simple.
         self.__simpleMenu, simpleActions = Gui.simpleMenu()
-        self._connectSignals(simpleActions,simpleEmitters)
+        self._connectSignals(simpleActions, simpleEmitters)
 
         # Arbol de componentes simples.
-        self.__simpleTree = Gui.simpleTreeView( self.emit_ItemChanged,
-                                                self.emit_SimpleMenu )
+        self.__simpleTree = Gui.simpleTreeView(self.emit_ItemChanged,
+                                                self.emit_SimpleMenu)
 
         # Emisores de las señales relacionadas con estados.
-        statesEmitters = [ self.emit_StateClone,
+        statesEmitters = [self.emit_StateClone,
                            self.emit_StateMoveLeft,
                            self.emit_StateMoveRight,
-                           self.emit_StateDelete ]
+                           self.emit_StateDelete]
 
         # Menu contextual de arbol de estados.
         self.__statesMenu, statesActions = Gui.statesMenu()
-        self._connectSignals(statesActions,statesEmitters)
+        self._connectSignals(statesActions, statesEmitters)
 
         # Arbol de estados.
-        self.__statesTree = Gui.statesTreeView( self.emit_StateContextMenu,
-                                                self.emit_StateThumbPressed )
+        self.__statesTree = Gui.statesTreeView(self.emit_StateContextMenu,
+                                                self.emit_StateThumbPressed)
 
         # Barras anexas.
         self.__simpleDockbar = Gui.simpleDockBar(self.__simpleTree)
@@ -269,87 +317,87 @@ class View( QMainWindow ):
 # | Acceso 'publico' a las variables privadas |
 # -------------------------------------------------------------------------- #
 
-    ## @brief      Propiedad de lectura del estado anterior de la ventana.
-    ## @param      self  Esta ventana
-    ## @return     PyQt5.QtCore.Qt.WindowStates
+    # @brief      Propiedad de lectura del estado anterior de la ventana.
+    # @param      self  Esta ventana
+    # @return     PyQt5.QtCore.Qt.WindowStates
     @property
     def prevState(self):
         return self.__prevState
 
-    ## @brief      Propiedad de escritura del estado anterior de la ventana.
-    ## @param      self  Vista.
-    ## @param      self  Estado a guardar.
-    ## @return     None
+    # @brief      Propiedad de escritura del estado anterior de la ventana.
+    # @param      self  Vista.
+    # @param      self  Estado a guardar.
+    # @return     None
     @prevState.setter
-    def prevState(self,prevState):
+    def prevState(self, prevState):
         self.__prevState = prevState
 
-    ## @brief      Propiedad de lectura de la lista de componentes simples.
-    ## @param      self  Vista.
-    ## @return     PyQt5.QtWidgets.QTreeView
+    # @brief      Propiedad de lectura de la lista de componentes simples.
+    # @param      self  Vista.
+    # @return     PyQt5.QtWidgets.QTreeView
     @property
     def simpleTree(self):
         return self.__simpleTree
 
-    ## @brief      Propiedad de lectura del menu para componentes simples.
-    ## @param      self  Vista.
-    ## @return     PyQt.QtWidgets.QMenu
+    # @brief      Propiedad de lectura del menu para componentes simples.
+    # @param      self  Vista.
+    # @return     PyQt.QtWidgets.QMenu
     @property
     def simpleMenu(self):
         return self.__simpleMenu
 
-    ## @brief      Propiedad de lectura de la lista de componentes complejos.
-    ## @param      self  Vista.
-    ## @return     PyQt5.QtWidgets.QTreeView
+    # @brief      Propiedad de lectura de la lista de componentes complejos.
+    # @param      self  Vista.
+    # @return     PyQt5.QtWidgets.QTreeView
     @property
     def statesTree(self):
         return self.__statesTree
 
-    ## @brief      Propiedad de lectura de la barra de herramientas.
-    ## @param      self  Vista.
-    ## @return     PyQt5.QtWidgets.QToolBar
+    # @brief      Propiedad de lectura de la barra de herramientas.
+    # @param      self  Vista.
+    # @return     PyQt5.QtWidgets.QToolBar
     @property
     def toolbar(self):
         return self.__toolbar
 
-    ## @brief      Propiedad de lectura de la 'dockbar' simple.
-    ## @param      self  Vista.
-    ## @return     PyQt5.QtWidget.QDockWidget
+    # @brief      Propiedad de lectura de la 'dockbar' simple.
+    # @param      self  Vista.
+    # @return     PyQt5.QtWidget.QDockWidget
     @property
     def simpleDockbar(self):
         return self.__simpleDockbar
 
-    ## @brief      Propiedad de lectura de la 'dockbar' compleja.
-    ## @param      self  Vista.
-    ## @return     PyQt5.QtWidget.QDockWidget
+    # @brief      Propiedad de lectura de la 'dockbar' compleja.
+    # @param      self  Vista.
+    # @return     PyQt5.QtWidget.QDockWidget
     @property
     def statesDockbar(self):
         return self.__statesDockbar
 
-    ## @brief      Propiedad de lectura del menu para componentes complejos.
-    ## @param      self  Vista.
-    ## @return     PyQt.QtWidgets.QMenu
+    # @brief      Propiedad de lectura del menu para componentes complejos.
+    # @param      self  Vista.
+    # @return     PyQt.QtWidgets.QMenu
     @property
     def statesMenu(self):
         return self.__statesMenu
 
-    ## @brief      Propiedad de lectura del 'viewport'.
-    ## @param      self  Vista.
-    ## @return     PyQt.QtWidgets.QGraphicsView
+    # @brief      Propiedad de lectura del 'viewport'.
+    # @param      self  Vista.
+    # @return     PyQt.QtWidgets.QGraphicsView
     @property
     def workArea(self):
         return self.centralWidget()
 
-    ## @brief      Propiedad de lectura de la escena actual.
-    ## @param      self  Vista.
-    ## @return     PyQt.QtWidgets.QGraphicsScene
+    # @brief      Propiedad de lectura de la escena actual.
+    # @param      self  Vista.
+    # @return     PyQt.QtWidgets.QGraphicsScene
     @property
     def workScene(self):
         return self.workArea.scene()
 
-    ## @brief      Propiedad de lectura de la escala del area de trabajo.
-    ## @param      self  Vista.
-    ## @return     qreal
+    # @brief      Propiedad de lectura de la escala del area de trabajo.
+    # @param      self  Vista.
+    # @return     qreal
     @property
     def scale(self):
         return self.workArea.transform().m11()
@@ -359,18 +407,18 @@ class View( QMainWindow ):
 # | Funciones auxiliares |
 # -------------------------------------------------------------------------- #
 
-    ## @brief      Conecta acciones dadas con los emisores corresondientes.
-    ## @param      self      Vista.
-    ## @param      actions   Lista de 'QAction's
-    ## @param      emitters  Lista de funciones.
-    ## @return     None
-    def _connectSignals(self,actions,emitters):
-        for i in range(min(len(actions),len(emitters))):
+    # @brief      Conecta acciones dadas con los emisores corresondientes.
+    # @param      self      Vista.
+    # @param      actions   Lista de 'QAction's
+    # @param      emitters  Lista de funciones.
+    # @return     None
+    def _connectSignals(self, actions, emitters):
+        for i in range(min(len(actions), len(emitters))):
             actions[i].triggered.connect(emitters[i])
 
-    ## @brief      Borra el contenido de la escena.
-    ## @param      self  Vista.
-    ## @return     None
+    # @brief      Borra el contenido de la escena.
+    # @param      self  Vista.
+    # @return     None
     def resetWorkScene(self):
         # Guardo la ubiacion y estado de la escena.
         x = self.workScene.sceneRect().x()
@@ -386,41 +434,51 @@ class View( QMainWindow ):
         self.workScene.setBackgroundBrush(brush)
         # Creo el area activa.
         borderColor = Qt.black
-        rect = QRectF(0.0,0.0,1240.0,720.0)
+        rect = QRectF(0.0, 0.0, 1240.0, 720.0)
         fillColor = QColor(pv['sceneColor'])
-        rect1 = self.workScene.addRect(rect,borderColor,fillColor)
-        rect2 = self.workScene.addRect(rect,borderColor,brush)
+        rect1 = self.workScene.addRect(rect, borderColor, fillColor)
+        rect2 = self.workScene.addRect(rect, borderColor, brush)
         # Calculo el centro.
         sX = self.workScene.sceneRect().width()/2
         sY = self.workScene.sceneRect().height()/2
         iX = rect1.rect().width()/2
         iY = rect1.rect().height()/2
-        rect1.setPos(sX-iX,sY-iY)
-        rect2.setPos(sX-iX,sY-iY)
+        rect1.setPos(sX-iX, sY-iY)
+        rect2.setPos(sX-iX, sY-iY)
         # Recoloco la escena.
-        self.workScene.setSceneRect(x,y,w,h)
+        self.workScene.setSceneRect(x, y, w, h)
 
 
 # .-----------------------.
 # | Sobrecarga de eventos |
 # -------------------------------------------------------------------------- #
 
-    ## @brief      Solicita confirmación al intentar cerrar la ventana.
-    ## @param      self  Vista.
-    ## @param      ev    El objeto con la informacion que da este evento.
-    ## @return     None
-    def closeEvent(self,ev):
-      reply = Gui.exitDialog(self)
-      if reply == QMessageBox.Ok:
+    # @brief      Solicita confirmación al intentar cerrar la ventana.
+    # @param      self  Vista.
+    # @param      ev    El objeto con la informacion que da este evento.
+    # @return     None
+    def closeEvent(self, ev):
+        reply = Gui.exitSaveDialog(self)
+        if reply == QMessageBox.Ok:
+          self.emit_SaveProject()
           qDebug(pv['endMsg'])
           ev.accept()
-      else:
-          ev.ignore()
 
-    ## @brief      Captura cuando se pulsa una o una combiancion de teclas.
-    ## @param      self  Vista.
-    ## @param      ev    El objeto con la informacion que da este evento.
-    ## @return     None
+        reply2 = Gui.exitDialog(self)
+        if reply2 == QMessageBox.Ok:
+            qDebug(pv['endMsg'])
+            ev.accept()
+        else:
+            ev.ignore()
+
+
+    # @brief      Captura cuando se pulsa una o una combiancion de teclas.
+    # @param      self  Vista.
+    # @param      ev    El objeto con la informacion que da este evento.
+    # @return     None
     def keyReleaseEvent(self,ev):
         if ev.key() == Qt.Key_Alt: # Al pulsar la tecla Alt.
             self.emit_HideMenu()   # Se Oculta/Muestra la barra de menús.
+
+    def wheelEvent(self, ev):
+        ev.ignore()

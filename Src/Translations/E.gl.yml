@@ -4,6 +4,7 @@ gl:
   # Dialogos.
   exitDialogTitle       : CONFIRMAR!
   exitDialogQuest       : Seguro que quieres sair?
+  saveDialogQuest       : ¿Desexa gardar antes de sair?
   loadNotValidXML       : O xml seleccionado, non é válido
   loadMissedState       : O xml seleccionado, conten estados mal numerados
   loadMissedImages      : O xml seleccionado, conten rutas erroneas dalgunhas imaxes

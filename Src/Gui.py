@@ -9,6 +9,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt, QRectF
 
 from Scene import Scene
+from Viewport import Viewport
 from PresetValues import pv
 
 iconsPath = os.path.join(os.path.dirname(__file__),'Icons')
@@ -54,6 +55,16 @@ def exitDialog(view):
     return QMessageBox.question( view,
                                  i18n.t('E.exitDialogTitle'),
                                  i18n.t('E.exitDialogQuest'),
+                                 QMessageBox.Ok | QMessageBox.No,
+                                 QMessageBox.No ) # <--- Por defecto.
+
+## @brief      Presenta un dialogo para confimar la salida de la app.
+## @param      view  Ventana padre.
+## @return     PyQt5.QtWidgets.QMessageBox
+def exitSaveDialog(view):
+    return QMessageBox.question( view,
+                                 i18n.t('E.exitDialogTitle'),
+                                 i18n.t('E.saveDialogQuest'),
                                  QMessageBox.Ok | QMessageBox.No,
                                  QMessageBox.No ) # <--- Por defecto.
 
@@ -362,7 +373,7 @@ def statesMenu():
 ## @brief      Crea un area de trabajo usando QGraphicsView y QGraphicsScene.
 ## @return     PyQt5.QtWidgets.QGraphicsView
 def workArea(screenRect):
-    wArea = QGraphicsView()
+    wArea = Viewport()
     wArea.setBackgroundBrush(QColor(pv['bgColor']))
     wArea.resize(screenRect.width(),screenRect.height())
     wArea.setTransformationAnchor(wArea.AnchorUnderMouse)

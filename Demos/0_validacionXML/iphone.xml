@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<DGAIUINT>
+    <Composicion/>
+    <Estados>
+        <Estado>
+            <Numero>1</Numero>
+            <Descripcion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_Sy3</Nombre>
+                    <Fichero>iphone_imgs/BASE.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>8.999999999999995</Px>
+                                <Py>18.000000000000007</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>340.40159005979507</Valorx>
+                        <Valory>680.0583188721946</Valory>
+                    </Tamano>
+                </Enumeracion>
+            </Descripcion>
+        </Estado>
+        <Estado>
+            <Numero>2</Numero>
+            <Descripcion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_Sy3</Nombre>
+                    <Fichero>iphone_imgs/BASE.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>8.999999999999995</Px>
+                                <Py>18.000000000000007</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>340.40159005979507</Valorx>
+                        <Valory>680.0583188721946</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_gdX</Nombre>
+                    <Fichero>iphone_imgs/Ajustes Filled-50.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>50.0</Px>
+                                <Py>119.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>51.0</Valorx>
+                        <Valory>51.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_tcy</Nombre>
+                    <Fichero>iphone_imgs/Calendario Filled-50.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>58.0</Px>
+                                <Py>245.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>51.0</Valorx>
+                        <Valory>51.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_HJG</Nombre>
+                    <Fichero>iphone_imgs/Cámara Filled-50.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>255.0</Px>
+                                <Py>177.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>51.0</Valorx>
+                        <Valory>51.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_wRu</Nombre>
+                    <Fichero>iphone_imgs/Facebook Filled-50.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>255.0</Px>
+                                <Py>115.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>51.0</Valorx>
+                        <Valory>51.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_XoY</Nombre>
+                    <Fichero>iphone_imgs/Mensaje Filled-50.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>188.0</Px>
+                                <Py>183.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>51.0</Valorx>
+                        <Valory>51.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_l7E</Nombre>
+                    <Fichero>iphone_imgs/Noticias Filled-50.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>185.0</Px>
+                                <Py>120.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>51.0</Valorx>
+                        <Valory>51.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_Far</Nombre>
+                    <Fichero>iphone_imgs/Reloj Filled-50.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>119.0</Px>
+                                <Py>180.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>51.0</Valorx>
+                        <Valory>51.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_UMJ</Nombre>
+                    <Fichero>iphone_imgs/Teléfono Filled-50.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>54.0</Px>
+                                <Py>182.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>51.0</Valorx>
+                        <Valory>51.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_ten</Nombre>
+                    <Fichero>iphone_imgs/Twitter Filled-50.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>116.0</Px>
+                                <Py>117.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>51.0</Valorx>
+                        <Valory>51.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+            </Descripcion>
+        </Estado>
+        <Estado>
+            <Numero>3</Numero>
+            <Descripcion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_Sy3</Nombre>
+                    <Fichero>iphone_imgs/BASE.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>8.999999999999995</Px>
+                                <Py>18.000000000000007</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>340.40159005979507</Valorx>
+                        <Valory>680.0583188721946</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_kiG</Nombre>
+                    <Fichero>iphone_imgs/screen.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>13.99999999999998</Px>
+                                <Py>91.06803248613699</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>331.8009903188265</Valorx>
+                        <Valory>545.8346188308236</Valory>
+                    </Tamano>
+                </Enumeracion>
+            </Descripcion>
+        </Estado>
+        <Estado>
+            <Numero>4</Numero>
+            <Descripcion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_Sy3</Nombre>
+                    <Fichero>iphone_imgs/BASE.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>452.1924422003898</Px>
+                                <Py>18.000000000000007</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>340.40159005979507</Valorx>
+                        <Valory>680.0583188721946</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_gdX</Nombre>
+                    <Fichero>iphone_imgs/Ajustes Filled-50.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>493.19244220038985</Px>
+                                <Py>119.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>51.0</Valorx>
+                        <Valory>51.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_tcy</Nombre>
+                    <Fichero>iphone_imgs/Calendario Filled-50.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>501.19244220038985</Px>
+                                <Py>245.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>51.0</Valorx>
+                        <Valory>51.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_HJG</Nombre>
+                    <Fichero>iphone_imgs/Cámara Filled-50.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>698.1924422003871</Px>
+                                <Py>177.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>51.0</Valorx>
+                        <Valory>51.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_wRu</Nombre>
+                    <Fichero>iphone_imgs/Facebook Filled-50.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>698.1924422003871</Px>
+                                <Py>115.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>51.0</Valorx>
+                        <Valory>51.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_XoY</Nombre>
+                    <Fichero>iphone_imgs/Mensaje Filled-50.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>631.192442200388</Px>
+                                <Py>183.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>51.0</Valorx>
+                        <Valory>51.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_l7E</Nombre>
+                    <Fichero>iphone_imgs/Noticias Filled-50.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>628.1924422003881</Px>
+                                <Py>120.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>51.0</Valorx>
+                        <Valory>51.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_Far</Nombre>
+                    <Fichero>iphone_imgs/Reloj Filled-50.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>562.1924422003891</Px>
+                                <Py>180.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>51.0</Valorx>
+                        <Valory>51.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_UMJ</Nombre>
+                    <Fichero>iphone_imgs/Teléfono Filled-50.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>497.19244220038985</Px>
+                                <Py>182.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>51.0</Valorx>
+                        <Valory>51.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_ten</Nombre>
+                    <Fichero>iphone_imgs/Twitter Filled-50.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>559.1924422003891</Px>
+                                <Py>117.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>51.0</Valorx>
+                        <Valory>51.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_InG</Nombre>
+                    <Fichero>iphone_imgs/BASE.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>83.48612473956126</Px>
+                                <Py>18.000000000000007</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>340.40159005979507</Valorx>
+                        <Valory>680.0583188721946</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_pQO</Nombre>
+                    <Fichero>iphone_imgs/BASE.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>820.8987596612136</Px>
+                                <Py>18.000000000000007</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>340.40159005979507</Valorx>
+                        <Valory>680.0583188721946</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_ish</Nombre>
+                    <Fichero>iphone_imgs/screen.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>831.5697719444571</Px>
+                                <Py>92.99999999999996</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>323.7082832378796</Valorx>
+                        <Valory>532.521579347145</Valory>
+                    </Tamano>
+                </Enumeracion>
+            </Descripcion>
+        </Estado>
+    </Estados>
+    <Transiciones/>
+</DGAIUINT>

@@ -30,6 +30,7 @@ class SimpleComponent(QGraphicsPixmapItem):
 
         # Configura ciertas propiedades.
         self.setAcceptHoverEvents(True)
+        self.setShapeMode(self.BoundingRectShape)
         self.setFlags(self.ItemIsSelectable) # Implemnt tipica de seleccion.
         self.setTransformationMode(Qt.SmoothTransformation) # AntiAliasing.
 
@@ -252,7 +253,6 @@ class SimpleComponent(QGraphicsPixmapItem):
     def wheelEvent(self, ev):
         if self.isSelected():
             self.getWindow().emit_Resize(ev.delta())
-        # super(SimpleComponent, self).wheelEvent(ev)
 
     ## @brief      Invoca el menu contextual relativo a este componente.
     ## @param      self  Componente Simple.

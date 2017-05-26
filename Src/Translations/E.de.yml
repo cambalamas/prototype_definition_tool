@@ -4,6 +4,7 @@ de:
   # Dialogos.
   exitDialogTitle       : BESTÄTIGEN!
   exitDialogQuest       : Bist du sicher dass du gehen willst?
+  saveDialogQuest       : Wollen Sie speichern, bevor Sie gehen?
   loadNotValidXML       : Das ausgewählte xml ist ungültig
   loadMissedState       : Die ausgewählte xml enthält schlecht nummerierte Zustände
   loadMissedImages      : Das ausgewählte xml enthält fehlerhafte Routen einiger Bilder

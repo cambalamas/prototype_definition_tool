@@ -4,6 +4,7 @@ es:
   # Dialogos.
   exitDialogTitle       : ¡CONFIRMAR!
   exitDialogQuest       : ¿Seguro que quieres salir?
+  saveDialogQuest       : ¿Quiere guardar antes de salir?
   loadNotValidXML       : El xml seleccionado, no es válido
   loadMissedState       : El xml seleccionado, contiene estados mal numerados
   loadMissedImages      : El xml seleccionado, contiene rutas erroneas de algunas imágenes

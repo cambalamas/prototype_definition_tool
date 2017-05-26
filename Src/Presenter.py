@@ -288,8 +288,8 @@ class Presenter(object):
         else:
             self.view.prevState = self.view.windowState()
             self.view.showFullScreen()
-            qDebug( 'Window enter to FullScreen, from '
-                    +self._nfc(self.view.prevState) )
+            qDebug( 'Window enter to FullScreen'
+             )
 
 
 # .---------------------------------------.

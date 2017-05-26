@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<DGAIUINT>
+    <Composicion/>
+    <Estados>
+        <Estado>
+            <Numero>1</Numero>
+            <Descripcion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_pYh</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_39.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>98.18106686701668</Px>
+                                <Py>138.5650714478789</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>155.0</Valorx>
+                        <Valory>65.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_8rm</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_34.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>940.5897202500003</Px>
+                                <Py>576.5055079362262</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>269.0</Valorx>
+                        <Valory>322.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_Wxf</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_33.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>663.58972025</Px>
+                                <Py>576.5055079362262</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>269.0</Valorx>
+                        <Valory>322.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_BPF</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_32.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>381.5897202500005</Px>
+                                <Py>576.5055079362262</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>276.0</Valorx>
+                        <Valory>322.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_qNR</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_31.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>81.58972025000094</Px>
+                                <Py>575.5055079362262</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>298.0</Valorx>
+                        <Valory>311.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_1RD</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_30.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>394.37549962434275</Px>
+                                <Py>484.25762591820205</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>186.0</Valorx>
+                        <Valory>50.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_1cW</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_29.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>87.39183320811429</Px>
+                                <Py>484.9299775335288</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>289.0</Valorx>
+                        <Valory>50.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_FGF</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_28.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>810.7488988259056</Px>
+                                <Py>302.77082479934364</Py>
+                                <Pz>2.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>26.42403593837273</Valorx>
+                        <Valory>40.036418088443526</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_e5R</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_27.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>351.76445383762643</Px>
+                                <Py>300.84403875935965</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>485.0099521210441</Valorx>
+                        <Valory>105.75911455972768</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_fm5</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_26.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>960.6407165353426</Px>
+                                <Py>139.11011024418264</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>82.0</Valorx>
+                        <Valory>39.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_dQK</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_25.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>758.7092042557958</Px>
+                                <Py>141.2886043640392</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>180.0</Valorx>
+                        <Valory>39.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_jQK</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_23.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>634.1081871850437</Px>
+                                <Py>141.1430653876655</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>113.0</Valorx>
+                        <Valory>39.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_THt</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_22.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>370.0916833244272</Px>
+                                <Py>140.70621490966147</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>252.0</Valorx>
+                        <Valory>39.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_RSM</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_21.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>264.33023759205133</Px>
+                                <Py>139.36789671806713</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>92.0</Valorx>
+                        <Valory>39.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_bDW</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_19.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>287.36204260000096</Px>
+                                <Py>11.843793026225976</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>302.0</Valorx>
+                        <Valory>69.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_0bJ</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_18.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>1075.5209616829443</Px>
+                                <Py>27.87401209400928</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>49.0</Valorx>
+                        <Valory>69.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_3Qh</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_17.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>885.3902178812915</Px>
+                                <Py>27.47241930663113</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>192.0</Valorx>
+                        <Valory>69.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_yrD</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_12.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>-9.709306292447277</Px>
+                                <Py>-194.71461154377423</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>1250.6421936129364</Valorx>
+                        <Valory>197.15851712237568</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_8hS</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_11.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>-4.469872276483804</Px>
+                                <Py>-254.54041315016764</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>50.0</Valorx>
+                        <Valory>63.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_wzx</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_10.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>44.3663410969194</Px>
+                                <Py>-254.7680615348408</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>113.0</Valorx>
+                        <Valory>63.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_Twg</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_9.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>155.3403173004371</Px>
+                                <Py>-254.47458577491489</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>726.0</Valorx>
+                        <Valory>63.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_Qw3</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_8.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>1096.6000000000001</Px>
+                                <Py>-254.5456723537739</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>63.0</Valorx>
+                        <Valory>63.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_7T6</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_7.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>1039.6000000000001</Px>
+                                <Py>-254.5456723537739</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>63.0</Valorx>
+                        <Valory>63.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_ckf</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_6.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>1155.6000000000001</Px>
+                                <Py>-254.5456723537739</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>82.0</Valorx>
+                        <Valory>63.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_ay4</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_40.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>94.83198687999966</Px>
+                                <Py>277.69058444622607</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>240.11414434146073</Valorx>
+                        <Valory>142.18239362817613</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_lAM</Nombre>
+                    <Fichero>youtube_imgs/Screenshot_41.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>201.50371999999984</Px>
+                                <Py>11.305497646225442</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>90.0</Valorx>
+                        <Valory>85.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_x0v</Nombre>
+                    <Fichero>youtube_imgs/bg.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>-25.479351823214515</Px>
+                                <Py>-270.5656800000003</Py>
+                                <Pz>0.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>1281.364628740553</Valorx>
+                        <Valory>1281.364628740553</Valory>
+                    </Tamano>
+                </Enumeracion>
+            </Descripcion>
+        </Estado>
+    </Estados>
+    <Transiciones/>
+</DGAIUINT>

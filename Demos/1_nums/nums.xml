@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<DGAIUINT>
+    <Composicion/>
+    <Estados>
+        <Estado>
+            <Numero>1</Numero>
+            <Descripcion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_8yL</Nombre>
+                    <Fichero>nums_imgs/9.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>-216.5</Px>
+                                <Py>-62.5</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>513.0</Valorx>
+                        <Valory>513.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_2uN</Nombre>
+                    <Fichero>nums_imgs/is.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>494.5</Px>
+                                <Py>494.5</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>251.0</Valorx>
+                        <Valory>251.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+            </Descripcion>
+        </Estado>
+        <Estado>
+            <Numero>2</Numero>
+            <Descripcion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_yGS</Nombre>
+                    <Fichero>nums_imgs/1.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>713.5</Px>
+                                <Py>103.5</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>513.0</Valorx>
+                        <Valory>513.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_B8O</Nombre>
+                    <Fichero>nums_imgs/8.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>13.5</Px>
+                                <Py>103.5</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>513.0</Valorx>
+                        <Valory>513.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_oSv</Nombre>
+                    <Fichero>nums_imgs/+.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>564.5108956196846</Px>
+                                <Py>304.5108956196846</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>110.97820876063079</Valorx>
+                        <Valory>110.97820876063079</Valory>
+                    </Tamano>
+                </Enumeracion>
+            </Descripcion>
+        </Estado>
+        <Estado>
+            <Numero>3</Numero>
+            <Descripcion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_VWS</Nombre>
+                    <Fichero>nums_imgs/2.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>713.5</Px>
+                                <Py>103.5</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>513.0</Valorx>
+                        <Valory>513.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_IjA</Nombre>
+                    <Fichero>nums_imgs/7.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>13.5</Px>
+                                <Py>103.5</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>513.0</Valorx>
+                        <Valory>513.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_j38</Nombre>
+                    <Fichero>nums_imgs/+.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>564.5108956196846</Px>
+                                <Py>304.5108956196846</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>110.97820876063079</Valorx>
+                        <Valory>110.97820876063079</Valory>
+                    </Tamano>
+                </Enumeracion>
+            </Descripcion>
+        </Estado>
+        <Estado>
+            <Numero>4</Numero>
+            <Descripcion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_eRY</Nombre>
+                    <Fichero>nums_imgs/3.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>713.5</Px>
+                                <Py>103.5</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>513.0</Valorx>
+                        <Valory>513.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_MTg</Nombre>
+                    <Fichero>nums_imgs/6.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>13.5</Px>
+                                <Py>103.5</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>513.0</Valorx>
+                        <Valory>513.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_YDl</Nombre>
+                    <Fichero>nums_imgs/+.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>564.5108956196846</Px>
+                                <Py>304.5108956196846</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>110.97820876063079</Valorx>
+                        <Valory>110.97820876063079</Valory>
+                    </Tamano>
+                </Enumeracion>
+            </Descripcion>
+        </Estado>
+        <Estado>
+            <Numero>5</Numero>
+            <Descripcion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_6Or</Nombre>
+                    <Fichero>nums_imgs/4.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>713.5</Px>
+                                <Py>103.5</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>513.0</Valorx>
+                        <Valory>513.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_JT9</Nombre>
+                    <Fichero>nums_imgs/5.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>13.5</Px>
+                                <Py>103.5</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>513.0</Valorx>
+                        <Valory>513.0</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_9Uu</Nombre>
+                    <Fichero>nums_imgs/+.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>564.5108956196846</Px>
+                                <Py>304.5108956196846</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>110.97820876063079</Valorx>
+                        <Valory>110.97820876063079</Valory>
+                    </Tamano>
+                </Enumeracion>
+            </Descripcion>
+        </Estado>
+    </Estados>
+    <Transiciones/>
+</DGAIUINT>

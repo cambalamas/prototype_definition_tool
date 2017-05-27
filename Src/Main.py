@@ -3,30 +3,32 @@
 
 import os
 import sys
+
 from datetime import datetime
 
 import i18n
+
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
-from View import View
 from Model import Model
 from Parser import Parser
 from Presenter import Presenter
 from PresetValues import pv
+from View import View
 
 
-## @brief      Funcion llamada por el event handler.
-## @param      type     Info, Debug, Warning, Critial, Fatal.
-## @param      context  Informacion de donde se recibio el mensaje.
-## @param      msg      Informacion emitida. (Nuestra o del sistema)
-## @return     None
+# @brief      Funcion llamada por el event handler.
+# @param      type     Info, Debug, Warning, Critial, Fatal.
+# @param      context  Informacion de donde se recibio el mensaje.
+# @param      msg      Informacion emitida. (Nuestra o del sistema)
+# @return     None
 def logger(msg):
     # Fecha y hora actual.
     dt = datetime.now()
     # Crear la carpeta de Logs si no existe.
     exeFolder = os.path.split(os.path.realpath(__file__))[0]
-    folder = os.path.join(exeFolder,'Logs')
+    folder = os.path.join(exeFolder, 'Logs')
     QDir().mkpath(folder)
     # Crear fichero de log por dia
     logFile = QFile(folder+'/'+str(dt.date())+'.log')
@@ -40,22 +42,21 @@ def logger(msg):
     ts << fmt + '\n'
 
 
-## @brief      Captura los mensajes de error e información.
-## @param      msgType  Gravedad del mensaje.
-## @param      context  Contexto
-## @param      msg      Mensaje
-## @return     None
+# @brief      Captura los mensajes de error e información.
+# @param      msgType  Gravedad del mensaje.
+# @param      context  Contexto
+# @param      msg      Mensaje
+# @return     None
 def handler(msgType, context, msg):
-    if ( msgType == 0
+    if (msgType == 0
             or msgType == 1
             or msgType == 2
             or msgType == 3
-            or msgType == 4 ):
+            or msgType == 4):
         logger(msg)
 
     if msgType == 2 or msgType == 3:
         print('Something went wrong :(\nSee the logfile for more info.')
-
 
 
 # .------------------.
@@ -77,8 +78,8 @@ if __name__ == '__main__':
     # Inicializaciones.
     M = Model()
     V = View(scrRect)
-    X = Parser(V,M)
-    P = Presenter(V,M,X)
+    X = Parser(V, M)
+    P = Presenter(V, M, X)
 
     # Conecta las señales del modelo.
     M.signal_ModelUpdated.connect(P.listener_ModelUpdated)
@@ -136,7 +137,6 @@ if __name__ == '__main__':
     # Conecta señales de 'callback' del arbol de estados.
     V.signal_StateThumbPressed.connect(P.listener_StateThumbPressed)
     V.signal_StateContextMenu.connect(P.listener_StateContextMenu)
-
 
     # Muestra la ventana maximizada.
     if V.ok:

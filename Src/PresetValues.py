@@ -15,7 +15,7 @@ pv = {
 
 	'defaultPath' 		: '~',
 	'bgColor'			: '#EEE',
-	'sceneColor'			: '#DDD',
+	'sceneColor'		: '#DDD',
 
 	'moveTimer'			: 2.0, 		#secs
 	'resizeTimer'		: 5.0, 		#secs

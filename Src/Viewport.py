@@ -18,11 +18,17 @@ class Viewport(QGraphicsView):
     # @param      self    Viewport
     def __init__(self):
         super().__init__()
+        self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
-    ## @brief      Controla el giro de la rueda del ratón.
-    ## @param      self  Viewport.
-    ## @param      ev    Objeto con los datos del evento.
-    ## @return     None
+    # .---------.
+    # | Eventos |
+    # ---------------------------------------------------------------------- #
+
+    # @brief      Controla el giro de la rueda del ratón.
+    # @param      self  Viewport.
+    # @param      ev    Objeto con los datos del evento.
+    # @return     None
     def wheelEvent(self, ev):
 
         if ev.modifiers() == Qt.ControlModifier:

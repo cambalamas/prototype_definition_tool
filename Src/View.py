@@ -1,23 +1,23 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 import Gui
-from SimpleComponent import SimpleComponent as sc
+
 from PresetValues import pv
+from SimpleComponent import SimpleComponent as sc
 
 
 # @brief      Clase encargada de la estructura visual de la aplicacion.
 
 class View(QMainWindow):
 
-
-# .---------.
-# | Señales |
-# -------------------------------------------------------------------------- #
+    # .---------.
+    # | Señales |
+    # ---------------------------------------------------------------------- #
 
     # File menu
     signal_SaveProject = pyqtSignal()
@@ -235,28 +235,28 @@ class View(QMainWindow):
 
         # Emisores de las señales relacionadas con la aplicacion o proyecto.
         mainEmitters = [  # File
-                         self.emit_SaveProject,
-                         self.emit_LoadProject,
-                         self.emit_NewState,
-                         self.emit_NewSimple,
-                         self.close,
-                         # Edit
-                         self.emit_Undo,
-                         self.emit_Redo,
-                         self.emit_SelectAll,
-                         self.emit_UnSelectAll,
-                         self.emit_Clone,
-                         self.emit_Center,
-                         # View
-                         self.emit_Minimalist,
-                         self.emit_ZoomIn,
-                         self.emit_Zoom100,
-                         self.emit_ZoomOut,
-                         self.emit_SceneCenter,
-                         self.emit_FullScreen,
-                         # Help
-                         self.emit_ReportIssue,
-                         self.emit_ReadTheDoc]
+            self.emit_SaveProject,
+            self.emit_LoadProject,
+            self.emit_NewState,
+            self.emit_NewSimple,
+            self.close,
+            # Edit
+            self.emit_Undo,
+            self.emit_Redo,
+            self.emit_SelectAll,
+            self.emit_UnSelectAll,
+            self.emit_Clone,
+            self.emit_Center,
+            # View
+            self.emit_Minimalist,
+            self.emit_ZoomIn,
+            self.emit_Zoom100,
+            self.emit_ZoomOut,
+            self.emit_SceneCenter,
+            self.emit_FullScreen,
+            # Help
+            self.emit_ReportIssue,
+            self.emit_ReadTheDoc]
 
         # Construir la GUI de la barra de menus.
         # Construir la GUI de la barra de tareas.
@@ -268,14 +268,14 @@ class View(QMainWindow):
 
         # Emisores de las señales relacionadas con componentes simples.
         simpleEmitters = [self.emit_Details,
-                           self.emit_Center,
-                           self.emit_Clone,
-                           self.emit_Name,
-                           self.emit_ZInc,
-                           self.emit_ZDec,
-                           self.emit_Active,
-                           self.emit_Visible,
-                           self.emit_Delete]
+                          self.emit_Center,
+                          self.emit_Clone,
+                          self.emit_Name,
+                          self.emit_ZInc,
+                          self.emit_ZDec,
+                          self.emit_Active,
+                          self.emit_Visible,
+                          self.emit_Delete]
 
         # Menu contextual arbol simple.
         self.__simpleMenu, simpleActions = Gui.simpleMenu()
@@ -283,13 +283,13 @@ class View(QMainWindow):
 
         # Arbol de componentes simples.
         self.__simpleTree = Gui.simpleTreeView(self.emit_ItemChanged,
-                                                self.emit_SimpleMenu)
+                                               self.emit_SimpleMenu)
 
         # Emisores de las señales relacionadas con estados.
         statesEmitters = [self.emit_StateClone,
-                           self.emit_StateMoveLeft,
-                           self.emit_StateMoveRight,
-                           self.emit_StateDelete]
+                          self.emit_StateMoveLeft,
+                          self.emit_StateMoveRight,
+                          self.emit_StateDelete]
 
         # Menu contextual de arbol de estados.
         self.__statesMenu, statesActions = Gui.statesMenu()
@@ -297,7 +297,7 @@ class View(QMainWindow):
 
         # Arbol de estados.
         self.__statesTree = Gui.statesTreeView(self.emit_StateContextMenu,
-                                                self.emit_StateThumbPressed)
+                                               self.emit_StateThumbPressed)
 
         # Barras anexas.
         self.__simpleDockbar = Gui.simpleDockBar(self.__simpleTree)
@@ -458,12 +458,13 @@ class View(QMainWindow):
     # @param      ev    El objeto con la informacion que da este evento.
     # @return     None
     def closeEvent(self, ev):
+        # Guardar
         reply = Gui.exitSaveDialog(self)
         if reply == QMessageBox.Ok:
-          self.emit_SaveProject()
-          qDebug(pv['endMsg'])
-          ev.accept()
-
+            self.emit_SaveProject()
+            qDebug(pv['endMsg'])
+            ev.accept()
+        # Salir
         reply2 = Gui.exitDialog(self)
         if reply2 == QMessageBox.Ok:
             qDebug(pv['endMsg'])
@@ -471,14 +472,10 @@ class View(QMainWindow):
         else:
             ev.ignore()
 
-
     # @brief      Captura cuando se pulsa una o una combiancion de teclas.
     # @param      self  Vista.
     # @param      ev    El objeto con la informacion que da este evento.
     # @return     None
-    def keyReleaseEvent(self,ev):
-        if ev.key() == Qt.Key_Alt: # Al pulsar la tecla Alt.
+    def keyReleaseEvent(self, ev):
+        if ev.key() == Qt.Key_Alt:  # Al pulsar la tecla Alt.
             self.emit_HideMenu()   # Se Oculta/Muestra la barra de menús.
-
-    def wheelEvent(self, ev):
-        ev.ignore()

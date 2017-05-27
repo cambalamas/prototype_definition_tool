@@ -3,32 +3,36 @@
 
 import os
 import re
+
 from collections import deque
 
+import lxml
+
 from PyQt5.QtCore import *
+from lxml import etree
+from lxml import objectify
+from lxml.etree import Element
+from lxml.etree import SubElement
 from xml.dom import minidom
 from xml.etree import cElementTree
-import lxml
-from lxml import etree, objectify
-from lxml.etree import Element, SubElement
 
-from State import State
 from SimpleComponent import SimpleComponent
+from State import State
 
 
-## @brief      Clase que define al experto en XML
+# @brief      Clase que define al experto en XML
+
 class Parser(object):
 
+    # .-------------.
+    # | Constructor |
+    # ---------------------------------------------------------------------- #
 
-# .-------------.
-# | Constructor |
-# -------------------------------------------------------------------------- #
-
-    ## @brief      Constructor del parser.
-    ## @param      self  Parser
-    ## @param      view  Vista
-    ## @param      model Modelo
-    def __init__(self,view,model):
+    # @brief      Constructor del parser.
+    # @param      self  Parser
+    # @param      view  Vista
+    # @param      model Modelo
+    def __init__(self, view, model):
         self.__view = view
         self.__model = model
 
@@ -37,16 +41,16 @@ class Parser(object):
 # | Acceso 'publico' a las variables privadas |
 # -------------------------------------------------------------------------- #
 
-    ## @brief      Propiedad de lectura de la variable vista.
-    ## @param      self  Presentador.
-    ## @return     View.View
+    # @brief      Propiedad de lectura de la variable vista.
+    # @param      self  Presentador.
+    # @return     View.View
     @property
     def view(self):
         return self.__view
 
-    ## @brief      Propiedad de lectura de la variable modelo.
-    ## @param      self  Presentador.
-    ## @return     View.View
+    # @brief      Propiedad de lectura de la variable modelo.
+    # @param      self  Presentador.
+    # @return     View.View
     @property
     def model(self):
         return self.__model
@@ -56,11 +60,11 @@ class Parser(object):
 # | Funciones auxiliares |
 # -------------------------------------------------------------------------- #
 
-    ## @brief      Convierte XML plano a XML indentado.
-    ## @param      self  Parser.
-    ## @param      node  Nodo xml.
-    ## @return     str
-    def prettify(self,node):
+    # @brief      Convierte XML plano a XML indentado.
+    # @param      self  Parser.
+    # @param      node  Nodo xml.
+    # @return     str
+    def prettify(self, node):
         raw = cElementTree.tostring(node, 'utf-8')
         parsed = minidom.parseString(raw)
         return parsed.toprettyxml(indent="    ")
@@ -70,13 +74,13 @@ class Parser(object):
 # | Volcado de los datos |
 # -------------------------------------------------------------------------- #
 
-    ## @brief      Genera XML con la definicion de estados y componentes.
-    ## @param      self        Parser.
-    ## @param      statesList  Lista de estados.
-    ## @param      fileName    Nombre del archivo.
-    ## @return     None
-    def save(self,statesList, fileName):
-        tfBool = lambda x : 't' if x is True else 'f'
+    # @brief      Genera XML con la definicion de estados y componentes.
+    # @param      self        Parser.
+    # @param      statesList  Lista de estados.
+    # @param      fileName    Nombre del archivo.
+    # @return     None
+    def save(self, statesList, fileName):
+        tfBool = lambda x: 't' if x is True else 'f'
 
         # Genera cadena XML.
         root = Element('DGAIUINT')
@@ -91,9 +95,9 @@ class Parser(object):
             desc = SubElement(state, 'Descripcion')
 
             for sc in s.scene:
-                enum = SubElement( desc, 'Enumeracion',
-                                   { 'Activo'  : tfBool(sc.active),
-                                     'Visible' : tfBool(sc.visible) } )
+                enum = SubElement(desc, 'Enumeracion',
+                                  {'Activo': tfBool(sc.active),
+                                   'Visible': tfBool(sc.visible)})
                 name = SubElement(enum, 'Nombre')
                 name.text = sc.name
                 file = SubElement(enum, 'Fichero')
@@ -101,14 +105,13 @@ class Parser(object):
                 imgName = os.path.split(sc.path)[1]
 
                 imgFolder = os.path.split(
-                    fileName)[0] +'/'+os.path.split(fileName)[1][:-4]+'_imgs'
+                    fileName)[0] + '/'+os.path.split(fileName)[1][:-4]+'_imgs'
 
                 QDir().mkpath(imgFolder)
-                sc.pixmap().save(imgFolder+'/'+imgName,'png',100)
+                sc.pixmap().save(imgFolder+'/'+imgName, 'png', 100)
 
                 file.text = os.path.basename(
-                    imgFolder) +'/'+ os.path.split(sc.path)[1]
-
+                    imgFolder) + '/' + os.path.split(sc.path)[1]
 
                 position = SubElement(enum, 'Posicion')
                 posType = SubElement(position, 'Relativa')
@@ -119,21 +122,21 @@ class Parser(object):
                 cordY.text = str(sc.getPosY())
                 cordZ = SubElement(cords, 'Pz')
                 cordZ.text = str(sc.getPosZ())
-                size = SubElement(enum, 'Tamano', {'Tipo':'fijo'})
+                size = SubElement(enum, 'Tamano', {'Tipo': 'fijo'})
                 sizeX = SubElement(size, 'Valorx')
                 sizeX.text = str(sc.getSizeX())
                 sizeY = SubElement(size, 'Valory')
                 sizeY.text = str(sc.getSizeY())
 
         # Genera fichero XML.
-        QDir().mkpath(os.path.split(fileName)[0]) # Verifica directorio.
-        saveFile = QFile(fileName)# Crear fichero de guardado.
-        saveFile.open(QIODevice.WriteOnly) # Sobreescritura.
-        ts = QTextStream(saveFile) # Canal para enviar texto al log.
+        QDir().mkpath(os.path.split(fileName)[0])  # Verifica directorio.
+        saveFile = QFile(fileName)  # Crear fichero de guardado.
+        saveFile.open(QIODevice.WriteOnly)  # Sobreescritura.
+        ts = QTextStream(saveFile)  # Canal para enviar texto al log.
         xml = self.prettify(root)
-        xml = xml.replace( '<?xml version="1.0" ?>',
-                     '<?xml version="1.0" encoding="ISO-8859-1"?>' )
-        ts << xml # Escribe el XML en el archivo.
+        xml = xml.replace('<?xml version="1.0" ?>',
+                          '<?xml version="1.0" encoding="ISO-8859-1"?>')
+        ts << xml  # Escribe el XML en el archivo.
         saveFile.close()
 
 
@@ -141,22 +144,22 @@ class Parser(object):
 # | Carga de los datos |
 # -------------------------------------------------------------------------- #
 
-    ## @brief      Genera estados y componentes desde fichero XML.
-    ## @param      self  Parser.
-    ## @param      filePath  Archivo XML
-    ## @return     None
-    def load(self,filePath):
+    # @brief      Genera estados y componentes desde fichero XML.
+    # @param      self  Parser.
+    # @param      filePath  Archivo XML
+    # @return     None
+    def load(self, filePath):
 
         fileFolder = os.path.split(filePath)[0]
 
         # Variables propias.
         toRet = 0
-        tfBool = lambda x : True if x is 't' else False
+        tfBool = lambda x: True if x is 't' else False
 
         # Reseteo de vista y modelo.
         self.model.states = deque()
         treeModel = self.view.statesTree.model()
-        treeModel.removeColumns(0,treeModel.columnCount())
+        treeModel.removeColumns(0, treeModel.columnCount())
 
         # Variables xml.
         try:
@@ -206,7 +209,7 @@ class Parser(object):
                         posX = compNode.Posicion.Relativa.Coordenada.Px
                         posY = compNode.Posicion.Relativa.Coordenada.Py
                         posZ = compNode.Posicion.Relativa.Coordenada.Pz
-                        width  = compNode.Tamano.Valorx
+                        width = compNode.Tamano.Valorx
                         height = compNode.Tamano.Valory
 
                         for data in [posX, posY, posZ, width, height]:

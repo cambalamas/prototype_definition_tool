@@ -1,8 +1,8 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 from PresetValues import pv
@@ -13,7 +13,7 @@ class Scene(QGraphicsScene):
 
     # .-------------.
     # | Constructor |
-    # -------------------------------------------------------------------------- #
+    # ---------------------------------------------------------------------- #
 
     # @brief      Constructuor de la escena.
     # @param      self    Escena
@@ -22,9 +22,6 @@ class Scene(QGraphicsScene):
     def __init__(self, rect, parent):
         super().__init__(rect, parent)
         self.isMovable = False
-        # self.getWindow().setMouseTracking(True)
-        self.parent().setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.parent().setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.__moveIni = QPointF(0, 0)
 
 

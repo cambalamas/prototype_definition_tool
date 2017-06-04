@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import *
 
 import Gui
 
-from PresetValues import pv
+from PresetValues import PV
 from SimpleComponent import SimpleComponent as sc
 
 
@@ -225,8 +225,8 @@ class View(QMainWindow):
 
         # Guarda la resolucion de la pantalla del usuario.
         self.screenRect = screenRect
-        newWidth = self.screenRect.width()*pv['viewRectMargin']
-        newHeight = self.screenRect.height()*pv['viewRectMargin']
+        newWidth = self.screenRect.width()*PV['viewRectMargin']
+        newHeight = self.screenRect.height()*PV['viewRectMargin']
         self.screenRect.setWidth(newWidth)
         self.screenRect.setHeight(newHeight)
 
@@ -429,13 +429,13 @@ class View(QMainWindow):
         self.workScene.clear()
         # Defino su pincel de fondo.
         brush = QBrush()
-        brush.setColor(QColor(pv['bgColor']))
+        brush.setColor(QColor(PV['bgColor']))
         brush.setStyle(Qt.CrossPattern)
         self.workScene.setBackgroundBrush(brush)
         # Creo el area activa.
         borderColor = Qt.black
         rect = QRectF(0.0, 0.0, 1240.0, 720.0)
-        fillColor = QColor(pv['sceneColor'])
+        fillColor = QColor(PV['sceneColor'])
         rect1 = self.workScene.addRect(rect, borderColor, fillColor)
         rect2 = self.workScene.addRect(rect, borderColor, brush)
         # Calculo el centro.
@@ -462,12 +462,12 @@ class View(QMainWindow):
         reply = Gui.exitSaveDialog(self)
         if reply == QMessageBox.Ok:
             self.emit_SaveProject()
-            qDebug(pv['endMsg'])
+            qDebug(PV['endMsg'])
             ev.accept()
         # Salir
         reply2 = Gui.exitDialog(self)
         if reply2 == QMessageBox.Ok:
-            qDebug(pv['endMsg'])
+            qDebug(PV['endMsg'])
             ev.accept()
         else:
             ev.ignore()

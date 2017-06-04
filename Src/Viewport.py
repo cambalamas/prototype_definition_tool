@@ -4,7 +4,7 @@
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
-from PresetValues import pv
+from PresetValues import PV
 
 
 # @brief      Clase que define el contenedor del area de trabajo.

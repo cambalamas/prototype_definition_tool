@@ -4,7 +4,7 @@
 from collections import deque
 from copy import copy
 
-from PresetValues import pv
+from PresetValues import PV
 
 
 # @brief      Clase que define los datos de un estado.
@@ -23,9 +23,9 @@ class State(object):
         # sera necesario iterar, para construir la escena.
         self.__scene = deque()
         # Pila con los estados anteriores de la interfaz.
-        self.__undo = deque(maxlen=pv['historyLimit'])
+        self.__undo = deque(maxlen=PV['historyLimit'])
         # Pila con los estados posteriores de la interfaz.
-        self.__redo = deque(maxlen=pv['historyLimit'])
+        self.__redo = deque(maxlen=PV['historyLimit'])
 
 
 # .-------------------------------------------.

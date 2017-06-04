@@ -19,7 +19,7 @@ import Parser
 
 from SimpleComponent import SimpleComponent
 
-from PresetValues import pv
+from PresetValues import PV
 
 
 # @brief      Clase que define la logica de negocio de la aplicacion.
@@ -84,7 +84,7 @@ class Presenter(object):
     # @param      self  Presentador.
     # @return     None
     def listener_SaveProject(self):
-        home = os.path.expanduser(pv['defaultPath'])
+        home = os.path.expanduser(PV['defaultPath'])
         fileName = Gui.saveDialog(self.view, home)
         if fileName[0]:
             self.parser.save(self.model.states, fileName[0])
@@ -95,7 +95,7 @@ class Presenter(object):
     # @return     None
     def listener_LoadProject(self):
         # PREGUNTAR POR GUARDAR ANTES EL PROYECTO ACTUAL.
-        home = os.path.expanduser(pv['defaultPath'])
+        home = os.path.expanduser(PV['defaultPath'])
         fileName = Gui.loadDialog(self.view, home)
         if fileName[0]:
             qDebug('Loading project from '+self._nfc(fileName[0]))
@@ -110,7 +110,7 @@ class Presenter(object):
     # @param      self  Presentador.
     # @return     None
     def listener_NewSimple(self):
-        home = os.path.expanduser(pv['defaultPath'])
+        home = os.path.expanduser(PV['defaultPath'])
         imgPathSet = Gui.imgDialog(self.view, home)
         if imgPathSet[0]:
             self.model.saveState()  # Guarda el estado previo.
@@ -251,8 +251,8 @@ class Presenter(object):
     # @param      self  Presentador.
     # @return     None
     def listener_ZoomIn(self):
-        if not self.view.scale * pv['viewModScale'] > pv['viewMaxScale']:
-            self.view.workArea.scale(pv['viewModScale'], pv['viewModScale'])
+        if not self.view.scale * PV['viewModScale'] > PV['viewMaxScale']:
+            self.view.workArea.scale(PV['viewModScale'], PV['viewModScale'])
             self._SbMsg('')
             qDebug('Increment viewport zoom to '
                    + self._nfc(round(self.view.scale*100, 2))+'%')
@@ -272,9 +272,9 @@ class Presenter(object):
     # @param      self  Presentador.
     # @return     None
     def listener_ZoomOut(self):
-        if not self.view.scale / pv['viewModScale'] < pv['viewMinScale']:
+        if not self.view.scale / PV['viewModScale'] < PV['viewMinScale']:
             self.view.workArea.scale(
-                1/pv['viewModScale'], 1/pv['viewModScale'])
+                1/PV['viewModScale'], 1/PV['viewModScale'])
             self._SbMsg('')
             qDebug('Decremented viewport zoom to '
                    + self._nfc(round(self.view.scale*100, 2))+'%')
@@ -362,7 +362,7 @@ class Presenter(object):
     def listener_ZInc(self):
         self.model.saveState()  # Guarda el estado previo.
         for item in self._selectedItems():
-            newZ = item.getPosZ() + pv['zJump']
+            newZ = item.getPosZ() + PV['zJump']
             item.setZValue(newZ)
             qDebug('Incremented Z of '+self._nfc(item.name)
                    + ', to'+self._nfc(newZ))
@@ -375,7 +375,7 @@ class Presenter(object):
     def listener_ZDec(self):
         self.model.saveState()  # Guarda el estado previo.
         for item in self._selectedItems():
-            newZ = item.getPosZ() - pv['zJump']
+            newZ = item.getPosZ() - PV['zJump']
             if newZ >= 0:
                 item.setZValue(newZ)
                 qDebug('Decremented Z of '+self._nfc(item.name)
@@ -441,7 +441,7 @@ class Presenter(object):
         if self.__saveFlagMove:
             self.__saveFlagMove = False
             self.model.saveState()
-            Timer(pv['moveTimer'], self._thMoveFlag).start()
+            Timer(PV['moveTimer'], self._thMoveFlag).start()
         # Calcula factor de correccion por escala.
         if overItem:
             factor = overItem[0].scale()
@@ -468,14 +468,14 @@ class Presenter(object):
         if self.__saveFlagResize:
             self.__saveFlagResize = False
             self.model.saveState()
-            Timer(pv['resizeTimer'], self._thResizeFlag).start()
+            Timer(PV['resizeTimer'], self._thResizeFlag).start()
         # Giro de la rueda hacia adelante.
         if delta > 0:
             # Escala todos los items seleccionados.
             for item in self._selectedItems():
                 # Si no excede el maximo.
-                if not item.scale() * pv['imgModScale'] > pv['imgMaxScale']:
-                    item.setScale(item.scale() * pv['imgModScale'])
+                if not item.scale() * PV['imgModScale'] > PV['imgMaxScale']:
+                    item.setScale(item.scale() * PV['imgModScale'])
                     qDebug('Scaled component '+self._nfc(item.name)
                            + ', to '+self._nfc(round(item.scale()*100, 2))+'%')
                 else:
@@ -485,8 +485,8 @@ class Presenter(object):
             # Escala todos los items seleccionados.
             for item in self._selectedItems():
                 # Si no excede el minimo.
-                if not item.scale() / pv['imgModScale'] < pv['imgMinScale']:
-                    item.setScale(item.scale() / pv['imgModScale'])
+                if not item.scale() / PV['imgModScale'] < PV['imgMinScale']:
+                    item.setScale(item.scale() / PV['imgModScale'])
                     qDebug('Scaled component '+self._nfc(item.name)
                            + ', to '+self._nfc(round(item.scale()*100, 2))+'%')
                 else:

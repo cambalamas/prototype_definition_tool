@@ -10,7 +10,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
-from PresetValues import pv
+from PresetValues import PV
 from Scene import Scene
 from Viewport import Viewport
 
@@ -398,7 +398,7 @@ def statesMenu():
 # @return     PyQt5.QtWidgets.QGraphicsView
 def workArea(screenRect):
     wArea = Viewport()
-    wArea.setBackgroundBrush(QColor(pv['bgColor']))
+    wArea.setBackgroundBrush(QColor(PV['bgColor']))
     wArea.resize(screenRect.width(), screenRect.height())
     wArea.setTransformationAnchor(wArea.AnchorUnderMouse)
     wAreaScene = Scene(QRectF(0.0, 0.0, 1240.0, 720.0), wArea)

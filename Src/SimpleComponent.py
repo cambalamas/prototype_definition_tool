@@ -15,7 +15,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
-from PresetValues import pv
+from PresetValues import PV
 
 
 # @brief      Clase que define un componente simple.
@@ -296,9 +296,9 @@ class SimpleComponent(QGraphicsPixmapItem):
     # @return     None
     def activeEffect(self):
         if self.active:
-            self.setOpacity(pv['maxOpacity'])
+            self.setOpacity(PV['maxOpacity'])
         else:
-            self.setOpacity(pv['noActiveOpacity'])
+            self.setOpacity(PV['noActiveOpacity'])
 
     # @brief      Resta opacidad si el componente no es visible.
     # @param      self  Componente Simple.
@@ -307,7 +307,7 @@ class SimpleComponent(QGraphicsPixmapItem):
         if self.visible:
             self.activeEffect()
         else:
-            self.setOpacity(pv['noVisibleOpacity'])
+            self.setOpacity(PV['noVisibleOpacity'])
 
     # @brief      Muestra un dialogo con los detalles del componente.
     # @param      self  Componente Simple.

@@ -14,7 +14,7 @@ from PyQt5.QtWidgets import *
 from Model import Model
 from Parser import Parser
 from Presenter import Presenter
-from PresetValues import pv
+from PresetValues import PV
 from View import View
 
 
@@ -70,7 +70,7 @@ if __name__ == '__main__':
 
     # Redefinimos el capturador de eventos con salida a fichero .log.
     qInstallMessageHandler(handler)
-    qDebug(pv['startMsg'])
+    qDebug(PV['startMsg'])
 
     # Resolucion del dispositivo del usuario.
     scrRect = app.primaryScreen().availableGeometry()

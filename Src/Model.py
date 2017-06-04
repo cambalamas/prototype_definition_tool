@@ -5,7 +5,7 @@ from collections import deque
 
 from PyQt5.QtCore import *
 
-from PresetValues import pv
+from PresetValues import PV
 from State import State
 
 

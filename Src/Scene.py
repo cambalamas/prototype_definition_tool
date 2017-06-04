@@ -5,7 +5,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
-from PresetValues import pv
+from PresetValues import PV
 
 
 # @brief      Clase que define un area de trabajo.
@@ -46,9 +46,9 @@ class Scene(QGraphicsScene):
     # @return     None
     def keyPressEvent(self, ev):
         if ev.modifiers() == Qt.ShiftModifier:
-            moveRng = pv['compShiftKeyDespl']
+            moveRng = PV['compShiftKeyDespl']
         else:
-            moveRng = pv['compKeyDespl']
+            moveRng = PV['compKeyDespl']
         zero = QPointF(0, 0)
         if ev.key() == Qt.Key_Left:
             self.getWindow().emit_Move(zero, QPointF(-moveRng, 0.0))

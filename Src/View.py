@@ -462,8 +462,6 @@ class View(QMainWindow):
         reply = Gui.exitSaveDialog(self)
         if reply == QMessageBox.Ok:
             self.emit_SaveProject()
-            qDebug(PV['endMsg'])
-            ev.accept()
         # Salir
         reply2 = Gui.exitDialog(self)
         if reply2 == QMessageBox.Ok:

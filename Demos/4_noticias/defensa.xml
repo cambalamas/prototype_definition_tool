@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<DGAIUINT>
+    <Composicion/>
+    <Estados>
+        <Estado>
+            <Numero>1</Numero>
+            <Descripcion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_YKp</Nombre>
+                    <Fichero>defensa_imgs/bg_body.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>543.9999999999998</Px>
+                                <Py>262.06262440151306</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>372.51458822630195</Valorx>
+                        <Valory>420.3419585049049</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_pBy</Nombre>
+                    <Fichero>defensa_imgs/boton_antiguas.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>551.0</Px>
+                                <Py>197.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>157.4261469592889</Valorx>
+                        <Valory>51.09445120608499</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_V0A</Nombre>
+                    <Fichero>defensa_imgs/boton_otras.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>730.0000000000001</Px>
+                                <Py>197.00000000000009</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>157.4261469592889</Valorx>
+                        <Valory>51.09445120608499</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_nvp</Nombre>
+                    <Fichero>defensa_imgs/boton_recientes.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>377.9999999999998</Px>
+                                <Py>199.00000000000017</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>157.4261469592889</Valorx>
+                        <Valory>51.09445120608499</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_KHS</Nombre>
+                    <Fichero>defensa_imgs/cabecero.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>375.3060090879076</Px>
+                                <Py>27.64116590934118</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>548.8380183959467</Valorx>
+                        <Valory>153.87981824185422</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_dG1</Nombre>
+                    <Fichero>defensa_imgs/noticia_breve.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>561.9999999999999</Px>
+                                <Py>294.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>336.83081592552486</Valorx>
+                        <Valory>55.023135493352854</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_pOs</Nombre>
+                    <Fichero>defensa_imgs/video.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>378.00000000000006</Px>
+                                <Py>284.0000000000003</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>132.6111497963109</Valorx>
+                        <Valory>101.03706651147499</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_DP4</Nombre>
+                    <Fichero>defensa_imgs/noticia_breve.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>562.0</Px>
+                                <Py>361.00000000000006</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>336.83081592552486</Valorx>
+                        <Valory>55.023135493352854</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_kXG</Nombre>
+                    <Fichero>defensa_imgs/noticia_breve.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>565.0</Px>
+                                <Py>429.99999999999983</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>336.83081592552486</Valorx>
+                        <Valory>55.023135493352854</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_AvW</Nombre>
+                    <Fichero>defensa_imgs/noticia_breve.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>565.0000000000002</Px>
+                                <Py>501.99999999999966</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>336.83081592552486</Valorx>
+                        <Valory>55.023135493352854</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_93g</Nombre>
+                    <Fichero>defensa_imgs/noticia_breve.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>567.0000000000003</Px>
+                                <Py>577.9999999999999</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>336.83081592552486</Valorx>
+                        <Valory>55.023135493352854</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_jWJ</Nombre>
+                    <Fichero>defensa_imgs/video.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>375.9999999999999</Px>
+                                <Py>409.00000000000045</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>132.6111497963109</Valorx>
+                        <Valory>101.03706651147499</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_El9</Nombre>
+                    <Fichero>defensa_imgs/video.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>363.9999999999988</Px>
+                                <Py>560.0000000000006</Py>
+                                <Pz>0.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>132.6111497963109</Valorx>
+                        <Valory>101.03706651147499</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_cCq</Nombre>
+                    <Fichero>defensa_imgs/video.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>374.5246944282774</Px>
+                                <Py>549.4753055717218</Py>
+                                <Pz>0.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>132.6111497963109</Valorx>
+                        <Valory>101.03706651147499</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_wXZ</Nombre>
+                    <Fichero>defensa_imgs/video.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>385.04938885655616</Px>
+                                <Py>531.6882639293032</Py>
+                                <Pz>0.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>132.6111497963109</Valorx>
+                        <Valory>101.03706651147499</Valory>
+                    </Tamano>
+                </Enumeracion>
+            </Descripcion>
+        </Estado>
+        <Estado>
+            <Numero>2</Numero>
+            <Descripcion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_pBy</Nombre>
+                    <Fichero>defensa_imgs/boton_antiguas.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>374.9999999999999</Px>
+                                <Py>198.00000000000006</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>157.4261469592889</Valorx>
+                        <Valory>51.09445120608499</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_V0A</Nombre>
+                    <Fichero>defensa_imgs/boton_otras.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>730.0000000000001</Px>
+                                <Py>197.00000000000009</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>157.4261469592889</Valorx>
+                        <Valory>51.09445120608499</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>hola</Nombre>
+                    <Fichero>defensa_imgs/boton_recientes.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>548.9999999999999</Px>
+                                <Py>197.0000000000001</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>157.4261469592889</Valorx>
+                        <Valory>51.09445120608499</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_KHS</Nombre>
+                    <Fichero>defensa_imgs/cabecero.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>359.99999999999994</Px>
+                                <Py>34.00000000000008</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>548.8380183959467</Valorx>
+                        <Valory>153.87981824185422</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_pOs</Nombre>
+                    <Fichero>defensa_imgs/video.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>365.0</Px>
+                                <Py>260.0000000000004</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>555.3467483187458</Valorx>
+                        <Valory>423.12133205237774</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_HM5</Nombre>
+                    <Fichero>defensa_imgs/video.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>368.00000000000034</Px>
+                                <Py>280.0000000000005</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>555.3467483187458</Valorx>
+                        <Valory>423.12133205237774</Valory>
+                    </Tamano>
+                </Enumeracion>
+            </Descripcion>
+        </Estado>
+        <Estado>
+            <Numero>3</Numero>
+            <Descripcion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_YKp</Nombre>
+                    <Fichero>defensa_imgs/bg_body.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>543.9999999999998</Px>
+                                <Py>261.0</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>372.51458822630195</Valorx>
+                        <Valory>420.3419585049049</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_pBy</Nombre>
+                    <Fichero>defensa_imgs/boton_antiguas.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>374.9999999999999</Px>
+                                <Py>198.00000000000006</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>157.4261469592889</Valorx>
+                        <Valory>51.09445120608499</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_V0A</Nombre>
+                    <Fichero>defensa_imgs/boton_otras.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>730.0000000000001</Px>
+                                <Py>197.00000000000009</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>157.4261469592889</Valorx>
+                        <Valory>51.09445120608499</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_nvp</Nombre>
+                    <Fichero>defensa_imgs/boton_recientes.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>548.9999999999999</Px>
+                                <Py>197.0000000000001</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>157.4261469592889</Valorx>
+                        <Valory>51.09445120608499</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_KHS</Nombre>
+                    <Fichero>defensa_imgs/cabecero.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>359.99999999999994</Px>
+                                <Py>34.00000000000008</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>548.8380183959467</Valorx>
+                        <Valory>153.87981824185422</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_E3g</Nombre>
+                    <Fichero>defensa_imgs/noticia_extensa.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>572.0000000000002</Px>
+                                <Py>280.0000000000001</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>315.6503615883637</Valorx>
+                        <Valory>373.453479868459</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_pOs</Nombre>
+                    <Fichero>defensa_imgs/video.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>388.0</Px>
+                                <Py>284.0000000000003</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>132.6111497963109</Valorx>
+                        <Valory>101.03706651147499</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_jWJ</Nombre>
+                    <Fichero>defensa_imgs/video.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>385.99999999999983</Px>
+                                <Py>409.00000000000045</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>132.6111497963109</Valorx>
+                        <Valory>101.03706651147499</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_Vbf</Nombre>
+                    <Fichero>defensa_imgs/video.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>374.99999999999994</Px>
+                                <Py>550.0000000000002</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>132.6111497963109</Valorx>
+                        <Valory>101.03706651147499</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_7Sk</Nombre>
+                    <Fichero>defensa_imgs/video.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>383.99999999999983</Px>
+                                <Py>538.0000000000003</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>132.6111497963109</Valorx>
+                        <Valory>101.03706651147499</Valory>
+                    </Tamano>
+                </Enumeracion>
+                <Enumeracion Activo="t" Visible="t">
+                    <Nombre>SC_El9</Nombre>
+                    <Fichero>defensa_imgs/video.png</Fichero>
+                    <Posicion>
+                        <Relativa>
+                            <Coordenada>
+                                <Px>392.9999999999998</Px>
+                                <Py>522.0000000000005</Py>
+                                <Pz>1.0</Pz>
+                            </Coordenada>
+                        </Relativa>
+                    </Posicion>
+                    <Tamano Tipo="fijo">
+                        <Valorx>132.6111497963109</Valorx>
+                        <Valory>101.03706651147499</Valory>
+                    </Tamano>
+                </Enumeracion>
+            </Descripcion>
+        </Estado>
+    </Estados>
+    <Transiciones/>
+</DGAIUINT>

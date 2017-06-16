@@ -1,21 +1,24 @@
-<p align="center"> <img src="Src/Icons/logo.png" height="350" width="350"> </p>
+# PROTOTYPIST
 
-## Con [Docker](https://www.docker.com/what-docker).
+![](Src/icons/logo.png){:align="center" height="350px" width="350px"}
+
+## Con [Docker](https://www.docker.com/what-docker)
 
 Docker nos permite la ejecución de la app en un contenedor linux que posee las dependencias necesarias para ejecutar la aplicación. Al ser un contenedor, no tendremos acceso directo desde la app a nuestro disco duro, por lo que para probar algun proyecto concreto, debe copiarse, por ejemplo, a la carpeta `Demos/` antes de ejecutar la imagen de docker. Así al cargar un archivo desde la aplicación, podemos ir a `/app/Demos/` y cargar nuestro proyecto.
 
 ```shell
 # Lo primero es construir la image docker. (Puede llevar un tiempo)
+# Dentro de la carpeta Src/
 docker build -t prototypist .
 ```
 
 ```shell
 # Windows (Powershell y Xming o similares son necesarios).
-xming -ac -multiwindow -clipboard    # Abre un servidor de X11.
+xming -ac -multiwindow -clipboard  # Abre un servidor de X11.
 docker run -it `
-	-v "$((Get-Location).path):/app" `
-	-e DISPLAY="$((Get-NetAdapter "vEthernet (DockerNAT)" | Get-NetIPAddress).IPAddress):0" `
-	prototypist python3 /app/Src/Main.py
+    -v "$((Get-Location).path):/app" `
+    -e DISPLAY="$((Get-NetAdapter "vEthernet (DockerNAT)" | Get-NetIPAddress).IPAddress):0" `
+    prototypist python3 /app/Src/Main.py
 ```
 
 ```shell
@@ -27,9 +30,7 @@ docker run -it \
     prototypist python3 /app/Src/Main.py
 ```
 
-
-## Sin [Docker](https://www.docker.com/what-docker).
-
+## Sin [Docker](https://www.docker.com/what-docker)
 
 ### Requisitos mínimos
 
@@ -42,7 +43,7 @@ docker run -it \
 - **i18n *>=0.3.0***
   - [https://github.com/tuvistavie/python-i18n](https://github.com/tuvistavie/python-i18n)
 
-Por lo que versiones antiguas de algunos sistemas puede queno sean compatibles con la aplicación, por no permitir la instalación de algunode dichos paquetes (*como Ubuntu 14.04 queno se puede instalar una versión superior a Python 3.4.3*) 
+Por lo que versiones antiguas de algunos sistemas puede queno sean compatibles con la aplicación, por no permitir la instalación de algunode dichos paquetes (*como Ubuntu 14.04 queno se puede instalar una versión superior a Python 3.4.3*)
 
 ### Instalación de dependencias
 
@@ -50,23 +51,22 @@ Por lo que versiones antiguas de algunos sistemas puede queno sean compatibles c
 
 Desde PowerShell:
 
-```
+```powershell
 Set-ExecutionPolicy RemoteSigned -scope CurrentUser
 iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
 scoop install python
 ```
 
-```
+```powershell
 pip3 install --upgrade pip
 pip3 install PyQt5
 pip3 install lxml
 pip3 install python-i18n[YAML]
 ```
 
-
 #### Ubuntu >= 16.04
 
-```
+```bash
 sudo apt-get update && \
 
 sudo apt-get install -y --no-install-recommends\
@@ -81,28 +81,27 @@ sudo pip3 install python-i18n[YAML]
 ```
 
 Ante un mensaje similar a: “*D-Bus library appears to be incorrectly set up*”, ejecutar:
-```
+
+```bash
 sudo apt-get install -y dbus
 ```
 
 #### Mac
 
-```
+```bash
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew install python3
 ```
 
-```
+```bash
 pip3 install --upgrade pip
 pip3 install PyQt5
 pip3 install lxml
 pip3 install python-i18n[YAML]
 ```
 
-
-### EJECUTAR.
+### EJECUTAR
 
 ```shell
 python3 Src/Main.py
 ```
-

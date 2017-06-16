@@ -1,6 +1,6 @@
 # PROTOTYPIST
 
-![](Src/Icons/logo.png){:align="center" height="350px" width="350px"}
+<p align="center"> <img src="Src/Icons/logo.png" height="350" width="350"> </p>
 
 ## Con [Docker](https://www.docker.com/what-docker)
 

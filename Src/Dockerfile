@@ -19,6 +19,6 @@ RUN pip3 install python-i18n[YAML]
 RUN sed -i "s/^#\ es_ES/es_ES/g" /etc/locale.gen
 RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
 
-ENV LANGUAGE es_ES.ISO-8859-1
 ENV LANG es_ES.ISO-8859-1
 ENV LC_ALL es_ES.ISO-8859-1
+ENV LANGUAGE es_ES.ISO-8859-1

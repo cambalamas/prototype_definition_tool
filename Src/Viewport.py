@@ -21,6 +21,7 @@ class Viewport(QGraphicsView):
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
+
     # .---------.
     # | Eventos |
     # ---------------------------------------------------------------------- #

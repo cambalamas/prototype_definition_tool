@@ -105,3 +105,7 @@ pip3 install python-i18n[YAML]
 ```shell
 python3 Src/Main.py
 ```
+
+### DEMO VIDEO
+[![Watch the video](https://j.gifs.com/gZMr6D.gif)](https://youtu.be/vnnRPrnEVkE)
+
